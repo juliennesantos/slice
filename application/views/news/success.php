@@ -1,0 +1,1 @@
+<h2>Your entry has successfully been submitted</h2>
