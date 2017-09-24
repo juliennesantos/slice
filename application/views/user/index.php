@@ -11,19 +11,19 @@
                 <table class="table table-striped">
                     <tr>
 						<th>UserID</th>
-						<th>TypeID</th>
+						<th>User Type</th>
                         <th>'User name'</th>
-						<th>FirstName</th>
-						<th>LastName</th>
-						<th>MiddleName</th>
-						<th>EmailAddress</th>
-						<th>ContactNo</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Middle Name</th>
+						<th>Email Address</th>
+						<th>Contact No</th>
 						<th>Actions</th>
                     </tr>
                     <?php foreach($users as $u){ ?>
                     <tr>
 						<td><?php echo $u['userID']; ?></td>
-                        <td><?php echo $u['typeID']; ?></td>
+                        <td><?php echo $u['userType']; ?></td>
                         <td><?php echo $u['username']; ?></td>                        
                         <td><?php echo $u['firstName']; ?></td>
 						<td><?php echo $u['lastName']; ?></td>

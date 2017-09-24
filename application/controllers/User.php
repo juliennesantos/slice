@@ -51,7 +51,7 @@ class User extends CI_Controller{
             $params = array(
                 'typeID' => $this->input->post('typeID'),
                 'username' => $this->input->post('username'),
-                'password' => password_hash($this->input->post('password')),
+                'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
 				'firstName' => $this->input->post('firstName'),
 				'lastName' => $this->input->post('lastName'),
 				'middleName' => $this->input->post('middleName'),

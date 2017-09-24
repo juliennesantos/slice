@@ -33,7 +33,7 @@
 					<div class="col-md-6">
 						<label for="password" class="control-label">Password</label>
 						<div class="form-group">
-							<input type="text" name="password" value="<?php echo $this->input->post('password'); ?>" class="form-control" id="password" />
+							<input type="password" name="password" value="<?php echo $this->input->post('password'); ?>" class="form-control" id="password" />
 							<span class="text-danger"><?php echo form_error('password');?></span>
 						</div>
 					</div>
