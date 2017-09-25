@@ -9,45 +9,40 @@ class Login extends CI_Controller{
     
     function index()
     {
-        $data['_view'] = 'login/index';
-        $this->load->model('Login_model');
-        $this->load->view('login/login', $data);
-    }
-    
-    
-    /*
-    * validate user
-    */
-    function validate()
-    {
         $this->load->model('Login_model');        
         $this->load->library('form_validation');
-        $this->load->library('encryption');        
         
         $this->form_validation->set_rules('password','Password','required|max_length[255]');
         $this->form_validation->set_rules('username','Username','required|max_length[50]');
         
+        session_destroy();
+        $_SESSION['errormsg'] = 0;
+        
         if($this->form_validation->run())     
         {   
             $params = array(
-                'password' => password_verify($this->input->post('password'), PASSWORD_BCRYPT),
+                'password' => $this->input->post('password'),
                 'username' => $this->input->post('username'),
             );
             
-            $data = $this->Login_model->get_user($params);
-            if(isset($data['userID']) and isset($data['typeID']))
-            {
-                $_SESSION['userID'] = $data['userID'];
-                $_SESSION['typeID'] = $data['typeID'];
-                redirect('dashboard/index');                
+            $data = $this->Login_model->get_user($params); 
+            if(password_verify($params['password'], $data['password']) == FALSE){
+                $_SESSION['errormsg'] = 1;
             }
             else {
-                show_error('The user you are trying to find does not exist.');                      
+                if(isset($data['userID']) and isset($data['userTypeID']))
+                {
+                    $_SESSION['userID'] = $data['userID'];
+                    $_SESSION['userTypeID'] = $data['userTypeID'];
+                    redirect('dashboard/index');                
+                }
+                else {
+                    $_SESSION['errormsg'] = 1;
+                }
             }
         }
-        else
-        {
-            echo 'error';
-        }
+        
+        $data['_view'] = 'login/index';
+        $this->load->view('login/login', $data);
     }
 }
