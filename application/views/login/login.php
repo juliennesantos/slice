@@ -36,13 +36,29 @@
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
-    <?php echo form_open('login/validate'); ?>
+    <!-- login-error-msgs -->
+    <?php if($_SESSION['errormsg'] == 1): ?>
+      <div class="alert alert-danger alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <strong>Error!</strong> Invalid username or password
+      </div>
+    <?php endif;?>
+    <?php if($_SESSION['errormsg'] == 2): ?>
+      <div class="alert alert-danger alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <strong>Error!</strong> Internal error
+      </div>
+    <?php endif;?>
+    <!-- /login-error-msgs -->
+
+    <?php echo form_open('login/index'); ?>
       <div class="form-group has-feedback">
-        <input type="text" name="username" class="form-control" id="username" placeholder="Username"/>
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <input type="text" name="username" class="form-control" id="username" placeholder="Username" pattern=".+@benilde.edu.ph"
+          title="Please provide only a Benilde email address" required/>
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" name="password" class="form-control" id="password" placeholder="Password"/>
+        <input type="password" name="password" class="form-control" id="password" placeholder="Password" required/>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
         <!-- /.col -->

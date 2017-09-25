@@ -29,10 +29,10 @@ class Login extends CI_Controller{
                 $_SESSION['errormsg'] = 1;
             }
             else {
-                if(isset($data['userID']) and isset($data['userTypeID']))
+                if(isset($data['userID']) and isset($data['typeID']))
                 {
                     $_SESSION['userID'] = $data['userID'];
-                    $_SESSION['userTypeID'] = $data['userTypeID'];
+                    $_SESSION['typeID'] = $data['typeID'];
                     redirect('dashboard/index');                
                 }
                 else {
