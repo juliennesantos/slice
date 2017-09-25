@@ -33,7 +33,7 @@ class Course_model extends CI_Model
      */
     function get_all_courses($params = array())
     {
-        $this->db->order_by('courseID', 'desc');
+        $this->db->order_by('courseID', 'asc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);

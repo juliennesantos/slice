@@ -33,7 +33,7 @@ class Usertype_model extends CI_Model
      */
     function get_all_usertypes($params = array())
     {
-        $this->db->order_by('typeID', 'desc');
+        $this->db->order_by('typeID', 'asc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);

@@ -33,7 +33,7 @@ class Tutorialsession_model extends CI_Model
      */
     function get_all_tutorialsession($params = array())
     {
-        $this->db->order_by('tutorialNo', 'desc');
+        $this->db->order_by('tutorialNo', 'asc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);

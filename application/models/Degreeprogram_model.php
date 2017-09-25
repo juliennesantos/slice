@@ -33,7 +33,7 @@ class Degreeprogram_model extends CI_Model
      */
     function get_all_degreeprograms($params = array())
     {
-        $this->db->order_by('programID', 'desc');
+        $this->db->order_by('programID', 'asc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);

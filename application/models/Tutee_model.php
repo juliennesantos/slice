@@ -33,7 +33,7 @@ class Tutee_model extends CI_Model
      */
     function get_all_tutees($params = array())
     {
-        $this->db->order_by('tuteeID', 'desc');
+        $this->db->order_by('tuteeID', 'asc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);

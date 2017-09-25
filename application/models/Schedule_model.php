@@ -33,7 +33,7 @@ class Schedule_model extends CI_Model
      */
     function get_all_schedule($params = array())
     {
-        $this->db->order_by('scheduleID', 'desc');
+        $this->db->order_by('scheduleID', 'asc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);

@@ -33,7 +33,7 @@ class Attendance_model extends CI_Model
      */
     function get_all_attendance($params = array())
     {
-        $this->db->order_by('logID', 'desc');
+        $this->db->order_by('logID', 'asc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);

@@ -33,7 +33,7 @@ class Tutor_model extends CI_Model
      */
     function get_all_tutors($params = array())
     {
-        $this->db->order_by('tutorID', 'desc');
+        $this->db->order_by('tutorID', 'asc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);
