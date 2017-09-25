@@ -24,6 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://localhost/slice/';
+$config['site_url'] = 'http://localhost/slice/';
 
 /*
 |--------------------------------------------------------------------------
@@ -314,7 +315,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'blowfish';
 
 /*
 |--------------------------------------------------------------------------

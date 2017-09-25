@@ -15,7 +15,6 @@ class Login extends CI_Controller{
         $this->form_validation->set_rules('password','Password','required|max_length[255]');
         $this->form_validation->set_rules('username','Username','required|max_length[50]');
         
-        session_destroy();
         $_SESSION['errormsg'] = 0;
         
         if($this->form_validation->run())     
