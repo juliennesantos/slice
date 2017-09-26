@@ -93,12 +93,12 @@
                         <li class="header">MAIN NAVIGATION</li>
                         <li>
                             <a href="<?php echo site_url();?>">
-                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                                <i class="fa fa-desktop"></i> <span>Dashboard</span>
                             </a>
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Attendance</span>
+                                <i class="fa fa-pencil-square-o"></i> <span>Attendance</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -111,7 +111,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Auditlog</span>
+                                <i class="fa fa-clipboard"></i> <span>Auditlog</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -124,7 +124,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Course</span>
+                                <i class="fa fa-book"></i> <span>Course</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -137,7 +137,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Degreeprogram</span>
+                                <i class="fa fa-graduation-cap"></i> <span>Degreeprogram</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -150,7 +150,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Faculty</span>
+                                <i class="fa fa-user"></i> <span>Faculty</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -176,7 +176,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Programcourse</span>
+                                <i class="fa fa-book"></i> <span>Programcourse</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -189,7 +189,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Schedule</span>
+                                <i class="fa fa-calendar-check-o"></i> <span>Schedule</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -202,7 +202,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Student</span>
+                                <i class="fa fa-user-o"></i> <span>Student</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -215,7 +215,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Tutee</span>
+                                <i class="fa fa-child"></i> <span>Tutee</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -228,7 +228,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Tutorexpertise</span>
+                                <i class="fa fa-lightbulb-o"></i> <span>Tutorexpertise</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -241,7 +241,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Tutorialsession</span>
+                                <i class="fa fa-hourglass"></i> <span>Tutorialsession</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -254,7 +254,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Tutor</span>
+                                <i class="fa fa-male"></i> <span>Tutor</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -267,7 +267,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Tutorschedule</span>
+                                <i class="fa fa-calendar"></i> <span>Tutorschedule</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -280,7 +280,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>User</span>
+                                <i class="fa fa-user-circle"></i> <span>User</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -293,7 +293,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Usertype</span>
+                                <i class="fa fa-universal-access"></i> <span>Usertype</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
