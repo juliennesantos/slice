@@ -53,8 +53,8 @@
 
     <?php echo form_open('login/index'); ?>
       <div class="form-group has-feedback">
-        <input type="text" name="username" class="form-control" id="username" placeholder="Username" pattern=".+@benilde.edu.ph"
-          title="Please provide only a Benilde email address" required/>
+        <input type="text" name="username" class="form-control" id="username" placeholder="Username" required/>
+        <!-- pattern=".+@benilde.edu.ph" title="Please provide only a Benilde email address" -->
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">

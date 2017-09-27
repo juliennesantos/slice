@@ -16,6 +16,7 @@ class Attendance extends CI_Controller{
      */
     function index()
     {
+        // $this->PageValidation_model->validate('attendance');
         $params['limit'] = RECORDS_PER_PAGE; 
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
         

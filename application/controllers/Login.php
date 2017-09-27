@@ -44,4 +44,12 @@ class Login extends CI_Controller{
         $data['_view'] = 'login/index';
         $this->load->view('login/login', $data);
     }
+
+    function logout()
+    {
+        session_start();
+        session_destroy();
+
+        redirect(site_url().'login/index');
+    }
 }
