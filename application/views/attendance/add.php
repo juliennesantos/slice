@@ -10,7 +10,7 @@
 					<div class="col-md-6">
 						<label for="tutorID" class="control-label">Tutor</label>
 						<div class="form-group">
-							<select name="tutorID" class="form-control">
+							<select name="tutorID" class="form-control" min="11" max="11">
 								<option value="">select tutor</option>
 								<?php 
 								foreach($all_tutors as $tutor)
@@ -26,14 +26,14 @@
 					<div class="col-md-6">
 						<label for="term" class="control-label">Term</label>
 						<div class="form-group">
-							<input type="text" name="term" value="<?php echo $this->input->post('term'); ?>" class="form-control" id="term" />
+							<input type="text" name="term" value="<?php echo $this->input->post('term'); ?>" class="form-control" id="term" min="11" max="11" />
 							<span class="text-danger"><?php echo form_error('term');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="schoolYr" class="control-label">School Year</label>
 						<div class="form-group">
-							<input type="text" name="schoolYr" value="<?php echo $this->input->post('schoolYr'); ?>" class="form-control" id="schoolYr" />
+							<input type="text" name="schoolYr" value="<?php echo $this->input->post('schoolYr'); ?>" class="form-control" id="schoolYr" min="4" max="4" />
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -51,7 +51,7 @@
 					<div class="col-md-6">
 						<label for="remarks" class="control-label">Remarks</label>
 						<div class="form-group">
-							<textarea name="remarks" class="form-control" id="remarks"><?php echo $this->input->post('remarks'); ?></textarea>
+							<textarea name="remarks" class="form-control" id="remarks" max="500"><?php echo $this->input->post('remarks'); ?></textarea>
 							<span class="text-danger"><?php echo form_error('remarks');?></span>
 						</div>
 					</div>

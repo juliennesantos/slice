@@ -42,14 +42,14 @@
 					<div class="col-md-6">
 						<label for="term" class="control-label">Term</label>
 						<div class="form-group">
-							<input type="text" name="term" value="<?php echo $this->input->post('term'); ?>" class="form-control" id="term" />
+							<input type="text" name="term" value="<?php echo $this->input->post('term'); ?>" class="form-control" id="term" max="11" />
 							<span class="text-danger"><?php echo form_error('term');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="schoolYear" class="control-label">SchoolYear</label>
 						<div class="form-group">
-							<input type="text" name="schoolYear" value="<?php echo $this->input->post('schoolYear'); ?>" class="form-control" id="schoolYear" />
+							<input type="text" name="schoolYear" value="<?php echo $this->input->post('schoolYear'); ?>" class="form-control" id="schoolYear" min="4" max="4" />
 						</div>
 					</div>
 				</div>

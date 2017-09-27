@@ -26,7 +26,7 @@
 					<div class="col-md-6">
 						<label for="tutorialNo" class="control-label">TutorialNo</label>
 						<div class="form-group">
-							<input type="text" name="tutorialNo" value="<?php echo $this->input->post('tutorialNo'); ?>" class="form-control" id="tutorialNo" />
+							<input type="text" name="tutorialNo" value="<?php echo $this->input->post('tutorialNo'); ?>" class="form-control" id="tutorialNo" min="11" max="11" />
 							<span class="text-danger"><?php echo form_error('tutorialNo');?></span>
 						</div>
 					</div>
