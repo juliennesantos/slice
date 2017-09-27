@@ -60,7 +60,7 @@
 					<div class="col-md-6">
 						<label for="remarks" class="control-label">Remarks</label>
 						<div class="form-group">
-							<input type="text" name="remarks" value="<?php echo ($this->input->post('remarks') ? $this->input->post('remarks') : $tutorialsession['remarks']); ?>" class="form-control" id="remarks" />
+							<input type="text" name="remarks" value="<?php echo ($this->input->post('remarks') ? $this->input->post('remarks') : $tutorialsession['remarks']); ?>" class="form-control" id="remarks" max="200" />
 							<span class="text-danger"><?php echo form_error('remarks');?></span>
 						</div>
 					</div>

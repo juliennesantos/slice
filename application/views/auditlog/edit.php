@@ -10,7 +10,7 @@
 					<div class="col-md-6">
 						<label for="userID" class="control-label">User</label>
 						<div class="form-group">
-							<select name="userID" class="form-control">
+							<select name="userID" class="form-control" min="11" max="11">
 								<option value="">select user</option>
 								<?php 
 								foreach($all_users as $user)
@@ -26,7 +26,7 @@
 					<div class="col-md-6">
 						<label for="logType" class="control-label">Log Type</label>
 						<div class="form-group">
-							<input type="text" name="logType" value="<?php echo ($this->input->post('logType') ? $this->input->post('logType') : $auditlog['logType']); ?>" class="form-control" id="logType" />
+							<input type="text" name="logType" value="<?php echo ($this->input->post('logType') ? $this->input->post('logType') : $auditlog['logType']); ?>" class="form-control" id="logType" max="80" />
 							<span class="text-danger"><?php echo form_error('logType');?></span>
 						</div>
 					</div>
@@ -39,7 +39,7 @@
 					<div class="col-md-6">
 						<label for="description" class="control-label">Description</label>
 						<div class="form-group">
-							<textarea name="description" class="form-control" id="description"><?php echo ($this->input->post('description') ? $this->input->post('description') : $auditlog['description']); ?></textarea>
+							<textarea name="description" class="form-control" id="description" max="500"><?php echo ($this->input->post('description') ? $this->input->post('description') : $auditlog['description']); ?></textarea>
 							<span class="text-danger"><?php echo form_error('description');?></span>
 						</div>
 					</div>

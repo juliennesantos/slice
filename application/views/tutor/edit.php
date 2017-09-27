@@ -26,7 +26,7 @@
 					<div class="col-md-6">
 						<label for="tutorType" class="control-label">TutorType</label>
 						<div class="form-group">
-							<input type="text" name="tutorType" value="<?php echo ($this->input->post('tutorType') ? $this->input->post('tutorType') : $tutor['tutorType']); ?>" class="form-control" id="tutorType" />
+							<input type="text" name="tutorType" value="<?php echo ($this->input->post('tutorType') ? $this->input->post('tutorType') : $tutor['tutorType']); ?>" class="form-control" id="tutorType" max="80" />
 							<span class="text-danger"><?php echo form_error('tutorType');?></span>
 						</div>
 					</div>
@@ -45,7 +45,7 @@
 					<div class="col-md-6">
 						<label for="status" class="control-label">Status</label>
 						<div class="form-group">
-							<input type="text" name="status" value="<?php echo ($this->input->post('status') ? $this->input->post('status') : $tutor['status']); ?>" class="form-control" id="status" />
+							<input type="text" name="status" value="<?php echo ($this->input->post('status') ? $this->input->post('status') : $tutor['status']); ?>" class="form-control" id="status" max="10" />
 							<span class="text-danger"><?php echo form_error('status');?></span>
 						</div>
 					</div>

@@ -42,14 +42,14 @@
 					<div class="col-md-6">
 						<label for="studentNo" class="control-label">StudentNo</label>
 						<div class="form-group">
-							<input type="text" name="studentNo" value="<?php echo ($this->input->post('studentNo') ? $this->input->post('studentNo') : $student['studentNo']); ?>" class="form-control" id="studentNo" />
+							<input type="text" name="studentNo" value="<?php echo ($this->input->post('studentNo') ? $this->input->post('studentNo') : $student['studentNo']); ?>" class="form-control" id="studentNo" min="8" max="8" />
 							<span class="text-danger"><?php echo form_error('studentNo');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="status" class="control-label">Status</label>
 						<div class="form-group">
-							<input type="text" name="status" value="<?php echo ($this->input->post('status') ? $this->input->post('status') : $student['status']); ?>" class="form-control" id="status" />
+							<input type="text" name="status" value="<?php echo ($this->input->post('status') ? $this->input->post('status') : $student['status']); ?>" class="form-control" id="status" max="10" />
 							<span class="text-danger"><?php echo form_error('status');?></span>
 						</div>
 					</div>

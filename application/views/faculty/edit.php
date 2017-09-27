@@ -42,21 +42,21 @@
 					<div class="col-md-6">
 						<label for="userName" class="control-label">UserName</label>
 						<div class="form-group">
-							<input type="text" name="userName" value="<?php echo ($this->input->post('userName') ? $this->input->post('userName') : $faculty['userName']); ?>" class="form-control" id="userName" />
+							<input type="text" name="userName" value="<?php echo ($this->input->post('userName') ? $this->input->post('userName') : $faculty['userName']); ?>" class="form-control" id="userName" max="80" />
 							<span class="text-danger"><?php echo form_error('userName');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="facultyNo" class="control-label">FacultyNo</label>
 						<div class="form-group">
-							<input type="text" name="facultyNo" value="<?php echo ($this->input->post('facultyNo') ? $this->input->post('facultyNo') : $faculty['facultyNo']); ?>" class="form-control" id="facultyNo" />
+							<input type="text" name="facultyNo" value="<?php echo ($this->input->post('facultyNo') ? $this->input->post('facultyNo') : $faculty['facultyNo']); ?>" class="form-control" id="facultyNo" min="11" max="11" />
 							<span class="text-danger"><?php echo form_error('facultyNo');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="status" class="control-label">Status</label>
 						<div class="form-group">
-							<input type="text" name="status" value="<?php echo ($this->input->post('status') ? $this->input->post('status') : $faculty['status']); ?>" class="form-control" id="status" />
+							<input type="text" name="status" value="<?php echo ($this->input->post('status') ? $this->input->post('status') : $faculty['status']); ?>" class="form-control" id="status" max="100" />
 							<span class="text-danger"><?php echo form_error('status');?></span>
 						</div>
 					</div>
