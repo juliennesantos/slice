@@ -24,51 +24,51 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="username" class="control-label">username</label>
+						<label for="username" class="control-label">Username</label>
 						<div class="form-group">
-							<input type="text" name="username" value="<?php echo ($this->input->post('username') ? $this->input->post('username') : $user['username']); ?>" class="form-control" id="username" />
+							<input type="text" name="username" value="<?php echo ($this->input->post('username') ? $this->input->post('username') : $user['username']); ?>" class="form-control" id="username" max="20" />
 							<span class="text-danger"><?php echo form_error('username');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="password" class="control-label">Password</label>
 						<div class="form-group">
-							<input type="password" name="password" value="<?php echo $this->input->post('password'); ?>" class="form-control" id="password" />
+							<input type="password" name="password" value="<?php echo $this->input->post('password'); ?>" class="form-control" id="password" min="6" max="80" />
 							<span class="text-danger"><?php echo form_error('password');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="firstName" class="control-label">First Name</label>
 						<div class="form-group">
-							<input type="text" name="firstName" value="<?php echo ($this->input->post('firstName') ? $this->input->post('firstName') : $user['firstName']); ?>" class="form-control" id="firstName" />
+							<input type="text" name="firstName" value="<?php echo ($this->input->post('firstName') ? $this->input->post('firstName') : $user['firstName']); ?>" class="form-control" id="firstName" max="80" />
 							<span class="text-danger"><?php echo form_error('firstName');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="lastName" class="control-label">Last Name</label>
 						<div class="form-group">
-							<input type="text" name="lastName" value="<?php echo ($this->input->post('lastName') ? $this->input->post('lastName') : $user['lastName']); ?>" class="form-control" id="lastName" />
+							<input type="text" name="lastName" value="<?php echo ($this->input->post('lastName') ? $this->input->post('lastName') : $user['lastName']); ?>" class="form-control" id="lastName" max="50" />
 							<span class="text-danger"><?php echo form_error('lastName');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="middleName" class="control-label">Middle Name</label>
 						<div class="form-group">
-							<input type="text" name="middleName" value="<?php echo ($this->input->post('middleName') ? $this->input->post('middleName') : $user['middleName']); ?>" class="form-control" id="middleName" />
+							<input type="text" name="middleName" value="<?php echo ($this->input->post('middleName') ? $this->input->post('middleName') : $user['middleName']); ?>" class="form-control" id="middleName" max="50" />
 							<span class="text-danger"><?php echo form_error('middleName');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="emailAddress" class="control-label">Email Address</label>
 						<div class="form-group">
-							<input type="text" name="emailAddress" value="<?php echo ($this->input->post('emailAddress') ? $this->input->post('emailAddress') : $user['emailAddress']); ?>" class="form-control" id="emailAddress" />
+							<input type="text" name="emailAddress" value="<?php echo ($this->input->post('emailAddress') ? $this->input->post('emailAddress') : $user['emailAddress']); ?>" class="form-control" id="emailAddress" max="100" />
 							<span class="text-danger"><?php echo form_error('emailAddress');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="contactNo" class="control-label">Contact Number</label>
+						<label for="contactNo" class="control-label">Mobile Number</label>
 						<div class="form-group">
-							<input type="text" name="contactNo" value="<?php echo ($this->input->post('contactNo') ? $this->input->post('contactNo') : $user['contactNo']); ?>" class="form-control" id="contactNo" />
+							<input type="text" name="contactNo" value="<?php echo ($this->input->post('contactNo') ? $this->input->post('contactNo') : $user['contactNo']); ?>" class="form-control" id="contactNo" max="15" />
 							<span class="text-danger"><?php echo form_error('contactNo');?></span>
 						</div>
 					</div>

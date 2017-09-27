@@ -10,7 +10,7 @@
 					<div class="col-md-6">
 						<label for="day" class="control-label">Day</label>
 						<div class="form-group">
-							<input type="text" name="day" value="<?php echo ($this->input->post('day') ? $this->input->post('day') : $schedule['day']); ?>" class="form-control" id="day" />
+							<input type="text" name="day" value="<?php echo ($this->input->post('day') ? $this->input->post('day') : $schedule['day']); ?>" class="form-control" id="day" max="9" />
 							<span class="text-danger"><?php echo form_error('day');?></span>
 						</div>
 					</div>

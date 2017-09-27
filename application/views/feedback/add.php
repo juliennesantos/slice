@@ -26,14 +26,14 @@
 					<div class="col-md-6">
 						<label for="tutorialNo" class="control-label">TutorialNo</label>
 						<div class="form-group">
-							<input type="text" name="tutorialNo" value="<?php echo $this->input->post('tutorialNo'); ?>" class="form-control" id="tutorialNo" />
+							<input type="text" name="tutorialNo" value="<?php echo $this->input->post('tutorialNo'); ?>" class="form-control" id="tutorialNo" max="11" />
 							<span class="text-danger"><?php echo form_error('tutorialNo');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="feedback" class="control-label">Feedback</label>
 						<div class="form-group">
-							<input type="text" name="feedback" value="<?php echo $this->input->post('feedback'); ?>" class="form-control" id="feedback" />
+							<input type="text" name="feedback" value="<?php echo $this->input->post('feedback'); ?>" class="form-control" id="feedback" max="1000" />
 							<span class="text-danger"><?php echo form_error('feedback');?></span>
 						</div>
 					</div>

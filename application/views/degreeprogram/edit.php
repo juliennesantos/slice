@@ -10,21 +10,21 @@
 					<div class="col-md-6">
 						<label for="name" class="control-label">Name</label>
 						<div class="form-group">
-							<input type="text" name="name" value="<?php echo ($this->input->post('name') ? $this->input->post('name') : $degreeprogram['name']); ?>" class="form-control" id="name" />
+							<input type="text" name="name" value="<?php echo ($this->input->post('name') ? $this->input->post('name') : $degreeprogram['name']); ?>" class="form-control" id="name" max="60" />
 							<span class="text-danger"><?php echo form_error('name');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="programCode" class="control-label">ProgramCode</label>
 						<div class="form-group">
-							<input type="text" name="programCode" value="<?php echo ($this->input->post('programCode') ? $this->input->post('programCode') : $degreeprogram['programCode']); ?>" class="form-control" id="programCode" />
+							<input type="text" name="programCode" value="<?php echo ($this->input->post('programCode') ? $this->input->post('programCode') : $degreeprogram['programCode']); ?>" class="form-control" id="programCode" min="1" max="10" />
 							<span class="text-danger"><?php echo form_error('programCode');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="description" class="control-label">Description</label>
 						<div class="form-group">
-							<textarea name="description" class="form-control" id="description"><?php echo ($this->input->post('description') ? $this->input->post('description') : $degreeprogram['description']); ?></textarea>
+							<textarea name="description" class="form-control" id="description" max="500"><?php echo ($this->input->post('description') ? $this->input->post('description') : $degreeprogram['description']); ?></textarea>
 							<span class="text-danger"><?php echo form_error('description');?></span>
 						</div>
 					</div>
