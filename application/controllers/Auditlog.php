@@ -16,6 +16,8 @@ class Auditlog extends CI_Controller{
      */
     function index()
     {
+        $this->load->library('loginvalidation');
+        $this->loginvalidation->isValid();
         $params['limit'] = RECORDS_PER_PAGE; 
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
         

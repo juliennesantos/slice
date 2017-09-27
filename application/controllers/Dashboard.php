@@ -13,6 +13,8 @@ class Dashboard extends CI_Controller{
 
     function index()
     {
+        $this->load->library('loginvalidation');
+        $this->loginvalidation->isValid();
         $data['_view'] = 'dashboard';
         $this->load->view('layouts/main',$data);
     }
