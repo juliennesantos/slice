@@ -39,30 +39,36 @@ class User extends CI_Controller{
     {   
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('username','Username','max_length[50]');
+        $this->form_validation->set_rules('username','Username','max_length[50]|is_unique');
         $this->form_validation->set_rules('password','Password','max_length[300]');        
         $this->form_validation->set_rules('firstName','FirstName','max_length[80]');
 		$this->form_validation->set_rules('lastName','LastName','max_length[50]');
 		$this->form_validation->set_rules('middleName','MiddleName','max_length[50]');
-		$this->form_validation->set_rules('emailAddress','EmailAddress','max_length[100]|valid_email');
+		$this->form_validation->set_rules('emailAddress','EmailAddress','max_length[100]|valid_email|regex_match[/.+@benilde.edu.ph/]');
 		$this->form_validation->set_rules('contactNo','ContactNo','max_length[15]');
 		
 		if($this->form_validation->run())     
         {   
-            $hashed = 
-            $params = array(
-                'typeID' => $this->input->post('typeID'),
-                'username' => $this->input->post('username'),
-                'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
-				'firstName' => $this->input->post('firstName'),
-				'lastName' => $this->input->post('lastName'),
-				'middleName' => $this->input->post('middleName'),
-				'emailAddress' => $this->input->post('emailAddress'),
-				'contactNo' => $this->input->post('contactNo'),
-            );
-            
-            $user_id = $this->User_model->add_user($params);
-            redirect('user/index');
+            if (preg_match('.+@benilde.edu.ph', $this->input->post['emailAddress']))
+            {
+                $params = array(
+                    'typeID' => $this->input->post('typeID'),
+                    'username' => $this->input->post('username'),
+                    'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
+                    'firstName' => $this->input->post('firstName'),
+                    'lastName' => $this->input->post('lastName'),
+                    'middleName' => $this->input->post('middleName'),
+                    'emailAddress' => $this->input->post('emailAddress'),
+                    'contactNo' => $this->input->post('contactNo'),
+                );
+                
+                $user_id = $this->User_model->add_user($params);
+                redirect('user/index');
+            }
+            else
+            {
+                $_SESSION['errormsg'] = 3;
+            }
         }
         else
         {
@@ -91,7 +97,7 @@ class User extends CI_Controller{
 			$this->form_validation->set_rules('firstName','FirstName','max_length[80]');
 			$this->form_validation->set_rules('lastName','LastName','max_length[50]');
 			$this->form_validation->set_rules('middleName','MiddleName','max_length[50]');
-			$this->form_validation->set_rules('emailAddress','EmailAddress','max_length[100]|valid_email');
+			$this->form_validation->set_rules('emailAddress','EmailAddress','max_length[100]|valid_email|regex_match[/.+@benilde.edu.ph/]');
 			$this->form_validation->set_rules('contactNo','ContactNo','max_length[15]');
 		
 			if($this->form_validation->run())     
