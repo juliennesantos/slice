@@ -24,19 +24,25 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="courseID" class="control-label">Course</label>
+						<label for="subjectID" class="control-label">Subject</label>
 						<div class="form-group">
-							<select name="courseID" class="form-control">
-								<option value="">select course</option>
+							<select name="subjectID" class="form-control">
+								<option value="">select subject</option>
 								<?php 
-								foreach($all_courses as $course)
+								foreach($all_subjects as $subject)
 								{
-									$selected = ($course['courseID'] == $this->input->post('courseID')) ? ' selected="selected"' : "";
+									$selected = ($subject['subjectID'] == $this->input->post('subjectID')) ? ' selected="selected"' : "";
 
-									echo '<option value="'.$course['courseID'].'" '.$selected.'>'.$course['courseID'].'</option>';
+									echo '<option value="'.$subject['subjectID'].'" '.$selected.'>'.$subject['subjectID'].'</option>';
 								} 
 								?>
 							</select>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="dateModified" class="control-label">DateModified</label>
+						<div class="form-group">
+							<input type="text" name="dateModified" value="<?php echo $this->input->post('dateModified'); ?>" class="has-datetimepicker form-control" id="dateModified" />
 						</div>
 					</div>
 				</div>

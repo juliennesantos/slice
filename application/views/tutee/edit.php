@@ -8,26 +8,40 @@
 			<div class="box-body">
 				<div class="row clearfix">
 					<div class="col-md-6">
-						<label for="studentID" class="control-label">Student</label>
+						<label for="StudentID" class="control-label"><span class="text-danger">*</span>Student</label>
 						<div class="form-group">
-							<select name="studentID" class="form-control">
+							<select name="StudentID" class="form-control">
 								<option value="">select student</option>
 								<?php 
 								foreach($all_students as $student)
 								{
-									$selected = ($student['studentID'] == $tutee['studentID']) ? ' selected="selected"' : "";
+									$selected = ($student['studentID'] == $tutee['StudentID']) ? ' selected="selected"' : "";
 
 									echo '<option value="'.$student['studentID'].'" '.$selected.'>'.$student['studentID'].'</option>';
 								} 
 								?>
 							</select>
+							<span class="text-danger"><?php echo form_error('StudentID');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="tutorialNo" class="control-label">TutorialNo</label>
+						<label for="status" class="control-label"><span class="text-danger">*</span>Status</label>
 						<div class="form-group">
-							<input type="text" name="tutorialNo" value="<?php echo ($this->input->post('tutorialNo') ? $this->input->post('tutorialNo') : $tutee['tutorialNo']); ?>" class="form-control" id="tutorialNo" min="11" max="11" />
-							<span class="text-danger"><?php echo form_error('tutorialNo');?></span>
+							<input type="text" name="status" value="<?php echo ($this->input->post('status') ? $this->input->post('status') : $tutee['status']); ?>" class="form-control" id="status" />
+							<span class="text-danger"><?php echo form_error('status');?></span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="dateAdded" class="control-label"><span class="text-danger">*</span>DateAdded</label>
+						<div class="form-group">
+							<input type="text" name="dateAdded" value="<?php echo ($this->input->post('dateAdded') ? $this->input->post('dateAdded') : $tutee['dateAdded']); ?>" class="has-datetimepicker form-control" id="dateAdded" />
+							<span class="text-danger"><?php echo form_error('dateAdded');?></span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="dateModified" class="control-label">DateModified</label>
+						<div class="form-group">
+							<input type="text" name="dateModified" value="<?php echo ($this->input->post('dateModified') ? $this->input->post('dateModified') : $tutee['dateModified']); ?>" class="has-datetimepicker form-control" id="dateModified" />
 						</div>
 					</div>
 				</div>

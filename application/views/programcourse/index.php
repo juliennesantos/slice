@@ -12,14 +12,14 @@
                     <tr>
 						<th>RefNo</th>
 						<th>ProgramID</th>
-						<th>CourseID</th>
+						<th>SubjectID</th>
 						<th>Actions</th>
                     </tr>
                     <?php foreach($programcourses as $p){ ?>
                     <tr>
 						<td><?php echo $p['refNo']; ?></td>
 						<td><?php echo $p['programID']; ?></td>
-						<td><?php echo $p['courseID']; ?></td>
+						<td><?php echo $p['subjectID']; ?></td>
 						<td>
                             <a href="<?php echo site_url('programcourse/edit/'.$p['refNo']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
                             <a href="<?php echo site_url('programcourse/remove/'.$p['refNo']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Delete</a>

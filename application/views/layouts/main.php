@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>sliceDB</title>
+        <title>slice</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.6 -->
@@ -27,9 +27,9 @@
                 <!-- Logo -->
                 <a href="" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini">sliceDB</span>
+                    <span class="logo-mini">slice</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg">sliceDB</span>
+                    <span class="logo-lg">slice</span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top">
@@ -65,7 +65,7 @@
                                             <a href="#" class="btn btn-default btn-flat">Profile</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="<?php echo site_url(); ?>login/logout" class="btn btn-default btn-flat">Sign out</a>
+                                            <a href="<?php echo site_url()?>login/logout" class="btn btn-default btn-flat">Sign out</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -124,32 +124,6 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-book"></i> <span>Course</span>
-                            </a>
-                            <ul class="treeview-menu">
-								<li class="active">
-                                    <a href="<?php echo site_url('course/add');?>"><i class="fa fa-plus"></i> Add</a>
-                                </li>
-								<li>
-                                    <a href="<?php echo site_url('course/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
-                                </li>
-							</ul>
-                        </li>
-						<li>
-                            <a href="#">
-                                <i class="fa fa-graduation-cap"></i> <span>Degreeprogram</span>
-                            </a>
-                            <ul class="treeview-menu">
-								<li class="active">
-                                    <a href="<?php echo site_url('degreeprogram/add');?>"><i class="fa fa-plus"></i> Add</a>
-                                </li>
-								<li>
-                                    <a href="<?php echo site_url('degreeprogram/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
-                                </li>
-							</ul>
-                        </li>
-						<li>
-                            <a href="#">
                                 <i class="fa fa-user"></i> <span>Faculty</span>
                             </a>
                             <ul class="treeview-menu">
@@ -189,14 +163,27 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-calendar-check-o"></i> <span>Schedule</span>
+                                <i class="fa fa-graduation-cap"></i> <span>Program</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
-                                    <a href="<?php echo site_url('schedule/add');?>"><i class="fa fa-plus"></i> Add</a>
+                                    <a href="<?php echo site_url('program/add');?>"><i class="fa fa-plus"></i> Add</a>
                                 </li>
 								<li>
-                                    <a href="<?php echo site_url('schedule/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
+                                    <a href="<?php echo site_url('program/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
+                                </li>
+							</ul>
+                        </li>
+						<li>
+                            <a href="#">
+                                <i class="fa fa-desktop"></i> <span>School</span>
+                            </a>
+                            <ul class="treeview-menu">
+								<li class="active">
+                                    <a href="<?php echo site_url('school/add');?>"><i class="fa fa-plus"></i> Add</a>
+                                </li>
+								<li>
+                                    <a href="<?php echo site_url('school/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
                                 </li>
 							</ul>
                         </li>
@@ -210,6 +197,32 @@
                                 </li>
 								<li>
                                     <a href="<?php echo site_url('student/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
+                                </li>
+							</ul>
+                        </li>
+						<li>
+                            <a href="#">
+                                <i class="fa fa-book"></i> <span>Subject</span>
+                            </a>
+                            <ul class="treeview-menu">
+								<li class="active">
+                                    <a href="<?php echo site_url('subject/add');?>"><i class="fa fa-plus"></i> Add</a>
+                                </li>
+								<li>
+                                    <a href="<?php echo site_url('subject/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
+                                </li>
+							</ul>
+                        </li>
+						<li>
+                            <a href="#">
+                                <i class="fa fa-calendar-check-o"></i> <span>Timeblock</span>
+                            </a>
+                            <ul class="treeview-menu">
+								<li class="active">
+                                    <a href="<?php echo site_url('timeblock/add');?>"><i class="fa fa-plus"></i> Add</a>
+                                </li>
+								<li>
+                                    <a href="<?php echo site_url('timeblock/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
                                 </li>
 							</ul>
                         </li>
@@ -236,6 +249,19 @@
                                 </li>
 								<li>
                                     <a href="<?php echo site_url('tutorexpertise/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
+                                </li>
+							</ul>
+                        </li>
+						<li>
+                            <a href="#">
+                                <i class="fa fa-desktop"></i> <span>Tutorialchecklist</span>
+                            </a>
+                            <ul class="treeview-menu">
+								<li class="active">
+                                    <a href="<?php echo site_url('tutorialchecklist/add');?>"><i class="fa fa-plus"></i> Add</a>
+                                </li>
+								<li>
+                                    <a href="<?php echo site_url('tutorialchecklist/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
                                 </li>
 							</ul>
                         </li>
@@ -275,6 +301,19 @@
                                 </li>
 								<li>
                                     <a href="<?php echo site_url('tutorschedule/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
+                                </li>
+							</ul>
+                        </li>
+						<li>
+                            <a href="#">
+                                <i class="fa fa-desktop"></i> <span>Tutorstatus</span>
+                            </a>
+                            <ul class="treeview-menu">
+								<li class="active">
+                                    <a href="<?php echo site_url('tutorstatus/add');?>"><i class="fa fa-plus"></i> Add</a>
+                                </li>
+								<li>
+                                    <a href="<?php echo site_url('tutorstatus/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
                                 </li>
 							</ul>
                         </li>
@@ -322,7 +361,7 @@
             </div>
             <!-- /.content-wrapper -->
             <footer class="main-footer">
-                <strong>SLICE</strong>
+                <strong>Generated By <a href="http://www.crudigniter.com/">CRUDigniter</a> 3.2</strong>
             </footer>
 
             <!-- Control Sidebar -->

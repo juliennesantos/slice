@@ -33,7 +33,7 @@ class Programcourse_model extends CI_Model
      */
     function get_all_programcourses($params = array())
     {
-        $this->db->order_by('refNo', 'asc');
+        $this->db->order_by('refNo', 'desc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);

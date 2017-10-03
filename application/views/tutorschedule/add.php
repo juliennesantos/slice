@@ -24,32 +24,40 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="scheduleID" class="control-label">Schedule</label>
+						<label for="timeblockID" class="control-label">Timeblock</label>
 						<div class="form-group">
-							<select name="scheduleID" class="form-control">
-								<option value="">select schedule</option>
+							<select name="timeblockID" class="form-control">
+								<option value="">select timeblock</option>
 								<?php 
-								foreach($all_schedule as $schedule)
+								foreach($all_timeblocks as $timeblock)
 								{
-									$selected = ($schedule['scheduleID'] == $this->input->post('scheduleID')) ? ' selected="selected"' : "";
+									$selected = ($timeblock['timeblockID'] == $this->input->post('timeblockID')) ? ' selected="selected"' : "";
 
-									echo '<option value="'.$schedule['scheduleID'].'" '.$selected.'>'.$schedule['scheduleID'].'</option>';
+									echo '<option value="'.$timeblock['timeblockID'].'" '.$selected.'>'.$timeblock['timeblockID'].'</option>';
 								} 
 								?>
 							</select>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="term" class="control-label">Term</label>
+						<label for="term" class="control-label"><span class="text-danger">*</span>Term</label>
 						<div class="form-group">
-							<input type="text" name="term" value="<?php echo $this->input->post('term'); ?>" class="form-control" id="term" max="11" />
+							<input type="text" name="term" value="<?php echo $this->input->post('term'); ?>" class="form-control" id="term" />
 							<span class="text-danger"><?php echo form_error('term');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="schoolYear" class="control-label">SchoolYear</label>
+						<label for="schoolYear" class="control-label"><span class="text-danger">*</span>SchoolYear</label>
 						<div class="form-group">
-							<input type="text" name="schoolYear" value="<?php echo $this->input->post('schoolYear'); ?>" class="form-control" id="schoolYear" min="4" max="4" />
+							<input type="text" name="schoolYear" value="<?php echo $this->input->post('schoolYear'); ?>" class="form-control" id="schoolYear" />
+							<span class="text-danger"><?php echo form_error('schoolYear');?></span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="dateAdded" class="control-label"><span class="text-danger">*</span>DateAdded</label>
+						<div class="form-group">
+							<input type="text" name="dateAdded" value="<?php echo $this->input->post('dateAdded'); ?>" class="has-datetimepicker form-control" id="dateAdded" />
+							<span class="text-danger"><?php echo form_error('dateAdded');?></span>
 						</div>
 					</div>
 				</div>

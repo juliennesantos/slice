@@ -2,7 +2,7 @@
     <div class="col-md-12">
       	<div class="box box-info">
             <div class="box-header with-border">
-              	<h3 class="box-title">Audit Log</h3>
+              	<h3 class="box-title">Auditlog Add</h3>
             </div>
             <?php echo form_open('auditlog/add'); ?>
           	<div class="box-body">
@@ -10,7 +10,7 @@
 					<div class="col-md-6">
 						<label for="userID" class="control-label">User</label>
 						<div class="form-group">
-							<select name="userID" class="form-control" min="11" max="11">
+							<select name="userID" class="form-control">
 								<option value="">select user</option>
 								<?php 
 								foreach($all_users as $user)
@@ -24,22 +24,23 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="logType" class="control-label">Log Type</label>
+						<label for="logType" class="control-label"><span class="text-danger">*</span>LogType</label>
 						<div class="form-group">
-							<input type="text" name="logType" value="<?php echo $this->input->post('logType'); ?>" class="form-control" id="logType" max="80" />
+							<input type="text" name="logType" value="<?php echo $this->input->post('logType'); ?>" class="form-control" id="logType" />
 							<span class="text-danger"><?php echo form_error('logType');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="timeStamp" class="control-label">Time Stamp</label>
+						<label for="timeStamp" class="control-label"><span class="text-danger">*</span>TimeStamp</label>
 						<div class="form-group">
 							<input type="text" name="timeStamp" value="<?php echo $this->input->post('timeStamp'); ?>" class="has-datetimepicker form-control" id="timeStamp" />
+							<span class="text-danger"><?php echo form_error('timeStamp');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="description" class="control-label">Description</label>
+						<label for="description" class="control-label"><span class="text-danger">*</span>Description</label>
 						<div class="form-group">
-							<textarea name="description" class="form-control" id="description" max="500"><?php echo $this->input->post('description'); ?></textarea>
+							<textarea name="description" class="form-control" id="description"><?php echo $this->input->post('description'); ?></textarea>
 							<span class="text-danger"><?php echo form_error('description');?></span>
 						</div>
 					</div>

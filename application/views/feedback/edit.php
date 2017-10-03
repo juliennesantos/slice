@@ -8,33 +8,31 @@
 			<div class="box-body">
 				<div class="row clearfix">
 					<div class="col-md-6">
-						<label for="tutorID" class="control-label">Tutor</label>
+						<label for="tutorialNo" class="control-label">Tutorialsession</label>
 						<div class="form-group">
-							<select name="tutorID" class="form-control">
-								<option value="">select tutor</option>
+							<select name="tutorialNo" class="form-control">
+								<option value="">select tutorialsession</option>
 								<?php 
-								foreach($all_tutors as $tutor)
+								foreach($all_tutorialsessions as $tutorialsession)
 								{
-									$selected = ($tutor['tutorID'] == $feedback['tutorID']) ? ' selected="selected"' : "";
+									$selected = ($tutorialsession['tutorialNo'] == $feedback['tutorialNo']) ? ' selected="selected"' : "";
 
-									echo '<option value="'.$tutor['tutorID'].'" '.$selected.'>'.$tutor['tutorID'].'</option>';
+									echo '<option value="'.$tutorialsession['tutorialNo'].'" '.$selected.'>'.$tutorialsession['tutorialNo'].'</option>';
 								} 
 								?>
 							</select>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="tutorialNo" class="control-label">TutorialNo</label>
+						<label for="dateAdded" class="control-label">DateAdded</label>
 						<div class="form-group">
-							<input type="text" name="tutorialNo" value="<?php echo ($this->input->post('tutorialNo') ? $this->input->post('tutorialNo') : $feedback['tutorialNo']); ?>" class="form-control" id="tutorialNo" max="11"/>
-							<span class="text-danger"><?php echo form_error('tutorialNo');?></span>
+							<input type="text" name="dateAdded" value="<?php echo ($this->input->post('dateAdded') ? $this->input->post('dateAdded') : $feedback['dateAdded']); ?>" class="has-datetimepicker form-control" id="dateAdded" />
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="feedback" class="control-label">Feedback</label>
 						<div class="form-group">
-							<input type="text" name="feedback" value="<?php echo ($this->input->post('feedback') ? $this->input->post('feedback') : $feedback['feedback']); ?>" class="form-control" id="feedback" max="1000" />
-							<span class="text-danger"><?php echo form_error('feedback');?></span>
+							<textarea name="feedback" class="form-control" id="feedback"><?php echo ($this->input->post('feedback') ? $this->input->post('feedback') : $feedback['feedback']); ?></textarea>
 						</div>
 					</div>
 				</div>

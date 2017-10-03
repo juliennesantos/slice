@@ -8,32 +8,32 @@
 			<div class="box-body">
 				<div class="row clearfix">
 					<div class="col-md-6">
-						<label for="programID" class="control-label">Programcourse</label>
+						<label for="programID" class="control-label">Program</label>
 						<div class="form-group">
 							<select name="programID" class="form-control">
-								<option value="">select programcourse</option>
+								<option value="">select program</option>
 								<?php 
-								foreach($all_programcourses as $programcourse)
+								foreach($all_programs as $program)
 								{
-									$selected = ($programcourse['refNo'] == $programcourse['programID']) ? ' selected="selected"' : "";
+									$selected = ($program['programID'] == $programcourse['programID']) ? ' selected="selected"' : "";
 
-									echo '<option value="'.$programcourse['refNo'].'" '.$selected.'>'.$programcourse['programID'].'</option>';
+									echo '<option value="'.$program['programID'].'" '.$selected.'>'.$program['programID'].'</option>';
 								} 
 								?>
 							</select>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="courseID" class="control-label">Course</label>
+						<label for="subjectID" class="control-label">Subject</label>
 						<div class="form-group">
-							<select name="courseID" class="form-control">
-								<option value="">select course</option>
+							<select name="subjectID" class="form-control">
+								<option value="">select subject</option>
 								<?php 
-								foreach($all_courses as $course)
+								foreach($all_subjects as $subject)
 								{
-									$selected = ($course['courseID'] == $programcourse['courseID']) ? ' selected="selected"' : "";
+									$selected = ($subject['subjectID'] == $programcourse['subjectID']) ? ' selected="selected"' : "";
 
-									echo '<option value="'.$course['courseID'].'" '.$selected.'>'.$course['courseID'].'</option>';
+									echo '<option value="'.$subject['subjectID'].'" '.$selected.'>'.$subject['subjectID'].'</option>';
 								} 
 								?>
 							</select>

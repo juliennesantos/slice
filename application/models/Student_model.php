@@ -33,7 +33,7 @@ class Student_model extends CI_Model
      */
     function get_all_students($params = array())
     {
-        $this->db->order_by('studentID', 'asc');
+        $this->db->order_by('studentID', 'desc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);

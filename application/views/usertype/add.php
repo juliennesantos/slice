@@ -8,7 +8,7 @@
           	<div class="box-body">
           		<div class="row clearfix">
 					<div class="col-md-6">
-						<label for="userType" class="control-label">UserType</label>
+						<label for="userType" class="control-label"><span class="text-danger">*</span>UserType</label>
 						<div class="form-group">
 							<input type="text" name="userType" value="<?php echo $this->input->post('userType'); ?>" class="form-control" id="userType" />
 							<span class="text-danger"><?php echo form_error('userType');?></span>

@@ -12,14 +12,18 @@
                     <tr>
 						<th>TuteeID</th>
 						<th>StudentID</th>
-						<th>TutorialNo</th>
+						<th>Status</th>
+						<th>DateAdded</th>
+						<th>DateModified</th>
 						<th>Actions</th>
                     </tr>
                     <?php foreach($tutees as $t){ ?>
                     <tr>
 						<td><?php echo $t['tuteeID']; ?></td>
-						<td><?php echo $t['studentID']; ?></td>
-						<td><?php echo $t['tutorialNo']; ?></td>
+						<td><?php echo $t['StudentID']; ?></td>
+						<td><?php echo $t['status']; ?></td>
+						<td><?php echo $t['dateAdded']; ?></td>
+						<td><?php echo $t['dateModified']; ?></td>
 						<td>
                             <a href="<?php echo site_url('tutee/edit/'.$t['tuteeID']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
                             <a href="<?php echo site_url('tutee/remove/'.$t['tuteeID']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Delete</a>

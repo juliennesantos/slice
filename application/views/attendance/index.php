@@ -13,9 +13,9 @@
 						<th>LogID</th>
 						<th>TutorID</th>
 						<th>Term</th>
-						<th>School Year</th>
-						<th>Time In</th>
-						<th>Time Out</th>
+						<th>SchoolYr</th>
+						<th>TimeIn</th>
+						<th>TimeOut</th>
 						<th>Remarks</th>
 						<th>Actions</th>
                     </tr>

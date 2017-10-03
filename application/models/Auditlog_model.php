@@ -18,33 +18,14 @@ class Auditlog_model extends CI_Model
     {
         return $this->db->get_where('auditlogs',array('auditID'=>$auditID))->row_array();
     }
-    
-    /*
-     * Get all auditlogs count
-     */
-    function get_all_auditlogs_count()
-    {
-        $this->db->from('auditlogs');
-        return $this->db->count_all_results();
-    }
         
     /*
      * Get all auditlogs
      */
-    function get_all_auditlogs($params = array())
+    function get_all_auditlogs()
     {
-        $this->db->select('auditID, users.userID, users.lastName, users.firstName, logType, description, timeStamp');    
-        $this->db->from('auditlogs');
-        $this->db->join('users', 'auditlogs.userID = users.userID');
-
         $this->db->order_by('auditID', 'desc');
-        if(isset($params) && !empty($params))
-        {
-            $this->db->limit($params['limit'], $params['offset']);
-        }
-        return $this->db->get()->result_array();
-
-
+        return $this->db->get('auditlogs')->result_array();
     }
         
     /*

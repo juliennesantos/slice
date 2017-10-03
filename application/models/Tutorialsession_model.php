@@ -16,29 +16,29 @@ class Tutorialsession_model extends CI_Model
      */
     function get_tutorialsession($tutorialNo)
     {
-        return $this->db->get_where('tutorialsession',array('tutorialNo'=>$tutorialNo))->row_array();
+        return $this->db->get_where('tutorialsessions',array('tutorialNo'=>$tutorialNo))->row_array();
     }
     
     /*
-     * Get all tutorialsession count
+     * Get all tutorialsessions count
      */
-    function get_all_tutorialsession_count()
+    function get_all_tutorialsessions_count()
     {
-        $this->db->from('tutorialsession');
+        $this->db->from('tutorialsessions');
         return $this->db->count_all_results();
     }
         
     /*
-     * Get all tutorialsession
+     * Get all tutorialsessions
      */
-    function get_all_tutorialsession($params = array())
+    function get_all_tutorialsessions($params = array())
     {
-        $this->db->order_by('tutorialNo', 'asc');
+        $this->db->order_by('tutorialNo', 'desc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);
         }
-        return $this->db->get('tutorialsession')->result_array();
+        return $this->db->get('tutorialsessions')->result_array();
     }
         
     /*
@@ -46,7 +46,7 @@ class Tutorialsession_model extends CI_Model
      */
     function add_tutorialsession($params)
     {
-        $this->db->insert('tutorialsession',$params);
+        $this->db->insert('tutorialsessions',$params);
         return $this->db->insert_id();
     }
     
@@ -56,7 +56,7 @@ class Tutorialsession_model extends CI_Model
     function update_tutorialsession($tutorialNo,$params)
     {
         $this->db->where('tutorialNo',$tutorialNo);
-        return $this->db->update('tutorialsession',$params);
+        return $this->db->update('tutorialsessions',$params);
     }
     
     /*
@@ -64,6 +64,6 @@ class Tutorialsession_model extends CI_Model
      */
     function delete_tutorialsession($tutorialNo)
     {
-        return $this->db->delete('tutorialsession',array('tutorialNo'=>$tutorialNo));
+        return $this->db->delete('tutorialsessions',array('tutorialNo'=>$tutorialNo));
     }
 }

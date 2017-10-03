@@ -24,46 +24,40 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="programID" class="control-label">Degreeprogram</label>
+						<label for="programID" class="control-label">Program</label>
 						<div class="form-group">
 							<select name="programID" class="form-control">
-								<option value="">select degreeprogram</option>
+								<option value="">select program</option>
 								<?php 
-								foreach($all_degreeprograms as $degreeprogram)
+								foreach($all_programs as $program)
 								{
-									$selected = ($degreeprogram['programID'] == $this->input->post('programID')) ? ' selected="selected"' : "";
+									$selected = ($program['programID'] == $this->input->post('programID')) ? ' selected="selected"' : "";
 
-									echo '<option value="'.$degreeprogram['programID'].'" '.$selected.'>'.$degreeprogram['programID'].'</option>';
+									echo '<option value="'.$program['programID'].'" '.$selected.'>'.$program['programID'].'</option>';
 								} 
 								?>
 							</select>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="userName" class="control-label">UserName</label>
+						<label for="facultyNo" class="control-label"><span class="text-danger">*</span>FacultyNo</label>
 						<div class="form-group">
-							<input type="text" name="userName" value="<?php echo $this->input->post('userName'); ?>" class="form-control" id="userName" max="80" />
-							<span class="text-danger"><?php echo form_error('userName');?></span>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="facultyNo" class="control-label">FacultyNo</label>
-						<div class="form-group">
-							<input type="text" name="facultyNo" value="<?php echo $this->input->post('facultyNo'); ?>" class="form-control" id="facultyNo" min="11" max="11" />
+							<input type="text" name="facultyNo" value="<?php echo $this->input->post('facultyNo'); ?>" class="form-control" id="facultyNo" />
 							<span class="text-danger"><?php echo form_error('facultyNo');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="status" class="control-label">Status</label>
+						<label for="status" class="control-label"><span class="text-danger">*</span>Status</label>
 						<div class="form-group">
-							<input type="text" name="status" value="<?php echo $this->input->post('status'); ?>" class="form-control" id="status" max="100" />
+							<input type="text" name="status" value="<?php echo $this->input->post('status'); ?>" class="form-control" id="status" />
 							<span class="text-danger"><?php echo form_error('status');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="dateAdded" class="control-label">DateAdded</label>
+						<label for="dateAdded" class="control-label"><span class="text-danger">*</span>DateAdded</label>
 						<div class="form-group">
 							<input type="text" name="dateAdded" value="<?php echo $this->input->post('dateAdded'); ?>" class="has-datetimepicker form-control" id="dateAdded" />
+							<span class="text-danger"><?php echo form_error('dateAdded');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">

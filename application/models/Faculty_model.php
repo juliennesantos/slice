@@ -33,7 +33,7 @@ class Faculty_model extends CI_Model
      */
     function get_all_faculty($params = array())
     {
-        $this->db->order_by('facultyID', 'asc');
+        $this->db->order_by('facultyID', 'desc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);
@@ -62,8 +62,9 @@ class Faculty_model extends CI_Model
     /*
      * function to delete faculty
      */
-    function delete_faculty($facultyID)
+    function archive_faculty($facultyID)
     {
-        return $this->db->delete('faculty',array('facultyID'=>$facultyID));
+        $this->db->where('facultyID',$facultyID);
+        return $this->db->update('faculty',$params);
     }
 }

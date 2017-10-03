@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition login-page">
-<div class="login-box clearfix">
+<div class="login-box">
   <div class="login-logo">
     <a href="<?php echo base_url(); ?>index2.html"><b>Admin</b>LTE</a>
   </div>
@@ -36,40 +36,34 @@
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
-    <!-- login-error-msgs -->
-    <?php if($_SESSION['errormsg'] == 1): ?>
-      <div class="alert alert-danger alert-dismissible">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <strong>Error!</strong> Invalid username or password
-      </div>
-    <?php endif;?>
-    <?php if($_SESSION['errormsg'] == 2): ?>
-      <div class="alert alert-danger alert-dismissible">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <strong>Error!</strong> Internal error
-      </div>
-    <?php endif;?>
-    <!-- /login-error-msgs -->
-
-    <?php echo form_open('login/index'); ?>
+    <?php echo form_open('login/validate'); ?>
       <div class="form-group has-feedback">
-        <input type="text" name="username" class="form-control" id="username" placeholder="Username" required/>
-        <!-- pattern=".+@benilde.edu.ph" title="Please provide only a Benilde email address" -->
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      <input type="text" name="username" class="form-control" id="username" placeholder="Username"/>
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" name="password" class="form-control" id="password" placeholder="Password" required/>
+      <input type="password" name="password" class="form-control" id="password" placeholder="Password"/>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
-        <!-- /.col -->
+      <!-- <div class="row">
+        <div class="col-xs-8">
+          <div class="checkbox icheck">
+            <label>
+              <input type="checkbox"> Remember Me
+            </label>
+          </div>
+        </div>
+        /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat" name='signin'>Sign In</button>
         </div>
         <!-- /.col -->
+      </div>
     </form>
 
-    <a href="#">I forgot my password</a><br>
-    <a href="register.html" class="text-center">Register a new membership</a>
+    <a href="<?php echo site_url()?>tutorregister/new" class="text-center">Register as a new tutor</a>
+    <a href="<?php echo site_url()?>tutorregister/old" class="text-center">Register as an old tutor</a>
+    
 
   </div>
   <!-- /.login-box-body -->

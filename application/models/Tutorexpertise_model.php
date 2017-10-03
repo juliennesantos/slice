@@ -33,7 +33,7 @@ class Tutorexpertise_model extends CI_Model
      */
     function get_all_tutorexpertise($params = array())
     {
-        $this->db->order_by('expertiseID', 'asc');
+        $this->db->order_by('expertiseID', 'desc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);

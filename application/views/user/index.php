@@ -11,25 +11,33 @@
                 <table class="table table-striped">
                     <tr>
 						<th>UserID</th>
-						<th>User Type</th>
-                        <th>'User name'</th>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Middle Name</th>
-						<th>Email Address</th>
-						<th>Contact No</th>
+						<th>TypeID</th>
+						<!-- <th>Password</th> -->
+						<th>Username</th>
+						<th>FirstName</th>
+						<th>LastName</th>
+						<th>MiddleName</th>
+						<th>EmailAddress</th>
+						<th>ContactNo</th>
+						<th>DateAdded</th>
+						<th>DateModified</th>
+						<th>Status</th>
 						<th>Actions</th>
                     </tr>
                     <?php foreach($users as $u){ ?>
                     <tr>
 						<td><?php echo $u['userID']; ?></td>
-                        <td><?php echo $u['userType']; ?></td>
-                        <td><?php echo $u['username']; ?></td>                        
-                        <td><?php echo $u['firstName']; ?></td>
+						<td><?php echo $u['typeID']; ?></td>
+						<!-- <td><?php echo $u['password']; ?></td> -->
+						<td><?php echo $u['username']; ?></td>
+						<td><?php echo $u['firstName']; ?></td>
 						<td><?php echo $u['lastName']; ?></td>
 						<td><?php echo $u['middleName']; ?></td>
 						<td><?php echo $u['emailAddress']; ?></td>
 						<td><?php echo $u['contactNo']; ?></td>
+						<td><?php echo $u['dateAdded']; ?></td>
+						<td><?php echo $u['dateModified']; ?></td>
+						<td><?php echo $u['status']; ?></td>
 						<td>
                             <a href="<?php echo site_url('user/edit/'.$u['userID']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
                             <a href="<?php echo site_url('user/remove/'.$u['userID']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Delete</a>

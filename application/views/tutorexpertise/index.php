@@ -12,14 +12,16 @@
                     <tr>
 						<th>ExpertiseID</th>
 						<th>TutorID</th>
-						<th>CourseID</th>
+						<th>SubjectID</th>
+						<th>DateModified</th>
 						<th>Actions</th>
                     </tr>
                     <?php foreach($tutorexpertise as $t){ ?>
                     <tr>
 						<td><?php echo $t['expertiseID']; ?></td>
 						<td><?php echo $t['tutorID']; ?></td>
-						<td><?php echo $t['courseID']; ?></td>
+						<td><?php echo $t['subjectID']; ?></td>
+						<td><?php echo $t['dateModified']; ?></td>
 						<td>
                             <a href="<?php echo site_url('tutorexpertise/edit/'.$t['expertiseID']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
                             <a href="<?php echo site_url('tutorexpertise/remove/'.$t['expertiseID']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Delete</a>

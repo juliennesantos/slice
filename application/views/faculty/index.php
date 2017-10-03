@@ -13,7 +13,6 @@
 						<th>FacultyID</th>
 						<th>UserID</th>
 						<th>ProgramID</th>
-						<th>UserName</th>
 						<th>FacultyNo</th>
 						<th>Status</th>
 						<th>DateAdded</th>
@@ -25,7 +24,6 @@
 						<td><?php echo $f['facultyID']; ?></td>
 						<td><?php echo $f['userID']; ?></td>
 						<td><?php echo $f['programID']; ?></td>
-						<td><?php echo $f['userName']; ?></td>
 						<td><?php echo $f['facultyNo']; ?></td>
 						<td><?php echo $f['status']; ?></td>
 						<td><?php echo $f['dateAdded']; ?></td>

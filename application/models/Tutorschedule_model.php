@@ -33,7 +33,7 @@ class Tutorschedule_model extends CI_Model
      */
     function get_all_tutorschedules($params = array())
     {
-        $this->db->order_by('tutorScheduleID', 'asc');
+        $this->db->order_by('tutorScheduleID', 'desc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);

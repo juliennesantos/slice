@@ -18,26 +18,13 @@ class Usertype_model extends CI_Model
     {
         return $this->db->get_where('usertypes',array('typeID'=>$typeID))->row_array();
     }
-    
-    /*
-     * Get all usertypes count
-     */
-    function get_all_usertypes_count()
-    {
-        $this->db->from('usertypes');
-        return $this->db->count_all_results();
-    }
         
     /*
      * Get all usertypes
      */
-    function get_all_usertypes($params = array())
+    function get_all_usertypes()
     {
-        $this->db->order_by('typeID', 'asc');
-        if(isset($params) && !empty($params))
-        {
-            $this->db->limit($params['limit'], $params['offset']);
-        }
+        $this->db->order_by('typeID', 'desc');
         return $this->db->get('usertypes')->result_array();
     }
         

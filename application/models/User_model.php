@@ -33,8 +33,7 @@ class User_model extends CI_Model
      */
     function get_all_users($params = array())
     {
-        $this->db->join('usertypes', 'users.typeID = usertypes.typeID');
-        $this->db->order_by('userID', 'asc');
+        $this->db->order_by('userID', 'desc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);

@@ -12,18 +12,20 @@
                     <tr>
 						<th>TutorScheduleID</th>
 						<th>TutorID</th>
-						<th>ScheduleID</th>
+						<th>TimeblockID</th>
 						<th>Term</th>
 						<th>SchoolYear</th>
+						<th>DateAdded</th>
 						<th>Actions</th>
                     </tr>
                     <?php foreach($tutorschedules as $t){ ?>
                     <tr>
 						<td><?php echo $t['tutorScheduleID']; ?></td>
 						<td><?php echo $t['tutorID']; ?></td>
-						<td><?php echo $t['scheduleID']; ?></td>
+						<td><?php echo $t['timeblockID']; ?></td>
 						<td><?php echo $t['term']; ?></td>
 						<td><?php echo $t['schoolYear']; ?></td>
+						<td><?php echo $t['dateAdded']; ?></td>
 						<td>
                             <a href="<?php echo site_url('tutorschedule/edit/'.$t['tutorScheduleID']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
                             <a href="<?php echo site_url('tutorschedule/remove/'.$t['tutorScheduleID']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Delete</a>

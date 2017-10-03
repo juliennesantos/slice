@@ -24,29 +24,39 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="tutorType" class="control-label">TutorType</label>
+						<label for="statusID" class="control-label">Tutorstatus</label>
 						<div class="form-group">
-							<input type="text" name="tutorType" value="<?php echo ($this->input->post('tutorType') ? $this->input->post('tutorType') : $tutor['tutorType']); ?>" class="form-control" id="tutorType" max="80" />
+							<select name="statusID" class="form-control">
+								<option value="">select tutorstatus</option>
+								<?php 
+								foreach($all_tutorstatus as $tutorstatus)
+								{
+									$selected = ($tutorstatus['statusID'] == $tutor['statusID']) ? ' selected="selected"' : "";
+
+									echo '<option value="'.$tutorstatus['statusID'].'" '.$selected.'>'.$tutorstatus['statusID'].'</option>';
+								} 
+								?>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="tutorType" class="control-label"><span class="text-danger">*</span>TutorType</label>
+						<div class="form-group">
+							<input type="text" name="tutorType" value="<?php echo ($this->input->post('tutorType') ? $this->input->post('tutorType') : $tutor['tutorType']); ?>" class="form-control" id="tutorType" />
 							<span class="text-danger"><?php echo form_error('tutorType');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="dateAdded" class="control-label">DateAdded</label>
+						<label for="dateAdded" class="control-label"><span class="text-danger">*</span>DateAdded</label>
 						<div class="form-group">
 							<input type="text" name="dateAdded" value="<?php echo ($this->input->post('dateAdded') ? $this->input->post('dateAdded') : $tutor['dateAdded']); ?>" class="has-datetimepicker form-control" id="dateAdded" />
+							<span class="text-danger"><?php echo form_error('dateAdded');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="dateModified" class="control-label">DateModified</label>
 						<div class="form-group">
 							<input type="text" name="dateModified" value="<?php echo ($this->input->post('dateModified') ? $this->input->post('dateModified') : $tutor['dateModified']); ?>" class="has-datetimepicker form-control" id="dateModified" />
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="status" class="control-label">Status</label>
-						<div class="form-group">
-							<input type="text" name="status" value="<?php echo ($this->input->post('status') ? $this->input->post('status') : $tutor['status']); ?>" class="form-control" id="status" max="10" />
-							<span class="text-danger"><?php echo form_error('status');?></span>
 						</div>
 					</div>
 				</div>

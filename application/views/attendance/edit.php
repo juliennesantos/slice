@@ -2,7 +2,7 @@
     <div class="col-md-12">
       	<div class="box box-info">
             <div class="box-header with-border">
-              	<h3 class="box-title">Attendance Edit Log</h3>
+              	<h3 class="box-title">Attendance Edit</h3>
             </div>
 			<?php echo form_open('attendance/edit/'.$attendance['logID']); ?>
 			<div class="box-body">
@@ -10,7 +10,7 @@
 					<div class="col-md-6">
 						<label for="tutorID" class="control-label">Tutor</label>
 						<div class="form-group">
-							<select name="tutorID" class="form-control" min="11" max="11">
+							<select name="tutorID" class="form-control">
 								<option value="">select tutor</option>
 								<?php 
 								foreach($all_tutors as $tutor)
@@ -24,26 +24,28 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="term" class="control-label">Term</label>
+						<label for="term" class="control-label"><span class="text-danger">*</span>Term</label>
 						<div class="form-group">
-							<input type="text" name="term" value="<?php echo ($this->input->post('term') ? $this->input->post('term') : $attendance['term']); ?>" class="form-control" id="term" min="11" max="11" />
+							<input type="text" name="term" value="<?php echo ($this->input->post('term') ? $this->input->post('term') : $attendance['term']); ?>" class="form-control" id="term" />
 							<span class="text-danger"><?php echo form_error('term');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="schoolYr" class="control-label">School Year</label>
+						<label for="schoolYr" class="control-label"><span class="text-danger">*</span>SchoolYr</label>
 						<div class="form-group">
-							<input type="text" name="schoolYr" value="<?php echo ($this->input->post('schoolYr') ? $this->input->post('schoolYr') : $attendance['schoolYr']); ?>" class="form-control" id="schoolYr" min="4" max="4" />
+							<input type="text" name="schoolYr" value="<?php echo ($this->input->post('schoolYr') ? $this->input->post('schoolYr') : $attendance['schoolYr']); ?>" class="form-control" id="schoolYr" />
+							<span class="text-danger"><?php echo form_error('schoolYr');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="timeIn" class="control-label">Time In</label>
+						<label for="timeIn" class="control-label"><span class="text-danger">*</span>TimeIn</label>
 						<div class="form-group">
 							<input type="text" name="timeIn" value="<?php echo ($this->input->post('timeIn') ? $this->input->post('timeIn') : $attendance['timeIn']); ?>" class="has-datetimepicker form-control" id="timeIn" />
+							<span class="text-danger"><?php echo form_error('timeIn');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="timeOut" class="control-label">Time Out</label>
+						<label for="timeOut" class="control-label">TimeOut</label>
 						<div class="form-group">
 							<input type="text" name="timeOut" value="<?php echo ($this->input->post('timeOut') ? $this->input->post('timeOut') : $attendance['timeOut']); ?>" class="has-datetimepicker form-control" id="timeOut" />
 						</div>
@@ -51,7 +53,7 @@
 					<div class="col-md-6">
 						<label for="remarks" class="control-label">Remarks</label>
 						<div class="form-group">
-							<textarea name="remarks" class="form-control" id="remarks" max="500"><?php echo ($this->input->post('remarks') ? $this->input->post('remarks') : $attendance['remarks']); ?></textarea>
+							<textarea name="remarks" class="form-control" id="remarks"><?php echo ($this->input->post('remarks') ? $this->input->post('remarks') : $attendance['remarks']); ?></textarea>
 							<span class="text-danger"><?php echo form_error('remarks');?></span>
 						</div>
 					</div>

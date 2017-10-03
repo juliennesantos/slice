@@ -33,7 +33,7 @@ class Feedback_model extends CI_Model
      */
     function get_all_feedbacks($params = array())
     {
-        $this->db->order_by('feedbackID', 'asc');
+        $this->db->order_by('feedbackID', 'desc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);

@@ -11,16 +11,16 @@
                 <table class="table table-striped">
                     <tr>
 						<th>FeedbackID</th>
-						<th>TutorID</th>
 						<th>TutorialNo</th>
+						<th>DateAdded</th>
 						<th>Feedback</th>
 						<th>Actions</th>
                     </tr>
                     <?php foreach($feedbacks as $f){ ?>
                     <tr>
 						<td><?php echo $f['feedbackID']; ?></td>
-						<td><?php echo $f['tutorID']; ?></td>
 						<td><?php echo $f['tutorialNo']; ?></td>
+						<td><?php echo $f['dateAdded']; ?></td>
 						<td><?php echo $f['feedback']; ?></td>
 						<td>
                             <a href="<?php echo site_url('feedback/edit/'.$f['feedbackID']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
