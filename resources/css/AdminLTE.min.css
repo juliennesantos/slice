@@ -3408,29 +3408,29 @@ table.text-center, table.text-center td, table.text-center th {
 }
 
 .login-logo a, .register-logo a {
-    color: #444
+    color: #444;
 }
 
 .login-page, .register-page {
-    background: #d2d6de
+    background: #ffffff;
 }
 
 .login-box, .register-box {
     width: 360px;
-    margin: 7% auto
+    margin: 7% auto;
 }
 
 @media (max-width:768px) {
     .login-box, .register-box {
         width: 90%;
-        margin-top: 20px
+        margin-top: 20px;
     }
 }
 
 .login-box-body, .register-box-body {
-    background: #fff;
+    background: #f1ffeb;
     padding: 20px;
-    border-top: 0;
+    border-top: solid 2px #33691E;
     color: #666
 }
 

@@ -14,7 +14,7 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>resources/css/AdminLTE.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/iCheck/square/blue.css">
 
@@ -32,7 +32,7 @@
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <a href="<?php echo base_url(); ?>index2.html"><b>Admin</b>LTE</a>
+      <a href="<?php echo base_url(); ?>index2.html">SLIC<b>e</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
