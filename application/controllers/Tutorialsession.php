@@ -32,22 +32,32 @@ class Tutorialsession extends CI_Controller{
     {
         $dayofweek = date('l', strtotime($date));
         $data['dayofweek'] = $dayofweek;
-        var_dump($dayofweek);
-
-        // $data['subjectsbydate'] = $this->Tutorialsession_model->subjects_by_date($dayofweek);
-
-        // foreach($data['subjectsbydate'] as $subject)
-        // {
-        //     $selected = ($subject['subjectID'] == $this->input->post('subjectID')) ? ' selected="selected"' : "";
-
-        //     echo '<option value="'.$subject['subjectID'].'" '.$selected.'>'.$subject['subjectCode'].'</option>';
-        // }
-
-        while($subject = $this->Tutorialsession_model->subjects_by_date($dayofweek))
+        
+        $data['subjectsbydate'] = $this->Tutorialsession_model->subjects_by_date($dayofweek);
+        
+        //var_dump($dayofweek, $data['subjectsbydate']);
+        echo '<option value="">Select subject...</option>';
+        foreach($data['subjectsbydate'] as $subject)
         {
             $selected = ($subject['subjectID'] == $this->input->post('subjectID')) ? ' selected="selected"' : "";
-            
             echo '<option value="'.$subject['subjectID'].'" '.$selected.'>'.$subject['subjectCode'].'</option>';
+        }
+    }
+
+    function findtimeblocks($subjectID)
+    {        
+        $data['tutorschedulesbysubject'] = $this->Tutorialsession_model->tutorschedules_by_subject($subjectID);
+        
+        if(empty($data['tutorschedulesbysubject'])){
+            echo '<option value="">No schedules found!</option>';            
+        }
+        else {
+            echo '<option value="">Select preferred schedule...</option>';
+            foreach($data['tutorschedulesbysubject'] as $tutorsched)
+            {
+                $selected = ($tutorsched['tutorScheduleID'] == $this->input->post('tutorScheduleID')) ? ' selected="selected"' : "";
+                echo '<option value="'.$tutorsched['tutorScheduleID'].'" '.$selected.'>'.$tutorsched['dayofweek'].', '.date('g:i a', strtotime($tutorsched['timeStart'])).' to '.date('g:i a', strtotime($tutorsched['timeEnd'])).'</option>';
+            }
         }
     }
 
