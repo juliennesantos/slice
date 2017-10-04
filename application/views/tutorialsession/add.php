@@ -1,90 +1,91 @@
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$("#datepicker").change(function() {
+		$.get('<?php echo site_url();?>tutorialsession/findSubject/' + $(this).val(), function(data) {
+			$("#subject").html(data);
+			$('#loader').slideUp(200, function() {
+				$(this).remove();
+			});
+		});	
+    });
+
+	// $("#subject").change(function() {
+	// 	$(this).after('<div id="loader"><img src="img/loading.gif" alt="loading subcategory" /></div>');
+	// 	$.get('<?php echo site_url();?>tutorialsession/findSubject/' + $(this).val(), function(data) {
+	// 		$("#tutor").html(data);
+	// 		$('#loader').slideUp(200, function() {
+	// 			$(this).remove();
+	// 		});
+	// 	});	
+    // });
+ 
+});
+</script>
 <div class="row">
-    <div class="col-md-12">
-      	<div class="box box-info">
-            <div class="box-header with-border">
-              	<h3 class="box-title">Request Tutorial Session</h3>
-            </div>
-            <?php echo form_open('tutorialsession/add'); ?>
-          	<div class="box-body">
-          		<div class="row clearfix">
-					<!-- <div class="col-md-6">
-						<label for="tuteeID" class="control-label">Tutee</label>
+	<div class="col-md-12">
+		<div class="box box-info">
+			<div class="box-header with-border">
+				<h3 class="box-title">Request Tutorial Session</h3>
+			</div>
+			<?php echo form_open('tutorialsession/add'); ?>
+			<div class="box-body">
+				<div class="row clearfix">
+					<div class="col-md-offset-2 col-md-8">
 						<div class="form-group">
-							<select name="tuteeID" class="form-control">
-								<option value="">select tutee</option>
-								<?php 
-								foreach($all_tutees as $tutee)
-								{
-									$selected = ($tutee['tuteeID'] == $this->input->post('tuteeID')) ? ' selected="selected"' : "";
+							<!-- Date -->
+							<label>Date:</label>
+							<div class="input-group date">
+								<div class="input-group-addon">
+									<i class="fa fa-calendar"></i>
+								</div>
+								<input type="date" class="form-control pull-right" id="datepicker" name="tutorialdate" placeholder="Choose your preferred date">
+							</div>
+							<br>
+							<!-- subject -->
+							<label for="subjectID" class="control-label">Subject</label>
+							<div class="form-group">
+								<select name="subjectID" class="form-control" id="subject">
+									<!-- <option value="">select subject</option> -->
+								</select>
+								<p><?php if(isset($dayofweek))
+										echo $dayofweek; ?>
+								</p>
+							</div>
+							<!-- Timeblock -->
+							<label for="timeblockID" class="control-label">Timeblock</label>
+							<div class="form-group">
+								<select name="timeblockID" class="form-control">
+									<option value="">Choose your preferred timeblock</option>
+									<?php 
+									foreach($all_timeblocks as $timeblock)
+									{
+										$selected = ($timeblock['timeblockID'] == $this->input->post('timeblockID')) ? ' selected="selected"' : "";
 
-									echo '<option value="'.$tutee['tuteeID'].'" '.$selected.'>'.$tutee['tuteeID'].'</option>';
-								} 
-								?>
-							</select>
-						</div>
-					</div> -->
-					<div class="col-md-6">
-						<!-- Date -->
-						<div class="form-group">
-						<label>Date:</label>
-		
-						<div class="input-group date">
-						  <div class="input-group-addon">
-							<i class="fa fa-calendar"></i>
-						  </div>
-						  <input type="text" class="form-control pull-right" id="datepicker" name="tutorialdate" id="tutorialdate" onchange="" >
-						</div>
-						<!-- /.input group -->
-					  </div>
-					  <!-- /.form group -->
-					</div>
-					<div class="col-md-6">
-						<label for="timeblockID" class="control-label">Timeblock</label>
-						<div class="form-group">
-							<select name="timeblockID" class="form-control">
-								<option value="">choose your preferred timeblock</option>
-								<?php 
-								foreach($all_timeblocks as $timeblock)
-								{
-									$selected = ($timeblock['timeblockID'] == $this->input->post('timeblockID')) ? ' selected="selected"' : "";
+										echo '<option value="'.$timeblock['timeblockID'].'" '.$selected.'>'.$timeblock['timeStart'].' to '.$timeblock['timeEnd'].'</option>';
+									} 
+									?>
+								</select>
+							</div>
+							<!-- Previous Tutor? -->
+							<label for="tutorID" class="control-label">Previous Tutor?</label>
+							<div class="form-group">
+								<select name="tutorID" class="form-control" id='tutor'>
+									<option value="">Select tutor</option>
+									<?php 
+									foreach($all_tutors as $tutor)
+									{
+										$selected = ($tutor['tutorID'] == $this->input->post('tutorID')) ? ' selected="selected"' : "";
 
-									echo '<option value="'.$timeblock['timeblockID'].'" '.$selected.'>'.$timeblock['dayofweek'].', from '.$timeblock['timeStart'].' to '.$timeblock['timeEnd'].'</option>';
-								} 
-								?>
-							</select>
+										echo '<option value="'.$tutor['tutorID'].'" '.$selected.'>'.$tutor['lastName'].', '.$tutor['firstName'].'</option>';
+									} 
+									?>
+								</select>
+							</div>
+							<!-- /.input group -->
 						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="subjectID" class="control-label">Subject</label>
-						<div class="form-group">
-							<select name="subjectID" class="form-control">
-								<option value="">select subject</option>
-								<?php 
-								foreach($all_subjects as $subject)
-								{
-									$selected = ($subject['subjectID'] == $this->input->post('subjectID')) ? ' selected="selected"' : "";
+						<!-- /.form group -->
 
-									echo '<option value="'.$subject['subjectID'].'" '.$selected.'>'.$subject['subjectCode'].'</option>';
-								} 
-								?>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="tutorID" class="control-label">Tutor</label>
-						<div class="form-group">
-							<select name="tutorID" class="form-control">
-								<option value="">select tutor</option>
-								<?php 
-								foreach($all_tutors as $tutor)
-								{
-									$selected = ($tutor['tutorID'] == $this->input->post('tutorID')) ? ' selected="selected"' : "";
-
-									echo '<option value="'.$tutor['tutorID'].'" '.$selected.'>'.$tutor['tutorID'].'</option>';
-								} 
-								?>
-							</select>
-						</div>
 					</div>
 					<!-- <div class="col-md-6">
 						<label for="dateTimeApproved" class="control-label">DateTimeApproved</label>
@@ -133,12 +134,12 @@
 					</div> -->
 				</div>
 			</div>
-          	<div class="box-footer">
-            	<button type="submit" class="btn btn-success">
+			<div class="box-footer">
+				<button type="submit" class="btn btn-success">
             		<i class="fa fa-check"></i> Save
             	</button>
-          	</div>
-            <?php echo form_close(); ?>
-      	</div>
-    </div>
+			</div>
+			<?php echo form_close(); ?>
+		</div>
+	</div>
 </div>

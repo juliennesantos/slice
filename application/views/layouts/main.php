@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="<?php echo site_url('resources/css/_all-skins.min.css');?>">
         <!-- bootstrap datepicker -->
         <link rel="stylesheet" href="<?php echo site_url('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');?>">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     </head>
     
@@ -100,17 +101,9 @@
                             </a>
                         </li>
 						<li>
-                            <a href="#">
-                                <i class="fa fa-hourglass"></i> <span>Tutorial Session</span>
+                            <a href="<?php echo site_url('tutorialsession/add');?>">
+                                <i class="fa fa-hourglass"></i> <span>Tutorial Sessions</span>
                             </a>
-                            <ul class="treeview-menu">
-								<li class="active">
-                                    <a href="<?php echo site_url('tutorialsession/add');?>"><i class="fa fa-plus"></i> Add</a>
-                                </li>
-								<li>
-                                    <a href="<?php echo site_url('tutorialsession/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
-                                </li>
-							</ul>
                         </li>
 						<li>
                             <a href="#">
@@ -451,7 +444,7 @@
         <script src="<?php echo site_url('resources/js/bootstrap-datetimepicker.min.js');?>"></script>
         <script src="<?php echo site_url('resources/js/global.js');?>"></script>
         <!-- DatePicker -->
-        <script src="<?php echo site_url('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');?>"></script>
+        <script src="<?php echo site_url('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js');?>"></script>
 
         <script>
         //Date picker

@@ -40,6 +40,19 @@ class Timeblock_model extends CI_Model
         }
         return $this->db->get('timeblocks')->result_array();
     }
+
+    /*
+     * Get all timeblocks
+     */
+     function get_timeblock_where($params = array())
+     {
+         $this->db->order_by('timeblockID', 'asc');
+         if(isset($params) && !empty($params))
+         {
+             $this->db->limit($params['limit'], $params['offset']);
+         }
+         return $this->db->get('timeblocks')->result_array();
+     }
         
     /*
      * function to add new timeblock

@@ -33,12 +33,14 @@ class Tutor_model extends CI_Model
      */
     function get_all_tutors($params = array())
     {
-        $this->db->order_by('tutorID', 'desc');
+        $this->db->from('tutors t');
+        $this->db->join('users u', 'u.userID = t.userID');
+        $this->db->order_by('t.tutorID', 'asc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);
         }
-        return $this->db->get('tutors')->result_array();
+        return $this->db->get()->result_array();
     }
         
     /*

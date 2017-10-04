@@ -28,6 +28,29 @@ class Tutorialsession extends CI_Controller{
         $this->load->view('layouts/main',$data);
     }
 
+    function findSubject($date)
+    {
+        $dayofweek = date('l', strtotime($date));
+        $data['dayofweek'] = $dayofweek;
+        var_dump($dayofweek);
+
+        // $data['subjectsbydate'] = $this->Tutorialsession_model->subjects_by_date($dayofweek);
+
+        // foreach($data['subjectsbydate'] as $subject)
+        // {
+        //     $selected = ($subject['subjectID'] == $this->input->post('subjectID')) ? ' selected="selected"' : "";
+
+        //     echo '<option value="'.$subject['subjectID'].'" '.$selected.'>'.$subject['subjectCode'].'</option>';
+        // }
+
+        while($subject = $this->Tutorialsession_model->subjects_by_date($dayofweek))
+        {
+            $selected = ($subject['subjectID'] == $this->input->post('subjectID')) ? ' selected="selected"' : "";
+            
+            echo '<option value="'.$subject['subjectID'].'" '.$selected.'>'.$subject['subjectCode'].'</option>';
+        }
+    }
+
     /*
      * add tutorialsession
      */

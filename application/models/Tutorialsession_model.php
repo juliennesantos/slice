@@ -68,4 +68,24 @@ class Tutorialsession_model extends CI_Model
     {
         return $this->db->delete('tutorialsessions',array('tutorialNo'=>$tutorialNo));
     }
+
+    /*
+     * Get all subjects by date and tutorschedule
+     */
+    function subjects_by_date($dayofweek)
+    {
+        // $query = "SELECT s.subjectID, s.subjectCode
+        // FROM tutorschedules ts
+        // INNER JOIN tutorexpertise te ON ts.tutorID = te.tutorID
+        // INNER JOIN subjects s ON s.subjectID = te.subjectID
+        // WHERE ts.dayofweek = ".$dayofweek;
+        //$this->db->query($query);
+        // $this->db->select('s.subjectID');
+        // $this->db->select('s.subjectCode');
+        $this->db->from('tutorschedules ts');
+        $this->db->join('tutorexpertise te', 'ts.tutorID = te.tutorID');
+        $this->db->join('subjects s', 's.subjectID = te.subjectID');
+        $this->db->where('ts.dayofweek', $dayofweek);
+        return $this->db->get()->result_array();
+    }
 }
