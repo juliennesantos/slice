@@ -33,7 +33,7 @@ class Timeblock_model extends CI_Model
      */
     function get_all_timeblocks($params = array())
     {
-        $this->db->order_by('timeblockID', 'desc');
+        $this->db->order_by('timeblockID', 'asc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);

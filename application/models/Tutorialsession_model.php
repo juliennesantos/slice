@@ -33,12 +33,14 @@ class Tutorialsession_model extends CI_Model
      */
     function get_all_tutorialsessions($params = array())
     {
+        $this->db->from('tutorialsessions t');
+        $this->db->join('subjects s', 't.subjectID = s.subjectID');
         $this->db->order_by('tutorialNo', 'desc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);
         }
-        return $this->db->get('tutorialsessions')->result_array();
+        return $this->db->get()->result_array();
     }
         
     /*

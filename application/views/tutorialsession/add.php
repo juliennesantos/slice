@@ -2,12 +2,12 @@
     <div class="col-md-12">
       	<div class="box box-info">
             <div class="box-header with-border">
-              	<h3 class="box-title">Tutorialsession Add</h3>
+              	<h3 class="box-title">Request Tutorial Session</h3>
             </div>
             <?php echo form_open('tutorialsession/add'); ?>
           	<div class="box-body">
           		<div class="row clearfix">
-					<div class="col-md-6">
+					<!-- <div class="col-md-6">
 						<label for="tuteeID" class="control-label">Tutee</label>
 						<div class="form-group">
 							<select name="tuteeID" class="form-control">
@@ -18,6 +18,53 @@
 									$selected = ($tutee['tuteeID'] == $this->input->post('tuteeID')) ? ' selected="selected"' : "";
 
 									echo '<option value="'.$tutee['tuteeID'].'" '.$selected.'>'.$tutee['tuteeID'].'</option>';
+								} 
+								?>
+							</select>
+						</div>
+					</div> -->
+					<div class="col-md-6">
+						<!-- Date -->
+						<div class="form-group">
+						<label>Date:</label>
+		
+						<div class="input-group date">
+						  <div class="input-group-addon">
+							<i class="fa fa-calendar"></i>
+						  </div>
+						  <input type="text" class="form-control pull-right" id="datepicker" name="tutorialdate" id="tutorialdate" onchange="getTimeblock(this.value);" >
+						</div>
+						<!-- /.input group -->
+					  </div>
+					  <!-- /.form group -->
+					</div>
+					<div class="col-md-6">
+						<label for="timeblockID" class="control-label">Timeblock</label>
+						<div class="form-group">
+							<select name="timeblockID" class="form-control">
+								<option value="">choose your preferred timeblock</option>
+								<?php 
+								foreach($all_timeblocks as $timeblock)
+								{
+									$selected = ($timeblock['timeblockID'] == $this->input->post('timeblockID')) ? ' selected="selected"' : "";
+
+									echo '<option value="'.$timeblock['timeblockID'].'" '.$selected.'>'.$timeblock['dayofweek'].', from '.$timeblock['timeStart'].' to '.$timeblock['timeEnd'].'</option>';
+								} 
+								?>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="subjectID" class="control-label">Subject</label>
+						<div class="form-group">
+							<select name="subjectID" class="form-control">
+								<option value="">select subject</option>
+								<?php 
+								foreach($all_subjects as $subject)
+								{
+									$selected = ($subject['subjectID'] == $this->input->post('subjectID')) ? ' selected="selected"' : "";
+
+									echo '<option value="'.$subject['subjectID'].'" '.$selected.'>'.$subject['subjectCode'].'</option>';
 								} 
 								?>
 							</select>
@@ -39,29 +86,13 @@
 							</select>
 						</div>
 					</div>
-					<div class="col-md-6">
-						<label for="subjectID" class="control-label">Subject</label>
-						<div class="form-group">
-							<select name="subjectID" class="form-control">
-								<option value="">select subject</option>
-								<?php 
-								foreach($all_subjects as $subject)
-								{
-									$selected = ($subject['subjectID'] == $this->input->post('subjectID')) ? ' selected="selected"' : "";
-
-									echo '<option value="'.$subject['subjectID'].'" '.$selected.'>'.$subject['subjectID'].'</option>';
-								} 
-								?>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-6">
+					<!-- <div class="col-md-6">
 						<label for="dateTimeApproved" class="control-label">DateTimeApproved</label>
 						<div class="form-group">
 							<input type="text" name="dateTimeApproved" value="<?php echo $this->input->post('dateTimeApproved'); ?>" class="has-datetimepicker form-control" id="dateTimeApproved" />
 						</div>
-					</div>
-					<div class="col-md-6">
+					</div> -->
+					<!-- <div class="col-md-6">
 						<label for="dateTimeStarted" class="control-label">DateTimeStarted</label>
 						<div class="form-group">
 							<input type="text" name="dateTimeStarted" value="<?php echo $this->input->post('dateTimeStarted'); ?>" class="has-datetimepicker form-control" id="dateTimeStarted" />
@@ -99,7 +130,7 @@
 							<textarea name="remarks" class="form-control" id="remarks"><?php echo $this->input->post('remarks'); ?></textarea>
 							<span class="text-danger"><?php echo form_error('remarks');?></span>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
           	<div class="box-footer">
@@ -111,3 +142,19 @@
       	</div>
     </div>
 </div>
+
+<script>
+	$(document).ready(function(){
+	$('#tutorialdate').change(function(){
+		//Selected value
+		var inputValue = $(this).date();
+		alert("value in js "+inputValue);
+
+		//Ajax for calling php function
+		$.post('submit.php', { dropdownValue: inputValue }, function(data){
+			alert('ajax completed. Response:  '+data);
+			//do after submission operation in DOM
+		});
+	});
+});
+</script>
