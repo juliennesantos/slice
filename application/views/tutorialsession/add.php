@@ -1,24 +1,25 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
-	$("#datepicker").change(function() {
-		$.get('<?php echo site_url();?>tutorialsession/findSubject/' + $(this).val(), function(data) {
-			$("#subject").html(data);
-			$('#loader').slideUp(200, function() {
-				$(this).remove();
-			});
-		});	
-    });
-
-	// $("#subject").change(function() {
-	// 	$(this).after('<div id="loader"><img src="img/loading.gif" alt="loading subcategory" /></div>');
+	// $("#datepicker").change(function() {
+	// 	// $(this).after('<div id="loader"><img src="img/loading.gif" alt="loading subcategory" /></div>');
 	// 	$.get('<?php echo site_url();?>tutorialsession/findSubject/' + $(this).val(), function(data) {
-	// 		$("#tutor").html(data);
+	// 		$("#subject").html(data);
 	// 		$('#loader').slideUp(200, function() {
 	// 			$(this).remove();
 	// 		});
 	// 	});	
     // });
+
+	$("#subject").change(function() {
+		// $(this).after('<div id="loader"><img src="img/loading.gif" alt="loading subcategory" /></div>');
+		$.get('<?php echo site_url();?>tutorialsession/findtimeblocks/' + $(this).val(), function(data) {
+			$("#timeblock").html(data);
+			$('#loader').slideUp(200, function() {
+				$(this).remove();
+			});
+		});	
+    });
  
 });
 </script>
@@ -33,30 +34,26 @@ $(document).ready(function() {
 				<div class="row clearfix">
 					<div class="col-md-offset-2 col-md-8">
 						<div class="form-group">
-							<!-- Date -->
-							<label>Date:</label>
-							<div class="input-group date">
-								<div class="input-group-addon">
-									<i class="fa fa-calendar"></i>
-								</div>
-								<input type="date" class="form-control pull-right" id="datepicker" name="tutorialdate" placeholder="Choose your preferred date">
-							</div>
-							<br>
-							<!-- subject -->
-							<label for="subjectID" class="control-label">Subject</label>
+						<!-- subject -->
+						<label for="subjectID" class="control-label">Subject</label>
 							<div class="form-group">
 								<select name="subjectID" class="form-control" id="subject">
-									<!-- <option value="">select subject</option> -->
+									<option value="">Select subject...</option>
+									<?php 
+									foreach($all_subjects as $subject)
+									{
+										$selected = ($subject['subjectID'] == $this->input->post('subjectID')) ? ' selected="selected"' : "";
+
+										echo '<option value="'.$subject['subjectID'].'" '.$selected.'>'.$subject['subjectCode'].'</option>';
+									} 
+									?>
 								</select>
-								<p><?php if(isset($dayofweek))
-										echo $dayofweek; ?>
-								</p>
 							</div>
 							<!-- Timeblock -->
 							<label for="timeblockID" class="control-label">Timeblock</label>
 							<div class="form-group">
-								<select name="timeblockID" class="form-control">
-									<option value="">Choose your preferred timeblock</option>
+								<select name="timeblockID" class="form-control" id="timeblock">
+									<option value="">Choose subject first!</option>
 									<?php 
 									foreach($all_timeblocks as $timeblock)
 									{
@@ -67,6 +64,16 @@ $(document).ready(function() {
 									?>
 								</select>
 							</div>
+							<!-- Date -->
+							<label>Date:</label>
+							<div class="input-group date">
+								<div class="input-group-addon">
+									<i class="fa fa-calendar"></i>
+								</div>
+								<input type="date" class="form-control pull-right" id="datepicker" name="tutorialdate" placeholder="Choose your preferred date">
+							</div>
+							<br>
+							
 							<!-- Previous Tutor? -->
 							<label for="tutorID" class="control-label">Previous Tutor?</label>
 							<div class="form-group">
