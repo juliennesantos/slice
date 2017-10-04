@@ -32,7 +32,7 @@
 						  <div class="input-group-addon">
 							<i class="fa fa-calendar"></i>
 						  </div>
-						  <input type="text" class="form-control pull-right" id="datepicker" name="tutorialdate" id="tutorialdate" onchange="getTimeblock(this.value);" >
+						  <input type="text" class="form-control pull-right" id="datepicker" name="tutorialdate" id="tutorialdate" onchange="" >
 						</div>
 						<!-- /.input group -->
 					  </div>
@@ -142,19 +142,3 @@
       	</div>
     </div>
 </div>
-
-<script>
-	$(document).ready(function(){
-	$('#tutorialdate').change(function(){
-		//Selected value
-		var inputValue = $(this).date();
-		alert("value in js "+inputValue);
-
-		//Ajax for calling php function
-		$.post('submit.php', { dropdownValue: inputValue }, function(data){
-			alert('ajax completed. Response:  '+data);
-			//do after submission operation in DOM
-		});
-	});
-});
-</script>
