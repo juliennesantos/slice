@@ -59,16 +59,16 @@
       <div class="row">
         <div class="col-xs-12">
           <button type="submit" class="btn btn-login1 btn-block" name='signin'>Sign In</button>
-          <button type="button" class="btn btn-login2 btn-block" onclick="">Register as a new tutor</button>
-          <button type="button" class="btn btn-login3 btn-block" onclick="">Register as an old tutor</button>
+          <a href="<?php echo site_url()?>tutorregister/new" class="btn btn-login2 btn-block">Register as a new tutor</a>
+          <a href="<?php echo site_url()?>tutorregister/old" class="btn btn-login3 btn-block">Register as an old tutor</a>
         </div>
       </div>
       <!-- /.col -->
       </form><!--SAN SIMULA NG FORM-->
-      <div class="col-xs-12">
-        <a href="<?php echo site_url()?>tutorregister/new" class="text-center">Register as a new tutor</a><br>
-        <a href="<?php echo site_url()?>tutorregister/old" class="text-center">Register as an old tutor</a>
-      </div>
+      <!--div class="col-xs-12">
+        <a href="<#?php echo site_url()?>tutorregister/new" class="btn btn-login3 btn-block">Register as a new tutor</a><br>
+        <a href="<#?php echo site_url()?>tutorregister/old" class="text-center">Register as an old tutor</a>
+      </div-->
     </div>
 
   </div>
