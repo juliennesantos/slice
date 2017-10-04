@@ -21,11 +21,10 @@
         <link rel="stylesheet" href="<?php echo site_url('resources/css/_all-skins.min.css');?>">
         <!-- bootstrap datepicker -->
         <link rel="stylesheet" href="<?php echo site_url('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');?>">
-        <!-- Select2 -->
-        <link rel="stylesheet" href="<?php echo site_url();?>bower_components/select2/dist/css/select2.min.css">
+
     </head>
     
-    <body class="hold-transition skin-blue sidebar-mini">
+    <body class="hold-transition skin-green-light sidebar-mini">
         <div class="wrapper">
             <header class="main-header">
                 <!-- Logo -->
@@ -56,11 +55,11 @@
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="<?php echo site_url('resources/img/user2-160x160.jpg');?>" class="img-circle" alt="User Image">
+                                        <!--img src="<#?php echo site_url('resources/img/user2-160x160.jpg');?>" class="img-circle" alt="User Image"-->
 
                                     <p>
-                                        Alexander Pierce - Web Developer
-                                        <small>Member since Nov. 2012</small>
+                                        Alexander Pierce - Web Developer 
+                                        <small>Member since Nov. 2012</small><!--PUT ADMIN Username here!!!!--> 
                                     </p>
                                     </li>
                                     <!-- Menu Footer-->
@@ -83,15 +82,15 @@
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
                     <!-- Sidebar user panel -->
-                    <div class="user-panel">
+                    <!--div class="user-panel">
                         <div class="pull-left image">
-                            <img src="<?php echo site_url('resources/img/user2-160x160.jpg');?>" class="img-circle" alt="User Image">
+                            <img src="<#?php echo site_url('resources/img/user2-160x160.jpg');?>" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p>Alexander Pierce</p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
-                    </div>
+                    </div-->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="header">MAIN NAVIGATION</li>
@@ -100,25 +99,6 @@
                                 <i class="fa fa-desktop"></i> <span>Dashboard</span>
                             </a>
                         </li>
-						<li>
-                            <a href="<?php echo site_url('tutorialsession/index');?>">
-                                <i class="fa fa-hourglass"></i> <span>Tutorial Sessions</span>
-                            </a>
-                        </li>
-						<li>
-                            <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Feedback</span>
-                            </a>
-                            <ul class="treeview-menu">
-								<li class="active">
-                                    <a href="<?php echo site_url('feedback/add');?>"><i class="fa fa-plus"></i> Add</a>
-                                </li>
-								<li>
-                                    <a href="<?php echo site_url('feedback/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
-                                </li>
-							</ul>
-                        </li>
-                        <li class="header">TUTOR NAVIGATION</li>
 						<li>
                             <a href="#">
                                 <i class="fa fa-pencil-square-o"></i> <span>Attendance</span>
@@ -132,21 +112,7 @@
                                 </li>
 							</ul>
                         </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Feedback(View)</span>
-                            </a>
-                            <ul class="treeview-menu">
-								<li class="active">
-                                    <a href="<?php echo site_url('feedback/add');?>"><i class="fa fa-plus"></i> Add</a>
-                                </li>
-								<li>
-                                    <a href="<?php echo site_url('feedback/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
-                                </li>
-							</ul>
-                        </li>
-                        <li class="header">COORDINATOR NAVIGATION</li>
-                        <li>
+						<li>
                             <a href="#">
                                 <i class="fa fa-clipboard"></i> <span>Auditlog</span>
                             </a>
@@ -159,23 +125,61 @@
                                 </li>
 							</ul>
                         </li>
-                        <li>
+						<li>
                             <a href="#">
-                                <i class="fa fa-hourglass"></i> <span>Tutorialsession(Approval)</span>
+                                <i class="fa fa-user"></i> <span>Faculty</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
-                                    <a href="<?php echo site_url('tutorialsession/add');?>"><i class="fa fa-plus"></i> Add</a>
+                                    <a href="<?php echo site_url('faculty/add');?>"><i class="fa fa-plus"></i> Add</a>
                                 </li>
 								<li>
-                                    <a href="<?php echo site_url('tutorialsession/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
+                                    <a href="<?php echo site_url('faculty/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
                                 </li>
 							</ul>
                         </li>
-                        <li class="header">MAY BE REMOVED</li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>School</span>
+                                <i class="fa fa-paper-plane"></i> <span>Feedback</span>
+                            </a>
+                            <ul class="treeview-menu">
+								<li class="active">
+                                    <a href="<?php echo site_url('feedback/add');?>"><i class="fa fa-plus"></i> Add</a>
+                                </li>
+								<li>
+                                    <a href="<?php echo site_url('feedback/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
+                                </li>
+							</ul>
+                        </li>
+						<li>
+                            <a href="#">
+                                <i class="fa fa-book"></i> <span>Program Course</span>
+                            </a>
+                            <ul class="treeview-menu">
+								<li class="active">
+                                    <a href="<?php echo site_url('programcourse/add');?>"><i class="fa fa-plus"></i> Add</a>
+                                </li>
+								<li>
+                                    <a href="<?php echo site_url('programcourse/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
+                                </li>
+							</ul>
+                        </li>
+						<li>
+                            <a href="#">
+                                <i class="fa fa-graduation-cap"></i> <span>Program</span>
+                            </a>
+                            <ul class="treeview-menu">
+								<li class="active">
+                                    <a href="<?php echo site_url('program/add');?>"><i class="fa fa-plus"></i> Add</a>
+                                </li>
+								<li>
+                                    <a href="<?php echo site_url('program/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
+                                </li>
+							</ul>
+                        </li>
+						<li>
+                            <a href="#">
+                                <i class="fa fa-institution"></i> <span>School</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -214,7 +218,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-calendar-check-o"></i> <span>Timeblock</span>
+                                <i class="fa fa-clock-o"></i> <span>Timeblock</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -240,7 +244,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-lightbulb-o"></i> <span>Tutorexpertise</span>
+                                <i class="fa fa-lightbulb-o"></i> <span>Tutor Expertise</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -253,7 +257,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Tutorialchecklist</span>
+                                <i class="fa fa-check-square-o"></i> <span>Tutorial Checklist</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -266,7 +270,20 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-male"></i> <span>Tutor</span>
+                                <i class="fa fa-hourglass"></i> <span>Tutorial Session</span>
+                            </a>
+                            <ul class="treeview-menu">
+								<li class="active">
+                                    <a href="<?php echo site_url('tutorialsession/add');?>"><i class="fa fa-plus"></i> Add</a>
+                                </li>
+								<li>
+                                    <a href="<?php echo site_url('tutorialsession/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
+                                </li>
+							</ul>
+                        </li>
+						<li>
+                            <a href="#">
+                                <i class="fa fa-user-circle"></i> <span>Tutor</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -279,7 +296,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-calendar"></i> <span>Tutorschedule</span>
+                                <i class="fa fa-calendar"></i> <span>Tutor Schedule</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -292,7 +309,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-desktop"></i> <span>Tutorstatus</span>
+                                <i class="fa fa-info"></i> <span>Tutor Status</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -305,7 +322,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-user-circle"></i> <span>User</span>
+                                <i class="fa fa-user-circle-o"></i> <span>User</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -318,7 +335,7 @@
                         </li>
 						<li>
                             <a href="#">
-                                <i class="fa fa-universal-access"></i> <span>Usertype</span>
+                                <i class="fa fa-id-card-o"></i> <span>Usertype</span>
                             </a>
                             <ul class="treeview-menu">
 								<li class="active">
@@ -326,45 +343,6 @@
                                 </li>
 								<li>
                                     <a href="<?php echo site_url('usertype/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
-                                </li>
-							</ul>
-                        </li>
-						<li>
-                            <a href="#">
-                                <i class="fa fa-user"></i> <span>Faculty</span>
-                            </a>
-                            <ul class="treeview-menu">
-								<li class="active">
-                                    <a href="<?php echo site_url('faculty/add');?>"><i class="fa fa-plus"></i> Add</a>
-                                </li>
-								<li>
-                                    <a href="<?php echo site_url('faculty/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
-                                </li>
-							</ul>
-                        </li>
-						<li>
-                            <a href="#">
-                                <i class="fa fa-book"></i> <span>Programcourse</span>
-                            </a>
-                            <ul class="treeview-menu">
-								<li class="active">
-                                    <a href="<?php echo site_url('programcourse/add');?>"><i class="fa fa-plus"></i> Add</a>
-                                </li>
-								<li>
-                                    <a href="<?php echo site_url('programcourse/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
-                                </li>
-							</ul>
-                        </li>
-						<li>
-                            <a href="#">
-                                <i class="fa fa-graduation-cap"></i> <span>Program</span>
-                            </a>
-                            <ul class="treeview-menu">
-								<li class="active">
-                                    <a href="<?php echo site_url('program/add');?>"><i class="fa fa-plus"></i> Add</a>
-                                </li>
-								<li>
-                                    <a href="<?php echo site_url('program/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
                                 </li>
 							</ul>
                         </li>
@@ -386,7 +364,7 @@
             </div>
             <!-- /.content-wrapper -->
             <footer class="main-footer">
-                <strong>Generated By <a href="http://www.crudigniter.com/">CRUDigniter</a> 3.2</strong>
+                <strong>SLICE</strong>
             </footer>
 
             <!-- Control Sidebar -->
@@ -419,8 +397,6 @@
         <script src="<?php echo site_url('resources/js/jquery-2.2.3.min.js');?>"></script>
         <!-- Bootstrap 3.3.6 -->
         <script src="<?php echo site_url('resources/js/bootstrap.min.js');?>"></script>
-        <!-- bootstrap datepicker -->
-        <script src="<?php echo site_url('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');?>"></script>
         <!-- FastClick -->
         <script src="<?php echo site_url('resources/js/fastclick.js');?>"></script>
         <!-- AdminLTE App -->
@@ -431,13 +407,10 @@
         <script src="<?php echo site_url('resources/js/moment.js');?>"></script>
         <script src="<?php echo site_url('resources/js/bootstrap-datetimepicker.min.js');?>"></script>
         <script src="<?php echo site_url('resources/js/global.js');?>"></script>
-        <script src="<?php echo site_url('bower_components/select2/dist/js/select2.full.min.js');?>"></script>
+        <!-- DatePicker -->
         <script src="<?php echo site_url('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');?>"></script>
 
-
         <script>
-        //Initialize Select2 Elements
-        $('.select2').select2()
         //Date picker
         $('#datepicker').datepicker({
         autoclose: true
