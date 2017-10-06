@@ -69,15 +69,18 @@ class Tutorialsession extends CI_Controller{
         $this->load->library('form_validation');
 
 		// $this->form_validation->set_rules('dateAdded','DateAdded','required');
-		$this->form_validation->set_rules('status','Status','required|max_length[25]');
-		// $this->form_validation->set_rules('remarks','Remarks','max_length[200]');
+		//$this->form_validation->set_rules('status','Status','required|max_length[25]');
+		$this->form_validation->set_rules('remarks','Remarks','max_length[200]');
 		
 		if($this->form_validation->run())     
         {   
             $params = array(
 				'tuteeID' => $_SESSION['userID'],
-				'tutorID' => $this->input->post('tutorID'),
-				'subjectID' => $this->input->post('subjectID'),
+                'subjectID' => $this->input->post('subjectID'),
+                'tutorschedrequestedID' => $this->input->post('tutorschedrequestedID'),
+                'dateTimeRequested' =>  date('Y-m-d H:i:s', $this->input->post('tutorialdate')),
+                'previousTutorID' => $this->input->post('previoustutorID'),
+                'remarks' => $this->input->post('remarks'),
 				'dateAdded' => date('Y-m-d H:i:s'),
 				'dateModified' => date('Y-m-d H:i:s'),
 				'status' => 'Pending',

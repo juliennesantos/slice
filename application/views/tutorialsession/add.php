@@ -49,10 +49,10 @@ $(document).ready(function() {
 									?>
 								</select>
 							</div>
-							<!-- Timeblock -->
-							<label for="timeblockID" class="control-label">Timeblock</label>
+							<!-- Tutorschedule -->
+							<label for="tutorschedrequestedID" class="control-label">Timeblock</label>
 							<div class="form-group">
-								<select name="timeblockID" class="form-control" id="timeblock">
+								<select name="tutorschedrequestedID" class="form-control" id="timeblock">
 									<option value="">Choose subject first!</option>
 									<?php 
 									foreach($all_timeblocks as $timeblock)
@@ -75,9 +75,9 @@ $(document).ready(function() {
 							<br>
 							
 							<!-- Previous Tutor? -->
-							<label for="tutorID" class="control-label">Previous Tutor?</label>
+							<label for="previoustutorID" class="control-label">Previous Tutor?</label>
 							<div class="form-group">
-								<select name="tutorID" class="form-control" id='tutor'>
+								<select name="previoustutorID" class="form-control" id='tutor'>
 									<option value="">Select tutor</option>
 									<?php 
 									foreach($all_tutors as $tutor)
@@ -89,56 +89,16 @@ $(document).ready(function() {
 									?>
 								</select>
 							</div>
-							<!-- /.input group -->
+							<!-- Remarks -->
+							<label for="remarks" class="control-label">Remarks</label>
+							<div class="form-group">
+								<textarea name="remarks" class="form-control" id="remarks"><?php echo $this->input->post('remarks'); ?></textarea>
+								<span class="text-danger"><?php echo form_error('remarks');?></span>
+							</div>
 						</div>
-						<!-- /.form group -->
-
+						<!-- /.input group -->
 					</div>
-					<!-- <div class="col-md-6">
-						<label for="dateTimeApproved" class="control-label">DateTimeApproved</label>
-						<div class="form-group">
-							<input type="text" name="dateTimeApproved" value="<?php echo $this->input->post('dateTimeApproved'); ?>" class="has-datetimepicker form-control" id="dateTimeApproved" />
-						</div>
-					</div> -->
-					<!-- <div class="col-md-6">
-						<label for="dateTimeStarted" class="control-label">DateTimeStarted</label>
-						<div class="form-group">
-							<input type="text" name="dateTimeStarted" value="<?php echo $this->input->post('dateTimeStarted'); ?>" class="has-datetimepicker form-control" id="dateTimeStarted" />
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="dateTimeEnded" class="control-label">DateTimeEnded</label>
-						<div class="form-group">
-							<input type="text" name="dateTimeEnded" value="<?php echo $this->input->post('dateTimeEnded'); ?>" class="has-datetimepicker form-control" id="dateTimeEnded" />
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="dateAdded" class="control-label"><span class="text-danger">*</span>DateAdded</label>
-						<div class="form-group">
-							<input type="text" name="dateAdded" value="<?php echo $this->input->post('dateAdded'); ?>" class="has-datetimepicker form-control" id="dateAdded" />
-							<span class="text-danger"><?php echo form_error('dateAdded');?></span>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="dateModified" class="control-label">DateModified</label>
-						<div class="form-group">
-							<input type="text" name="dateModified" value="<?php echo $this->input->post('dateModified'); ?>" class="has-datetimepicker form-control" id="dateModified" />
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="status" class="control-label"><span class="text-danger">*</span>Status</label>
-						<div class="form-group">
-							<input type="text" name="status" value="<?php echo $this->input->post('status'); ?>" class="form-control" id="status" />
-							<span class="text-danger"><?php echo form_error('status');?></span>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="remarks" class="control-label">Remarks</label>
-						<div class="form-group">
-							<textarea name="remarks" class="form-control" id="remarks"><?php echo $this->input->post('remarks'); ?></textarea>
-							<span class="text-danger"><?php echo form_error('remarks');?></span>
-						</div>
-					</div> -->
+					<!-- /.form group -->
 				</div>
 			</div>
 			<div class="box-footer">
