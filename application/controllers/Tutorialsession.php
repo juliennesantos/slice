@@ -78,7 +78,7 @@ class Tutorialsession extends CI_Controller{
 				'tuteeID' => $_SESSION['userID'],
                 'subjectID' => $this->input->post('subjectID'),
                 'tutorschedrequestedID' => $this->input->post('tutorschedrequestedID'),
-                'dateTimeRequested' =>  date('Y-m-d H:i:s', $this->input->post('tutorialdate')),
+                'dateTimeRequested' => date('Y-m-d H:i:s', strtotime($this->input->post('tutorialdate'))),
                 'previousTutorID' => $this->input->post('previoustutorID'),
                 'remarks' => $this->input->post('remarks'),
 				'dateAdded' => date('Y-m-d H:i:s'),

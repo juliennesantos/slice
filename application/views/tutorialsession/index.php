@@ -11,31 +11,32 @@
                 <table class="table table-striped">
                     <tr>
 						<th>#</th>
-						<!-- <th>Tutee</th> -->
-						<th>TutorID</th>
-						<th>SubjectID</th>
-						<!-- <th>DateTimeApproved</th> -->
-						<th>Started</th>
-						<th>Ended</th>
-						<!-- <th>DateAdded</th> -->
-						<!-- <th>DateModified</th> -->
+                        <th>Previous Tutor</th>
+						<th>Your Tutor</th>
+						<th>Subject</th>
+                        <th>Requested Date</th>
+						<th>Approved Date</th>
 						<th>Status</th>
-						<th>Remarks</th>
 						<th>Actions</th>
                     </tr>
                     <?php foreach($tutorialsessions as $t){ ?>
                     <tr>
 						<td><?php echo $t['tutorialNo']; ?></td>
-						<!-- <td><?php echo $t['tuteeID']; ?></td> -->
-						<td><?php echo $t['tutorID']; ?></td>
-						<td><?php echo $t['subjectID']; ?></td>
-						<!-- <td><?php echo $t['dateTimeApproved']; ?></td> -->
-						<td><?php echo $t['dateTimeStarted']; ?></td>
-						<td><?php echo $t['dateTimeEnded']; ?></td>
-						<!-- <td><?php echo $t['dateAdded']; ?></td> -->
-						<!-- <td><?php echo $t['dateModified']; ?></td> -->
+						<td><?php echo $t['urLN'].', '. $t['urFN']; ?></td>
+                        <td><?php   if(empty($t['uaLN']))
+                                        echo 'No tutor yet!';
+                                    else 
+                                        echo $t['uaLN'].', '. $t['uaFN'];
+                         ?>
+                         </td>
+						<td><?php echo $t['subjectCode']; ?></td>
+                        <td><?php echo date('D, M j Y', strtotime($t['dateTimeRequested'])).', '.date('g:ia', strtotime($t['tbrTS'])).' to '.date('g:ia', strtotime($t['tbrTE']))?></td>
+                        <td><?php 
+                            if(empty($t['dateTimeApproved']))
+                            echo 'No date yet!';
+                            else 
+                            echo $t['dateTimeApproved'].', '.$t['tsadow'].', '.$t['tbaTS'].' to '.$t['tbaTE']?></td>
 						<td><?php echo $t['status']; ?></td>
-						<td><?php echo $t['remarks']; ?></td>
 						<td>
                             <a href="<?php echo site_url('tutorialsession/edit/'.$t['tutorialNo']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
                             <a href="<?php echo site_url('tutorialsession/remove/'.$t['tutorialNo']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Delete</a>

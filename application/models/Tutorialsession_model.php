@@ -33,9 +33,19 @@ class Tutorialsession_model extends CI_Model
      */
     function get_all_tutorialsessions($params = array())
     {
+        $this->db->select('t.*, ur.lastName urLN, ur.firstName urFN, ua.lastName uaLN, ua.firstName uaFN, s.subjectCode, tsr.dayofweek tsrdow, tsa.dayofweek tsadow, tbr.timeStart tbrTS, tbr.timeEnd tbrTE, tba.timeStart tbaTS, tba.timeEnd tbaTE');
         $this->db->from('tutorialsessions t');
-        $this->db->join('subjects s', 't.subjectID = s.subjectID');
-        $this->db->order_by('tutorialNo', 'desc');
+        $this->db->join('subjects s', 't.subjectID = s.subjectID');                        
+        $this->db->join('tutors tr', 'tr.tutorID = t.previousTutorID');                
+        $this->db->join('tutors ta', 'ta.tutorID = t.tutorID', 'left');
+        $this->db->join('users ur', 'ur.userID = tr.tutorID');        
+        $this->db->join('users ua', 'ua.userID = ta.tutorID', 'left');       
+        $this->db->join('tutorschedules tsr', 'tsr.tutorScheduleID = t.tutorschedrequestedID');
+        $this->db->join('tutorschedules tsa', 't.tutorschedapprovedID = tsa.tutorScheduleID', 'left');
+        $this->db->join('timeblocks tbr', 'tbr.timeblockID = tsr.timeblockID');
+        $this->db->join('timeblocks tba', 'tba.timeblockID = tsa.timeblockID', 'left');
+        
+        $this->db->order_by('tutorialNo', 'asc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);
