@@ -18,6 +18,14 @@ class Tutorschedule_model extends CI_Model
     {
         return $this->db->get_where('tutorschedules',array('tutorScheduleID'=>$tutorScheduleID))->row_array();
     }
+
+    /*
+     * Get tutorschedule by tutorID
+     */
+    function get_tutorsched($tutorID)
+    {
+        return $this->db->get_where('tutorschedules',array('tutorID'=>$tutorID))->row_array();
+    }
     
     /*
      * Get all tutorschedules count
