@@ -3428,10 +3428,12 @@ table.text-center, table.text-center td, table.text-center th {
 }
 
 .login-box-body, .register-box-body {
-    background: #f1ffeb;
+    background: rgb(255, 255, 255);
     padding: 20px;
-    border-top: solid 2px #33691E;
-    color: #666
+    border-top: solid 5px #33691E;
+    border-radius: 10px;
+    color: #666;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .login-box-body .form-control-feedback, .register-box-body .form-control-feedback {
@@ -3443,7 +3445,6 @@ table.text-center, table.text-center td, table.text-center th {
     text-align: center;
     padding: 0 20px 20px 20px
 }
-
 .social-auth-links {
     margin: 10px 0
 }
