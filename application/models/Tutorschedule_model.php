@@ -22,9 +22,9 @@ class Tutorschedule_model extends CI_Model
     /*
      * Get tutorschedule by tutorID
      */
-    function get_tutorsched($tutorID)
+    function get_tutorsched($tutorID,$term,$sy)
     {
-        return $this->db->get_where('tutorschedules',array('tutorID'=>$tutorID))->row_array();
+        return $this->db->get_where('tutorschedules',array('tutorID'=>$tutorID,'term'=>$term,'schoolYear'=>$sy))->row_array();
     }
     
     /*
