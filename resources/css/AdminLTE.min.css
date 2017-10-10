@@ -3428,9 +3428,9 @@ table.text-center, table.text-center td, table.text-center th {
 }
 
 .login-box-body, .register-box-body {
-    background: rgb(255, 255, 255);
+    background: login-box-rgb(255, 255, 255);
     padding: 20px;
-    border-top: solid 5px #33691E;
+    /*border-top: solid 5px #33691E;  CHANGED*/
     border-radius: 10px;
     color: #666;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
