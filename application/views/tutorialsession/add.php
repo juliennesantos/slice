@@ -7,9 +7,9 @@ $(document).ready(function() {
 		subject = $(this).val();
 		$.get('<?php echo site_url();?>tutorialsession/findtimeblocks/' + $(this).val(), function(data) {
 			$("#timeblock").html(data);
-			$('#loader').slideUp(200, function() {
-				$(this).remove();
-			});
+			// $('#loader').slideUp(200, function() {
+			// 	$(this).remove();
+			// });
 		});
 	});
 

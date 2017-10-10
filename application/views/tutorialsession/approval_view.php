@@ -11,8 +11,9 @@
                 <table class="table table-striped">
                     <tr>
                         <th>#</th>
+                        <th>Student's Name</th>
                         <th>Previous Tutor</th>
-                        <th>Your Tutor</th>
+                        <th>Assigned Tutor</th>
                         <th>Subject</th>
                         <th>Requested Date</th>
                         <th>Status</th>
@@ -38,6 +39,9 @@
                         <tr>
                             <td>
                                 <?php echo $t['tutorialNo']; ?>
+                            </td>
+                            <td>
+                                <?php echo $t['uteeLN'].', '. $t['uteeFN']; ?>
                             </td>
                             <td>
                                 <?php echo $t['urLN'].', '. $t['urFN']; ?>
@@ -74,6 +78,26 @@
                                     </div>
                                     <?php echo form_open('tutorialsession/approvalview/'); ?>
                                     <div class="modal-body">
+
+                                        <!-- details -->
+                                        Tutorial # <?php echo $t['tutorialNo']; ?>
+                                        <br>
+                                        Tutee Name: <?php echo $t['uteeLN'].', '. $t['uteeFN']; ?>
+                                        <br>
+                                        Tutee ID Number: <?php echo $t['uteeUN']; ?>
+                                        <br>
+                                        Previous Tutor: <?php   if(empty($t['urLN']))
+                                                                    echo 'No previous tutor';
+                                                                else 
+                                                                    echo $t['urLN'].', '. $t['urFN'];
+                                                        ?>
+                                        <br>
+                                        Subject: <?php echo $t['subjectCode']; ?>
+                                        <br>
+                                        Tutorial Status: <?php echo $t['status']; ?>
+                                        <br>
+                                        <!-- /details -->
+
                                         <input type="hidden" name="tutorialNo" value="<?php echo $t['tutorialNo']; ?>">
                                         <div class="form-group">
                                             <!-- Set Tutor -->

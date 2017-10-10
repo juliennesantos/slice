@@ -290,4 +290,20 @@ class Tutorialsession extends CI_Controller{
 
         
     }    
+
+    function tutor_index()
+    {
+        $params['limit'] = RECORDS_PER_PAGE; 
+        $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
+        
+        $config = $this->config->item('pagination');
+        $config['base_url'] = site_url('tutorialsession/index?');
+        $config['total_rows'] = $this->Tutorialsession_model->view_for_tutors();
+        $this->pagination->initialize($config);
+
+        $data['tutorialsessions'] = $this->Tutorialsession_model->view_for_tutors($params);
+        
+        $data['_view'] = 'tutorialsession/tutor_index';
+        $this->load->view('layouts/main',$data);
+    }
 }

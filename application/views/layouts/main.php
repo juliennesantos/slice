@@ -147,17 +147,14 @@
 							</ul>
                         </li>
                         <li>
-                            <a href="#">
-                                <i class="fa fa-hourglass"></i> <span>Tutorial Sessions(history)</span>
+                            <a href="<?php echo site_url('tutorialsession/tutor_index');?>">
+                                <i class="fa fa-hourglass"></i> <span>View Tutorial Sessions(history)</span>
                             </a>
-                            <ul class="treeview-menu">
-								<li class="active">
-                                    <a href="<?php echo site_url('tutorialsession/add');?>"><i class="fa fa-plus"></i> Add</a>
-                                </li>
+                            <!-- <ul class="treeview-menu">
 								<li>
-                                    <a href="<?php echo site_url('tutorialsession/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
+                                    <a href="<?php echo site_url('tutorialsession/tutor_index');?>"><i class="fa fa-list-ul"></i> View Sessions</a>
                                 </li>
-							</ul>
+							</ul> -->
                         </li>
                         <li>
                             <a href="#">
