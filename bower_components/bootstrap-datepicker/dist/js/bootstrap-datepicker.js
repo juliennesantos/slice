@@ -1680,7 +1680,7 @@
 		datesDisabled: [],
 		endDate: Infinity,
 		forceParse: true,
-		format: 'dd-mm-yyyy',
+		format: 'd MM yyyy',
 		keepEmptyValues: false,
 		keyboardNavigation: true,
 		language: 'en',

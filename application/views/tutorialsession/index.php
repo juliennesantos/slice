@@ -37,9 +37,11 @@
                             else 
                             echo $t['dateTimeApproved'].', '.$t['tsadow'].', '.$t['tbaTS'].' to '.$t['tbaTE']?></td>
 						<td><?php echo $t['status']; ?></td>
-						<td>
-                            <a href="<?php echo site_url('tutorialsession/edit/'.$t['tutorialNo']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
-                            <a href="<?php echo site_url('tutorialsession/remove/'.$t['tutorialNo']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Delete</a>
+						<td class="col-lg-1">
+                            <?php if($t['status'] != "Approved"):?>
+                                <a href="<?php echo site_url('tutorialsession/edit/'.$t['tutorialNo']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Change Request</a> 
+                                <a href="<?php echo site_url('tutorialsession/remove/'.$t['tutorialNo']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Remove Request</a>
+                            <?php endif; ?>    
                         </td>
                     </tr>
                     <?php } ?>

@@ -61,6 +61,22 @@ class Tutorialsession extends CI_Controller{
         }
     }
 
+    function unavailabledates($subjectID, $tutorScheduleID)
+    {        
+        $data['tsessions'] = $this->Tutorialsession_model->tutorschedules_by_subject($subjectID, $tutorScheduleID);
+        $date = array();
+        if(empty($data['tsessions'])){
+            echo 'error';            
+        }
+        else {
+            foreach($data['tsessions'] as $days)
+            {
+                $date[$days['tutorialNo']] = $days['dateTimeRequested'];
+            }
+            return $date;
+        }
+    }
+
     /*
      * add tutorialsession
      */
@@ -77,10 +93,10 @@ class Tutorialsession extends CI_Controller{
             $params = array(
 				'tuteeID' => $_SESSION['userID'],
                 'subjectID' => $this->input->post('subjectID'),
-                'tutorschedrequestedID' => $this->input->post('tutorschedrequestedID'),
+                'tutorScheduleID' => $this->input->post('tutorschedrequestedID'),
                 'dateTimeRequested' => date('Y-m-d H:i:s', strtotime($this->input->post('tutorialdate'))),
                 'previousTutorID' => $this->input->post('previoustutorID'),
-                'remarks' => $this->input->post('remarks'),
+                'tuteeRemarks' => $this->input->post('remarks'),
 				'dateAdded' => date('Y-m-d H:i:s'),
 				'dateModified' => date('Y-m-d H:i:s'),
 				'status' => 'Pending',
@@ -168,7 +184,7 @@ class Tutorialsession extends CI_Controller{
             
             $params = array(
                 'status' => 'Archived',
-                'dateModified' => 'NOW()',
+                'dateModified' => date('Y-m-d H:i:s'),
             );
             
             $this->tutorialsession_model->archive_tutorialsession($tutorialNo,$params);            
@@ -177,4 +193,101 @@ class Tutorialsession extends CI_Controller{
         else
             redirect('tutorialsession/index');
     }
+
+
+    function findtutors($subjectID)
+    {        
+        $data['tutorschedulesbysubject'] = $this->Tutorialsession_model->tutorschedules_by_subject($subjectID);
+        
+        if(empty($data['tutorschedulesbysubject'])){
+            echo '<option value="">No tutors found!</option>';            
+        }
+        else {
+            echo '<option value="">Select tutor...</option>';
+            foreach($data['tutorschedulesbysubject'] as $tutor)
+            {
+                $selected = ($tutor['tutorScheduleID'] == $this->input->post('tutorScheduleID')) ? ' selected="selected"' : "";
+                echo '<option value="'.$tutor['tutorID'].'" '.$selected.'>'.$tutor['lastName'].', '.$tutor['firstName'].'</option>';
+            }
+        }
+    }
+
+    function approvalview()
+    {
+        $data['tutorialNo'] = $this->input->post('tutorialNo');
+        $tutorialNo = $data['tutorialNo'];
+        if($this->input->post('approveUpdate'))
+        {
+            if(isset($data['tutorialNo']))
+            {
+                $this->load->library('form_validation');
+    
+                $this->form_validation->set_rules('coordRemarks','CoordRemarks','max_length[200]');
+            
+                if($this->form_validation->run())     
+                {   
+                    $tutorID = $this->input->post('tutorID');
+                    $params = array(
+                        'tutorID' => $tutorID,
+                        'coordRemarks' => $this->input->post('remarks'),
+                        'status' => 'Approved',
+                        'dateModified' => date('Y-m-d H:i:s'),
+                    );
+                    $test = $this->Tutorialsession_model->update_tutorialsession($tutorialNo,$params); 
+                    
+                    if($test == true)
+                    var_dump($tutorialNo);
+                    else
+                    echo 'update error';
+                }
+                else{
+                    echo 'validationerror';
+                }
+            }
+            else {
+                echo 'errorapproval';
+            }
+        }
+
+        if($this->input->post('disapproveUpdate'))
+        {
+            if(isset($data['tutorialNo']))
+            {
+                $this->load->library('form_validation');
+    
+                $this->form_validation->set_rules('coordRemarks','CoordRemarks','max_length[200]');
+            
+                if($this->form_validation->run())     
+                {   
+                    $tutorID = $this->input->post('tutorID');                    
+                    $params = array(
+                        'tutorID' => $tutorID,
+                        'dateModified' => date('Y-m-d H:i:s'),
+                        'status' => 'Disapproved',
+                        'coordRemarks' => $this->input->post('coordRemarks'),
+                    );
+                    $this->Tutorialsession_model->update_tutorialsession($tutorialNo,$params);            
+                    redirect('tutorialsession/approvalview');
+                }
+            }
+            else {
+                echo 'errordisapproval';
+            }
+        }
+        
+        $params['limit'] = RECORDS_PER_PAGE; 
+        $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
+        
+        $config = $this->config->item('pagination');
+        $config['base_url'] = site_url('tutorialsession/index?');
+        $config['total_rows'] = $this->Tutorialsession_model->get_all_tutorialsessions_count();
+        $this->pagination->initialize($config);
+
+        $data['tutorialsessions'] = $this->Tutorialsession_model->view_pending_sessions($params);
+        
+        $data['_view'] = 'tutorialsession/approval_view';
+        $this->load->view('layouts/main',$data);
+
+        
+    }    
 }

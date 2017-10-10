@@ -33,17 +33,15 @@ class Tutorialsession_model extends CI_Model
      */
     function get_all_tutorialsessions($params = array())
     {
-        $this->db->select('t.*, ur.lastName urLN, ur.firstName urFN, ua.lastName uaLN, ua.firstName uaFN, s.subjectCode, tsr.dayofweek tsrdow, tsa.dayofweek tsadow, tbr.timeStart tbrTS, tbr.timeEnd tbrTE, tba.timeStart tbaTS, tba.timeEnd tbaTE');
+        $this->db->select('t.*, ur.lastName urLN, ur.firstName urFN, ua.lastName uaLN, ua.firstName uaFN, s.subjectCode, tsr.dayofweek tsrdow, tbr.timeStart tbrTS, tbr.timeEnd tbrTE');
         $this->db->from('tutorialsessions t');
         $this->db->join('subjects s', 't.subjectID = s.subjectID');                        
         $this->db->join('tutors tr', 'tr.tutorID = t.previousTutorID');                
         $this->db->join('tutors ta', 'ta.tutorID = t.tutorID', 'left');
         $this->db->join('users ur', 'ur.userID = tr.tutorID');        
         $this->db->join('users ua', 'ua.userID = ta.tutorID', 'left');       
-        $this->db->join('tutorschedules tsr', 'tsr.tutorScheduleID = t.tutorschedrequestedID');
-        $this->db->join('tutorschedules tsa', 't.tutorschedapprovedID = tsa.tutorScheduleID', 'left');
+        $this->db->join('tutorschedules tsr', 'tsr.tutorScheduleID = t.tutorScheduleID');
         $this->db->join('timeblocks tbr', 'tbr.timeblockID = tsr.timeblockID');
-        $this->db->join('timeblocks tba', 'tba.timeblockID = tsa.timeblockID', 'left');
         
         $this->db->order_by('tutorialNo', 'asc');
         if(isset($params) && !empty($params))
@@ -97,10 +95,63 @@ class Tutorialsession_model extends CI_Model
      function tutorschedules_by_subject($subjectID)
      {
          $this->db->from('tutorschedules ts');
-         $this->db->join('timeblocks tb', 'tb.timeblockID = ts.timeblockID');         
+         $this->db->join('timeblocks tb', 'tb.timeblockID = ts.timeblockID');
          $this->db->join('tutorexpertise te', 'ts.tutorID = te.tutorID');
+         $this->db->join('tutors tu', 'ts.tutorID = tu.tutorID');
+         $this->db->join('users u', 'tu.userID = u.userID');
          $this->db->join('subjects s', 's.subjectID = te.subjectID');
          $this->db->where('s.subjectID', $subjectID);
          return $this->db->get()->result_array();
+     }
+
+      /*
+     * Get tutors by tutorsched
+     */
+     function tutors_by_tutorscheds($subjectID)
+     {
+         $this->db->from('tutorschedules ts');
+         $this->db->join('timeblocks tb', 'tb.timeblockID = ts.timeblockID'); 
+         $this->db->join('tutorexpertise te', 'ts.tutorID = te.tutorID');
+         
+         $this->db->join('subjects s', 's.subjectID = te.subjectID');
+         $this->db->where('s.subjectID', $subjectID);
+         return $this->db->get()->result_array();
+     }
+
+     /*
+     * Get occupied days filtered by subject and tutorsched availability
+     */
+     function tsessions_by_subj($subjectID, $tutorScheduleID)
+     {
+         $this->db->select('tses.tutorialNo, tses.dateTimeRequested');
+         $this->db->from('tutorialsessions tses');
+         $this->db->join('tutorschedules ts', 'ts.tutorScheduleID = tses.tutorScheduleID');
+         $this->db->join('tutorexpertise te', 'ts.tutorID = te.tutorID');
+         $this->db->join('tutors tu', 'ts.tutorID = tu.tutorID');
+         $this->db->join('subjects s', 's.subjectID = te.subjectID');
+         $this->db->where('s.subjectID', $subjectID);
+         $this->db->where('ts.tutorScheduleID', $tutorScheduleID);
+         $this->db->where('tses.status', 'Approved');
+         return $this->db->get()->result_array();
+     }
+     
+     function view_pending_sessions()
+     {
+        $this->db->select('t.*, ur.lastName urLN, ur.firstName urFN, ua.lastName uaLN, ua.firstName uaFN, s.subjectCode, tsr.dayofweek tsrdow, tbr.timeStart tbrTS, tbr.timeEnd tbrTE');
+        $this->db->from('tutorialsessions t');
+        $this->db->join('subjects s', 't.subjectID = s.subjectID');                        
+        $this->db->join('tutors tr', 'tr.tutorID = t.previousTutorID');                
+        $this->db->join('tutors ta', 'ta.tutorID = t.tutorID', 'left');
+        $this->db->join('users ur', 'ur.userID = tr.tutorID');        
+        $this->db->join('users ua', 'ua.userID = ta.tutorID', 'left');       
+        $this->db->join('tutorschedules tsr', 'tsr.tutorScheduleID = t.tutorScheduleID');
+        $this->db->join('timeblocks tbr', 'tbr.timeblockID = tsr.timeblockID');
+        $this->db->where('t.status', 'Pending');
+        $this->db->order_by('tutorialNo', 'asc');
+        if(isset($params) && !empty($params))
+        {
+            $this->db->limit($params['limit'], $params['offset']);
+        }
+        return $this->db->get()->result_array();
      }
 }

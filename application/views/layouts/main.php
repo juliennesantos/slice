@@ -101,7 +101,7 @@
                             </a>
                         </li>
 						<li>
-                            <a href="<?php echo site_url('tutorialsession/add');?>">
+                            <a href="<?php echo site_url('tutorialsession/index');?>">
                                 <i class="fa fa-hourglass"></i> <span>Tutorial Sessions</span>
                             </a>
                         </li>
@@ -118,6 +118,7 @@
                                 </li>
 							</ul>
                         </li>
+                        <?php if($_SESSION['typeID'] ==  2):?>  
                         <li class="header">TUTOR NAVIGATION</li>
 						<li>
                             <a href="#">
@@ -171,7 +172,14 @@
                                 </li>
 							</ul>
                         </li>
+                        <?php endif; ?>
+                        <?php if($_SESSION['typeID'] == 5):?>
                         <li class="header">COORDINATOR NAVIGATION</li>
+                        <li>
+                            <a href="<?php echo site_url('tutorialsession/approvalview');?>">
+                                <i class="fa fa-hourglass"></i> <span>Tutorial Sessions (Approval)</span>
+                            </a>
+                        </li>
 						<li>
                             <a href="#">
                                 <i class="fa fa-clipboard"></i> <span>Auditlog</span>
@@ -250,6 +258,8 @@
                                 </li>
 							</ul>
                         </li>
+                        <?php endif;?>
+                        <?php if($_SESSION['typeID'] == 0):?>
                         <li class="header">UNNECESSARY OR AUTOMATED</li>
 						<li>
                             <a href="#">
@@ -381,7 +391,7 @@
                                 </li>
 							</ul>
                         </li>
-						
+                        <?php endif; ?>
                     </ul>
                 </section>
                 <!-- /.sidebar -->

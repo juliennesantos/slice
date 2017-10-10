@@ -1,25 +1,29 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
-	// $("#datepicker").change(function() {
-	// 	// $(this).after('<div id="loader"><img src="img/loading.gif" alt="loading subcategory" /></div>');
-	// 	$.get('<?php echo site_url();?>tutorialsession/findSubject/' + $(this).val(), function(data) {
-	// 		$("#subject").html(data);
-	// 		$('#loader').slideUp(200, function() {
-	// 			$(this).remove();
-	// 		});
-	// 	});	
-    // });
+	var subject;
 
 	$("#subject").change(function() {
-		// $(this).after('<div id="loader"><img src="img/loading.gif" alt="loading subcategory" /></div>');
+		subject = $(this).val();
 		$.get('<?php echo site_url();?>tutorialsession/findtimeblocks/' + $(this).val(), function(data) {
 			$("#timeblock").html(data);
 			$('#loader').slideUp(200, function() {
 				$(this).remove();
 			});
-		});	
-    });
+		});
+	});
+
+	$("#timeblock").change(function() {
+		$.get('<?php echo site_url();?>tutorialsession/unavailabledates/' + subject + '/' + $(this).val(), function(data) {
+			var array = ['2017-10-16'];
+			$("input#datepicker").datepicker({
+				daysOfWeekDisabled:: function(date){
+				var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+				return [ array.indexOf(string) == -1 ];
+			}
+			});
+		});
+	});
  
 });
 </script>
@@ -70,7 +74,7 @@ $(document).ready(function() {
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="date" class="form-control pull-right" id="datepicker" name="tutorialdate" placeholder="Choose your preferred date">
+								<input type="date" class="form-control pull-right datepicker" id="datepicker" name="tutorialdate" placeholder="Choose your preferred date">
 							</div>
 							<br>
 							
