@@ -1,56 +1,73 @@
 <?php
-class Dashboard extends CI_Controller{
+class Tutorregister extends CI_Controller{
     function __construct()
     {
         parent::__construct();
-        $this->load->library('loginvalidation');
-        $this->loginvalidation->isValid();
+        $this->load->model('User_model');
+        $this->load->model('Tutor_model');
         
     }
 
     function index()
     {
-        $data['_view'] = 'dashboard';
+        $data['_view'] = 'tutorregister/new_tutor';
         $this->load->view('layouts/main',$data);
     }
 
-    function new($username)
+    function new_tutor()
     {
-        $this->load->library('form_validation');
-        
-                // $this->form_validation->set_rules('password','Password','required|max_length[100]');
-                // $this->form_validation->set_rules('username','Username','required|max_length[50]');
-                $this->form_validation->set_rules('firstName','FirstName','required|max_length[80]');
-                $this->form_validation->set_rules('lastName','LastName','required|max_length[50]');
-                $this->form_validation->set_rules('middleName','MiddleName','required|max_length[50]');
-                $this->form_validation->set_rules('emailAddress','EmailAddress','required|max_length[100]|valid_email|regex_match[/.+@benilde.edu.ph/]');
-                $this->form_validation->set_rules('contactNo','ContactNo','required|max_length[15]');
+        $this->load->library('form_validation'); 
+                $this->form_validation->set_rules('password','Password');
+                $this->form_validation->set_rules('username','Username');
+                $this->form_validation->set_rules('firstName','FirstName','required');
+                $this->form_validation->set_rules('lastName','LastName','required');
+                $this->form_validation->set_rules('middleName','MiddleName','required');
+                $this->form_validation->set_rules('emailAddress','EmailAddress','required|valid_email|regex_match[/.+@benilde.edu.ph/]');
+                $this->form_validation->set_rules('contactNo','ContactNo','required');
                 
                 if($this->form_validation->run())     
                 {   
-                    $params = array(
-                        'typeID' => $this->input->post('typeID'),
-                        'password' => password_hash('test', PASSWORD_BCRYPT),
-                        'username' => $this->input->post('username'),
-                        'firstName' => $this->input->post('firstName'),
-                        'lastName' => $this->input->post('lastName'),
-                        'middleName' => $this->input->post('middleName'),
-                        'emailAddress' => $this->input->post('emailAddress'),
-                        'contactNo' => $this->input->post('contactNo'),
-                        'dateAdded' => date('Y-m-d H:i:s'),
-                        'dateModified' => date('Y-m-d H:i:s'),
-                        'status' => 'Pending',
-                    );
-                    
-                    $user_id = $this->User_model->add_user($params);
-                    redirect('user/index');
+                    $username = $this->input->post('username');
+                    $password = $this->input->post('password');
+                    $userData = $this->User_model->get_userID($username);
+                    if(!isset($userData['userID'])) //new tutor
+                    {
+                        $userParams = array(
+                            'typeID' => 4,
+                            'username' => $username,
+                            'firstName' => $this->input->post('firstName'),
+                            'lastName' => $this->input->post('lastName'),
+                            'middleName' => $this->input->post('middleName'),
+                            'emailAddress' => $this->input->post('emailAddress'),
+                            'contactNo' => $this->input->post('contactNo'),
+                            'password' => password_hash($password, PASSWORD_BCRYPT),
+                            'dateAdded' => date('Y-m-d H:i:s'),
+                            'dateModified' => date('Y-m-d H:i:s'),
+                            'status' => 'Pending'
+                            );
+                        $user_id = $this->User_model->add_user($userParams);
+                        if(isset($userData['userID']))
+                        {
+                            $tutorParams = array(
+                                'userID' => $userData['userID'],
+                                'tutorType' => $this->input->post('tutorType'),
+                                'dateAdded' => date('Y-m-d H:i:s'),
+                                'dateModified' => date('Y-m-d H:i:s'),
+                                'statusID' => 5
+                            );                                
+                            $tutor_id = $this->Tutor_model->add_tutor($tutorParams);
+                        }
+                        redirect('user/index');
+                    }
+                    else
+                    {
+                        redirect('tutor/edit');
+                    }
                 }
                 else
                 {
-                    $this->load->model('Usertype_model');
-                    $data['all_usertypes'] = $this->Usertype_model->get_all_usertypes();
                     
-                    $data['_view'] = 'user/add';
+                    $data['_view'] = 'tutorregister/new_tutor';
                     $this->load->view('layouts/main',$data);
                 }
     }

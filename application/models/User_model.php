@@ -18,6 +18,12 @@ class User_model extends CI_Model
     {
         return $this->db->get_where('users',array('userID'=>$userID))->row_array();
     }
+
+    // Get user by username
+     function get_userID($username)
+    {
+        return $this->db->get_where('users', array('username'=>$username))->row_array();
+    }
     
     /*
      * Get all users count
