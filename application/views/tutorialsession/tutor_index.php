@@ -15,6 +15,7 @@
                         <th>Previous Tutor</th>
                         <th>Subject</th>
                         <th>Scheduled Date</th>
+                        <th>Remarks</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -44,14 +45,18 @@
                         <td>
                             <?php echo date('D, M j Y', strtotime($t['dateTimeRequested'])).', '.date('g:ia', strtotime($t['tbrTS'])).' to '.date('g:ia', strtotime($t['tbrTE']))?>
                         </td>
+                        <!-- Tutee Remarks -->
+                        <td class="col-md-3">
+                            <?php echo $t['tuteeRemarks']?>
+                        </td>
                         <!-- status -->
                         <td>
                             <?php echo $t['status']; ?>
                         </td>
-                        <td class="col-lg-1">
-                            <?php if($t['status'] != "Approved"):?>
-                            <a href="<?php echo site_url('tutorialsession/edit/'.$t['tutorialNo']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Change Request</a>
-                            <a href="<?php echo site_url('tutorialsession/remove/'.$t['tutorialNo']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Cancel Request</a>
+                        <td>
+                            <?php if($t['status'] == "Approved"):?>
+                            <button type="submit" name="start" class="btn btn-success" title="Start Session"><span class="fa fa-hourglass-start"></span></a>
+                            <button type="submit" name="end" class="btn btn-danger" title="End Session"><span class="fa fa-hourglass-end"></span></a>
                             <?php endif; ?>
                         </td>
                     </tr>

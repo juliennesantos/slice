@@ -15,7 +15,6 @@
 						<th>Your Tutor</th>
 						<th>Subject</th>
                         <th>Requested Date</th>
-						<th>Approved Date</th>
 						<th>Status</th>
 						<th>Actions</th>
                     </tr>
@@ -28,14 +27,9 @@
                                     else 
                                         echo $t['uaLN'].', '. $t['uaFN'];
                          ?>
-                         </td>
+                        </td>
 						<td><?php echo $t['subjectCode']; ?></td>
                         <td><?php echo date('D, M j Y', strtotime($t['dateTimeRequested'])).', '.date('g:ia', strtotime($t['tbrTS'])).' to '.date('g:ia', strtotime($t['tbrTE']))?></td>
-                        <td><?php 
-                            if(empty($t['dateTimeApproved']))
-                            echo 'No date yet!';
-                            else 
-                            echo $t['dateTimeApproved'].', '.$t['tsadow'].', '.$t['tbaTS'].' to '.$t['tbaTE']?></td>
 						<td><?php echo $t['status']; ?></td>
 						<td class="col-lg-1">
                             <?php if($t['status'] != "Approved"):?>

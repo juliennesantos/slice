@@ -234,11 +234,6 @@ class Tutorialsession extends CI_Controller{
                         'dateModified' => date('Y-m-d H:i:s'),
                     );
                     $test = $this->Tutorialsession_model->update_tutorialsession($tutorialNo,$params); 
-                    
-                    if($test == true)
-                    var_dump($tutorialNo);
-                    else
-                    echo 'update error';
                 }
                 else{
                     echo 'validationerror';
@@ -293,12 +288,13 @@ class Tutorialsession extends CI_Controller{
 
     function tutor_index()
     {
+        if($this->input->post('start')){}
         $params['limit'] = RECORDS_PER_PAGE; 
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
         
         $config = $this->config->item('pagination');
-        $config['base_url'] = site_url('tutorialsession/index?');
-        $config['total_rows'] = $this->Tutorialsession_model->view_for_tutors();
+        $config['base_url'] = site_url('tutorialsession/tutor_index?');
+        $config['total_rows'] = $this->Tutorialsession_model->tutor_tutorialsessions_count();
         $this->pagination->initialize($config);
 
         $data['tutorialsessions'] = $this->Tutorialsession_model->view_for_tutors($params);
