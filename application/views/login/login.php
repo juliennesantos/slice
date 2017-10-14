@@ -59,7 +59,7 @@
       <div class="row">
         <div class="col-xs-12">
           <button type="submit" class="btn btn-login1 btn-block" name='signin'>Sign In</button>
-          <a href="<?php echo site_url()?>tutorregister/new" class="btn btn-login2 btn-block">Register as a new tutor</a>
+          <a href="<?php echo site_url()?>tutorregister/new_tutor" class="btn btn-login2 btn-block">Register as a new tutor</a>
           <a href="<?php echo site_url()?>tutorregister/old" class="btn btn-login3 btn-block">Register as an old tutor</a>
         </div>
       </div>

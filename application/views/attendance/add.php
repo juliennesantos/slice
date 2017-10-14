@@ -50,12 +50,12 @@
       <div class="row">
         <div class="col-xs-12">
         	<div class="col-lg-4">
-				<?php echo form_open('/attendance/add/'.$user['username']); ?>
+				<!-- <?php echo form_open('/attendance/add/'.$user['username']); ?> -->
 					<input type="submit" value="Time-in" class="btn btn-login2 btn-block">
 				</form>
 			</div>
 			<div class="col-lg-4">
-				<?php echo form_open('/attendance/add/'.$user['username']); ?>
+				<!-- <?php echo form_open('/attendance/add/'.$user['username']); ?> -->
 					<input type="submit" value="Time-out" class="btn btn-login3 btn-block">
 				</form>
 			</div>
