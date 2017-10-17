@@ -20,7 +20,7 @@ class Attendance extends CI_Controller{
     function index()
     { 
         $data['_view'] = 'attendance/add';
-        $this->load->view('layouts/main',$data);
+        $this->load->view('attendance/add',$data);
     }
 
     /*
@@ -75,6 +75,7 @@ class Attendance extends CI_Controller{
                                         'remarks' =>$remarks);
                                     $this->Attendance_model->add_attendance($params);
                                     //return message '[name], you have successfully logged your attendance'
+                                    echo '<script>alert("you have timed in");</script>';
                                 }
                                 elseif($attendanceData['timeOut'].equals(null))
                                 {

@@ -17,7 +17,7 @@ class Attendance_model extends CI_Model
     
     function getAttendance($schedID,$dateNow)
     {
-        return $this->db->get_where('attendance',array('tutorSchedID'=>$schedID),'timeIn'=>$dateNow)-row_array();
+        return $this->db->get_where('attendance',array('tutorSchedID'=>$schedID,'timeIn'=>$dateNow))->row_array();
     }
     /*
      * Get all attendance count
