@@ -83,7 +83,7 @@ class Tutorialsession extends CI_Controller{
     function add()
     {   
         $this->load->library('form_validation');
-
+       
 		// $this->form_validation->set_rules('dateAdded','DateAdded','required');
 		//$this->form_validation->set_rules('status','Status','required|max_length[25]');
 		$this->form_validation->set_rules('remarks','Remarks','max_length[200]');
@@ -103,25 +103,37 @@ class Tutorialsession extends CI_Controller{
             );
             
             $tutorialsession_id = $this->Tutorialsession_model->add_tutorialsession($params);
+
+            $this->load->model('User_model');            
+            $user = $this->User_model->get_user($_SESSION['userID']);
+
+            if($tutorialsession_id)
+            {
+                $this->email->set_newline("\r\n");
+                $this->email->from('juliennejsantos@gmail.com', 'Admin');
+                $this->email->to($user['emailAddress']);
+                $this->email->subject('SLICe: Tutorial Request Successful!');
+                $this->email->message('<b>Greetings!</b>' . '<br/><br/>' . 'You have successfully requested for a new tutorial schedule!' . '<br/><br/>'. 'Your request will be processed by the SLU Coordinator and you will me notified of your new tutor, or any concerns, in 1-2 business days.<br/>' .'<br/><br/><br/>All the best, <br/><br/> <b>The SLICe Team</b><br/>Student Learning Center<br/> <i>De La Salle - College of Saint Benilde<br/> 2544 Taft Avenue, Malate, Manila</i>');
+                $this->email->send();
+            }
             redirect('tutorialsession/index');
         }
-        else
-        {
-			$this->load->model('Tutee_model');
-			$data['all_tutees'] = $this->Tutee_model->get_all_tutees();
 
-			$this->load->model('Tutor_model');
-			$data['all_tutors'] = $this->Tutor_model->get_all_tutors();
+        $this->load->model('Tutee_model');
+        $data['all_tutees'] = $this->Tutee_model->get_all_tutees();
 
-			$this->load->model('Subject_model');
-            $data['all_subjects'] = $this->Subject_model->get_all_subjects();
-            
-            $this->load->model('Timeblock_model');
-            $data['all_timeblocks'] = $this->Timeblock_model->get_all_timeblocks();
-            
-            $data['_view'] = 'tutorialsession/add';
-            $this->load->view('layouts/main',$data);
-        }
+        $this->load->model('Tutor_model');
+        $data['all_tutors'] = $this->Tutor_model->get_all_tutors();
+
+        $this->load->model('Subject_model');
+        $data['all_subjects'] = $this->Subject_model->get_all_subjects();
+        
+        $this->load->model('Timeblock_model');
+        $data['all_timeblocks'] = $this->Timeblock_model->get_all_timeblocks();
+        
+        $data['_view'] = 'tutorialsession/add';
+        $this->load->view('layouts/main',$data);
+        
     }  
 
     /*
