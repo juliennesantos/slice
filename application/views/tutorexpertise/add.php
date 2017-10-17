@@ -1,6 +1,7 @@
-<div class="row">
-    <div class="col-md-12">
-      	<div class="box box-info">
+<div class="container-fluid">
+	<div class="row">
+	<div class="col-lg-12">
+      	<div class="box box-success">
             <div class="box-header with-border">
               	<h3 class="box-title">Tutorexpertise Add</h3>
             </div>
@@ -56,3 +57,38 @@
       	</div>
     </div>
 </div>
+
+<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-black">
+				<div class="panel-heading"><i class="fa fa-plus-circle"></i>&nbsp;Tutor Expertise</div>
+					<div class="panel-body">
+						<?php echo form_open('tutorexpertise/add'); ?>
+							<div class="col-lg-12">
+
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="tutorID" class="control-label">Tutor</label>
+											<select class="form-control" name="tutorID">
+												<option value="">select tutor</option>	
+											</select>
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="tutorID" class="control-label">Tutor</label>
+											<select class="form-control" name="tutorID">
+												<option value="">select tutor</option>	
+											</select>
+										</div>
+									</div>
+								
+
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+							</div>

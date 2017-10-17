@@ -25,7 +25,7 @@
 
     </head>
     
-    <body class="hold-transition skin-green-light sidebar-mini">
+    <body class="hold-transition skin-green sidebar-mini">
         <div class="wrapper">
             <header class="main-header">
                 <!-- Logo -->
@@ -49,30 +49,11 @@
                         <ul class="nav navbar-nav">
                         <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="<?php echo site_url('resources/img/user2-160x160.jpg');?>" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">Alexander Pierce</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <!-- User image -->
-                                    <li class="user-header">
-                                        <!--img src="<#?php echo site_url('resources/img/user2-160x160.jpg');?>" class="img-circle" alt="User Image"-->
-
-                                    <p>
-                                        Alexander Pierce - Web Developer 
-                                        <small>Member since Nov. 2012</small><!--PUT ADMIN Username here!!!!--> 
-                                    </p>
-                                    </li>
-                                    <!-- Menu Footer-->
-                                    <li class="user-footer">
-                                        <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                        </div>
-                                        <div class="pull-right">
-                                            <a href="<?php echo site_url()?>login/logout" class="btn btn-default btn-flat">Sign out</a>
-                                        </div>
-                                    </li>
-                                </ul>
+                                <!--a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="<#?php echo site_url('resources/img/user2-160x160.jpg');?>" class="user-image" alt="User Image">
+                                    <span class="hidden-xs">ADMIN</span>
+                                </a-->
+                                <a href="<?php echo site_url()?>login/logout" class="btn">Sign out</a>
                             </li>
                         </ul>
                     </div>
