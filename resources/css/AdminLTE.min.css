@@ -2300,7 +2300,8 @@ a:hover, a:active, a:focus {
     border-radius: 3px;
     -webkit-box-shadow: none;
     box-shadow: none;
-    border: 1px solid transparent
+    border: 0px solid transparent;
+    border-radius: 10px;/*CHANGED*/
 }
 
 .btn.uppercase {
@@ -2358,7 +2359,7 @@ a:hover, a:active, a:focus {
 
 .btn-primary {
     background-color: #3c8dbc;
-    border-color: #367fa9
+    border-color: #367fa9;
 }
 
 .btn-primary:hover, .btn-primary:active, .btn-primary.hover {
@@ -2366,8 +2367,8 @@ a:hover, a:active, a:focus {
 }
 
 .btn-success {
-    background-color: #00a65a;
-    border-color: #008d4c
+    background-color:/* #00a65a*/ #2dc781;
+    /*border-color: #008d4c changed*/
 }
 
 .btn-success:hover, .btn-success:active, .btn-success.hover {
@@ -2375,8 +2376,8 @@ a:hover, a:active, a:focus {
 }
 
 .btn-info {
-    background-color: #00c0ef;
-    border-color: #00acd6
+    background-color:#44d2e8 ;/* #00c0ef;
+    border-color: #00acd6*/
 }
 
 .btn-info:hover, .btn-info:active, .btn-info.hover {
@@ -2393,8 +2394,8 @@ a:hover, a:active, a:focus {
 }
 
 .btn-danger {
-    background-color: #dd4b39;
-    border-color: #d73925
+    background-color: #dc5544/* #dd4b39;
+    border-color: #d73925*/
 }
 
 .btn-danger:hover, .btn-danger:active, .btn-danger.hover {
@@ -2402,8 +2403,8 @@ a:hover, a:active, a:focus {
 }
 
 .btn-warning {
-    background-color: #f39c12;
-    border-color: #e08e0b
+    background-color: #ffd84c;/*#f39c12;
+    border-color: #e08e0b*/
 }
 
 .btn-warning:hover, .btn-warning:active, .btn-warning.hover {
