@@ -44,14 +44,18 @@
                                 <?php echo $t['uteeLN'].', '. $t['uteeFN']; ?>
                             </td>
                             <td>
-                                <?php echo $t['urLN'].', '. $t['urFN']; ?>
+                                <?php   if(empty($t['urLN']))
+                                            echo 'No tutor yet!';
+                                        else 
+                                            echo $t['urLN'].', '. $t['urFN'];
+                                ?>
                             </td>
                             <td>
                                 <?php   if(empty($t['uaLN']))
                                             echo 'No tutor yet!';
                                         else 
                                             echo $t['uaLN'].', '. $t['uaFN'];
-                            ?>
+                                ?>
                             </td>
                             <td>
                                 <?php echo $t['subjectCode']; ?>
@@ -78,7 +82,7 @@
                                     </div>
                                     <?php echo form_open('tutorialsession/approvalview/'); ?>
                                     <div class="modal-body">
-
+                                    <input type="hidden" name="emailAddress" value="<?php echo $t['uteeEmail'];?>" />
                                         <!-- details -->
                                         Tutorial # <?php echo $t['tutorialNo']; ?>
                                         <br>
@@ -118,7 +122,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                                             <button type="submit" name="approveUpdate" value="Approve" class="btn btn-primary">Approve</button>
-                                            <button type="submit" name="disapproveUpdate" value="Disapprove" class="btn btn-danger">Disapprove</button>
+                                            <button type="submit" name="disapproveUpdate" value="Disapprove" class="btn btn-danger" onclick="confirm('Disapprove this request?');">Disapprove</button>
                                         </div>
                                         <?php echo form_close(); ?>
                                     </div>

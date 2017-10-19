@@ -5,6 +5,7 @@ class Tutorialsession extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('Tutorialsession_model');
+        $this->load->model('Tutorialchecklist_model');
         $this->load->library('loginvalidation');
         $this->loginvalidation->isValid();
     } 
@@ -12,8 +13,21 @@ class Tutorialsession extends CI_Controller{
     /*
      * view tutorialsessions
      */
-    function index()
+    function index($msg = NULL)
     {
+        if($msg == 1)
+        {
+            echo '<script>alert("Your request was sucessfully submitted!")</script>';
+        }
+        else if($msg == 2)
+        {
+            echo '<script>alert("There was an error in submitting your request. Please try again.")</script>';
+        }
+        else if($msg == 3)
+        {
+            echo '<script>alert("\nYour request was sucessfully submitted!\n\nHowever, the email notification failed to send because of network timeout.")</script>';
+        }
+
         $params['limit'] = RECORDS_PER_PAGE; 
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
         
@@ -109,14 +123,29 @@ class Tutorialsession extends CI_Controller{
 
             if($tutorialsession_id)
             {
+                $config['protocol'] = 'smtp';
+                $config['smtp_host'] = 'smtp.gmail.com';
+                $config['smtp_port'] = 587;
+                $config['_smtp_auth'] = TRUE;
+                $config['smtp_crypto'] = 'tls';
+                $config['smtp_user'] = 'linkgigph@gmail.com';
+                $config['smtp_pass'] = 'linkgigadmin';
+                $config['mailtype'] = "html";
+                $config['smtp_timeout'] = 60; 
+                
+                $this->load->library('email', $config);
+
                 $this->email->set_newline("\r\n");
-                $this->email->from('juliennejsantos@gmail.com', 'Admin');
+                $this->email->from('linkgigph@gmail.com', 'Admin');
                 $this->email->to($user['emailAddress']);
                 $this->email->subject('SLICe: Tutorial Request Successful!');
                 $this->email->message('<b>Greetings!</b>' . '<br/><br/>' . 'You have successfully requested for a new tutorial schedule!' . '<br/><br/>'. 'Your request will be processed by the SLU Coordinator and you will me notified of your new tutor, or any concerns, in 1-2 business days.<br/>' .'<br/><br/><br/>All the best, <br/><br/> <b>The SLICe Team</b><br/>Student Learning Center<br/> <i>De La Salle - College of Saint Benilde<br/> 2544 Taft Avenue, Malate, Manila</i>');
-                $this->email->send();
+                $email = $this->email->send() ? redirect('tutorialsession/approvalview/1') : redirect('tutorialsession/approvalview/3');
+                //var_dump($user['emailAddress'], $email);
             }
-            redirect('tutorialsession/index');
+            else {
+                redirect('tutorialsession/index/2');
+            }
         }
 
         $this->load->model('Tutee_model');
@@ -224,8 +253,25 @@ class Tutorialsession extends CI_Controller{
         }
     }
 
-    function approvalview()
+    function approvalview($msg = NULL)
     {
+        if($msg == 1)
+        {
+            echo '<script>alert("You have successfully approved this session!")</script>';
+        }
+        elseif($msg == 2)
+        {
+            echo '<script>alert("You have successfully disapproved this session.")</script>';
+        }
+        else if($msg == 3)
+        {
+            echo '<script>alert("\nYour transaction was sucessfully submitted.\n\nHowever, the email notification failed to send because of network timeout.")</script>';
+        }
+        else if($msg == 4)
+        {
+            echo '<script>alert("There was an error in submitting your request. Please try again.")</script>';
+        }
+        
         $data['tutorialNo'] = $this->input->post('tutorialNo');
         $tutorialNo = $data['tutorialNo'];
         if($this->input->post('approveUpdate'))
@@ -245,7 +291,76 @@ class Tutorialsession extends CI_Controller{
                         'status' => 'Approved',
                         'dateModified' => date('Y-m-d H:i:s'),
                     );
-                    $test = $this->Tutorialsession_model->update_tutorialsession($tutorialNo,$params); 
+                    $approval_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo,$params);
+                    
+                    $this->load->model('User_model');            
+                    $usermail = $this->input->post('emailAddress');        
+                    
+                    if($approval_id)
+                    {
+                        $config['protocol'] = 'smtp';
+                        $config['smtp_host'] = 'smtp.gmail.com';
+                        $config['smtp_port'] = 587;
+                        $config['_smtp_auth'] = TRUE;
+                        $config['smtp_crypto'] = 'tls';
+                        $config['smtp_user'] = 'linkgigph@gmail.com';
+                        $config['smtp_pass'] = 'linkgigadmin';
+                        $config['mailtype'] = "html";
+                        $config['smtp_timeout'] = 30; 
+                        
+                        $this->load->library('email', $config);
+        
+                        $this->email->set_newline("\r\n");
+                        $this->email->from('linkgigph@gmail.com', 'Admin');
+                        $this->email->to($usermail);
+                        $this->email->subject('SLICe: Your Tutorial Request has been approved!');
+                        $this->email->message(
+                        '<b>Greetings!</b>' . 
+                        '<br/><br/>' . 
+                        'Your requested tutorial session has been approved by the SLU Coordinator!' . 
+                        '<br/><br/>'. 
+                        'Please refer to your requested tutorial schedule in the SLICe website for details. All tutorials may only be held at the Student Learning Center. <br><br>
+                        <b>Tips on making the most out of your tutorial session:</b><br>
+                        <ul>
+                        <li>Don\'t forget to bring your notes and academic materials</li>
+                        <li>Prepare specific questions or topics you are having problems with so that your tutor may help you better</li>
+                        <li>Review your topics after the tutorial session for maximum retention</li>
+                        <ul>'.
+                        '<br/><br/><br/>
+                        All the best, <br/><br/> 
+                        <b>The SLICe Team</b><br/>
+                        Student Learning Center<br/> 
+                        <i>De La Salle - College of Saint Benilde<br/> 
+                        2544 Taft Avenue, Malate, Manila</i>'
+                        );
+                        $email = $this->email->send() ? redirect('tutorialsession/approvalview/1') : redirect('tutorialsession/approvalview/3');
+                        //var_dump($user['emailAddress'], $email);
+
+
+                        $this->email->set_newline("\r\n");
+                        $this->email->from('linkgigph@gmail.com', 'Admin');
+                        $this->email->to($usermail);
+                        $this->email->subject('SLICe: You have a new tutorial schedule!');
+                        $this->email->message(
+                        '<b>Greetings!</b>' . 
+                        '<br/><br/>' . 
+                        'You have been scheduled a tutorial session by the SLU Coordinator!' . 
+                        '<br/><br/>'. 
+                        'Please refer to your tutorial schedules page in the SLICe website for details. All tutorials may only be held at the Student Learning Center. <br><br>'
+                        .'<br/><br/><br/>
+                        All the best, <br/><br/> 
+                        <b>The SLICe Team</b><br/>
+                        Student Learning Center<br/> 
+                        <i>De La Salle - College of Saint Benilde<br/> 
+                        2544 Taft Avenue, Malate, Manila</i>'
+                        );
+                        $email = $this->email->send() ? redirect('tutorialsession/approvalview/1') : redirect('tutorialsession/approvalview/3');
+                        //var_dump($user['emailAddress'], $email);
+
+                    }
+                    else {
+                        redirect('tutorialsession/approvalview/4');
+                    }
                 }
                 else{
                     echo 'validationerror';
@@ -273,8 +388,36 @@ class Tutorialsession extends CI_Controller{
                         'status' => 'Disapproved',
                         'coordRemarks' => $this->input->post('coordRemarks'),
                     );
-                    $this->Tutorialsession_model->update_tutorialsession($tutorialNo,$params);            
-                    redirect('tutorialsession/approvalview');
+                    $approval_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo,$params);
+
+                    $this->load->model('User_model');            
+                    $usermail = $this->input->post('emailAddress');
+                    
+                    if($approval_id)
+                    {
+                        $config['protocol'] = 'smtp';
+                        $config['smtp_host'] = 'smtp.gmail.com';
+                        $config['smtp_port'] = 587;
+                        $config['_smtp_auth'] = TRUE;
+                        $config['smtp_crypto'] = 'tls';
+                        $config['smtp_user'] = 'linkgigph@gmail.com';
+                        $config['smtp_pass'] = 'linkgigadmin';
+                        $config['mailtype'] = "html";
+                        $config['smtp_timeout'] = 30; 
+                        
+                        $this->load->library('email', $config);
+        
+                        $this->email->set_newline("\r\n");
+                        $this->email->from('linkgigph@gmail.com', 'Admin');
+                        $this->email->to($usermail);
+                        $this->email->subject('SLICe: Your Tutorial Request has been disapproved.');
+                        $this->email->message('<b>Greetings!</b>' . '<br/><br/>' . 'We are sorry to inform you that your requested tutorial session schedule has been disapproved, and the SLU coordinator has provided the following remarks: ' . '<br/><br/>'. '<i>"'.$this->input->post('coordRemarks').'"</i><br/><br>Please try to select another tutorial schedule or proceed to the Student Learning Center for any concerns. Thank you!' .'<br/><br/><br/>All the best, <br/><br/> <b>The SLICe Team</b><br/>Student Learning Center<br/> <i>De La Salle - College of Saint Benilde<br/> 2544 Taft Avenue, Malate, Manila</i>');
+                        $email = $this->email->send() ? redirect('tutorialsession/approvalview/2') : redirect('tutorialsession/approvalview/3');
+                        //var_dump($user['emailAddress'], $email);
+                    }
+                    else {
+                        redirect('tutorialsession/approvalview/4');
+                    }
                 }
             }
             else {
@@ -313,5 +456,74 @@ class Tutorialsession extends CI_Controller{
         
         $data['_view'] = 'tutorialsession/tutor_index';
         $this->load->view('layouts/main',$data);
+    }
+
+    function get_checklist($tutorialNo)
+    {
+        $tutlists = $this->Tutorialchecklist_model->get_tutorialchecklist($tutorialNo);
+
+        if(empty($tutlists))
+        { ?>
+            <tr> 
+                <td class="text-center">
+                    <input type="checkbox" name="status['0']" value="Done" id="status['0']" />
+                    <input type="hidden" name="status['0']" value="Not Done" id="status['0']" />
+                </td>
+                <td>
+                <input type="text" name="comment['0']" class="form-control key_addfield" id="comment['0']" required />
+                </td>
+                <td class="text-center">
+                    <button class="btn btn-danger remove_field"><i class="fa fa-trash"></i></button>
+                </td>
+            </tr>
+        <?php 
+        }
+        else 
+        {
+            $r = 0;
+            foreach($tutlists as $tut): ?>
+                <tr> 
+                    <td class="text-center">
+                        <input type="checkbox" name="status[<?= $r; ?>]" value="Done" id="status[<?= $r; ?>]" <?php if($tut['status'] == 'Done'){echo 'checked';}?>/>
+                        <input type="hidden" name="status[<?= $r; ?>]" value="Not Done" id="status[<?= $r; ?>]" />
+                    </td>
+                    <td>
+                    <input type="text" name="comment[<?= $r ?>]" class="form-control key_addfield" id="comment[<?= $r ?>]" value="<?= $tut['comment']?>" required />
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-danger remove_field"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+            <?php
+            $r++;
+            endforeach;
+        }
+    }
+
+    function count_checklist($tutorialNo)
+    {
+        return (int)$this->Tutorialchecklist_model->count_tutNo_list($tutorialNo);
+    }
+
+    function plansession($tutorialNo)
+    {  
+        $status = $this->input->post('status');
+        $comment = $this->input->post('comment');
+
+        $z = count($status);
+        //var_dump($z, $itemTypeID, $qty, $budget, $description);
+        for($i=0 ; $i < $z ; $i++)
+        {
+            $params = array(
+                'tutorialNo' => $tutorialNo,
+                'comment' => $comment[$i],
+                'dateAdded' => date('Y-m-d H:i:s'),
+                'dateModified' => date('Y-m-d H:i:s'),
+                'status' => $status[$i],
+            );
+            $delete_all = $this->Tutorialchecklist_model->delete_tutorialchecklist($tutorialNo);
+            $tutchecklist_id = $this->Tutorialchecklist_model->add_tutorialchecklist($params);
+        }
+        redirect('tutorialsession/tutor_index');
     }
 }

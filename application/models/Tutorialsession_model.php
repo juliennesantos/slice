@@ -135,14 +135,14 @@ class Tutorialsession_model extends CI_Model
      
      function view_pending_sessions()
      {
-        $this->db->select('t.*, ut.userID uteeuid, ut.lastName uteeLN, ut.firstName uteeFN, ut.username uteeUN, ur.lastName urLN, ur.firstName urFN, s.subjectCode, tsr.dayofweek tsrdow, tbr.timeStart tbrTS, tbr.timeEnd tbrTE');
+        $this->db->select('t.*, ut.userID uteeuid, ut.lastName uteeLN, ut.firstName uteeFN, ut.username uteeUN, ut.emailAddress uteeEmail, ur.lastName urLN, ur.firstName urFN, s.subjectCode, tsr.dayofweek tsrdow, tbr.timeStart tbrTS, tbr.timeEnd tbrTE');
         $this->db->join('tutees tees', 't.tuteeID = tees.tuteeID');    
         $this->db->join('users ut', 'ut.userID = tees.userID');    
         $this->db->from('tutorialsessions t');
         $this->db->join('subjects s', 't.subjectID = s.subjectID');                        
-        $this->db->join('tutors tr', 'tr.tutorID = t.previousTutorID');                
+        $this->db->join('tutors tr', 'tr.tutorID = t.previousTutorID', 'left');                
         $this->db->join('tutors ta', 'ta.tutorID = t.tutorID', 'left');
-        $this->db->join('users ur', 'ur.userID = tr.tutorID');        
+        $this->db->join('users ur', 'ur.userID = tr.tutorID', 'left');
         $this->db->join('users ua', 'ua.userID = ta.tutorID', 'left');       
         $this->db->join('tutorschedules tsr', 'tsr.tutorScheduleID = t.tutorScheduleID');
         $this->db->join('timeblocks tbr', 'tbr.timeblockID = tsr.timeblockID');
@@ -160,14 +160,14 @@ class Tutorialsession_model extends CI_Model
      */
     function view_for_tutors()
     {
-        $this->db->select('t.*, ut.userID uteeuid, ut.lastName uteeLN, ut.firstName uteeFN, ut.username uteeUN, ur.lastName urLN, ur.firstName urFN, s.subjectCode, tsr.dayofweek tsrdow, tbr.timeStart tbrTS, tbr.timeEnd tbrTE');
+        $this->db->select('t.*, ut.userID uteeuid, ut.lastName uteeLN, ut.firstName uteeFN, ut.username uteeUN, ur.lastName urLN, ur.firstName urFN, s.subjectCode, tsr.dayofweek tsrdow, tbr.timeStart tbrTS, tbr.timeEnd tbrTE, ua.emailAddress');
         $this->db->from('tutorialsessions t');
         $this->db->join('tutees tees', 't.tuteeID = tees.tuteeID');    
         $this->db->join('users ut', 'ut.userID = tees.userID');                      
-        $this->db->join('subjects s', 't.subjectID = s.subjectID');                      
-        $this->db->join('tutors tr', 'tr.tutorID = t.previousTutorID');                
+        $this->db->join('subjects s', 't.subjectID = s.subjectID');
+        $this->db->join('tutors tr', 'tr.tutorID = t.previousTutorID', 'left');
         $this->db->join('tutors ta', 'ta.tutorID = t.tutorID');
-        $this->db->join('users ur', 'ur.userID = tr.userID');        
+        $this->db->join('users ur', 'ur.userID = tr.userID', 'left');        
         $this->db->join('users ua', 'ua.userID = ta.userID');       
         $this->db->join('tutorschedules tsr', 'tsr.tutorScheduleID = t.tutorScheduleID');
         $this->db->join('timeblocks tbr', 'tbr.timeblockID = tsr.timeblockID');

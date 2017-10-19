@@ -10,9 +10,19 @@ class Tutorialchecklist_model extends CI_Model
     /*
      * Get tutorialchecklist by checklistID
      */
-    function get_tutorialchecklist($checklistID)
+    function get_tutorialchecklist($tutorialNo)
     {
-        return $this->db->get_where('tutorialchecklists',array('checklistID'=>$checklistID))->row_array();
+        return $this->db->get_where('tutorialchecklists',array('tutorialNo'=>$tutorialNo))->result_array();
+    }
+
+    /*
+     * Get all tutorialchecklists count
+     */
+    function count_tutNo_list($tutorialNo)
+    {
+        $this->db->from('tutorialchecklists');
+        $this->db->where('tutorialNo', $tutorialNo);
+        return $this->db->count_all_results();
     }
     
     /*
@@ -58,8 +68,8 @@ class Tutorialchecklist_model extends CI_Model
     /*
      * function to delete tutorialchecklist
      */
-    function delete_tutorialchecklist($checklistID)
+    function delete_tutorialchecklist($tutorialNo)
     {
-        return $this->db->delete('tutorialchecklists',array('checklistID'=>$checklistID));
+        return $this->db->delete('tutorialchecklists',array('tutorialNo'=>$tutorialNo));
     }
 }

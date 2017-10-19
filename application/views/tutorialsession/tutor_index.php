@@ -54,10 +54,118 @@
                             <?php echo $t['status']; ?>
                         </td>
                         <td>
+                        <script type="text/javascript">
+                                $(document).ready(function() {
+                                    var max_fields      = 50; //maximum input boxes allowed
+                                    var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
+                                    var add_button      = $(".add_field_button"); //Add button ID
+                                    
+                                    var x = 0; //initial text box count
+                                    $.get('<?php echo site_url();?>/tutorialsession/count_checklist/' + <?= $t['tutorialNo']; ?>, function(data){
+                                        x = parseInt(data); }, "number");
+                                    $(add_button).click(function(e)
+                                    { //on add input button click
+                                        e.preventDefault();
+                                        if(x < max_fields)
+                                        { //max input box allowed
+                                            x++; //text box increment
+                                            $(wrapper).append(
+                                            '<tr>' + 
+                                                '<td class="text-center">' +
+                                                    '<input type="checkbox" name="status['+ x +']" value="Done" id="status['+ x +']" />' +
+                                                    '<input type="hidden" name="status['+ x +']" value="Not Done" id="status['+ x +']" />' +
+                                                '</td>' +
+                                                '<td>' +
+                                                '<input type="text" name="comment['+ x +']" class="form-control key_addfield" id="comment['+ x +']" required />' +
+                                                '</td>' +
+                                                '<td class="text-center">' +
+                                                    '<button class="btn btn-danger remove_field"><i class="fa fa-trash"></i></button>' +
+                                                '</td>' +
+                                            '</tr>'
+                                            ); //add input box
+                                        }
+                                        else
+                                        {
+                                            alert('You have reached the maximum limit of allowed items!');
+                                        }
+                                    });
+
+                                    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+                                        e.preventDefault(); $(this).parent().parent('tr').remove(); x--;
+                                    });
+                                    
+                                    
+                                    $(".modal<?php echo $t['tutorialNo']; ?>").click(function() {
+                                        $.get('<?php echo site_url();?>/tutorialsession/get_checklist/' + <?= $t['tutorialNo']; ?>, function(data) {
+                                            $(".items<?php echo $t['tutorialNo']; ?>").html(data);
+                                        });	
+                                    });
+                                });
+                            </script>
                             <?php if($t['status'] == "Approved"):?>
-                            <button type="submit" name="start" class="btn btn-success" title="Start Session"><span class="fa fa-hourglass-start"></span></a>
-                            <button type="submit" name="end" class="btn btn-danger" title="End Session"><span class="fa fa-hourglass-end"></span></a>
+                            <button type="submit" name="start" class="btn btn-success" title="Start Session"><span class="fa fa-hourglass-start"></span></button>
+                            <button type="submit" name="end" class="btn btn-danger" title="End Session"><span class="fa fa-hourglass-end"></span></button>
+                            <button type="button" name="checklist" class="btn btn-info modal<?php echo $t['tutorialNo']; ?>" data-toggle="modal" data-target="#modal-default<?php echo $t['tutorialNo']; ?>" title="Plan Session"><span class="fa fa-pencil"></span></button>
                             <?php endif; ?>
+
+                            <!-- MODAL START -->
+                            <div class="fade modal" id="modal-default<?php echo $t['tutorialNo']; ?>" class="modal<?php echo $t['tutorialNo']; ?>">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">Plan Tutorial Session</h4>
+                                        </div>
+                                        <?php echo form_open('tutorialsession/plansession/'. $t['tutorialNo']); ?>
+                                        <div class="modal-body">
+                                            <!-- details -->
+                                            <table class="table table-striped">
+                                                <tr>
+                                                    <td><b>Tutorial No.</b></td>
+                                                    <td>&emsp;<?php echo $t['tutorialNo']; ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Requestor:</b></td>
+                                                    <td>&emsp;<?php echo $t['uteeLN'].', '.$t['uteeFN']; ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Date:</b></td>
+                                                    <td>&emsp;<?php echo date('D, M j Y', strtotime($t['dateTimeRequested'])).', '.date('g:ia', strtotime($t['tbrTS'])).' to '.date('g:ia', strtotime($t['tbrTE']))?>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Remarks:</b></td>
+                                                    <td>&emsp;<?php echo $t['tuteeRemarks']; ?></td>
+                                                </tr>
+                                            </table>
+
+                                            <!-- pritems -->
+                                            <table class="table table-striped table-hover">
+                                            <thead>
+                                                <th class="text-center">Done?</th>
+                                                <th>Milestones</th>
+                                                <th class="pull-right"><button type="button" class="btn btn-info btn-sm add_field_button">Add Milestone</button></th>
+                                            </thead>
+                                            <tbody class="input_fields_wrap items<?php echo $t['tutorialNo'];?>">
+                                            </tbody>
+                                            </table>
+                                            <!-- /pritems -->
+                                            <!-- /details -->
+
+                                            <input type="hidden" name="tutorialNo" value="<?php echo $t['tutorialNo']; ?>">
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                                <button type="submit" name="saveMilestones" value="saveMilestones" class="btn btn-success">Save Milestones</button>
+                                            </div>
+                                            <?php echo form_close(); ?>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                            </div>
+                            <!-- MODAL END -->
                         </td>
                     </tr>
                     <?php } ?>
