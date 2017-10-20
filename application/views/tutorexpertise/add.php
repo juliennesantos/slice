@@ -85,8 +85,8 @@
 
 									<div class="col-md-4">
 										<div class="form-group">
-											<label for="tutorID" class="control-label">Subject</label>
-											<select class="form-control" name="tutorID">
+											<label for="subjectID" class="control-label">Subject</label>
+											<select class="form-control" name="subjectID">
 												<option value="">select subject...</option>	
 												<?php 
 												foreach($all_subjects as $subject)
@@ -102,7 +102,7 @@
 
 									<div class="col-md-4">
 										<div class="form-group">
-											<label for="tutorID" class="control-label">Date Modified</label>
+											<label for="dateModified" class="control-label">Date Modified</label>
 											<input type="text" name="dateModified" value="<?php echo $this->input->post('dateModified'); ?>" class="has-datetimepicker form-control" id="dateModified" />
 										</div>
 									</div>
