@@ -29,41 +29,101 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="hold-transition login-page">
-  <div class="login-box">
-    <div class="login-logo">
-      <a href="<?php echo base_url(); ?>index2.html">SLIC<b>e</b></a>
-    </div>
-    <!-- /.login-logo -->
-    <div class="login-box-body">
-      <p class="login-box-msg">Sign in to record your attendance</p>
-
-      <?php echo form_open('attendance/add'); ?>
-      <div class="form-group has-feedback">
-        <input type="text" name="username" class="form-control" id="username" placeholder="Username" />
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" name="password" class="form-control" id="password" placeholder="Password" />
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-        	<div class="col-lg-4">
-				<!-- <?php echo form_open('/attendance/add/'.$user['username']); ?> -->
-					<input type="submit" value="Time-in" class="btn btn-login2 btn-block">
-				</form>
-			</div>
-			<div class="col-lg-4">
-				<!-- <?php echo form_open('/attendance/add/'.$user['username']); ?> -->
-					<input type="submit" value="Time-out" class="btn btn-login3 btn-block">
-				</form>
-			</div>
-          
+<body class="hold-transition attendance-page">
+  <!--div class="container-fluid">
+    <div class="row">
+      <tr>
+        <div class="progress">
+          <div class="progress-bar progress-bar-success active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+          <span class="sr-only">100% Complete</span>
+          </div>
         </div>
+      </tr>
+    </div>
+  </div>-->
+
+  <div class="container">
+    <div class="attendance-box">
+      <div class="attendance-box-body col-lg-12">
+          <!--div class="col-lg-4">
+            <i class="fa fa-id-badge fa-3x text-center" style="font-size:150px;"></i>
+          </div>
+          <div class="col-lg-1">
+          </div>
+          <div class="col-lg-7 border-left"-->
+            <h4 class="login-box-msg"><strong>Login for your attendance to be recorded</strong></h4>
+            <br/>
+            <?php echo form_open('attendance/add'); ?>
+              <div class="form-group has-feedback">
+                <input type="text" name="username" class="form-control fc" id="username" placeholder="Username" />
+                <span class="ion-person form-control-feedback" style="color:white;"></span>
+              </div>
+              <br/>
+              <div class="form-group has-feedback">
+                <input type="password" name="password" class="form-control fc" id="password" placeholder="Password" />
+                <span class="ion-locked form-control-feedback" style="color:white;"></span>
+              </div>
+              <br/>
+              <div class="row">
+                <div class="col-lg-12">
+                  
+                    <div class="col-lg-6">
+                    <!-- <?php echo form_open('/attendance/add/'.$user['username']); ?> -->
+                          <button type="submit" value="Time-in" class="btn btn-primary btn-circle btn-lg center-block"data-toggle="tooltip" title="Time-In">
+                          <i class="fa fa-sign-in"></i></button
+                          </form>
+                    </div>
+
+                  <div class="col-lg-6">
+                    <!-- <?php echo form_open('/attendance/add/'.$user['username']); ?> -->
+                          <button type="submit" value="Time-out" class="btn btn-danger btn-circle btn-lg center-block" data-toggle="tooltip" title="Time-Out">
+                          <i class="fa fa-sign-out"></i></button>
+                        </form>
+                  </div>
+                  
+                </div>
+              </div>
+            <?php echo form_close(); ?>
+          </div>
+    </div>
+  </div>
+  <!--div class="login-box">
+    <div class="login-box-body">
+      <p class="login-box-msg">Check in to record your attendance</p>
+
+      <div class="col-lg-4">
+      <i class="fa fa-id-badge fa-3x center-block" stye="color:#00BFA5;"></i>
       </div>
-     
-      <?php echo form_close(); ?>
+      <div class="col-lg-6">
+        <#?php echo form_open('attendance/add'); ?>
+        <div class="form-group has-feedback">
+        <input type="text" name="username" class="form-control fc" id="username" placeholder="Username" />
+        <span class="ion-person form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="password" name="password" class="form-control fc" id="password" placeholder="Password" />
+          <span class="ion-locked form-control-feedback"></span>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="col-lg-6">
+          <#?php echo form_open('/attendance/add/'.$user['username']); ?> 
+            <button type="submit" value="Time-in" class="btn btn-success btn-circle btn-lg center-block"data-toggle="tooltip" title="Time-In">
+              <i class="fa fa-sign-in"></i></button
+          </form>
+        </div>
+        <div class="col-lg-6">-->
+          <!-- <#?php echo form_open('/attendance/add/'.$user['username']); ?> 
+            <button type="submit" value="Time-out" class="btn btn-danger btn-circle btn-lg center-block" data-toggle="tooltip" title="Time-Out">
+              <i class="fa fa-sign-out"></i></button>
+          </form>
+        </div>
+            
+          </div>
+        </div>
+      
+        <?php echo form_close(); ?>
+      </div>
 
   	</div>
   <!-- /.login-box-body -->

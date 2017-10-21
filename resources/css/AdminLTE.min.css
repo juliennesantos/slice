@@ -1280,8 +1280,21 @@ a:hover, a:active, a:focus {
 
 .form-control:focus {
     border-color: #3c8dbc;
-    box-shadow: none
+    box-shadow: none;
 }
+.fc {
+    border-radius: 0;
+    box-shadow: none;
+    border-color: #ffffff;
+    background: transparent;
+    color:white;
+}
+
+.fc:focus {
+    border-bottom:1.5px solid #1FC52D !important;
+    outline: 0;
+}
+
 
 .form-control::-moz-placeholder, .form-control:-ms-input-placeholder, .form-control::-webkit-input-placeholder {
     color: #bbb;
@@ -1291,7 +1304,7 @@ a:hover, a:active, a:focus {
 .form-control:not(select) {
     -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none
+    appearance: none;
 }
 
 .form-group.has-success label {
@@ -2307,6 +2320,34 @@ a:hover, a:active, a:focus {
 .btn.uppercase {
     text-transform: uppercase
 }
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+  }
+.btn-circle.btn-lg {
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 25px;
+  }
+ .btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 35px;
+  }
+ .fa-id-badge{
+    color:#00BFA5;
+ } 
 
 .btn.btn-flat {
     border-radius: 0;
@@ -3427,7 +3468,40 @@ table.text-center, table.text-center td, table.text-center th {
         margin-top: 20px;
     }
 }
+/*CHANGED*/
+.attendance-box{
+    width: 400px;
+    margin: 12% auto;
+    }
 
+@media (max-width:768px) {
+    .attendance-box{
+        width: 90%;
+        margin-top: 20px;
+    }
+}
+.border-left{
+    border-left:2px solid rgb(107, 107, 107);
+}
+.attendance-box-body {
+    background: rgba(239, 231, 192, 0.46);
+    padding: 20px;
+    /*border-left: solid 3px rgb(255, 255, 255);  */
+    border-radius: 10px;
+    color: white;
+    box-shadow: none;
+}
+
+.attendance-box-body .form-control-feedback, .form-control-feedback {
+    color: #777;
+}
+
+.attendance-page{
+    background: -webkit-linear-gradient(180deg, #31ef98, #c0f1da);
+    background: -o-linear-gradient(180deg, #31ef98, #c0f1da);
+    background: -moz-linear-gradient(180deg, #31ef98, #c0f1da);
+    background: linear-gradient(180deg, #31ef98, #c0f1da);
+}
 .login-box-body, .register-box-body {
     background: login-box-rgb(255, 255, 255);
     padding: 20px;
@@ -3445,6 +3519,12 @@ table.text-center, table.text-center td, table.text-center th {
     margin: 0;
     text-align: center;
     padding: 0 20px 20px 20px
+}
+.login-box-msg, .register-box-msg {
+    margin: 0;
+    text-align: center;
+    padding: 0 20px 20px 20px;
+    color: #5d5656;
 }
 .social-auth-links {
     margin: 10px 0
