@@ -5,6 +5,11 @@ class Tutor extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('Tutor_model');
+        $this->load->model('Tutorschedule_model');
+        $this->load->model('Timeblock_model');
+        $this->load->model('Tutorexpertise_model');
+        $this->load->model('Subject_model');
+        $this->load->model('Term_model');
         $this->load->library('loginvalidation');
         $this->loginvalidation->isValid();
     } 
@@ -106,6 +111,54 @@ class Tutor extends CI_Controller{
         }
         else
             show_error('The tutor you are trying to edit does not exist.');
+    }
+
+    function register($userID)
+    {
+        $term = $this->Term_model->get_current_term();
+        $data['tutor'] = $this->Tutor_model->get_tutorID($userID);
+        if(isset($data['tutor']['tutorID']))
+        {
+            $tutorID = $data['tutor']['tutorID'];
+            $this->load->model('Subject_model');
+            $data['all_subjects'] = $this->Subject_model->get_all_subjects();
+        
+            $this->load->model('Timeblock_model');
+            $data['all_timeblocks'] = $this->Timeblock_model->get_all_timeblocks();
+
+            $this->load->library('form_validation');
+
+            $this->form_validation->set_rules('subject','subject','required');
+            $this->form_validation->set_rules('schedule','schedule','required');
+            if($this->form_validation->run())
+            {
+                $expertiseParam = array(
+                    'tutorID'=>$tutorID,
+                    'subjectID' =>$this->input->post('subject'),
+                    'dateModified' => date('Y-m-d H:i:s')
+                );
+                $schedParam = array(
+                    'tutorID' => $tutorID,
+                    'timeblockID' => $this->input->post('schedule'),
+                    'term' => $term['term'],
+                    'schoolYear' => $term['sy'],
+                    'dateAdded' => date('Y-m-d H:i:s')
+                );
+                $expertiseID = $this->Tutorexpertise_model->add_tutorexpertise($expertiseParam);
+                $scheduleID = $this->Tutorschedule_model->add_tutorschedule($schedParam);
+                redirect('tutor/index');
+            }
+            else
+            {
+                $data['_view'] = 'tutor/register';
+                $this->load->view('layouts/main',$data);
+                $this->load->model('Subject_model');
+                $data['all_subjects'] = $this->Subject_model->get_all_subjects();
+        
+                $this->load->model('Timeblock_model');
+                $data['all_timeblocks'] = $this->Timeblock_model->get_all_timeblocks();
+            }
+        }   
     }
 
     function archive($tutorID)

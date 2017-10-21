@@ -15,7 +15,7 @@ class Tutor_model extends CI_Model
         return $this->db->get_where('tutors',array('tutorID'=>$tutorID))->row_array();
     }
     
-    //Get tutorID
+    //Get tutor by userid
     function get_tutorID($userID){
         return $this->db->get_where('tutors',array('userID'=>$userID))->row_array();
     }

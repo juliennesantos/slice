@@ -39,7 +39,7 @@ class Login extends CI_Controller{
             {
                 $_SESSION['userID'] = $data['userID'];
                 $_SESSION['typeID'] = $data['typeID'];
-                redirect('dashboard/index');                
+                redirect('tutor/register/'.$_SESSION['userID']);                
             }
             else {
                 show_error('The user you are trying to find does not exist.');                      
