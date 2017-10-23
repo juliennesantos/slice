@@ -21,6 +21,7 @@ class Tutor extends CI_Controller{
     {
         $params['limit'] = RECORDS_PER_PAGE; 
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
+        $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
         
         $config = $this->config->item('pagination');
         $config['base_url'] = site_url('tutor/index?');
@@ -122,10 +123,24 @@ class Tutor extends CI_Controller{
             $tutorID = $data['tutor']['tutorID'];
             $this->load->model('Subject_model');
             $data['all_subjects'] = $this->Subject_model->get_all_subjects();
-        
+            //filter timeblock
             $this->load->model('Timeblock_model');
             $data['all_timeblocks'] = $this->Timeblock_model->get_all_timeblocks();
-
+            foreach ($data['all_timeblocks'] as $timeblock) 
+            {
+                $count = $this->Tutorschedule_model->get_count_schedule_timeblock($timeblock['timeblockID'],$term['term'],$term['sy']);
+                if($count>=5)
+                {
+                    $param = array('status' => 'full');
+                    $updateTimeblock =  $this->Timeblock_model->update_timeblock($timeblock['timeblockID'],$param);
+                }
+                else
+                {
+                    $param = array('status' => 'available');
+                    $updateTimeblock =  $this->Timeblock_model->update_timeblock($timeblock['timeblockID'],$param);
+                }    
+            }
+            $data['available_timeblocks'] = $this->Timeblock_model->get_available_timeblock('available');
             $this->load->library('form_validation');
 
             $this->form_validation->set_rules('subject','subject','required');

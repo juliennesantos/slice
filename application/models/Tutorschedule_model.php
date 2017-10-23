@@ -31,7 +31,17 @@ class Tutorschedule_model extends CI_Model
         $this->db->from('tutorschedules');
         return $this->db->count_all_results();
     }
-        
+    
+    //get all tutorschedule count with specific timeblock
+    function get_count_schedule_timeblock($timeblockID,$term,$sy)
+    {
+        $this->db->from('tutorschedules');
+        $this->db->where('timeblockID', $timeblockID);
+        $this->db->where('term', $term);
+        $this->db->where('schoolYear', $sy);
+        return $this->db->count_all_results();
+    }
+
     /*
      * Get all tutorschedules
      */

@@ -28,7 +28,7 @@
 							<select name="schedule" class="form-control">
 								<option value="">Select a schedule</option>
 								<?php 
-								foreach($all_timeblocks as $schedule)
+								foreach($available_timeblocks as $schedule)
 								{
 									echo '<option value="'.$schedule['timeblockID'].'">'.$schedule['dayofweek'].' '.$schedule['timeStart'].'-'.$schedule['timeEnd'].'</option>';
 								} 

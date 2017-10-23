@@ -49,7 +49,12 @@ class Timeblock_model extends CI_Model
          }
          return $this->db->get('timeblocks')->result_array();
      }
-        
+     
+    function get_available_timeblock($param)
+    {
+        $data = $this->db->get_where('timeblocks', array('status'=>$param));
+        return $data ->result_array();
+    }
     /*
      * function to add new timeblock
      */
