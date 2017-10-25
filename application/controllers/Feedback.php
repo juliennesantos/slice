@@ -22,7 +22,36 @@ class Feedback extends CI_Controller{
         $this->pagination->initialize($config);
 
         $data['feedbacks'] = $this->Feedback_model->get_all_feedbacks($params);
+        $data['_view'] = 'feedback/index';
+        $this->load->view('layouts/main',$data);
+    }
+    /*
+     * view feedbacks for tutee
+     */
+    function tuteeview()
+    {
+        if(isset($_POST) && count($_POST) > 0)     
+        {   
+            $params = array(
+				'tutorialNo' => $this->input->post('tutorialNo'),
+				'dateAdded' => date('Y-m-d H:i:s'),
+				'feedback' => $this->input->post('feedback'),
+            );
+            
+            $feedback_id = $this->Feedback_model->add_feedback($params);
+            redirect('feedback/tuteeview');
+        }
+
+        $params['limit'] = RECORDS_PER_PAGE; 
+        $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
         
+        $config = $this->config->item('pagination');
+        $config['base_url'] = site_url('feedback/index?');
+        $config['total_rows'] = $this->Feedback_model->pending_feedbacks_count();
+        $this->pagination->initialize($config);
+
+
+        $data['feedbacks'] = $this->Feedback_model->pending_feedbacks($params);
         $data['_view'] = 'feedback/index';
         $this->load->view('layouts/main',$data);
     }
@@ -30,23 +59,23 @@ class Feedback extends CI_Controller{
     /*
      * add feedback
      */
-    function add()
+    function add($tutorialNo)
     {   
         if(isset($_POST) && count($_POST) > 0)     
         {   
             $params = array(
 				'tutorialNo' => $this->input->post('tutorialNo'),
-				'dateAdded' => $this->input->post('dateAdded'),
+				'dateAdded' => date('Y-m-d H:i:s'),
 				'feedback' => $this->input->post('feedback'),
             );
             
             $feedback_id = $this->Feedback_model->add_feedback($params);
-            redirect('feedback/index');
+            redirect('feedback/tuteeview');
         }
         else
         {
 			$this->load->model('Tutorialsession_model');
-			$data['all_tutorialsessions'] = $this->Tutorialsession_model->get_all_tutorialsessions();
+			$data['tsess'] = $this->Tutorialsession_model->get_tutorialsession($tutorialNo);
             
             $data['_view'] = 'feedback/add';
             $this->load->view('layouts/main',$data);

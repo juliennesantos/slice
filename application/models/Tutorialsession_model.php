@@ -48,6 +48,40 @@ class Tutorialsession_model extends CI_Model
         }
         return $this->db->get()->result_array();
     }
+
+    /*
+     * Get all tutorialsessions count
+     */
+    function get_user_tutorialsessions_count()
+    {
+        $this->db->where('userID', $_SESSION['userID']);
+        $this->db->from('tutorialsessions');
+        return $this->db->count_all_results();
+    }
+    /*
+     * Get all tutorialsessions
+     */
+    function get_user_tutorialsessions($params = array())
+    {
+        $this->db->select('t.*, utee.lastName uteeLN, utee.firstName uteeFN, utee.username uteeUN, ur.lastName urLN, ur.firstName urFN, ua.lastName uaLN, ua.firstName uaFN, s.subjectCode, tsr.dayofweek tsrdow, tbr.timeStart tbrTS, tbr.timeEnd tbrTE');
+        $this->db->from('tutorialsessions t');
+        $this->db->join('subjects s', 't.subjectID = s.subjectID');                      
+        $this->db->join('tutees tee', 't.tuteeID = tee.tuteeID');                            
+        $this->db->join('users utee', 'tee.userID = utee.userID');                      
+        $this->db->join('tutors tr', 'tr.tutorID = t.previousTutorID');                
+        $this->db->join('tutors ta', 'ta.tutorID = t.tutorID', 'left');
+        $this->db->join('users ur', 'ur.userID = tr.tutorID');        
+        $this->db->join('users ua', 'ua.userID = ta.tutorID', 'left');       
+        $this->db->join('tutorschedules tsr', 'tsr.tutorScheduleID = t.tutorScheduleID');
+        $this->db->join('timeblocks tbr', 'tbr.timeblockID = tsr.timeblockID');
+        
+        $this->db->order_by('tutorialNo', 'asc');
+        if(isset($params) && !empty($params))
+        {
+            $this->db->limit($params['limit'], $params['offset']);
+        }
+        return $this->db->get()->result_array();
+    }
         
     /*
      * function to add new tutorialsession

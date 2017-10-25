@@ -95,7 +95,7 @@
                                     <a href="<?php echo site_url('feedback/add');?>"><i class="fa fa-plus"></i> Add</a>
                                 </li>
 								<li>
-                                    <a href="<?php echo site_url('feedback/index');?>"><i class="fa fa-list-ul"></i> Listing</a>
+                                    <a href="<?php echo site_url('feedback/tuteeview');?>"><i class="fa fa-list-ul"></i> Listing</a>
                                 </li>
 							</ul>
                         </li>
