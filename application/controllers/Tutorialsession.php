@@ -17,18 +17,30 @@ class Tutorialsession extends CI_Controller{
     {
         if($msg == 1)
         {
-            echo '<script>alert("Your request was sucessfully submitted!")</script>';
-            redirect('tutorialsession/index');
+            ?>
+            <script type="text/javascript">
+            alert("Your request was sucessfully submitted!");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/index";
+            </script>
+            <?php
         }
         else if($msg == 2)
         {
-            echo '<script>alert("There was an error in submitting your request. Please try again.")</script>';
-            redirect('tutorialsession/index');
+            ?>
+            <script type="text/javascript">
+            alert("There was an error in submitting your request. Please try again.");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/index";
+            </script>
+            <?php
         }
         else if($msg == 3)
         {
-            echo '<script>alert("\nYour request was sucessfully submitted!\n\nHowever, the email notification failed to send because of network timeout.")</script>';
-            redirect('tutorialsession/index');
+            ?>
+            <script type="text/javascript">
+            alert("\nYour request was sucessfully submitted!\n\nHowever, the email notification failed to send because of network timeout.");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/index";
+            </script>
+            <?php
         }
 
         $params['limit'] = RECORDS_PER_PAGE; 
@@ -51,25 +63,37 @@ class Tutorialsession extends CI_Controller{
     {
         if($msg == 1)
         {
-            echo '<script>alert("Your request was sucessfully submitted!")</script>';
-            redirect('tutorialsession/index');
+            ?>
+            <script type="text/javascript">
+            alert("Your request was sucessfully submitted!");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/tutee";
+            </script>
+            <?php
         }
         else if($msg == 2)
         {
-            echo '<script>alert("There was an error in submitting your request. Please try again.")</script>';
-            redirect('tutorialsession/index');
+            ?>
+            <script type="text/javascript">
+            alert("There was an error in submitting your request. Please try again.");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/tutee";
+            </script>
+            <?php
         }
         else if($msg == 3)
         {
-            echo '<script>alert("\nYour request was sucessfully submitted!\n\nHowever, the email notification failed to send because of network timeout.")</script>';
-            redirect('tutorialsession/index');
+            ?>
+            <script type="text/javascript">
+            alert("\nYour request was sucessfully submitted!\n\nHowever, the email notification failed to send because of network timeout.");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/tutee";
+            </script>
+            <?php
         }
 
         $params['limit'] = RECORDS_PER_PAGE; 
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
         
         $config = $this->config->item('pagination');
-        $config['base_url'] = site_url('tutorialsession/index?');
+        $config['base_url'] = site_url('tutorialsession/tutee?');
         $config['total_rows'] = $this->Tutorialsession_model->get_user_tutorialsessions_count();
         $this->pagination->initialize($config);
 
@@ -177,7 +201,7 @@ class Tutorialsession extends CI_Controller{
                 $this->email->to($user['emailAddress']);
                 $this->email->subject('SLICe: Tutorial Request Successful!');
                 $this->email->message('<b>Greetings!</b>' . '<br/><br/>' . 'You have successfully requested for a new tutorial schedule!' . '<br/><br/>'. 'Your request will be processed by the SLU Coordinator and you will me notified of your new tutor, or any concerns, in 1-2 business days.<br/>' .'<br/><br/><br/>All the best, <br/><br/> <b>The SLICe Team</b><br/>Student Learning Center<br/> <i>De La Salle - College of Saint Benilde<br/> 2544 Taft Avenue, Malate, Manila</i>');
-                $email = $this->email->send() ? redirect('tutorialsession/approvalview/1') : redirect('tutorialsession/approvalview/3');
+                $email = $this->email->send() ? redirect('tutorialsession/tutee/1') : redirect('tutorialsession/approvalview/3');
                 //var_dump($user['emailAddress'], $email);
             }
             else {
