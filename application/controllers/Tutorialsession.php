@@ -159,8 +159,6 @@ class Tutorialsession extends CI_Controller{
     {   
         $this->load->library('form_validation');
        
-		// $this->form_validation->set_rules('dateAdded','DateAdded','required');
-		//$this->form_validation->set_rules('status','Status','required|max_length[25]');
 		$this->form_validation->set_rules('remarks','Remarks','max_length[200]');
 		
 		if($this->form_validation->run())     
