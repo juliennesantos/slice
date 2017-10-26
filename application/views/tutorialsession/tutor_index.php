@@ -1,3 +1,10 @@
+<style>
+{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+</style>
 <div class="row">
     <div class="col-md-12">
         <div class="box">
@@ -125,13 +132,13 @@
                                             $('.input_fields_wrap<?php echo $t['tutorialNo'];?>').append(
                                                 '<tr>' +
                                                 '<td class="text-center">' +
+                                                '<input type="hidden" name="status[0]" value="Not Done"/>' +
                                                 '<input type="checkbox" name="status[0]" value="Done" id="status[0]" />' +
                                                 '</td>' +
                                                 '<td>' +
-                                                '<input type="text" name="comment[0]" class="form-control key_addfield" id="comment[0]" required />' +
+                                                '<input type="text" name="comment[0]" class="form-control key_addfield" id="comment[0]" />' +
                                                 '</td>' +
                                                 '<td class="text-center">' +
-                                                '<button class="btn btn-danger remove_field"><i class="fa fa-trash"></i></button>' +
                                                 '</td>' +
                                                 '</tr>'
                                             ); 
@@ -139,12 +146,16 @@
                                 });
                             </script>
                             <?php if($t['status'] == "Approved"):?>
-                            <button type="submit" name="start" value="start" class="btn btn-success" title="Start Session">
-                                <span class="fa fa-hourglass-start"></span>
-                            </button>
-                            <button type="submit" name="end" value="end" class="btn btn-danger" title="End Session">
-                                <span class="fa fa-hourglass-end"></span>
-                            </button>
+                                <?php if($t['dateTimeStart'] == NULL): ?>
+                                    <button type="submit" name="start" value="start" class="btn btn-success" title="Start Session">
+                                        <span class="fa fa-hourglass-start"></span>
+                                    </button>
+                                <?php endif; ?>
+                                <?php if($t['dateTimeEnd'] == NULL): ?>
+                                    <button type="submit" name="end" value="end" class="btn btn-danger" title="End Session">
+                                        <span class="fa fa-hourglass-end"></span>
+                                    </button>
+                                <?php endif; ?>
                             <button type="button" name="checklist" class="btn btn-info modal<?php echo $t['tutorialNo']; ?>" data-toggle="modal" data-target="#modal-default<?php echo $t['tutorialNo']; ?>"
                                 title="Plan Session">
                                 <span class="fa fa-pencil"></span>

@@ -233,5 +233,5 @@ class Tutorialsession_model extends CI_Model
         $this->db->join('users ua', 'ua.userID = ta.tutorID');
         $this->db->where('ua.userID', $_SESSION['userID']);
         return $this->db->count_all_results();
-     }
+     } 
 }

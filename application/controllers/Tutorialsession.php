@@ -541,23 +541,35 @@ class Tutorialsession extends CI_Controller{
             </script>
             <?php           
         }
+        if($msg == 3)
+        {
+            ?>
+            <script type="text/javascript">
+            alert("You have already started this session!");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/tutor_index";
+            </script>
+            <?php
+        }
+        if($msg == 4)
+        {
+            ?>
+            <script type="text/javascript">
+            alert("You have already ended this session!");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/tutor_index";
+            </script>
+            <?php           
+        }
+        if($msg == 5)
+        {
+            ?>
+            <script type="text/javascript">
+            alert("You have successfully saved your milestones!");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/tutor_index";
+            </script>
+            <?php           
+        }
         $tutorialNo = $this->input->post('tutorialNo');
-        // start session        
-        if($this->input->post('start')){
-            $params = array(
-                'dateTimeStart' => date('Y-m-d H:i:s'),
-            );
-            $tutsession_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo,$params);
-            redirect('tutorialsession/tutor_index/1');          
-        }
-        //end session
-        if($this->input->post('end')){
-            $params = array(
-                'dateTimeEnd' => date('Y-m-d H:i:s'),
-            );
-            $tutsession_id = $this->Tutorialsession_model->update_tutorialchecklist($tutorialNo,$params);
-            redirect('tutorialsession/tutor_index/2');          
-        }
+
         $params['limit'] = RECORDS_PER_PAGE; 
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
         
@@ -570,7 +582,35 @@ class Tutorialsession extends CI_Controller{
         
         $data['_view'] = 'tutorialsession/tutor_index';
         $this->load->view('layouts/main',$data);
-
+        // start session        
+        if($this->input->post('start')){
+            if($data['tutorialsessions']['dateTimeStart'] == NULL)
+            {
+                $params = array(
+                    'dateTimeStart' => date('Y-m-d H:i:s'),
+                );
+                $tutsession_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo,$params);
+                redirect('tutorialsession/tutor_index/1');
+            }
+            else {
+                redirect('tutorialsession/tutor_index/3');
+            }
+                   
+        }
+        //end session
+        if($this->input->post('end')){
+            if($data['tutorialsessions']['dateTimeEnd'] == NULL)
+            {
+                $params = array(
+                    'dateTimeEnd' => date('Y-m-d H:i:s'),
+                );
+                $tutsession_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo,$params);
+                redirect('tutorialsession/tutor_index/2');   
+            }
+            else {
+                redirect('tutorialsession/tutor_index/4');
+            }       
+        }
         //save Milestones
         if($this->input->post('saveMilestones'))
         {
@@ -580,35 +620,38 @@ class Tutorialsession extends CI_Controller{
             $comment = $this->input->post('comment');
             $chkID = $this->input->post('chkID');
     
-            // var_dump($status, $comment);
-            $z = count($status);
-            var_dump();
+            //var_dump($chkID);
             // EDIT OLD MILESTONES
-            foreach($chkID as $id)
-            {
-                $params = array(
-                    'comment' => $editcomment[$id],
-                    'dateModified' => date('Y-m-d H:i:s'),
-                    'status' => $status[$id] == NULL ? "Not Done" : $status[$id],
-                );
-                //var_dump($params);
-                // $tutchecklist_id = $this->Tutorialchecklist_model->update_tutorialchecklist($chkID[$i],$params);
+            foreach($chkID as $id){
+            $params = array(
+                'comment' => $this->input->post('editcomment['.$id.']'),
+                'dateModified' => date('Y-m-d H:i:s'),
+                'status' => $this->input->post('editstat['.$id.']'),
+            );
+            
+            $tutchecklist_id = $this->Tutorialchecklist_model->update_tutorialchecklist($id,$params);
+            //var_dump($params[$id]);
             }
-    
-            // //ADD NEW MILESTONES
-            // //var_dump($z, $itemTypeID, $qty, $budget, $description);
-            // for($i=0 ; $i < $z ; $i++)
-            // {
-            //     $params = array(
-            //         'tutorialNo' => $tutorialNo,
-            //         'comment' => $comment[$i],
-            //         'dateAdded' => date('Y-m-d H:i:s'),
-            //         'dateModified' => date('Y-m-d H:i:s'),
-            //         'status' => $status[$i],
-            //     );
-            //     $tutchecklist_id = $this->Tutorialchecklist_model->add_tutorialchecklist($params);
-            // }
-            // redirect('tutorialsession/tutor_index');
+
+            $z = count($comment);
+            
+            //ADD NEW MILESTONES
+            //var_dump($z, $itemTypeID, $qty, $budget, $description);
+            if(!empty($comment))
+            {
+                for($i=0 ; $i < $z ; $i++)
+                {
+                    $params = array(
+                        'tutorialNo' => $tutorialNo,
+                        'comment' => $comment[$i],
+                        'dateAdded' => date('Y-m-d H:i:s'),
+                        'dateModified' => date('Y-m-d H:i:s'),
+                        'status' => $status[$i],
+                    );
+                    $tutchecklist_id = $this->Tutorialchecklist_model->add_tutorialchecklist($params);
+                }
+            }
+            redirect('tutorialsession/tutor_index/5');
         }
     }
 
@@ -628,17 +671,18 @@ class Tutorialsession extends CI_Controller{
                 echo
                 '<tr>'.
                 '<td class="text-center">'.
-                    '<input type="checkbox" name="editstat['.$tut['checklistID'];
+                '<input type="hidden" name="editstat['.$tut['checklistID'].']" value="Not Done"/>'.
+                '<input type="checkbox" name="editstat['.$tut['checklistID'];
                 echo
                     ']" value="Done" id="editstat['. $tut['checklistID'] .']"';
                 if($tut['status'] == 'Done'){
-                    echo 'checked';
+                    echo 'checked />';
+                }
+                else {
+                    echo '/>';
                 }
                 echo
-                    '/>'.
-                    '<input type="hidden" name="chkID['.$tut['checklistID'].']/>';
-                echo
-                    ']" />';
+                    '<input type="hidden" name="chkID['.$tut['checklistID'].']" value="'.$tut['checklistID'].'" />';
                 echo
                 '</td>
                 <td>
