@@ -45,7 +45,7 @@ class Tutorschedule extends CI_Controller{
 				'tutorID' => $this->input->post('tutorID'),
 				'timeblockID' => $this->input->post('timeblockID'),
 				'term' => $this->input->post('term'),
-				'schoolYear' => $this->input->post('schoolYear'),
+				'schoolYr' => $this->input->post('schoolYear'),
 				'dateAdded' => $this->input->post('dateAdded'),
             );
             
@@ -87,7 +87,7 @@ class Tutorschedule extends CI_Controller{
 					'tutorID' => $this->input->post('tutorID'),
 					'timeblockID' => $this->input->post('timeblockID'),
 					'term' => $this->input->post('term'),
-					'schoolYear' => $this->input->post('schoolYear'),
+					'schoolYr' => $this->input->post('schoolYear'),
 					'dateAdded' => $this->input->post('dateAdded'),
                 );
 

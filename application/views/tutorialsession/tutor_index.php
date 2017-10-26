@@ -8,6 +8,7 @@
                 </div>
             </div>
             <div class="box-body">
+                <?php echo form_open('tutorialsession/tutor_index/'); ?>
                 <table class="table table-striped">
                     <tr>
                         <th>#</th>
@@ -15,6 +16,8 @@
                         <th>Previous Tutor</th>
                         <th>Subject</th>
                         <th>Scheduled Date</th>
+                        <th>Time Started</th>
+                        <th>Time Ended</th>
                         <th>Remarks</th>
                         <th>Status</th>
                         <th>Actions</th>
@@ -44,6 +47,14 @@
                         <!-- date of tutorial -->
                         <td>
                             <?php echo date('D, M j Y', strtotime($t['dateTimeRequested'])).', '.date('g:ia', strtotime($t['tbrTS'])).' to '.date('g:ia', strtotime($t['tbrTE']))?>
+                        </td>
+                        <!-- time started -->
+                        <td>
+                            <?php echo date('g:ia', strtotime($t['dateTimeStart']))?>
+                        </td>
+                        <!-- time ended -->
+                        <td>
+                            <?php echo date('g:ia', strtotime($t['dateTimeEnd']))?>
                         </td>
                         <!-- Tutee Remarks -->
                         <td class="col-md-3">
@@ -128,10 +139,10 @@
                                 });
                             </script>
                             <?php if($t['status'] == "Approved"):?>
-                            <button type="submit" name="start" class="btn btn-success" title="Start Session">
+                            <button type="submit" name="start" value="start" class="btn btn-success" title="Start Session">
                                 <span class="fa fa-hourglass-start"></span>
                             </button>
-                            <button type="submit" name="end" class="btn btn-danger" title="End Session">
+                            <button type="submit" name="end" value="end" class="btn btn-danger" title="End Session">
                                 <span class="fa fa-hourglass-end"></span>
                             </button>
                             <button type="button" name="checklist" class="btn btn-info modal<?php echo $t['tutorialNo']; ?>" data-toggle="modal" data-target="#modal-default<?php echo $t['tutorialNo']; ?>"
@@ -150,7 +161,6 @@
                                             </button>
                                             <h4 class="modal-title">Plan Tutorial Session</h4>
                                         </div>
-                                        <?php echo form_open('tutorialsession/plansession/'. $t['tutorialNo']); ?>
                                         <div class="modal-body">
                                             <!-- details -->
                                             <table class="table table-striped">
@@ -220,8 +230,7 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                                                 <button type="submit" name="saveMilestones" value="saveMilestones" class="btn btn-success">Save Milestones</button>
-                                            </div>
-                                            <?php echo form_close(); ?>
+                                            </div> 
                                         </div>
                                         <!-- /.modal-content -->
                                     </div>
@@ -236,6 +245,7 @@
                 <div class="pull-right">
                     <?php echo $this->pagination->create_links(); ?>
                 </div>
+                <?php echo form_close(); ?>
             </div>
         </div>
     </div>
