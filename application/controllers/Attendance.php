@@ -54,7 +54,7 @@ class Attendance extends CI_Controller{
                     if(isset($schedData['tutorScheduleID'])) //check if tutor has a schedule for the term
                     {
                         $timeblock=$this->Timeblock_model->get_timeblock($schedData['timeblockID']);
-                        if($timeblock['dayofweek'].equals(date('l')) and $timeblock['timeStart']>=$timeNow and $timeblock['timeEnd']<$timeNow) //validate attendance if within enrolled schedule
+                        if($schedData['dayofweek']==(date('l')) and ($timeblock['timeStart']>=$timeNow) and ($timeblock['timeEnd']<$timeNow)) //validate attendance if within enrolled schedule
                             {
                                 $attendanceData = $this->Attendance_model->getAttendance($schedData['tutorScheduleID'],date('m-d-Y'));
                                 if(!isset($attendanceData['logID'])){
