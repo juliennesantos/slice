@@ -171,11 +171,11 @@ class Tutor extends CI_Controller{
                         'timeblockID' => $this->input->post('schedule'),
                         'dayofweek' => $this->input->post('dayofweek'),
                         'term' => $term['term'],
-                        'schoolYear' => $term['sy'],
+                        'schoolYr' => $term['sy'],
                         'dateAdded' => date('Y-m-d H:i:s')
                     );
                     $scheduleID = $this->Tutorschedule_model->add_tutorschedule($schedParam);
-                    redirect('tutor/index');
+                    redirect('dashboard/index');
                 }
                 else {
                     ?>

@@ -14,13 +14,20 @@ class Tutorschedule_model extends CI_Model
     {
         return $this->db->get_where('tutorschedules',array('tutorScheduleID'=>$tutorScheduleID))->row_array();
     }
+    /*
+     * Get tutorschedule where params
+     */
+    function get_tutorschedule_where($params)
+    {
+        return $this->db->get_where('tutorschedules', $params)->row_array();
+    }
 
     /*
      * Get tutorschedule by tutorID
      */
     function get_tutorsched($tutorID,$term,$sy)
     {
-        return $this->db->get_where('tutorschedules',array('tutorID'=>$tutorID,'term'=>$term,'schoolYear'=>$sy))->row_array();
+        return $this->db->get_where('tutorschedules',array('tutorID'=>$tutorID,'term'=>$term,'schoolYr'=>$sy))->row_array();
     }
     
     /*
@@ -38,7 +45,7 @@ class Tutorschedule_model extends CI_Model
         $this->db->from('tutorschedules');
         $this->db->where('timeblockID', $timeblockID);
         $this->db->where('term', $term);
-        $this->db->where('schoolYear', $sy);
+        $this->db->where('schoolYr', $sy);
         return $this->db->count_all_results();
     }
 
