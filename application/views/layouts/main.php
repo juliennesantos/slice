@@ -11,7 +11,7 @@
         <!-- Font Awesome -->
         <link rel="stylesheet" href="<?php echo site_url('resources/css/font-awesome.min.css');?>">
         <!-- Ionicons -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+        <link rel="stylesheet" href="<?php echo site_url('resources\ionicons\css\ionicons.min.css')?>">
         <!-- Datetimepicker -->
         <link rel="stylesheet" href="<?php echo site_url('resources/css/bootstrap-datetimepicker.min.css');?>">
         <!-- Theme style -->
@@ -21,7 +21,12 @@
         <link rel="stylesheet" href="<?php echo site_url('resources/css/_all-skins.min.css');?>">
         <!-- bootstrap datepicker -->
         <link rel="stylesheet" href="<?php echo site_url('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');?>">
-        <script type="text/javascript" src="<?php echo site_url();?>resources\js\jquery-2.2.3.min.js"></script>
+        <!-- jQuery 2.2.3 -->
+        <script src="<?php echo site_url('resources/js/jquery-2.2.3.min.js');?>"></script>
+        <!-- Bootstrap 3.3.6 -->
+        <script src="<?php echo site_url('resources/js/bootstrap.min.js');?>"></script>
+        <!-- Bootbox -->
+        <script type="text/javascript" src="<?php echo site_url();?>resources\js\bootbox.min.js"></script>
 
     </head>
     
@@ -417,10 +422,6 @@
         </div>
         <!-- ./wrapper -->
 
-        <!-- jQuery 2.2.3 -->
-        <script src="<?php echo site_url('resources/js/jquery-2.2.3.min.js');?>"></script>
-        <!-- Bootstrap 3.3.6 -->
-        <script src="<?php echo site_url('resources/js/bootstrap.min.js');?>"></script>
         <!-- FastClick -->
         <script src="<?php echo site_url('resources/js/fastclick.js');?>"></script>
         <!-- AdminLTE App -->

@@ -82,6 +82,7 @@ class Tutorialsession_model extends CI_Model
         //  /assigned tutor
         $this->db->join('tutorschedules tsr', 'tsr.tutorScheduleID = t.tutorScheduleID');
         $this->db->join('timeblocks tbr', 'tbr.timeblockID = tsr.timeblockID');
+        $this->db->where('utee.userID', $_SESSION['userID']);
               
         $this->db->order_by('tutorialNo', 'asc');
         if(isset($params) && !empty($params))
