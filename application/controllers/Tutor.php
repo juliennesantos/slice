@@ -141,30 +141,20 @@ class Tutor extends CI_Controller{
                 }    
             }
             $data['available_timeblocks'] = $this->Timeblock_model->get_available_timeblock('available');
-            $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('subject','subject','required');
-            $this->form_validation->set_rules('schedule','schedule','required');
-            if($this->form_validation->run())
+            $this->load->model('Subject_model');
+            $data['all_subjects'] = $this->Subject_model->get_all_subjects();
+            
+            $this->load->model('Timeblock_model');
+            $data['all_timeblocks'] = $this->Timeblock_model->get_all_timeblocks();
+
+            $data['_view'] = 'tutor/register';
+            $this->load->view('layouts/main',$data);
+
+            $this->load->library('form_validation');        
+            if($this->input->post('update'))
             {
-                $expertiseParam = array(
-                    'tutorID'=>$tutorID,
-                    'subjectID' =>$this->input->post('subject'),
-                    'dateModified' => date('Y-m-d H:i:s')
-                );
-                $schedParam = array(
-                    'tutorID' => $tutorID,
-                    'timeblockID' => $this->input->post('schedule'),
-                    'term' => $term['term'],
-                    'schoolYear' => $term['sy'],
-                    'dateAdded' => date('Y-m-d H:i:s')
-                );
-                $expertiseID = $this->Tutorexpertise_model->add_tutorexpertise($expertiseParam);
-                $scheduleID = $this->Tutorschedule_model->add_tutorschedule($schedParam);
-                redirect('tutor/index');
-            }
-            else
-            {
+
                 $data['_view'] = 'tutor/register';
                 $this->load->view('layouts/main',$data);
                 $this->load->model('Subject_model');
@@ -172,8 +162,41 @@ class Tutor extends CI_Controller{
         
                 $this->load->model('Timeblock_model');
                 $data['available_timeblocks'] = $this->Timeblock_model->get_all_timeblocks();
+
+                $subjects = $this->input->post('subject');
+                $this->form_validation->set_rules('schedule','schedule','required');    
+                if($this->form_validation->run()) //$this->form_validation->run()
+                {
+                    foreach($subjects as $subject){
+                        $expertiseParam = array(
+                            'tutorID'=>$tutorID,
+                            'subjectID' => $subject,
+                            'dateModified' => date('Y-m-d H:i:s')
+                        );
+                        $expertiseID = $this->Tutorexpertise_model->add_tutorexpertise($expertiseParam);                    
+                    }
+                    $schedParam = array(
+                        'tutorID' => $tutorID,
+                        'timeblockID' => $this->input->post('schedule'),
+                        'dayofweek' => $this->input->post('dayofweek'),
+                        'term' => $term['term'],
+                        'schoolYr' => $term['sy'],
+                        'dateAdded' => date('Y-m-d H:i:s')
+                    );
+                    $scheduleID = $this->Tutorschedule_model->add_tutorschedule($schedParam);
+                    redirect('dashboard/index');
+                }
+                else {
+                    ?>
+                    <script type="text/javascript">
+                    alert("You have an unfinished or invalid entry!");
+                    window.location.href = "<?php echo site_url('tutor/register/'.$userID); ?>";
+                    </script>
+                    <?php                
+                }
+
             }
-        }   
+        }
     }
 
     function archive($tutorID)

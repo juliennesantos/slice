@@ -10,23 +10,9 @@
 					<div class="col-md-6">
 						<label for="tutorialNo" class="control-label">Tutorialsession</label>
 						<div class="form-group">
-							<select name="tutorialNo" class="form-control">
-								<option value="">select tutorialsession</option>
-								<?php 
-								foreach($all_tutorialsessions as $tutorialsession)
-								{
-									$selected = ($tutorialsession['tutorialNo'] == $this->input->post('tutorialNo')) ? ' selected="selected"' : "";
-
-									echo '<option value="'.$tutorialsession['tutorialNo'].'" '.$selected.'>'.$tutorialsession['tutorialNo'].'</option>';
-								} 
-								?>
+							<select name="tutorialNo" class="form-control" disabled>
+							<option value="<?=$tutorialsession['tutorialNo']?>"><?= $tutorialsession['tutorialNo']?></option>
 							</select>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="dateAdded" class="control-label">DateAdded</label>
-						<div class="form-group">
-							<input type="text" name="dateAdded" value="<?php echo $this->input->post('dateAdded'); ?>" class="has-datetimepicker form-control" id="dateAdded" />
 						</div>
 					</div>
 					<div class="col-md-6">

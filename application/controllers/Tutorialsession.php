@@ -17,15 +17,30 @@ class Tutorialsession extends CI_Controller{
     {
         if($msg == 1)
         {
-            echo '<script>alert("Your request was sucessfully submitted!")</script>';
+            ?>
+            <script type="text/javascript">
+            alert("Your request was sucessfully submitted!");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/index";
+            </script>
+            <?php
         }
         else if($msg == 2)
         {
-            echo '<script>alert("There was an error in submitting your request. Please try again.")</script>';
+            ?>
+            <script type="text/javascript">
+            alert("There was an error in submitting your request. Please try again.");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/index";
+            </script>
+            <?php
         }
         else if($msg == 3)
         {
-            echo '<script>alert("\nYour request was sucessfully submitted!\n\nHowever, the email notification failed to send because of network timeout.")</script>';
+            ?>
+            <script type="text/javascript">
+            alert("\nYour request was sucessfully submitted!\n\nHowever, the email notification failed to send because of network timeout.");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/index";
+            </script>
+            <?php
         }
 
         $params['limit'] = RECORDS_PER_PAGE; 
@@ -37,6 +52,52 @@ class Tutorialsession extends CI_Controller{
         $this->pagination->initialize($config);
 
         $data['tutorialsessions'] = $this->Tutorialsession_model->get_all_tutorialsessions($params);
+        
+        $data['_view'] = 'tutorialsession/index';
+        $this->load->view('layouts/main',$data);
+    }
+    /*
+     * view tutorialsessions by user
+     */
+    function tutee($msg = NULL)
+    {
+        if($msg == 1)
+        {
+            ?>
+            <script type="text/javascript">
+            alert("Your request was sucessfully submitted!");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/tutee";
+            </script>
+            <?php
+        }
+        else if($msg == 2)
+        {
+            ?>
+            <script type="text/javascript">
+            alert("There was an error in submitting your request. Please try again.");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/tutee";
+            </script>
+            <?php
+        }
+        else if($msg == 3)
+        {
+            ?>
+            <script type="text/javascript">
+            alert("\nYour request was sucessfully submitted!\n\nHowever, the email notification failed to send because of network timeout.");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/tutee";
+            </script>
+            <?php
+        }
+
+        $params['limit'] = RECORDS_PER_PAGE; 
+        $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
+        
+        $config = $this->config->item('pagination');
+        $config['base_url'] = site_url('tutorialsession/tutee?');
+        $config['total_rows'] = $this->Tutorialsession_model->get_user_tutorialsessions_count();
+        $this->pagination->initialize($config);
+
+        $data['tutorialsessions'] = $this->Tutorialsession_model->get_user_tutorialsessions($params);
         
         $data['_view'] = 'tutorialsession/index';
         $this->load->view('layouts/main',$data);
@@ -98,8 +159,6 @@ class Tutorialsession extends CI_Controller{
     {   
         $this->load->library('form_validation');
        
-		// $this->form_validation->set_rules('dateAdded','DateAdded','required');
-		//$this->form_validation->set_rules('status','Status','required|max_length[25]');
 		$this->form_validation->set_rules('remarks','Remarks','max_length[200]');
 		
 		if($this->form_validation->run())     
@@ -140,7 +199,7 @@ class Tutorialsession extends CI_Controller{
                 $this->email->to($user['emailAddress']);
                 $this->email->subject('SLICe: Tutorial Request Successful!');
                 $this->email->message('<b>Greetings!</b>' . '<br/><br/>' . 'You have successfully requested for a new tutorial schedule!' . '<br/><br/>'. 'Your request will be processed by the SLU Coordinator and you will me notified of your new tutor, or any concerns, in 1-2 business days.<br/>' .'<br/><br/><br/>All the best, <br/><br/> <b>The SLICe Team</b><br/>Student Learning Center<br/> <i>De La Salle - College of Saint Benilde<br/> 2544 Taft Avenue, Malate, Manila</i>');
-                $email = $this->email->send() ? redirect('tutorialsession/approvalview/1') : redirect('tutorialsession/approvalview/3');
+                $email = $this->email->send() ? redirect('tutorialsession/tutee/1') : redirect('tutorialsession/approvalview/3');
                 //var_dump($user['emailAddress'], $email);
             }
             else {
@@ -257,19 +316,40 @@ class Tutorialsession extends CI_Controller{
     {
         if($msg == 1)
         {
-            echo '<script>alert("You have successfully approved this session!")</script>';
+            ?>
+            <script type="text/javascript">
+            alert("You have successfully approved this session!");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/approvalview";
+            </script>
+            <?php    
         }
         elseif($msg == 2)
         {
-            echo '<script>alert("You have successfully disapproved this session.")</script>';
+            ?>
+            <script type="text/javascript">
+            alert("You have successfully disapproved this session.");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/approvalview";
+            </script>
+            <?php    
         }
         else if($msg == 3)
         {
-            echo '<script>alert("\nYour transaction was sucessfully submitted.\n\nHowever, the email notification failed to send because of network timeout.")</script>';
+            ?>
+            <script type="text/javascript">
+            alert("\nYour transaction was sucessfully submitted.\n\nHowever, the email notification failed to send because of network timeout.");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/approvalview";
+            </script>
+            <?php    
         }
         else if($msg == 4)
         {
             echo '<script>alert("There was an error in submitting your request. Please try again.")</script>';
+            ?>
+            <script type="text/javascript">
+            alert("There was an error in submitting your request. Please try again.");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/approvalview";
+            </script>
+            <?php    
         }
         
         $data['tutorialNo'] = $this->input->post('tutorialNo');
@@ -441,9 +521,55 @@ class Tutorialsession extends CI_Controller{
         
     }    
 
-    function tutor_index()
+    function tutor_index($msg = NULL)
     {
-        if($this->input->post('start')){}
+        if($msg == 1)
+        {
+            ?>
+            <script type="text/javascript">
+            alert("You have started this session!");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/tutor_index";
+            </script>
+            <?php
+        }
+        if($msg == 2)
+        {
+            ?>
+            <script type="text/javascript">
+            alert("You have ended this session!");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/tutor_index";
+            </script>
+            <?php           
+        }
+        if($msg == 3)
+        {
+            ?>
+            <script type="text/javascript">
+            alert("You have already started this session!");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/tutor_index";
+            </script>
+            <?php
+        }
+        if($msg == 4)
+        {
+            ?>
+            <script type="text/javascript">
+            alert("You have already ended this session!");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/tutor_index";
+            </script>
+            <?php           
+        }
+        if($msg == 5)
+        {
+            ?>
+            <script type="text/javascript">
+            alert("You have successfully saved your milestones!");
+            window.location.href = "<?php echo site_url(); ?>tutorialsession/tutor_index";
+            </script>
+            <?php           
+        }
+        $tutorialNo = $this->input->post('tutorialNo');
+
         $params['limit'] = RECORDS_PER_PAGE; 
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
         
@@ -456,6 +582,77 @@ class Tutorialsession extends CI_Controller{
         
         $data['_view'] = 'tutorialsession/tutor_index';
         $this->load->view('layouts/main',$data);
+        // start session        
+        if($this->input->post('start')){
+            if($data['tutorialsessions']['dateTimeStart'] == NULL)
+            {
+                $params = array(
+                    'dateTimeStart' => date('Y-m-d H:i:s'),
+                );
+                $tutsession_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo,$params);
+                redirect('tutorialsession/tutor_index/1');
+            }
+            else {
+                redirect('tutorialsession/tutor_index/3');
+            }
+                   
+        }
+        //end session
+        if($this->input->post('end')){
+            if($data['tutorialsessions']['dateTimeEnd'] == NULL)
+            {
+                $params = array(
+                    'dateTimeEnd' => date('Y-m-d H:i:s'),
+                );
+                $tutsession_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo,$params);
+                redirect('tutorialsession/tutor_index/2');   
+            }
+            else {
+                redirect('tutorialsession/tutor_index/4');
+            }       
+        }
+        //save Milestones
+        if($this->input->post('saveMilestones'))
+        {
+            $editstat = $this->input->post('editstat');
+            $status = $this->input->post('status');
+            $editcomment = $this->input->post('editcomment');
+            $comment = $this->input->post('comment');
+            $chkID = $this->input->post('chkID');
+    
+            //var_dump($chkID);
+            // EDIT OLD MILESTONES
+            foreach($chkID as $id){
+            $params = array(
+                'comment' => $this->input->post('editcomment['.$id.']'),
+                'dateModified' => date('Y-m-d H:i:s'),
+                'status' => $this->input->post('editstat['.$id.']'),
+            );
+            
+            $tutchecklist_id = $this->Tutorialchecklist_model->update_tutorialchecklist($id,$params);
+            //var_dump($params[$id]);
+            }
+
+            $z = count($comment);
+            
+            //ADD NEW MILESTONES
+            //var_dump($z, $itemTypeID, $qty, $budget, $description);
+            if(!empty($comment))
+            {
+                for($i=0 ; $i < $z ; $i++)
+                {
+                    $params = array(
+                        'tutorialNo' => $tutorialNo,
+                        'comment' => $comment[$i],
+                        'dateAdded' => date('Y-m-d H:i:s'),
+                        'dateModified' => date('Y-m-d H:i:s'),
+                        'status' => $status[$i],
+                    );
+                    $tutchecklist_id = $this->Tutorialchecklist_model->add_tutorialchecklist($params);
+                }
+            }
+            redirect('tutorialsession/tutor_index/5');
+        }
     }
 
     function get_checklist($tutorialNo)
@@ -463,39 +660,36 @@ class Tutorialsession extends CI_Controller{
         $tutlists = $this->Tutorialchecklist_model->get_tutorialchecklist($tutorialNo);
 
         if(empty($tutlists))
-        { ?>
-            <tr> 
-                <td class="text-center">
-                    <input type="checkbox" name="status['0']" value="Done" id="status['0']" />
-                    <input type="hidden" name="status['0']" value="Not Done" id="status['0']" />
-                </td>
-                <td>
-                <input type="text" name="comment['0']" class="form-control key_addfield" id="comment['0']" required />
-                </td>
-                <td class="text-center">
-                    <button class="btn btn-danger remove_field"><i class="fa fa-trash"></i></button>
-                </td>
-            </tr>
-        <?php 
+        { echo '
+            <td class="text-center">
+                No milestones yet!
+            </td>';
         }
         else 
         {
-            $r = 0;
-            foreach($tutlists as $tut): ?>
-                <tr> 
-                    <td class="text-center">
-                        <input type="checkbox" name="status[<?= $r; ?>]" value="Done" id="status[<?= $r; ?>]" <?php if($tut['status'] == 'Done'){echo 'checked';}?>/>
-                        <input type="hidden" name="status[<?= $r; ?>]" value="Not Done" id="status[<?= $r; ?>]" />
-                    </td>
-                    <td>
-                    <input type="text" name="comment[<?= $r ?>]" class="form-control key_addfield" id="comment[<?= $r ?>]" value="<?= $tut['comment']?>" required />
-                    </td>
-                    <td class="text-center">
-                        <button class="btn btn-danger remove_field"><i class="fa fa-trash"></i></button>
-                    </td>
-                </tr>
-            <?php
-            $r++;
+            foreach($tutlists as $tut):
+                echo
+                '<tr>'.
+                '<td class="text-center">'.
+                '<input type="hidden" name="editstat['.$tut['checklistID'].']" value="Not Done"/>'.
+                '<input type="checkbox" name="editstat['.$tut['checklistID'];
+                echo
+                    ']" value="Done" id="editstat['. $tut['checklistID'] .']"';
+                if($tut['status'] == 'Done'){
+                    echo 'checked />';
+                }
+                else {
+                    echo '/>';
+                }
+                echo
+                    '<input type="hidden" name="chkID['.$tut['checklistID'].']" value="'.$tut['checklistID'].'" />';
+                echo
+                '</td>
+                <td>
+                <input type="text" name="editcomment['.$tut['checklistID'].']" class="form-control key_addfield" id="editcomment['.$tut['checklistID'].']" value="'.$tut['comment'].'" required />
+                </td>
+                </tr>';
+
             endforeach;
         }
     }
@@ -503,27 +697,5 @@ class Tutorialsession extends CI_Controller{
     function count_checklist($tutorialNo)
     {
         return (int)$this->Tutorialchecklist_model->count_tutNo_list($tutorialNo);
-    }
-
-    function plansession($tutorialNo)
-    {  
-        $status = $this->input->post('status');
-        $comment = $this->input->post('comment');
-
-        $z = count($status);
-        //var_dump($z, $itemTypeID, $qty, $budget, $description);
-        for($i=0 ; $i < $z ; $i++)
-        {
-            $params = array(
-                'tutorialNo' => $tutorialNo,
-                'comment' => $comment[$i],
-                'dateAdded' => date('Y-m-d H:i:s'),
-                'dateModified' => date('Y-m-d H:i:s'),
-                'status' => $status[$i],
-            );
-            $delete_all = $this->Tutorialchecklist_model->delete_tutorialchecklist($tutorialNo);
-            $tutchecklist_id = $this->Tutorialchecklist_model->add_tutorialchecklist($params);
-        }
-        redirect('tutorialsession/tutor_index');
     }
 }

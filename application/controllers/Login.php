@@ -39,7 +39,29 @@ class Login extends CI_Controller{
             {
                 $_SESSION['userID'] = $data['userID'];
                 $_SESSION['typeID'] = $data['typeID'];
-                redirect('tutor/register/'.$_SESSION['userID']);                
+                $this->load->model('Tutor_model');
+                $tutor = $this->Tutor_model->get_tutor_userID($_SESSION['userID']);
+                if($tutor != NULL)
+                {
+                    $this->load->model('Term_model');
+                    $term_sy = $this->Term_model->get_current_term();
+                    $params = array(
+                        'tutorID' => $tutor['tutorID'],
+                        'term' => $term_sy['term'],
+                        'schoolYr' => $term_sy['sy'],
+                    );
+                    $this->load->model('Tutorschedule_model');
+                    $tutsched = $this->Tutorschedule_model->get_tutorschedule_where($params);
+                    if($tutsched == NULL)
+                    {
+                        redirect('tutor/register/'.$_SESSION['userID']);
+                    }
+                    
+                    else {
+                        redirect('dashboard/index');
+                    }
+                }
+                redirect('dashboard/index');
             }
             else {
                 show_error('The user you are trying to find does not exist.');                      
