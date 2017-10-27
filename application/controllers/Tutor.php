@@ -171,7 +171,7 @@ class Tutor extends CI_Controller{
                 $data['all_subjects'] = $this->Subject_model->get_all_subjects();
         
                 $this->load->model('Timeblock_model');
-                $data['all_timeblocks'] = $this->Timeblock_model->get_all_timeblocks();
+                $data['available_timeblocks'] = $this->Timeblock_model->get_all_timeblocks();
             }
         }   
     }
