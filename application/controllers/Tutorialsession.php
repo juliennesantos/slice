@@ -98,7 +98,7 @@ class Tutorialsession extends CI_Controller{
         $this->pagination->initialize($config);
 
         $data['tutorialsessions'] = $this->Tutorialsession_model->get_user_tutorialsessions($params);
-        
+        var_dump($data['tutorialsessions']);
         $data['_view'] = 'tutorialsession/index';
         $this->load->view('layouts/main',$data);
     }

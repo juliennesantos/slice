@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <link rel="stylesheet" href="fontawesome-stars.css">
 <script src="<?= site_url('resources\jquery-bar-rating\dist\jquery.barrating.min.js'); ?>"></script>
 <script type="text/javascript">
