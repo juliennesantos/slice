@@ -1,3 +1,9 @@
+<script>
+$(document).ready(function() {
+  $("form").attr('autocomplete', 'off');
+});
+</script>
+
 <!DOCTYPE html>
 <html>
 
@@ -48,14 +54,22 @@
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon" id="add"><i class="fa fa-user"></i></span>
-              <input type="text" name="username" class="fc" id="username" placeholder="Username" />
+              <input type="text" name="username" class="fc" placeholder="Username" 
+                autocomplete="off" id="uname" maxlength="30" required/>
             </div>
           </div>
           <br/>
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon" id="add"><i class="fa fa-key"></i></span>
-              <input type="password" name="password" class="fc" id="password" placeholder="Password" />
+              <input type="password" style="display:none" />            
+              <input type="password" name="password" class="fc" id="pw" 
+                placeholder="Password" autocomplete="off" maxlength="30" required/>
+            </div>
+            <br>
+          <div class="form-group">
+            <div class="input-group">
+              <input type="checkbox" name="remember_me" />&emsp;remember me           
             </div>
           </div>
 
