@@ -12,6 +12,8 @@
         <link rel="stylesheet" href="<?php echo site_url('resources/css/font-awesome.min.css');?>">
         <!-- Ionicons -->
         <link rel="stylesheet" href="<?php echo site_url('resources\ionicons\css\ionicons.min.css')?>">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="<?php echo site_url('bower_components//datatables.net-bs/css/dataTables.bootstrap.min.css');?>">
         <!-- Datetimepicker -->
         <link rel="stylesheet" href="<?php echo site_url('resources/css/bootstrap-datetimepicker.min.css');?>">
         <!-- Theme style -->
@@ -434,12 +436,17 @@
         <script src="<?php echo site_url('resources/js/global.js');?>"></script>
         <!-- DatePicker -->
         <script src="<?php echo site_url('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js');?>"></script>
+        <!-- DataTables -->
+        <script src="<?php echo site_url('bower_components/datatables.net/js/jquery.dataTables.min.js');?>"></script>
+        <script src="<?php echo site_url('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js');?>"></script>
 
         <script>
         //Date picker
         $('#datepicker').datepicker({
         autoclose: true
         })
+
+        $('.datatable').DataTable()
         
         </script>
     </body>

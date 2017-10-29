@@ -16,7 +16,8 @@
             </div>
             <div class="box-body">
                 <?php echo form_open('tutorialsession/tutor_index/'); ?>
-                <table class="table table-striped">
+                <table class="table table-striped table-hover datatable">
+                <thead>
                     <tr>
                         <th>#</th>
                         <th>Student's Name</th>
@@ -29,6 +30,7 @@
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
+                </thead>
                     <?php foreach($tutorialsessions as $t){ ?>
                     <tr>
                         <!-- tutorialNo -->
@@ -64,8 +66,10 @@
                             <?php echo date('g:ia', strtotime($t['dateTimeEnd']))?>
                         </td>
                         <!-- Tutee Remarks -->
-                        <td class="col-md-3">
+                        <td>
+                        <p style="overflow:hidden">
                             <?php echo $t['tuteeRemarks']?>
+                        </p>
                         </td>
                         <!-- status -->
                         <td>

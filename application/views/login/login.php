@@ -1,3 +1,9 @@
+<script>
+$(document).ready(function() {
+  $("form").attr('autocomplete', 'off');
+});
+</script>
+
 <!DOCTYPE html>
 <html>
 
@@ -75,23 +81,30 @@
   </div>
 </div>
   <div id="two">
-    <br/><br/>
-      <div class="login-box">
-        <div class="login-box-body">
-          <?php echo form_open('login/validate'); ?>
-
-            <div class="form-group">
-              <div class="input-group">
-                <span class="input-group-addon" id="add"><i class="fa fa-user"></i></span>
-                <input type="text" name="username" class="fc" id="username" placeholder="Id Number" />
-              </div>
+<div class="login-box">
+      <div class="login-box-body">
+        <?php echo form_open('login/validate'); ?>
+            <p class="text-danger"><?=$errormsg?></p>
+          <br/>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon" id="add"><i class="fa fa-user"></i></span>
+              <input type="text" name="username" class="fc" placeholder="ID Number" 
+                autocomplete="off" id="uname" maxlength="30" required/>
             </div>
-            <br/>
-            <div class="form-group">
-              <div class="input-group">
-                <span class="input-group-addon" id="add"><i class="fa fa-key"></i></span>
-                <input type="password" name="password" class="fc" id="password" placeholder="Password" />
-              </div>
+          </div>
+          <br/>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon" id="add"><i class="fa fa-key"></i></span>
+              <input type="password" style="display:none" />            
+              <input type="password" name="password" class="fc" id="pw" 
+                placeholder="Password" autocomplete="off" maxlength="30" required/>
+            </div>
+            <br>
+          <div class="form-group">
+            <div class="input-group">
+              <input type="checkbox" name="remember_me" value="remember" />&emsp;remember me           
             </div>
 
             <br/><br/>

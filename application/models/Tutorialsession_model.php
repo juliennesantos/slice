@@ -176,6 +176,14 @@ class Tutorialsession_model extends CI_Model
          return $this->db->get()->result_array();
      }
      
+     function view_userpending_sessions()
+     {
+        $this->db->from('tutorialsessions t');
+        $this->db->join('tutees tees', 't.tuteeID = tees.tuteeID');    
+        $this->db->join('users ut', 'ut.userID = tees.userID');    
+        $this->db->where('ut.userID', $_SESSION['userID']);    
+        return $this->db->count_all_results();
+    }
      function view_pending_sessions()
      {
         $this->db->select('t.*, ut.userID uteeuid, ut.lastName uteeLN, ut.firstName uteeFN, ut.username uteeUN, ut.emailAddress uteeEmail, ur.lastName urLN, ur.firstName urFN, s.subjectCode, tsr.dayofweek tsrdow, tbr.timeStart tbrTS, tbr.timeEnd tbrTE');
@@ -229,7 +237,7 @@ class Tutorialsession_model extends CI_Model
      function tutor_tutorialsessions_count()
      {
         $this->db->from('tutorialsessions t');
-        $this->db->join('tutors tr', 'tr.tutorID = t.previousTutorID');
+        $this->db->join('tutors tr', 'tr.tutorID = t.previousTutorID', 'left');
         $this->db->join('tutors ta', 'ta.tutorID = t.tutorID', 'left');        
         $this->db->join('users ua', 'ua.userID = ta.tutorID');
         $this->db->where('ua.userID', $_SESSION['userID']);
