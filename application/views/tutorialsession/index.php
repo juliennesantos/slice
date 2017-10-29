@@ -19,7 +19,8 @@
                 </div>
             </div>
             <div class="box-body">
-                <table class="table table-striped">
+                <table class="table table-striped datatable">
+                <thead>
                     <tr>
 						<th>#</th>
                         <th>Previous Tutor</th>
@@ -29,6 +30,7 @@
 						<th>Status</th>
 						<th>Actions</th>
                     </tr>
+                </thead>
                     <?php foreach($tutorialsessions as $t){ ?>
                     <tr>
 						<td><?= $t['tutorialNo']; ?></td>

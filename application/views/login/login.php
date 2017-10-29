@@ -50,7 +50,8 @@ $(document).ready(function() {
     <div class="login-box">
       <div class="login-box-body">
         <?php echo form_open('login/validate'); ?>
-
+            <p class="text-danger"><?=$errormsg?></p>
+          <br/>
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon" id="add"><i class="fa fa-user"></i></span>
@@ -69,7 +70,7 @@ $(document).ready(function() {
             <br>
           <div class="form-group">
             <div class="input-group">
-              <input type="checkbox" name="remember_me" />&emsp;remember me           
+              <input type="checkbox" name="remember_me" value="remember" />&emsp;remember me           
             </div>
           </div>
 

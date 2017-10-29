@@ -8,8 +8,25 @@ class Login extends CI_Controller{
         
     }
     
-    function index()
+    function index($msg = NULL)
     {
+        if($msg == NULL)
+        {
+            $data['errormsg'] = '';
+        }
+        if($msg == 1)
+        {
+            $data['errormsg'] = 'Invalid username or password.';
+        }
+        if($msg == 2)
+        {
+            $data['errormsg'] = 'One or more of your inputs may not be within the requirements of the system. Please try again.';
+        }
+        if($msg == 3)
+        {
+            $data["errormsg"] = 'There seems to be an error. Please try again.';
+        }
+
         $data['_view'] = 'login/index';
         $this->load->view('login/login', $data);
     }
@@ -68,7 +85,6 @@ class Login extends CI_Controller{
                         {
                             redirect('tutor/register/'.$_SESSION['userID']);
                         }
-                        
                         else {
                             redirect('dashboard/index');
                         }
@@ -76,16 +92,16 @@ class Login extends CI_Controller{
                     redirect('dashboard/index');
                 }
                 else {
-                    die('The user you are trying to find does not exist.');                      
+                    redirect('login/index/1');
                 }
             }
             else
             {
-                die('One or more of your inputs may not be within the requirements of the system. Please try again.');
+                redirect('login/index/2');                
             }
         }
         catch(Exception $e){
-            $data["errormsg"] = die('There seems to be an error. Please try again.');
+            redirect('login/index/3');  
         }
         $data['_view'] = 'login/index';
         $this->load->view('login/login', $data);
@@ -93,7 +109,6 @@ class Login extends CI_Controller{
 
     function logout()
     {
-        session_start();
         session_destroy();
 
         redirect(site_url().'login/index');
