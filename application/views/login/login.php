@@ -10,7 +10,7 @@ $(document).ready(function() {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Student Learning Information System| Log in</title>
+  <title>Student Learning Information System | Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
    
@@ -24,6 +24,7 @@ $(document).ready(function() {
   <link rel="stylesheet" href="<?php echo base_url(); ?>bower_components/Ionicons/css/ionicons.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/iCheck/square/blue.css">
+  
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -34,6 +35,7 @@ $(document).ready(function() {
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet">
 </head>
 
 <body id="loginbody">
@@ -47,26 +49,50 @@ $(document).ready(function() {
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
       </ol>
 
       <!-- Wrapper for slides -->
       <div class="carousel-inner">
-        <div class="item active">
-          <img src="<?php echo base_url(); ?>resources/img/announcements/logo.png" class="center-block">
+      <div class="item active">
+        <div class="bg-blend4">
           <div class="carousel-caption">
-          <h3>Chicago</h3>
-          <p>Thank you, Chicago!</p>
-      </div>
+            <h1 id="loginfont">Welcome</h1>
+            <h4>Student Learning Information Center</h4>
+          </div>
+          </div>
         </div>
 
         <div class="item">
-          <img src="<?php echo base_url(); ?>resources/img/announcements/1.png">
+          <div class="bg-blend1">
+          <div class="carousel-caption">
+            <h1 id="loginfont">Mission</h3>
+            <p>Provide academic support that promote student success</p>
+          </div>
+          </div>
         </div>
 
         <div class="item">
-          <img src="<?php echo base_url(); ?>resources/img/announcements/3.jpg">
+        <div class="bg-blend2">
+          <div class="carousel-caption">
+            <h1 id="loginfont">Services</h3>
+            <p>Conduct tutorial sessions for students who may either </p>
+            <p>have academic concerns or wish to excel.</p>
+          </div>
+          </div>
         </div>
-      </div>
+
+        <div class="item">
+        <div class="bg-blend3">
+          <div class="carousel-caption">
+            <h1 id="loginfont">Tutors</h3>
+            <p>are populated mainly by the institution’s Honor Scholars,</p>
+            <p>who are required by their program to render a minimum of nine </p>
+            <p>(9) hours of academic service in the Student Learning Center (SLC).</p>
+          </div>
+          </div>
+        </div>
+        
 
       <!-- Left and right controls -->
       <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -84,8 +110,9 @@ $(document).ready(function() {
 <div class="login-box">
       <div class="login-box-body">
         <?php echo form_open('login/validate'); ?>
-            <p class="text-danger"><?=$errormsg?></p>
+          <h5 class="text-danger"><?=$errormsg?></h5>
           <br/>
+
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon" id="add"><i class="fa fa-user"></i></span>
@@ -101,11 +128,13 @@ $(document).ready(function() {
               <input type="password" name="password" class="fc" id="pw" 
                 placeholder="Password" autocomplete="off" maxlength="30" required/>
             </div>
-            <br>
-          <div class="form-group">
+          </div>
+          <br/>
+          <div class="form-group col-xs-offset-1">
             <div class="input-group">
-              <input type="checkbox" name="remember_me" value="remember" />&emsp;remember me           
+              <input type="checkbox" name="remember_me" value="remember" />&emsp;Remember me           
             </div>
+          </div>
 
             <br/><br/>
 
