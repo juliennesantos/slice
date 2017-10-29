@@ -82,18 +82,27 @@
                     </div-->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
+                        <?php if($_SESSION['typeID'] == 1)?>
                         <li class="header">MAIN NAVIGATION</li>
                         <li>
                             <a href="<?php echo site_url();?>">
                                 <i class="fa fa-desktop"></i> <span>Dashboard</span>
                             </a>
                         </li>
-						<li>
-                            <a href="<?php echo site_url('tutorialsession/index');?>">
+						<li class="treeview">
+                            <a href="<?php echo site_url('tutorialsession/tutee');?>">
                                 <i class="fa fa-hourglass"></i> <span>Tutorial Sessions</span>
                             </a>
+                            <ul class="treeview-menu">
+								<li>
+                                    <a href="<?php echo site_url('tutorialsession/tutee');?>"><i class="fa fa-list-ul"></i> View All Sessions</a>
+                                </li>
+								<li>
+                                    <a href="<?php echo site_url('tutorialsession/add');?>"><i class="fa fa-plus"></i> Request New Session</a>
+                                </li>
+							</ul>
                         </li>
-						<li>
+						<!-- <li>
                             <a href="#">
                                 <i class="fa fa-paper-plane"></i> <span>Feedback</span>
                             </a>
@@ -105,9 +114,14 @@
                                     <a href="<?php echo site_url('feedback/tuteeview');?>"><i class="fa fa-list-ul"></i> Listing</a>
                                 </li>
 							</ul>
-                        </li>
+                        </li> -->
                         <?php if($_SESSION['typeID'] ==  2):?>  
                         <li class="header">TUTOR NAVIGATION</li>
+                        <li>
+                            <a href="<?php echo site_url();?>">
+                                <i class="fa fa-desktop"></i> <span>Dashboard</span>
+                            </a>
+                        </li>
 						<li>
                             <a href="#">
                                 <i class="fa fa-pencil-square-o"></i> <span>Attendance</span>
@@ -447,6 +461,17 @@
         })
 
         $('.datatable').DataTable()
+
+        $('.treeview').hover(function () {
+            var _this = $(this);
+            if(!(_this.hasClass('active'))){
+            _this.addClass('active');
+            _this.children().find('treeview-menu').addClass('menu-open');
+            } else{
+            _this.removeClass('active');
+            _this.children().find('treeview-menu').removeClass('menu-open');
+            }
+        }) 
         
         </script>
     </body>

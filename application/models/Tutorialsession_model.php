@@ -7,6 +7,85 @@ class Tutorialsession_model extends CI_Model
         parent::__construct();
     }
     
+    function get_user_tutorialsessions_count()
+    {
+        $this->db->join('tutees tee', 't.tuteeID = tee.tuteeID');                            
+        $this->db->join('users utee', 'tee.userID = utee.userID');                      
+        $this->db->where('utee.userID', $_SESSION['userID']);
+        $this->db->from('tutorialsessions t');
+        return $this->db->count_all_results();
+    }
+
+    function count_userpending_sessions()
+    {
+        $this->db->from('tutorialsessions t');
+        $this->db->join('tutees tees', 't.tuteeID = tees.tuteeID');    
+        $this->db->join('users ut', 'ut.userID = tees.userID');    
+        $this->db->where('ut.userID', $_SESSION['userID']);    
+        $this->db->where('t.status', "Pending");    
+        return $this->db->count_all_results();
+    }
+
+     function count_userapproved_sessions()
+    {
+        $this->db->from('tutorialsessions t');
+        $this->db->join('tutees tees', 't.tuteeID = tees.tuteeID');    
+        $this->db->join('users ut', 'ut.userID = tees.userID');    
+        $this->db->where('ut.userID', $_SESSION['userID']);
+        $this->db->where('t.status', "Approved");    
+        return $this->db->count_all_results();
+    }
+    
+    function count_tutorall_sessions()
+    {
+        $this->db->from('tutorialsessions t');
+        $this->db->join('tutors ta', 'ta.tutorID = t.tutorID', 'left');        
+        $this->db->join('users ua', 'ua.userID = ta.tutorID');
+        $this->db->where('ua.userID', $_SESSION['userID']);
+        return $this->db->count_all_results();
+    }
+
+    function count_tutorunstarted_sessions()
+    {
+        $this->db->from('tutorialsessions t');
+        $this->db->join('tutors ta', 'ta.tutorID = t.tutorID', 'left');        
+        $this->db->join('users ua', 'ua.userID = ta.tutorID');
+        $this->db->where('ua.userID', $_SESSION['userID']);
+        $this->db->where('t.dateTimeStart !=', null);
+        return $this->db->count_all_results();
+    }
+
+     function count_tutorfinished_sessions()
+    {
+        $this->db->from('tutorialsessions t');
+        $this->db->join('tutors ta', 'ta.tutorID = t.tutorID', 'left');        
+        $this->db->join('users ua', 'ua.userID = ta.tutorID');
+        $this->db->where('ua.userID', $_SESSION['userID']);
+        $this->db->where('t.dateTimeEnd', null);
+        return $this->db->count_all_results();
+    }
+    
+    function count_adminall()
+    {
+        $this->db->from('tutorialsessions t');
+        return $this->db->count_all_results();
+    }
+
+    function count_adminpending()
+    {
+        $this->db->from('tutorialsessions t');
+        $this->db->where('t.status', "Pending");    
+        return $this->db->count_all_results();
+    }
+
+     function count_adminfeedback()
+    {
+        $this->db->from('tutorialsessions t');
+        $this->db->join('feedback f', 't.tutorialNo = f.tutorialNo');    
+        $this->db->where('f.tutorialNo !=', null);    
+        return $this->db->count_all_results();
+    }
+
     /*
      * Get tutorialsession by tutorialNo
      */
@@ -50,17 +129,6 @@ class Tutorialsession_model extends CI_Model
     }
 
     /*
-     * Get all tutorialsessions count
-     */
-    function get_user_tutorialsessions_count()
-    {
-        $this->db->join('tutees tee', 't.tuteeID = tee.tuteeID');                            
-        $this->db->join('users utee', 'tee.userID = utee.userID');                      
-        $this->db->where('utee.userID', $_SESSION['userID']);
-        $this->db->from('tutorialsessions t');
-        return $this->db->count_all_results();
-    }
-    /*
      * Get all tutorialsessions
      */
     function get_user_tutorialsessions($params = array())
@@ -74,11 +142,11 @@ class Tutorialsession_model extends CI_Model
         //  /tutees
         //  previous tutor
         $this->db->join('tutors tr', 'tr.tutorID = t.previousTutorID', 'left');
-        $this->db->join('users ur', 'ur.userID = tr.tutorID', 'left');        
+        $this->db->join('users ur', 'ur.userID = tr.userID', 'left');        
         //  /previous tutor
         //  assigned tutor
         $this->db->join('tutors ta', 'ta.tutorID = t.tutorID', 'left');
-        $this->db->join('users ua', 'ua.userID = ta.tutorID', 'left');       
+        $this->db->join('users ua', 'ua.userID = ta.userID', 'left');       
         //  /assigned tutor
         $this->db->join('tutorschedules tsr', 'tsr.tutorScheduleID = t.tutorScheduleID');
         $this->db->join('timeblocks tbr', 'tbr.timeblockID = tsr.timeblockID');
@@ -175,15 +243,6 @@ class Tutorialsession_model extends CI_Model
          $this->db->where('tses.status', 'Approved');
          return $this->db->get()->result_array();
      }
-     
-     function view_userpending_sessions()
-     {
-        $this->db->from('tutorialsessions t');
-        $this->db->join('tutees tees', 't.tuteeID = tees.tuteeID');    
-        $this->db->join('users ut', 'ut.userID = tees.userID');    
-        $this->db->where('ut.userID', $_SESSION['userID']);    
-        return $this->db->count_all_results();
-    }
      function view_pending_sessions()
      {
         $this->db->select('t.*, ut.userID uteeuid, ut.lastName uteeLN, ut.firstName uteeFN, ut.username uteeUN, ut.emailAddress uteeEmail, ur.lastName urLN, ur.firstName urFN, s.subjectCode, tsr.dayofweek tsrdow, tbr.timeStart tbrTS, tbr.timeEnd tbrTE');

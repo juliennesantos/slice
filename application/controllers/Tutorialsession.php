@@ -15,6 +15,15 @@ class Tutorialsession extends CI_Controller{
      */
     function index($msg = NULL)
     {
+        if($_SESSION['typeID'] != 5)
+        {
+            ?>
+            <script type="text/javascript">
+            alert("You are not permitted to access this page.");
+            window.location.href = "<?php echo $_SERVER['HTTP_REFERER'] ?>";
+            </script>
+            <?php
+        }
         if($msg == 1)
         {
             ?>
@@ -61,6 +70,15 @@ class Tutorialsession extends CI_Controller{
      */
     function tutee($msg = NULL)
     {
+        if($_SESSION['typeID'] != 1)
+        {
+            ?>
+            <script type="text/javascript">
+            alert("You are not permitted to access this page.");
+            window.location.href = "<?php echo $_SERVER['HTTP_REFERER'] ?>";
+            </script>
+            <?php
+        }
         if($msg == 1)
         {
             ?>
@@ -98,7 +116,7 @@ class Tutorialsession extends CI_Controller{
         $this->pagination->initialize($config);
 
         $data['tutorialsessions'] = $this->Tutorialsession_model->get_user_tutorialsessions($params);
-        var_dump($data['tutorialsessions']);
+        //var_dump($data['tutorialsessions']);
         $data['_view'] = 'tutorialsession/index';
         $this->load->view('layouts/main',$data);
     }
@@ -229,6 +247,15 @@ class Tutorialsession extends CI_Controller{
      */
     function edit($tutorialNo)
     {   
+        if(!exists($tutorialNo))
+        {
+            ?>
+            <script type="text/javascript">
+            alert("You have not selected a session. Please try again.");
+            window.location.href = "<?php echo $_SERVER['HTTP_REFERER'] ?>";
+            </script>
+            <?php
+        }
         // check if the tutorialsession exists before trying to edit it
         $data['tutorialsession'] = $this->Tutorialsession_model->get_tutorialsession($tutorialNo);
         
@@ -294,7 +321,6 @@ class Tutorialsession extends CI_Controller{
             redirect('tutorialsession/index');
     }
 
-
     function findtutors($subjectID)
     {        
         $data['tutorschedulesbysubject'] = $this->Tutorialsession_model->tutorschedules_by_subject($subjectID);
@@ -314,6 +340,15 @@ class Tutorialsession extends CI_Controller{
 
     function approvalview($msg = NULL)
     {
+        if($_SESSION['typeID'] != 5)
+        {
+            ?>
+            <script type="text/javascript">
+            alert("You are not permitted to access this page.");
+            window.location.href = "<?php echo $_SERVER['HTTP_REFERER'] ?>";
+            </script>
+            <?php
+        }
         if($msg == 1)
         {
             ?>
@@ -523,6 +558,15 @@ class Tutorialsession extends CI_Controller{
 
     function tutor_index($msg = NULL)
     {
+        if($_SESSION['typeID'] != 2)
+        {
+            ?>
+            <script type="text/javascript">
+            alert("You are not permitted to access this page.");
+            window.location.href = "<?php echo $_SERVER['HTTP_REFERER'] ?>";
+            </script>
+            <?php
+        }
         if($msg == 1)
         {
             ?>
@@ -603,6 +647,7 @@ class Tutorialsession extends CI_Controller{
             {
                 $params = array(
                     'dateTimeEnd' => date('Y-m-d H:i:s'),
+                    'status' => "Finished",
                 );
                 $tutsession_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo,$params);
                 redirect('tutorialsession/tutor_index/2');   

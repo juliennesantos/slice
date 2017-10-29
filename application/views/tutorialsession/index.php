@@ -34,7 +34,13 @@
                     <?php foreach($tutorialsessions as $t){ ?>
                     <tr>
 						<td><?= $t['tutorialNo']; ?></td>
-						<td><?= $t['urLN'].', '. $t['urFN']; ?></td>
+						<td>
+                        <?php   if(empty($t['urLN']))
+                                    echo 'No tutor yet!';
+                                else 
+                                    echo $t['urLN'].', '. $t['urFN'];
+                        ?>
+                        </td>
                         <td><?php   if(empty($t['uaLN']))
                                         echo 'No tutor yet!';
                                     else 

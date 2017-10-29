@@ -1,9 +1,9 @@
 <div class="row">
 <div class="col-lg-12">
-    <!--BOX1-->
+    <!--tutee tutsess box-->
     <div class="col-lg-6">
         <div class="list-group">
-            <li class="list-group-item list-group-item-warning">Your Tutorial Requests</li>
+            <li class="list-group-item list-group-item-warning"><?=$title1?></li>
             <a href="#" class="list-group-item">Tutorial Requests<span class="badge">
             <?php 
             if($_SESSION['typeID'] == 1){
@@ -19,15 +19,84 @@
             if($_SESSION['typeID'] == 1){
                 echo $user_pend;
             }
-            if($_SESSION['typeID'] == 5){
-                echo $tutor_pend;
+            if($_SESSION['typeID'] == 2){
+                echo $tutor_start;
             }
             ?>
             </span></a>
-            <a href="#" class="list-group-item">Approved Tutorial Requests<span class="badge">21</span></a>
+            <a href="#" class="list-group-item">Approved Tutorial Requests<span class="badge">
+            <?php 
+            if($_SESSION['typeID'] == 1){
+                echo $user_app;
+            }
+            if($_SESSION['typeID'] == 2){
+                echo $tutor_end;
+            }
+            ?>
+            </span></a>
         </div>
     </div>
-    <!--BOX1-->
+    <!--tutee tutsess box-->
+
+
+    <!--tutor tutsess box-->
+    <div class="col-lg-6">
+        <div class="list-group">
+            <li class="list-group-item list-group-item-warning"><?=$title1?></li>
+            <a href="#" class="list-group-item">All Tutorial Sessions<span class="badge">
+            <?php 
+            if($_SESSION['typeID'] == 2){
+                echo $tutor_sess;
+            }
+            ?>
+            </span></a>
+            <a href="#" class="list-group-item">Upcoming Sessions<span class="badge">
+            <?php 
+            if($_SESSION['typeID'] == 2){
+                echo $tutor_start;
+            }
+            ?>
+            </span></a>
+            <a href="#" class="list-group-item">Finished Sessions<span class="badge">
+            <?php 
+            if($_SESSION['typeID'] == 2){
+                echo $tutor_end;
+            }
+            ?>
+            </span></a>
+        </div>
+    </div>
+    <!--tutor tutsess box-->
+
+
+    <!--admin tutsess box-->
+    <div class="col-lg-6">
+        <div class="list-group">
+            <li class="list-group-item list-group-item-warning"><?=$title1?></li>
+            <a href="#" class="list-group-item">All Tutorial Sessions<span class="badge">
+            <?php
+            if($_SESSION['typeID'] == 5){
+                echo $count_adminall;
+            }
+            ?>
+            </span></a>
+            <a href="#" class="list-group-item">Pending Sessions<span class="badge">
+            <?php
+            if($_SESSION['typeID'] == 5){
+                echo $count_adminpending;
+            }
+            ?>
+            </span></a>
+            <a href="#" class="list-group-item">Finished Feedbacks<span class="badge">
+            <?php
+            if($_SESSION['typeID'] == 5){
+                echo $count_adminfeedback;
+            }
+            ?>
+            </span></a>
+        </div>
+    </div>
+    <!--admin tutsess box-->
 
     <!--BOX2-->
     <div class="col-lg-6">
@@ -39,9 +108,6 @@
         </div>
     </div>
     <!--BOX2-->
-    
-    <?php if($_SESSION['typeID'] == 2 || $_SESSION['typeID'] == 3 || $_SESSION['typeID'] == 4):?>
 
-    <?php endif;?>
 </div>
 </div>
