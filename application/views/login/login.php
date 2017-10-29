@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Log in</title>
+  <title>Student Learning Information System| Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
    
@@ -32,53 +32,96 @@
 
 <body id="loginbody">
 <div id="container">
+    <div id="oneb">
+    </div> 
   <div id="one">
-     <h1 id="spaceleft">asdasd CAROUSEL HERE djhsasdksjahdjaksdajjjjjjjjjjjjjjjjjjjjjjjjdhsjjj2jjjl</h1>
-  </div>
-  <div id="two">
-  <div class="row">
-  <div class="col-lg-offset-7 col-lg-5" id="spacetop">
-  <a href="<?php echo site_url()?>tutorregister/new_tutor" class="btn btn-outline">New Member? Sign Up Here</a>
-  </div>
-  </div>
-    <div class="login-box">
-      <div class="login-box-body">
-        <?php echo form_open('login/validate'); ?>
+    <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
 
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon" id="add"><i class="fa fa-user"></i></span>
-              <input type="text" name="username" class="fc" id="username" placeholder="Username" />
-            </div>
-          </div>
-          <br/>
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon" id="add"><i class="fa fa-key"></i></span>
-              <input type="password" name="password" class="fc" id="password" placeholder="Password" />
-            </div>
-          </div>
-
-          <br/><br/>
-
-            <div class="row">
-            <div class="col-xs-12">
-              <button type="submit" class="btn btn-login1 pull-left" name='signin'>Sign In</button>
-            </div><br/>
-
-        </form>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="<?php echo base_url(); ?>resources/img/announcements/logo.png" class="center-block">
+          <div class="carousel-caption">
+          <h3>Chicago</h3>
+          <p>Thank you, Chicago!</p>
       </div>
-    </div>
-        
-    <footer class="footer">
-      <div class="container">
-      <table>
-        <tr>
-          <td class="col-lg-4"><h5>SLICE</h5></td>
-          <td class="pull-right"><h5>2017</h5></td>
-        </tr>
-  </table>
+        </div>
+
+        <div class="item">
+          <img src="<?php echo base_url(); ?>resources/img/announcements/1.png">
+        </div>
+
+        <div class="item">
+          <img src="<?php echo base_url(); ?>resources/img/announcements/3.jpg">
+        </div>
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div> 
   </div>
+</div>
+  <div id="two">
+    <br/><br/>
+      <div class="login-box">
+        <div class="login-box-body">
+          <?php echo form_open('login/validate'); ?>
+
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon" id="add"><i class="fa fa-user"></i></span>
+                <input type="text" name="username" class="fc" id="username" placeholder="Id Number" />
+              </div>
+            </div>
+            <br/>
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon" id="add"><i class="fa fa-key"></i></span>
+                <input type="password" name="password" class="fc" id="password" placeholder="Password" />
+              </div>
+            </div>
+
+            <br/><br/>
+
+            <div class="container">
+              <div class="btn-group col-xs-8 col-lg-5">
+                <button type="submit" class="btn btn-login1" name='signin'>Log in</button>
+                <a href="<?php echo site_url()?>tutorregister/new_tutor" class="btn btn-outline">New Tutor? Register Here</a>
+              </div><br/>
+            </div>
+          </form>
+        </div>
+      </div>
+          
+      <footer class="footer" id="spaceleft">
+          <div class="row text-center">
+            <table class="borderspace">
+              <col width="80">
+              <col width="100">
+              <col width="90">
+              <col width="100">
+              <tr>
+                <td><h5>SLICE 2017</h5></td> 
+                <td><h5>Privacy Policy</h5></td>
+                <td><h5>Terms of Use</h5></td>
+                <td><h5>About Team</h5></td>
+              </tr>
+            </table>
+          </div>
+        </div>
       </footer>
   </div>
 </div>
@@ -91,6 +134,7 @@
   <!-- iCheck -->
   <script src="<?php echo base_url(); ?>plugins/iCheck/icheck.min.js"></script>
   <script>
+      $('#myCarousel').carousel();
     $(function () {
       $('input').iCheck({
         checkboxClass: 'icheckbox_square-blue',

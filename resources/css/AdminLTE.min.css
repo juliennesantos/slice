@@ -2345,7 +2345,7 @@ input.fc::-ms-expand {
     border-radius: 3px;
     -webkit-box-shadow: none;
     box-shadow: none;
-    border: 0px solid transparent;
+    border: 1px solid transparent;
     border-radius: 10px;
     /*CHANGED*/
 }
@@ -3501,7 +3501,7 @@ table.text-center, table.text-center td, table.text-center th {
 
 .login-box, .register-box {
     width: 360px;
-    margin: 30% 30% 25% 7%;
+    margin: /*30% 30% 25% 7%*/ 25% 30% 30% auto;
 }
 
 @media (max-width:768px) {
@@ -3538,13 +3538,63 @@ table.text-center, table.text-center td, table.text-center th {
 #spacelogin{
     margin:5% ;
 }
-
+.carousel-fade .carousel-inner .item {
+    opacity: 0;
+    transition-property: opacity;
+  }
+  
+  .carousel-fade .carousel-inner .active {
+    opacity: 1;
+  }
+  
+  .carousel-fade .carousel-inner .active.left,
+  .carousel-fade .carousel-inner .active.right {
+    left: 0;
+    opacity: 0;
+    z-index: 1;
+  }
+  
+  .carousel-fade .carousel-inner .next.left,
+  .carousel-fade .carousel-inner .prev.right {
+    opacity: 1;
+  }
+  
+  .carousel-fade .carousel-control {
+    z-index: 2;
+  }
+@media all and (transform-3d), (-webkit-transform-3d) {
+    .carousel-fade .carousel-inner > .item.next,
+    .carousel-fade .carousel-inner > .item.active.right {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 0, 0);
+              transform: translate3d(0, 0, 0);
+    }
+    .carousel-fade .carousel-inner > .item.prev,
+    .carousel-fade .carousel-inner > .item.active.left {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 0, 0);
+              transform: translate3d(0, 0, 0);
+    }
+    .carousel-fade .carousel-inner > .item.next.left,
+    .carousel-fade .carousel-inner > .item.prev.right,
+    .carousel-fade .carousel-inner > .item.active {
+      opacity: 1;
+      -webkit-transform: translate3d(0, 0, 0);
+              transform: translate3d(0, 0, 0);
+    }
+}
+.borderspace{
+    border-collapse: separate;
+    border-spacing: 20px 0;
+}
+.borderspace > td{
+    padding:10px 0;
+}
 #container {
     word-wrap: break-word;
 }
 
 #one {
-    background-color: rgb(255, 255, 255);
     position: fixed;
     left: 0;
     float: left;
@@ -3553,7 +3603,7 @@ table.text-center, table.text-center td, table.text-center th {
     margin: 0;
     padding: 0;
     z-index: 1;
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
     text-align: center;
 }
@@ -3572,7 +3622,13 @@ table.text-center, table.text-center td, table.text-center th {
     background-color: rgb(32, 34, 41);
     color:white;
 }
-
+.carousel-caption::before{
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+}
 @media (max-width:768px) {
     #loginbody {
         overflow: hidden;

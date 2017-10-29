@@ -1379,8 +1379,12 @@ img {
 
 .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
     display: block;
-    max-width: 100%;
-    height: auto
+    width:100%;
+    width:-webkit-fill-available;
+    width: -moz-available;  
+    height:690px;
+    height: -webkit-fill-available;
+    height: -moz-available;
 }
 
 .img-rounded {
@@ -3588,26 +3592,26 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 .btn-login1.focus, .btn-login1:focus {
     color: #fff;
-    background-color: #aed660;
-    border-color: #aed660;
+    background-color: rgb(53, 153, 106);
+    border-color: rgb(53, 153, 106);
 }
 
 .btn-login1:hover {
     color: #fff;
-    background-color: #aed660;
-    border-color: #aed660;
+    background-color: rgb(53, 153, 106);
+    border-color: rgb(53, 153, 106);
 }
 
 .btn-login1.active, .btn-login1:active, .open>.dropdown-toggle.btn-login1 {
     color: #fff;
-    background-color: #aed660;
-    border-color: #aed660;
+    background-color: rgb(53, 153, 106);
+    border-color: rgb(53, 153, 106);
 }
 
 .btn-login1.active.focus, .btn-login1.active:focus, .btn-login1.active:hover, .btn-login1:active.focus, .btn-login1:active:focus, .btn-login1:active:hover, .open>.dropdown-toggle.btn-login1.focus, .open>.dropdown-toggle.btn-login1:focus, .open>.dropdown-toggle.btn-login1:hover {
     color: #fff;
-    background-color: #aed660;
-    border-color: #aed660;
+    background-color: rgb(53, 153, 106);
+    border-color: rgb(53, 153, 106);
 }
 
 .btn-login1.active, .btn-login1:active, .open>.dropdown-toggle.btn-login1 {
