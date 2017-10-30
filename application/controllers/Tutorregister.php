@@ -10,6 +10,15 @@ class Tutorregister extends CI_Controller{
 
     function index()
     {
+        if($_SESSION['typeID'] != 2)
+        {
+            ?>
+            <script type="text/javascript">
+            alert("You are not permitted to access this page.");
+            window.location.href = "<?php echo site_url(); ?>";
+            </script>
+            <?php
+        }
         $data['_view'] = 'tutorregister/new_tutor';
         $this->load->view('tutorregister/tutorregister',$data);
     }

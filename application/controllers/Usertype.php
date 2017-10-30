@@ -14,6 +14,15 @@ class Usertype extends CI_Controller{
      */
     function index()
     {
+        if($_SESSION['typeID'] != 5)
+        {
+            ?>
+            <script type="text/javascript">
+            alert("You are not permitted to access this page.");
+            window.location.href = "<?php echo site_url(); ?>";
+            </script>
+            <?php
+        }
         $data['usertypes'] = $this->Usertype_model->get_all_usertypes();
         
         $data['_view'] = 'usertype/index';

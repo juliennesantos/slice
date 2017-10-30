@@ -20,7 +20,7 @@ class Tutorialsession extends CI_Controller{
             ?>
             <script type="text/javascript">
             alert("You are not permitted to access this page.");
-            window.location.href = "<?php echo $_SERVER['HTTP_REFERER'] ?>";
+            window.location.href = "<?php echo site_url(); ?>";
             </script>
             <?php
         }
@@ -75,7 +75,7 @@ class Tutorialsession extends CI_Controller{
             ?>
             <script type="text/javascript">
             alert("You are not permitted to access this page.");
-            window.location.href = "<?php echo $_SERVER['HTTP_REFERER'] ?>";
+            window.location.href = "<?php echo site_url(); ?>";
             </script>
             <?php
         }
@@ -345,7 +345,7 @@ class Tutorialsession extends CI_Controller{
             ?>
             <script type="text/javascript">
             alert("You are not permitted to access this page.");
-            window.location.href = "<?php echo $_SERVER['HTTP_REFERER'] ?>";
+            window.location.href = "<?php echo site_url(); ?>";
             </script>
             <?php
         }
@@ -563,7 +563,7 @@ class Tutorialsession extends CI_Controller{
             ?>
             <script type="text/javascript">
             alert("You are not permitted to access this page.");
-            window.location.href = "<?php echo $_SERVER['HTTP_REFERER'] ?>";
+            window.location.href = "<?php echo site_url(); ?>";
             </script>
             <?php
         }

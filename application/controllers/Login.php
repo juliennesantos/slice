@@ -58,8 +58,6 @@ class Login extends CI_Controller{
                 {
                     $_SESSION['userID'] = $data['userID'];
                     $_SESSION['typeID'] = $data['typeID'];
-                    //$this->session->set_userdata('userID', $data['userID']);
-                    //$this->session->set_userdata('typeID', $data['typeID']);
                     //if remember me is checked
                     if($this->input->post('remember_me'))
                     {

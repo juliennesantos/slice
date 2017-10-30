@@ -65,28 +65,28 @@
 
 
     <!--admin tutsess box-->
-    <?php if($_SESSION['typeID'] == 3): ?>
+    <?php if($_SESSION['typeID'] == 3 || $_SESSION['typeID'] == 5): ?>
     <div class="col-lg-6">
         <div class="list-group">
             <li class="list-group-item list-group-item-warning"><?=$title1?></li>
             <a href="#" class="list-group-item">All Tutorial Sessions<span class="badge">
             <?php
             if($_SESSION['typeID'] == 5){
-                echo $count_adminall;
+                echo $admin_sess;
             }
             ?>
             </span></a>
             <a href="#" class="list-group-item">Pending Sessions<span class="badge">
             <?php
             if($_SESSION['typeID'] == 5){
-                echo $count_adminpending;
+                echo $admin_pend;
             }
             ?>
             </span></a>
             <a href="#" class="list-group-item">Finished Feedbacks<span class="badge">
             <?php
             if($_SESSION['typeID'] == 5){
-                echo $count_adminfeedback;
+                echo $admin_feedback;
             }
             ?>
             </span></a>
