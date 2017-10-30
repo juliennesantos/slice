@@ -27,8 +27,6 @@
         <script src="<?php echo site_url('resources/js/jquery-2.2.3.min.js');?>"></script>
         <!-- Bootstrap 3.3.6 -->
         <script src="<?php echo site_url('resources/js/bootstrap.min.js');?>"></script>
-        <!-- Bootbox -->
-        <script type="text/javascript" src="<?php echo site_url();?>resources\js\bootbox.min.js"></script>
 
     </head>
     
@@ -444,6 +442,9 @@
         <script src="<?php echo site_url('resources/js/app.min.js');?>"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="<?php echo site_url('resources/js/demo.js');?>"></script>
+        <!-- Bootbox -->
+        <script type="text/javascript" src="<?php echo site_url();?>resources\js\bootbox.min.js"></script>
+
         <!-- DatePicker -->
         <script src="<?php echo site_url('resources/js/moment.js');?>"></script>
         <script src="<?php echo site_url('resources/js/bootstrap-datetimepicker.min.js');?>"></script>
