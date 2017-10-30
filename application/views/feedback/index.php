@@ -4,7 +4,7 @@
         <!-- Default panel contents -->
         <div class="panel-heading"><h3>Feedback</h3></div>
         <div class="panel-body">
-            <table class="table table-striped">
+            <table class="table table-striped datatable">
                 <thead class="panel-heading">
                     <tr>
                         <th>#</th>

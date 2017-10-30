@@ -81,8 +81,8 @@ class Tutorialsession_model extends CI_Model
      function count_adminfeedback()
     {
         $this->db->from('tutorialsessions t');
-        $this->db->join('feedback f', 't.tutorialNo = f.tutorialNo');    
-        $this->db->where('f.tutorialNo !=', null);    
+        $this->db->join('feedbacks f', 't.tutorialNo = f.tutorialNo');    
+        $this->db->where('f.feedback !=', null);    
         return $this->db->count_all_results();
     }
 

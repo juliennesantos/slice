@@ -458,9 +458,9 @@
         //Date picker
         $('#datepicker').datepicker({
         autoclose: true
-        })
+        });
 
-        $('.datatable').DataTable()
+        $('.datatable').DataTable();
 
         $('.treeview').hover(function () {
             var _this = $(this);
@@ -471,7 +471,7 @@
             _this.removeClass('active');
             _this.children().find('treeview-menu').removeClass('menu-open');
             }
-        }) 
+        });
         
         </script>
     </body>

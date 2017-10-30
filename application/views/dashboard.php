@@ -1,6 +1,7 @@
 <div class="row">
 <div class="col-lg-12">
     <!--tutee tutsess box-->
+    <?php if($_SESSION['typeID'] == 1): ?>
     <div class="col-lg-6">
         <div class="list-group">
             <li class="list-group-item list-group-item-warning"><?=$title1?></li>
@@ -9,18 +10,12 @@
             if($_SESSION['typeID'] == 1){
                 echo $user_sess;
             }
-            if($_SESSION['typeID'] == 2){
-                echo $tutor_sess;
-            }
             ?>
             </span></a>
             <a href="#" class="list-group-item">Pending Tutorial Requests<span class="badge">
             <?php 
             if($_SESSION['typeID'] == 1){
                 echo $user_pend;
-            }
-            if($_SESSION['typeID'] == 2){
-                echo $tutor_start;
             }
             ?>
             </span></a>
@@ -29,17 +24,16 @@
             if($_SESSION['typeID'] == 1){
                 echo $user_app;
             }
-            if($_SESSION['typeID'] == 2){
-                echo $tutor_end;
-            }
             ?>
             </span></a>
         </div>
     </div>
+    <?php endif; ?>
     <!--tutee tutsess box-->
 
 
     <!--tutor tutsess box-->
+    <?php if($_SESSION['typeID'] == 2): ?>
     <div class="col-lg-6">
         <div class="list-group">
             <li class="list-group-item list-group-item-warning"><?=$title1?></li>
@@ -66,10 +60,12 @@
             </span></a>
         </div>
     </div>
+    <?php endif; ?>
     <!--tutor tutsess box-->
 
 
     <!--admin tutsess box-->
+    <?php if($_SESSION['typeID'] == 3): ?>
     <div class="col-lg-6">
         <div class="list-group">
             <li class="list-group-item list-group-item-warning"><?=$title1?></li>
@@ -96,6 +92,7 @@
             </span></a>
         </div>
     </div>
+    <?php endif; ?>
     <!--admin tutsess box-->
 
     <!--BOX2-->
