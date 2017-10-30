@@ -107,7 +107,10 @@ $(document).ready(function() {
   </div>
 </div>
   <div id="two">
-<div class="login-box">
+    <div class="login-box">
+      <div class="login-logo">
+      <img src="resources/img/announcements/logo.png" width="150px" height="80px"/>
+      </div>
       <div class="login-box-body">
         <?php echo form_open('login/validate'); ?>
           <h5 class="text-danger"><?=$errormsg?></h5>
@@ -130,36 +133,33 @@ $(document).ready(function() {
             </div>
           </div>
           <br/>
-          <div class="form-group col-xs-offset-1">
-            <div class="input-group">
+          <div class="form-group">
+            <label class="checkbox-inline">
               <input type="checkbox" name="remember_me" value="remember" />&emsp;Remember me           
-            </div>
+            </label>
           </div>
 
-            <br/><br/>
+            <br/>
 
-            <div class="container">
-              <div class="btn-group col-xs-8 col-lg-5">
-                <button type="submit" class="btn btn-login1" name='signin'>Log in</button>
-                <a href="<?php echo site_url()?>tutorregister/new_tutor" class="btn btn-outline">New Tutor? Register Here</a>
-              </div><br/>
+            <div class="form-group">
+              <div class="row">
+                <button type="submit" class="btn btn-login1 col-xs-offset-1 col-xs-10 col-xs-offset-1 btn-lg" name='signin'>Log in</button>
+  </div><div class="row">
+                <h6 style="color:gray;">&emsp;&emsp;New Tutor? <a href="<?php echo site_url()?>tutorregister/new_tutor" ><strong style="color:white;">Register Here</strong></a></h6>
+              </div>
             </div>
-          </form>
-        </div>
+        </form>
       </div>
+    </div>
           
       <footer class="footer" id="spaceleft">
-          <div class="row text-center">
+          <div class="row">
             <table class="borderspace">
-              <col width="80">
-              <col width="100">
-              <col width="90">
-              <col width="100">
               <tr>
-                <td><h5>SLICE 2017</h5></td> 
-                <td><h5>Privacy Policy</h5></td>
-                <td><h5>Terms of Use</h5></td>
-                <td><h5>About Team</h5></td>
+                <td>SLICE 2017</td> 
+                <td>Privacy Policy</td>
+                <td>Terms of Use</td>
+                <td>About Team</td>
               </tr>
             </table>
           </div>

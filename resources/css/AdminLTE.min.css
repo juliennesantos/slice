@@ -3503,15 +3503,17 @@ table.text-center, table.text-center td, table.text-center th {
 }
 
 .login-box, .register-box {
-    width: 360px;
+    width: 420px;
     margin: /*30% 30% 25% 7%*/
-    25% 30% 30% auto;
+    10% 15% 30% 10%;
 }
 
 @media (max-width:768px) {
     .login-box, .register-box {
-        width: 90%;
+        width: 100%;
         margin-top: 20px;
+        margin-left:0%;
+        margin-right: 0%;
     }
 }
 
@@ -3588,11 +3590,9 @@ table.text-center, table.text-center td, table.text-center th {
 
 .borderspace {
     border-collapse: separate;
-    border-spacing: 20px 0;
-}
-
-.borderspace > td {
-    padding: 10px 0;
+    border-spacing: 25px 0;
+    border-bottom:0;
+    color:#808080;
 }
 
 #container {
@@ -3622,10 +3622,11 @@ table.text-center, table.text-center td, table.text-center th {
     margin: 0;
     padding: 0;
     z-index: 999;
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
     background-color: rgb(32, 34, 41);
     color: white;
+    align-content: center;
 }
 
 .carousel-caption::before {
@@ -3729,9 +3730,9 @@ table.text-center, table.text-center td, table.text-center th {
     position: fixed;
     height: 100px;
     bottom: 0;
-    width: 30%;
+    width: 100%;
     background-color: transparent;
-    color: rgb(122, 121, 121);
+    color: rgb(196, 195, 195);
 }
 
 
