@@ -27,6 +27,8 @@
         <script src="<?php echo site_url('resources/js/jquery-2.2.3.min.js');?>"></script>
         <!-- Bootstrap 3.3.6 -->
         <script src="<?php echo site_url('resources/js/bootstrap.min.js');?>"></script>
+        <!--favicon-->
+        <link rel="icon" href="<?php echo base_url(); ?>resources/img/announcements/icon.png" type="image/ico">
 
     </head>
     
