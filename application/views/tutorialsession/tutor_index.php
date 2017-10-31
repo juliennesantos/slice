@@ -66,8 +66,8 @@
                             <?php echo date('g:ia', strtotime($t['dateTimeEnd']))?>
                         </td>
                         <!-- Tutee Remarks -->
-                        <td>
-                        <p style="overflow:hidden">
+                        <td class="col-md-2" style="overflow:hidden">
+                        <p>
                             <?php echo $t['tuteeRemarks']?>
                         </p>
                         </td>
