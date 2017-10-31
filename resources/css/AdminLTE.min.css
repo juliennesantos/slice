@@ -3641,6 +3641,12 @@ table.text-center, table.text-center td, table.text-center th {
     font-weight:800;
     font-size:80px;
 }
+.bg-boxblend {
+    background:   -webkit-linear-gradient(180deg, #a1c4fd, #c2e9fb);
+    background:   -o-linear-gradient(180deg, #a1c4fd, #c2e9fb);
+    background:   -moz-linear-gradient(180deg, #a1c4fd, #c2e9fb);
+    background:  linear-gradient(180deg, #a1c4fd, #c2e9fb);
+}
 
 .bg-blend1 {
     background-image: url("../../resources/img/announcements/slc.jpg"), -webkit-linear-gradient(90deg, #43cea2, #185a9d);
