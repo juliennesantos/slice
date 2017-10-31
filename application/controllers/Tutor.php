@@ -10,6 +10,7 @@ class Tutor extends CI_Controller{
         $this->load->model('Tutorexpertise_model');
         $this->load->model('Subject_model');
         $this->load->model('Term_model');
+        $this->load->model('Auditlog_model');
         $this->load->library('loginvalidation');
         $this->loginvalidation->isValid();
     } 
@@ -55,6 +56,14 @@ class Tutor extends CI_Controller{
             );
             
             $tutor_id = $this->Tutor_model->add_tutor($params);
+
+            $params1 = array(
+				'userID' => $this->input->post('userID'),
+				'tutorType' => $this->input->post('tutorType'),
+				'dateAdded' => $this->input->post('dateAdded'),
+				'dateModified' => $this->input->post('dateModified'),
+            );
+            $this->Auditlog_model->add_auditlog()
             redirect('tutor/index');
         }
         else
@@ -184,7 +193,12 @@ class Tutor extends CI_Controller{
                         'dateAdded' => date('Y-m-d H:i:s')
                     );
                     $scheduleID = $this->Tutorschedule_model->add_tutorschedule($schedParam);
-                    redirect('dashboard/index');
+                    ?>
+                    <script type="text/javascript">
+                    alert("You have an unfinished or invalid entry!");
+                    window.location.href = "<?php echo site_url('dashboard/index'); ?>";
+                    </script>
+                    <?php
                 }
                 else {
                     ?>

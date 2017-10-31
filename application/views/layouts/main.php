@@ -82,7 +82,7 @@
                     </div-->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
-                        <li><h4>Welcome, <?=$_SESSION['fn']?> <?=$_SESSION['fn']?>!</h4></li>
+                        <li><a class="text-center">Welcome, <?= $_SESSION['fn'] ?> <?= $_SESSION['ln'] ?>!</a></li>
                         <?php if($_SESSION['typeID'] == 1):?>
                         <li class="header">MAIN NAVIGATION</li>
                         <li>
