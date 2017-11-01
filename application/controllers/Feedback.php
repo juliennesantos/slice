@@ -26,6 +26,23 @@ class Feedback extends CI_Controller{
         $this->load->view('layouts/main',$data);
     }
     /*
+     * view feedbacks
+     */
+    function tutor_index()
+    {
+        $params['limit'] = RECORDS_PER_PAGE; 
+        $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
+        
+        $config = $this->config->item('pagination');
+        $config['base_url'] = site_url('feedback/index?');
+        $config['total_rows'] = $this->Feedback_model->get_all_feedbacks_count();
+        $this->pagination->initialize($config);
+
+        $data['feedbacks'] = $this->Feedback_model->get_all_feedbacks($params);
+        $data['_view'] = 'feedback/index';
+        $this->load->view('layouts/main',$data);
+    }
+    /*
      * view feedbacks for tutee
      */
     function tuteeview()
@@ -35,11 +52,10 @@ class Feedback extends CI_Controller{
             $params = array(
 				'tutorialNo' => $this->input->post('tutorialNo'),
 				'dateAdded' => date('Y-m-d H:i:s'),
-				'feedback' => $this->input->post('feedback'),
+				'feedback' => html_escape($this->input->post('feedback')),
             );
             
-            $feedback_id = $this->Feedback_model->add_feedback($params);
-            redirect('feedback/tuteeview');
+            $feedback_id = $this->Feedback_model->add_feedback($params) ? redirect('feedback/tuteeview') : redirect('feedback/12345');
         }
 
         $params['limit'] = RECORDS_PER_PAGE; 

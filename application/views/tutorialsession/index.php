@@ -1,13 +1,5 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <link rel="stylesheet" href="fontawesome-stars.css">
-<script src="<?= site_url('resources\jquery-bar-rating\dist\jquery.barrating.min.js'); ?>"></script>
-<script type="text/javascript">
-   $(function() {
-      $('#rating').barrating({
-        theme: 'fontawesome-stars'
-      });
-   });
-</script>
 
 <div class="row">
     <div class="col-md-12">
@@ -79,7 +71,7 @@
                                                 <tr><td><b>Date of Session<b/></td><td><?= date('D, M j Y', strtotime($t['dateTimeEnd']))?></td></tr>
                                             </tbody>
                                         </table>
-                                        <input type="hidden" name="<?= $t['tutorialNo']; ?>">
+                                        <input type="hidden" name="tutorialNo" value="<?= $t['tutorialNo']; ?>">
                                         <label for="rating" class="control-label">Rating</label>
                                         <div class="form-group">
                                             <select name="rating" id="rating">
@@ -92,11 +84,11 @@
                                         </div>
                                         <label for="feedback" class="control-label">Feedback</label>
                                         <div class="form-group">
-                                            <textarea name="feedback" class="form-control" id="feedback" placeholder="Input your feedback here"><?php echo $this->input->post('feedback'); ?></textarea>
+                                            <textarea name="feedback" class="form-control" id="feedback" placeholder="Input your feedback here" maxlength="1000"><?php echo $this->input->post('feedback'); ?></textarea>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-success pull-right">
+                                        <button type="submit" name="addfeedback" value="addfeedback" class="btn btn-success pull-right">
                                             <i class="fa fa-check"></i> Submit
                                         </button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -119,3 +111,11 @@
         </div>
     </div>
 </div>
+<script src="<?= site_url('resources\jquery-bar-rating\dist\jquery.barrating.min.js'); ?>"></script>
+<script type="text/javascript">
+   $(function() {
+      $('#rating').barrating({
+        theme: 'fontawesome-stars'
+      });
+   });
+</script>

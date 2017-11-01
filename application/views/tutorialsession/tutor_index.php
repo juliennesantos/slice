@@ -133,19 +133,23 @@
                                                 },
                                             });
 
-                                            $('.input_fields_wrap<?php echo $t['tutorialNo'];?>').append(
-                                                '<tr>' +
-                                                '<td class="text-center">' +
-                                                '<input type="hidden" name="status[0]" value="Not Done"/>' +
-                                                '<input type="checkbox" name="status[0]" value="Done" id="status[0]" />' +
-                                                '</td>' +
-                                                '<td>' +
-                                                '<input type="text" name="comment[0]" class="form-control key_addfield" id="comment[0]" />' +
-                                                '</td>' +
-                                                '<td class="text-center">' +
-                                                '</td>' +
-                                                '</tr>'
-                                            ); 
+                                            //checks if wrapper is empty
+                                            if ($(wrapper).html().trim() == false)
+                                            {
+                                                $(wrapper).append(
+                                                    '<tr>' +
+                                                    '<td class="text-center">' +
+                                                    '<input type="hidden" name="status[0]" value="Not Done"/>' +
+                                                    '<input type="checkbox" name="status[0]" value="Done" id="status[0]" />' +
+                                                    '</td>' +
+                                                    '<td>' +
+                                                    '<input type="text" name="comment[0]" class="form-control key_addfield" id="comment[0]" />' +
+                                                    '</td>' +
+                                                    '<td class="text-center">' +
+                                                    '</td>' +
+                                                    '</tr>'
+                                                ); 
+                                            }
                                     });
                                 });
                             </script>
@@ -238,13 +242,13 @@
                                                 <tbody class="input_fields_wrap<?php echo $t['tutorialNo'];?>">
                                                 </tbody>
                                             </table>
-                                            <!-- /pritems -->
+                                            <!-- /milestones -->
                                             <!-- /details -->
 
                                             <input type="hidden" name="tutorialNo" value="<?php echo $t['tutorialNo']; ?>">
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                                <button type="submit" name="saveMilestones" value="saveMilestones" class="btn btn-success">Save Milestones</button>
+                                                <input type="submit" name="saveMilestones" id="saveMilestones" value="Save Milestones" class="btn btn-success"></input>
                                             </div> 
                                         </div>
                                         <!-- /.modal-content -->

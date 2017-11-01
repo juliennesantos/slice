@@ -37,7 +37,7 @@
                                         <h4 class="modal-title">Review this Tutorial Session</h4>
                                     </div>
                                     <div class="modal-body">
-                                    <?php echo form_open('feedback/add/'.$f['tutorialNo']); ?>
+                                    <?php echo form_open('tutorialsession/tutee/'); ?>
                                         <table class="table table-striped">
                                             <tbody>
                                                 <tr><td><b>#</b></td><td><?= $f['tutorialNo']; ?></td></tr>
@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-success pull-right">
+                                        <button type="submit" name="addfeedback" value="addfeedback" class="btn btn-success pull-right">
                                             <i class="fa fa-check"></i> Submit
                                         </button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
