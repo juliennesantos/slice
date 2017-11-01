@@ -5694,7 +5694,8 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:focus, a.list-g
 }
 
 .panel-body {
-    padding: 15px
+    padding: 15px;
+    overflow-x:auto;
 }
 
 .panel-heading {

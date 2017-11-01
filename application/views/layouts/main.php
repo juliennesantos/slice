@@ -32,15 +32,15 @@
 
     </head>
     
-    <body class="hold-transition skin-green sidebar-mini">
+    <body class="hold-transition skin-black sidebar-mini">
         <div class="wrapper">
             <header class="main-header">
                 <!-- Logo -->
                 <a href="" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini">slice</span>
+                    <span class="logo-mini"><img src="<?=site_url();?>resources/img/announcements/icon.png" width="30px" height="45px"/></span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg">slice</span>
+                    <span class="logo-lg"><img src="<?=site_url();?>resources/img/announcements/logo2.png" width="75px" height="45px"/></span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top">
@@ -176,6 +176,11 @@
                         <?php endif; ?>
                         <?php if($_SESSION['typeID'] == 5):?>
                         <li class="header">COORDINATOR NAVIGATION</li>
+                        <li>
+                            <a href="<?php echo site_url();?>">
+                                <i class="fa fa-desktop"></i> <span>Dashboard</span>
+                            </a>
+                        </li>
                         <li>
                             <a href="<?php echo site_url('tutorialsession/approvalview');?>">
                                 <i class="fa fa-hourglass"></i> <span>Tutorial Sessions (Approval)</span>
