@@ -83,7 +83,7 @@
                                         </div>
                                         <label for="feedback" class="control-label">Feedback</label>
                                         <div class="form-group">
-                                            <textarea name="feedback" class="form-control" id="feedback" placeholder="Input your feedback here" maxlength="1000"><?php echo $this->input->post('feedback'); ?></textarea>
+                                            <textarea name="feedback" class="form-control" id="feedback" placeholder="Input your feedback here" maxlength="1000" minlength="50"><?php echo $this->input->post('feedback'); ?></textarea>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
