@@ -30,16 +30,16 @@ class Feedback extends CI_Controller{
      */
     function tutor_index()
     {
-        $params['limit'] = RECORDS_PER_PAGE; 
-        $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
+        // $params['limit'] = RECORDS_PER_PAGE; 
+        // $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
         
-        $config = $this->config->item('pagination');
-        $config['base_url'] = site_url('feedback/index?');
-        $config['total_rows'] = $this->Feedback_model->get_all_feedbacks_count();
-        $this->pagination->initialize($config);
+        // $config = $this->config->item('pagination');
+        // $config['base_url'] = site_url('feedback/index?');
+        // $config['total_rows'] = $this->Feedback_model->get_all_feedbacks_count();
+        // $this->pagination->initialize($config);
 
-        $data['feedbacks'] = $this->Feedback_model->get_all_feedbacks($params);
-        $data['_view'] = 'feedback/index';
+        // $data['feedbacks'] = $this->Feedback_model->get_all_feedbacks($params);
+        $data['_view'] = 'feedback/tutor_index';
         $this->load->view('layouts/main',$data);
     }
     /*
