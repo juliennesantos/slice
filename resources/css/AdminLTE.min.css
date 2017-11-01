@@ -2491,6 +2491,35 @@ input.fc::-ms-expand {
 .btn-info:hover, .btn-info:active, .btn-info.hover {
     background-color: #00acd6
 }
+.btn-attendance {
+    background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+    background-size: 1200% 1200%;
+    
+    -webkit-animation: AnimationName 20s ease infinite;
+    -moz-animation: AnimationName 20s ease infinite;
+    -o-animation: AnimationName 20s ease infinite;
+    animation: AnimationName 20s ease infinite;
+}
+    @-webkit-keyframes AnimationName {
+        0%{background-position:0% 15%}
+        50%{background-position:100% 86%}
+        100%{background-position:0% 15%}
+    }
+    @-moz-keyframes AnimationName {
+        0%{background-position:0% 15%}
+        50%{background-position:100% 86%}
+        100%{background-position:0% 15%}
+    }
+    @-o-keyframes AnimationName {
+        0%{background-position:0% 15%}
+        50%{background-position:100% 86%}
+        100%{background-position:0% 15%}
+    }
+    @keyframes AnimationName { 
+        0%{background-position:0% 15%}
+        50%{background-position:100% 86%}
+        100%{background-position:0% 15%}
+    }
 
 .btn-login1 {
     background-color: #50EFA6;
@@ -3792,16 +3821,20 @@ table.text-center, table.text-center td, table.text-center th {
     color: white;
     box-shadow: none;
 }
+#attendancehead{
+    font-family: 'Julius Sans One', sans-serif;
+    
+}
 
 .attendance-box-body .form-control-feedback, .form-control-feedback {
     color: #777;
 }
 
 .attendance-page {
-    background: -webkit-linear-gradient(180deg, #31ef98, #c0f1da);
+    background: #22292C;/* -webkit-linear-gradient(180deg, #31ef98, #c0f1da);
     background: -o-linear-gradient(180deg, #31ef98, #c0f1da);
     background: -moz-linear-gradient(180deg, #31ef98, #c0f1da);
-    background: linear-gradient(180deg, #31ef98, #c0f1da);
+    background: linear-gradient(180deg, #31ef98, #c0f1da); */
 }
 
 .attendance-page:before {
