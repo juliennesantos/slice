@@ -6,17 +6,19 @@
 }
 </style>
 <div class="row">
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">Tutorial Sessions Listing</h3>
-                <div class="box-tools">
-                    <a href="<?php echo site_url('tutorialsession/add'); ?>" class="btn btn-success btn-sm">Request New Tutorial</a>
-                </div>
+    <div class="col-lg-12 col-md-12 col-xs-12">
+        <div class="panel panel-black">
+            <div class="panel-heading">
+                <h3>Tutorial Sessions Listing</h3>
             </div>
-            <div class="box-body">
+            <div class="panel-body">
+                <div class="col-lg-offset-10 pull-right">
+                    <a href="<?php echo site_url('tutorialsession/add'); ?>" class="btn btn-success btn-sm"><i class="fa fa-plus"></i>
+                    &emsp;Request New Tutorial</a>
+                </div>
+                <br/><br/>
                 <?php echo form_open('tutorialsession/tutor_index/'); ?>
-                <table class="table table-striped table-hover datatable">
+                <table class="table table-striped table-hover datatable table-responsive">
                 <thead>
                     <tr>
                         <th>#</th>
