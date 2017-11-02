@@ -4,7 +4,7 @@
             <div class="box-header with-border">
               	<h3 class="box-title">Attendance Edit</h3>
             </div>
-			<?php echo form_open('attendance/edit/'.$attendance['logID']); ?>
+			<?php echo form_open('attendance/view/'.$attendance['logID']); ?>
 			<div class="box-body">
 				<div class="row clearfix">
 					<div class="col-md-6">

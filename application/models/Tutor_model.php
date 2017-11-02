@@ -14,6 +14,9 @@ class Tutor_model extends CI_Model
     {
         return $this->db->get_where('tutors',array('tutorID'=>$tutorID))->row_array();
     }
+
+    
+
     /*
      * Get tutor by userID
      */
@@ -49,7 +52,17 @@ class Tutor_model extends CI_Model
         }
         return $this->db->get()->result_array();
     }
-        
+    
+    //get all honor scholars tutor
+    function get_honor_scholars()
+    {
+        $this->db->from('tutors t');
+        $this->db->join('users u', 'u.userID = t.userID');
+        $this->db->where('tutorType', 'Honor Scholar');
+        $this->db->order_by('t.tutorID', 'asc');
+        return $this->db->get()->result_array();
+    }
+
     /*
      * function to add new tutor
      */
