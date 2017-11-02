@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>slice</title>
+        <title>SLICE - Student Learning Informtation Center</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.6 -->
@@ -12,6 +12,8 @@
         <link rel="stylesheet" href="<?php echo site_url('resources/css/font-awesome.min.css');?>">
         <!-- Ionicons -->
         <link rel="stylesheet" href="<?php echo site_url('resources\ionicons\css\ionicons.min.css')?>">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="<?php echo site_url('bower_components//datatables.net-bs/css/dataTables.bootstrap.min.css');?>">
         <!-- Datetimepicker -->
         <link rel="stylesheet" href="<?php echo site_url('resources/css/bootstrap-datetimepicker.min.css');?>">
         <!-- Theme style -->
@@ -25,20 +27,20 @@
         <script src="<?php echo site_url('resources/js/jquery-2.2.3.min.js');?>"></script>
         <!-- Bootstrap 3.3.6 -->
         <script src="<?php echo site_url('resources/js/bootstrap.min.js');?>"></script>
-        <!-- Bootbox -->
-        <script type="text/javascript" src="<?php echo site_url();?>resources\js\bootbox.min.js"></script>
+        <!--favicon-->
+        <link rel="icon" href="<?php echo base_url(); ?>resources/img/announcements/icon.png" type="image/ico">
 
     </head>
     
-    <body class="hold-transition skin-green sidebar-mini">
+    <body class="hold-transition skin-black sidebar-mini">
         <div class="wrapper">
             <header class="main-header">
                 <!-- Logo -->
                 <a href="" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini">slice</span>
+                    <span class="logo-mini"><img src="<?=site_url();?>resources/img/announcements/icon.png" width="30px" height="45px"/></span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg">slice</span>
+                    <span class="logo-lg"><img src="<?=site_url();?>resources/img/announcements/logo2.png" width="75px" height="45px"/></span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top">
@@ -80,18 +82,28 @@
                     </div-->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
+                        <li><a class="text-center">Welcome, <?= $_SESSION['fn'] ?> <?= $_SESSION['ln'] ?>!</a></li>
+                        <?php if($_SESSION['typeID'] == 1):?>
                         <li class="header">MAIN NAVIGATION</li>
                         <li>
                             <a href="<?php echo site_url();?>">
                                 <i class="fa fa-desktop"></i> <span>Dashboard</span>
                             </a>
                         </li>
-						<li>
-                            <a href="<?php echo site_url('tutorialsession/index');?>">
+						<li class="treeview">
+                            <a href="<?php echo site_url('tutorialsession/tutee');?>">
                                 <i class="fa fa-hourglass"></i> <span>Tutorial Sessions</span>
                             </a>
+                            <ul class="treeview-menu">
+								<li>
+                                    <a href="<?php echo site_url('tutorialsession/tutee');?>"><i class="fa fa-list-ul"></i> View All Sessions</a>
+                                </li>
+								<li>
+                                    <a href="<?php echo site_url('tutorialsession/add');?>"><i class="fa fa-plus"></i> Request New Session</a>
+                                </li>
+							</ul>
                         </li>
-						<li>
+						<!-- <li>
                             <a href="#">
                                 <i class="fa fa-paper-plane"></i> <span>Feedback</span>
                             </a>
@@ -103,9 +115,15 @@
                                     <a href="<?php echo site_url('feedback/tuteeview');?>"><i class="fa fa-list-ul"></i> Listing</a>
                                 </li>
 							</ul>
-                        </li>
+                        </li> -->
+                        <?php endif; ?>
                         <?php if($_SESSION['typeID'] ==  2):?>  
                         <li class="header">TUTOR NAVIGATION</li>
+                        <li>
+                            <a href="<?php echo site_url();?>">
+                                <i class="fa fa-desktop"></i> <span>Dashboard</span>
+                            </a>
+                        </li>
 						<li>
                             <a href="#">
                                 <i class="fa fa-pencil-square-o"></i> <span>Attendance</span>
@@ -158,6 +176,11 @@
                         <?php endif; ?>
                         <?php if($_SESSION['typeID'] == 5):?>
                         <li class="header">COORDINATOR NAVIGATION</li>
+                        <li>
+                            <a href="<?php echo site_url();?>">
+                                <i class="fa fa-desktop"></i> <span>Dashboard</span>
+                            </a>
+                        </li>
                         <li>
                             <a href="<?php echo site_url('tutorialsession/approvalview');?>">
                                 <i class="fa fa-hourglass"></i> <span>Tutorial Sessions (Approval)</span>
@@ -428,18 +451,37 @@
         <script src="<?php echo site_url('resources/js/app.min.js');?>"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="<?php echo site_url('resources/js/demo.js');?>"></script>
+        <!-- Bootbox -->
+        <script type="text/javascript" src="<?php echo site_url();?>resources\js\bootbox.min.js"></script>
+
         <!-- DatePicker -->
         <script src="<?php echo site_url('resources/js/moment.js');?>"></script>
         <script src="<?php echo site_url('resources/js/bootstrap-datetimepicker.min.js');?>"></script>
         <script src="<?php echo site_url('resources/js/global.js');?>"></script>
         <!-- DatePicker -->
         <script src="<?php echo site_url('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js');?>"></script>
+        <!-- DataTables -->
+        <script src="<?php echo site_url('bower_components/datatables.net/js/jquery.dataTables.min.js');?>"></script>
+        <script src="<?php echo site_url('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js');?>"></script>
 
         <script>
         //Date picker
         $('#datepicker').datepicker({
         autoclose: true
-        })
+        });
+
+        $('.datatable').DataTable();
+
+        $('.treeview').hover(function () {
+            var _this = $(this);
+            if(!(_this.hasClass('active'))){
+            _this.addClass('active');
+            _this.children().find('treeview-menu').addClass('menu-open');
+            } else{
+            _this.removeClass('active');
+            _this.children().find('treeview-menu').removeClass('menu-open');
+            }
+        });
         
         </script>
     </body>
