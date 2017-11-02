@@ -239,4 +239,17 @@ class Tutor extends CI_Controller{
     else
     redirect('tutor/index');
   }
+
+/*
+* view tutors in pdf
+*/
+  function tutorpdf()
+  {
+    $data['_view'] = '' ;
+    $data['p'] = $this->Purchaseorder_model->get_purchaseorder($poID);
+    $data['biditems'] = $this->Biditem_model->biditems_by_bidID($data['p']['bidID']);
+
+    
+    $this->load->view('purchaseorder/POdom', $data);
+  }
 }
