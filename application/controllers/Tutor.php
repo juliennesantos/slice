@@ -63,7 +63,7 @@ class Tutor extends CI_Controller{
 				'dateAdded' => $this->input->post('dateAdded'),
 				'dateModified' => $this->input->post('dateModified'),
             );
-            $this->Auditlog_model->add_auditlog()
+            $this->Auditlog_model->add_auditlog();
             redirect('tutor/index');
         }
         else
@@ -210,6 +210,14 @@ class Tutor extends CI_Controller{
                 }
 
             }
+        }
+        else {
+            ?>
+            <script type="text/javascript">
+            alert("You are not permitted to access this page.");
+            window.location.href = "<?php echo site_url('dashboard/index'); ?>";
+            </script>
+            <?php
         }
     }
 

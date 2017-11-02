@@ -108,7 +108,7 @@ class Tutorialsession extends CI_Controller{
             </script>
             <?php
         }
-
+        //add feedback to finished session
         if ($this->input->post('addfeedback'))
             {
             $params = array(
@@ -118,6 +118,35 @@ class Tutorialsession extends CI_Controller{
             );
 
             $feedback_id = $this->Feedback_model->add_feedback($params) ? redirect('tutorialsession/tutee/1') : redirect('tutorialsession/tutee/2');
+        }
+
+        //change request for already approved sessions
+        if ($this->input->post('chreq'))
+        {
+            $params = array(
+                'tuteeID' => $_SESSION['userID'],
+                'subjectID' => $this->input->post('subjectID'),
+                'tutorScheduleID' => $this->input->post('tutorschedrequestedID'),
+                'dateTimeRequested' => date('Y-m-d H:i:s', strtotime($this->input->post('tutorialdate'))),
+                'previousTutorID' => $this->input->post('previoustutorID'),
+                'tuteeRemarks' => html_escape($this->input->post('remarks')),
+                'dateAdded' => date('Y-m-d H:i:s'),
+                'dateModified' => date('Y-m-d H:i:s'),
+                'status' => 'Change Request Pending from #'. $this->input->post('tutorialNo'),
+            );
+
+            $tutorialsession_id = $this->Tutorialsession_model->add_tutorialsession($params) ? redirect('tutorialsession/tutee/1') : redirect('tutorialsession/tutee/2');
+        }
+
+        //cancel request for already approved sessions
+        if ($this->input->post('cancelrequest'))
+        {
+            $tutorialNo = $this->input->post('tutorialNo');
+            $params = array(
+                'status' => 'Cancel Request',
+            );
+
+            $tutorialsession_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo, $params) ? redirect('tutorialsession/tutee/1') : redirect('tutorialsession/tutee/2');
         }
 
         $params['limit'] = RECORDS_PER_PAGE; 
@@ -200,7 +229,7 @@ class Tutorialsession extends CI_Controller{
                 'tutorScheduleID' => $this->input->post('tutorschedrequestedID'),
                 'dateTimeRequested' => date('Y-m-d H:i:s', strtotime($this->input->post('tutorialdate'))),
                 'previousTutorID' => $this->input->post('previoustutorID'),
-                'tuteeRemarks' => $this->input->post('remarks'),
+                'tuteeRemarks' => html_escape($this->input->post('remarks')),
 				'dateAdded' => date('Y-m-d H:i:s'),
 				'dateModified' => date('Y-m-d H:i:s'),
 				'status' => 'Pending',
