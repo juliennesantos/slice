@@ -2520,7 +2520,24 @@ input.fc::-ms-expand {
         50%{background-position:100% 86%}
         100%{background-position:0% 15%}
     }
-
+.errorhead {
+        font-family: 'Open Sans', sans-serif;
+        font-weight:800;
+        font-size:100px;
+    }
+.errorg{
+    margin-left:20%;
+    width:700;
+    height:200;
+}
+.err{
+    overflow:hidden;
+}
+@media (max-width:768px) {
+    .errorg {
+        visibility: hidden;
+    }
+}
 .btn-login1 {
     background-color: #50EFA6;
     /* border-color: #C6F26E; */
