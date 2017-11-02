@@ -19,6 +19,15 @@ class Attendance extends CI_Controller{
      */
     function index()
     { 
+        if($_SESSION['typeID'] != 5)
+        {
+            ?>
+            <script type="text/javascript">
+            alert("You are not permitted to access this page.");
+            window.location.href = "<?php echo site_url(); ?>";
+            </script>
+            <?php
+        }
         $data['_view'] = 'attendance/add';
         $this->load->view('attendance/add',$data);
     }
