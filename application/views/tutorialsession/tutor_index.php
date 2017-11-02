@@ -12,14 +12,6 @@
         <h3>Tutorial Sessions Listing</h3>
       </div>
       <div class="panel-body">
-        <div class="col-lg-offset-10 pull-right">
-          <a href="<?php echo site_url('tutorialsession/add'); ?>" class="btn btn-success btn-sm">
-            <i class="fa fa-plus"></i>
-            &emsp;Request New Tutorial</a>
-        </div>
-        <br/>
-        <br/>
-        <?php echo form_open('tutorialsession/tutor_index/'); ?>
         <table class="table table-striped table-hover datatable table-responsive">
           <thead>
             <tr>
@@ -30,7 +22,7 @@
               <th>Scheduled Date</th>
               <th>Time Started</th>
               <th>Time Ended</th>
-              <th>Remarks</th>
+              <!-- <th>Remarks</th> -->
               <th>Status</th>
               <th>Actions</th>
             </tr>
@@ -39,7 +31,6 @@
           <tr>
             <!-- tutorialNo -->
             <td>
-              <input type="hidden" name="<?=$t['tutorialNo'];?>" data-tutno="<?=$t['tutorialNo'];?>">
               <?php echo $t['tutorialNo']; ?>
             </td>
             <!-- tutee name -->
@@ -49,9 +40,8 @@
             </td>
             <!-- previous tutor -->
             <td>
-            <input type="hidden" name="previousTutorID" value="<?= $t['previousTutorID']; ?>">
 
-            <?php   if(empty($t['uaLN']))
+              <?php   if(empty($t['uaLN']))
                           echo 'No previous tutor.';
                       else 
                           echo $t['uaLN'].', '. $t['uaFN'];
@@ -74,16 +64,18 @@
               <?php echo date('g:ia', strtotime($t['dateTimeEnd']))?>
             </td>
             <!-- Tutee Remarks -->
-            <td class="col-md-2" style="overflow:hidden">
+            <!-- <td class="col-md-2" style="overflow:hidden">
               <p>
-                <?php echo $t['tuteeRemarks']?>
+                <?php $t['tuteeRemarks']?>
               </p>
-            </td>
+            </td> -->
             <!-- status -->
             <td>
               <?php echo $t['status']; ?>
             </td>
             <td>
+              <?php echo form_open('tutorialsession/tutor_index/'); ?>
+
               <?php if($t['status'] == "Approved"):?>
               <?php if($t['dateTimeStart'] == NULL): ?>
               <button type="submit" name="start" value="start" class="btn btn-success" title="Start Session">
@@ -119,6 +111,13 @@
                             <b>Tutorial No.</b>
                           </td>
                           <td>&emsp;
+                            <input type="hidden" name="siteurl" class="siteurl" data-siteurl="<?= site_url(); ?>">
+                            <input type="hidden" name="tutorialNo" class="tutorialNo" data-tutno="<?= $t['tutorialNo']; ?>" value="<?= $t['tutorialNo']; ?>">
+                            <input type="hidden" name="previousTutorID" value="<?= $t['previousTutorID']; ?>">
+                            <input type="hidden" name="subjectID" value="<?= $t['subjectID']; ?>">
+                            <input type="hidden" name="dateTimeRequested" value="<?= $t['dateTimeRequested']; ?>">
+                            <input type="hidden" name="tutorScheduleID" value="<?= $t['tutorScheduleID']; ?>">
+
                             <?php echo $t['tutorialNo']; ?>
                           </td>
                         </tr>
@@ -148,7 +147,7 @@
                         </tr>
                       </table>
 
-                      <!-- pritems -->
+                      <!-- milestones -->
                       <table class="table table-striped table-hover">
                         <thead>
                           <th class="text-center">Done?</th>
@@ -156,7 +155,7 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td>
+                            <td colspan="3">
                               <b>Edit Previous Milestones</b>
                             </td>
                           </tr>
@@ -180,7 +179,6 @@
                       <!-- /milestones -->
                       <!-- /details -->
 
-                      <input type="hidden" name="tutorialNo" value="<?php echo $t['tutorialNo']; ?>">
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                         <input type="submit" name="saveMilestones" id="saveMilestones" value="Save Milestones" class="btn btn-success"></input>
@@ -192,17 +190,19 @@
                 </div>
               </div>
               <!-- MODAL END -->
+              <?php echo form_close(); ?>
             </td>
           </tr>
           <?php } ?>
         </table>
+
         <div class="pull-right">
           <?php echo $this->pagination->create_links(); ?>
         </div>
-        <?php echo form_close(); ?>
+
       </div>
     </div>
   </div>
 </div>
 
-<script src="<?php echo site_url('resources\js\milestone-text.js'); ?>">
+<script src="<?php echo site_url('resources\js\tutor\tutor-index.js'); ?>">

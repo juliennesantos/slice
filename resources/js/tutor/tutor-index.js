@@ -1,14 +1,20 @@
 $(document).ready(function () {
+  var tutorialNo = $(".tutorialNo").data("tutno");
+  var site_url = $(".siteurl").data("siteurl");
+
   var max_fields = 50; //maximum input boxes allowed
-  var wrapper = $(".input_fields_wrap<?php echo $t['tutorialNo'];?>"); //Fields wrapper
+  var wrapper = $(".input_fields_wrap" + tutorialNo); //Fields wrapper
   var add_button = $(".add_field_button"); //Add button ID
 
+  console.log($(".tutorialNo").data("tutno"));
+
   var x = 0; //initial text box count
-  $.get('<?php echo site_url();?>/tutorialsession/count_checklist/' +
-    <?= $t['tutorialNo']; ?>,
+  $.get(site_url + 'tutorialsession/count_checklist/' +
+    tutorialNo,
     function (data) {
       x = parseInt(data);
     }, "number");
+
   $(add_button).click(function (e) { //on add input button click
     e.preventDefault();
     if (x < max_fields) { //max input box allowed
@@ -43,13 +49,12 @@ $(document).ready(function () {
   });
 
   // EDIT CHECKLIST
-  $(".modal<?php echo $t['tutorialNo']; ?>").click(function () {
+  $(".modal" + tutorialNo).click(function () {
     $.ajax({
       type: 'GET',
-      url: '<?php echo site_url();?>/tutorialsession/get_checklist/' + '<?= $t['
-      tutorialNo ']; ?>',
+      url: site_url + 'tutorialsession/get_checklist/' + tutorialNo,
       success: function (data) {
-        $(".items<?php echo $t['tutorialNo'];?>").html(data);
+        $(".items" + tutorialNo).html(data);
       },
     });
 
