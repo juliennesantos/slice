@@ -1,120 +1,300 @@
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-<link rel="stylesheet" href="fontawesome-stars.css">
+<link rel="stylesheet" href="<?=site_url('resources\jquery-bar-rating\dist\themes\fontawesome-stars.css')?>;">
 
 <div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-black">
-            <div class="panel-heading"><h3>Tutorial Sessions Listing</h3></div>
-            <div class="panel-body">
-                <div class="col-lg-offset-10 pull-right">
-                    <a href="<?php echo site_url('tutorialsession/add'); ?>" class="btn btn-success btn-sm"><i class="fa fa-plus"></i>&emsp;Request New Tutorial</a> 
-                </div>
-                <br/><br/>
-                <table class="table table-striped datatable">
-                <thead>
-                    <tr>
-						<th>#</th>
-                        <th>Previous Tutor</th>
-						<th>Your Tutor</th>
-						<th>Subject</th>
-                        <th>Requested Date</th>
-						<th>Status</th>
-						<th>Actions</th>
-                    </tr>
-                </thead>
-                    <?php foreach($tutorialsessions as $t){ ?>
-                    <tr>
-						<td><?= $t['tutorialNo']; ?></td>
-						<td>
-                        <?php   if(empty($t['urLN']))
+  <div class="col-lg-12">
+    <div class="panel panel-black">
+      <div class="panel-heading">
+        <h3>Tutorial Sessions Listing</h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-lg-offset-10 pull-right">
+          <a href="<?php echo site_url('tutorialsession/add'); ?>" class="btn btn-success btn-sm">
+            <i class="fa fa-plus"></i>&emsp;Request New Tutorial</a>
+        </div>
+        <br/>
+        <br/>
+        <table class="table table-striped datatable">
+          <?php echo form_open('tutorialsession/tutee'); ?>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Previous Tutor</th>
+              <th>Your Tutor</th>
+              <th>Subject</th>
+              <th>Requested Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <?php foreach($tutorialsessions as $t){ ?>
+          <tr>
+            <td>
+              <input type="hidden" name="tutorialNo" value="<?= $t['tutorialNo']; ?>">
+              <?= $t['tutorialNo']; ?>
+            </td>
+            <td>
+              <input type="hidden" name="previousTutorID" value="<?= $t['previousTutorID']; ?>">
+              <?php   if(empty($t['urLN']))
                                     echo 'No tutor yet!';
                                 else 
                                     echo $t['urLN'].', '. $t['urFN'];
-                        ?>
-                        </td>
-                        <td><?php   if(empty($t['uaLN']))
+              ?>
+            </td>
+            <td>
+              <input type="hidden" name="tutorID" value="<?= $t['tutorID']; ?>">
+              <?php   if(empty($t['uaLN']))
                                         echo 'No tutor yet!';
                                     else 
                                         echo $t['uaLN'].', '. $t['uaFN'];
                         ?>
-                        </td>
-						<td><?= $t['subjectCode']; ?></td>
-                        <td><?= date('D, M j Y', strtotime($t['dateTimeRequested'])).', '.date('g:ia', strtotime($t['tbrTS'])).' to '.date('g:ia', strtotime($t['tbrTE']))?></td>
-						<td><?= $t['status']; ?></td>
-						<td class="col-lg-2">
-                            <?php if($t['status'] == "Approved" && $t['dateTimeStart'] == NULL):?>
-                                <a href="<?= site_url('tutorialsession/edit/'.$t['tutorialNo']); ?>" class="btn btn-info" title="Change Request"><span class="fa fa-pencil"></span></a> 
-                                <a href="<?= site_url('tutorialsession/remove/'.$t['tutorialNo']); ?>" class="btn btn-danger" title="Cancel Request"><span class="fa fa-trash"></span></a>
-                            <?php endif; ?>
-                            <?php if($t['dateTimeEnd'] != NULL): ?>
-                            <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#fbmodal<?=$t['tutorialNo']?>"><span class="fa fa-pencil"></span>Add Feedback</button>
-                            <?php endif; ?>
+            </td>
+            <td>
+              <input type="hidden" name="subjectID" value="<?= $t['subjectID']; ?>">
+              <?= $t['subjectCode']; ?>
+            </td>
+            <td>
+              <?= date('D, M j Y', strtotime($t['dateTimeRequested'])).', '.date('g:ia', strtotime($t['tbrTS'])).' to '.date('g:ia', strtotime($t['tbrTE']))?>
+            </td>
+            <td>
+              <?= $t['status']; ?>
 
-                                <!-- Modal -->
-                                <div id="fbmodal<?=$t['tutorialNo']?>" class="modal fade" role="dialog">
-                                <div class="modal-dialog">
+                <!-- Modal for feedback-->
+                <div id="chreq<?= $t['tutorialNo'] ?>" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
 
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Review this Tutorial Session</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                    <?php echo form_open('tutorialsession/tutee'); ?>
-                                        <table class="table table-striped">
-                                            <tbody>
-                                                <tr><td><b>#</b></td><td><?= $t['tutorialNo']; ?></td></tr>
-                                                <tr><td><b>Your Tutor<b/></td><td><?= $t['uaLN'].', '. $t['uaFN']; ?></td></tr>
-                                                <tr><td><b>Subject<b/></td><td><?= $t['subjectCode']; ?></td></tr>
-                                                <tr><td><b>Date of Session<b/></td><td><?= date('D, M j Y', strtotime($t['dateTimeEnd']))?></td></tr>
-                                            </tbody>
-                                        </table>
-                                        <input type="hidden" name="tutorialNo" value="<?= $t['tutorialNo']; ?>">
-                                        <label for="rating" class="control-label">Rating</label>
-                                        <div class="form-group">
-                                            <select name="rating" id="rating">
-                                                <option value="1"></option>
-                                                <option value="2"></option>
-                                                <option value="3"></option>
-                                                <option value="4"></option>
-                                                <option value="5"></option>
-                                            </select>
-                                        </div>
-                                        <label for="feedback" class="control-label">Feedback</label>
-                                        <div class="form-group">
-                                            <textarea name="feedback" class="form-control" id="feedback" placeholder="Input your feedback here" maxlength="1000" minlength="50"><?php echo $this->input->post('feedback'); ?></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" name="addfeedback" value="addfeedback" class="btn btn-success pull-right">
-                                            <i class="fa fa-check"></i> Submit
-                                        </button>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
-                                    <?php echo form_close(); ?>
-                                    </div>
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                          &times;
+                        </button>
+                        <h4 class="modal-title">Change Request for Tutorial Session</h4>
+                      </div>
+                      <div class="modal-body">
+                        <table class="table table-striped">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <b>#</b>
+                              </td>
+                              <td>
+                                <?= $t['tutorialNo']; ?>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <b>Your Tutor
+                                  <b/>
+                              </td>
+                              <td>
+                                <?= $t['uaLN'] . ', ' . $t['uaFN']; ?>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <b>Subject
+                                  <b/>
+                              </td>
+                              <td>
+                                <input type="hidden" name="<?= $t['subjectCode'] ?>">
+                                <?= $t['subjectCode']; ?>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <b>Date of Session
+                                  <b/>
+                              </td>
+                              <td>
+                                <?= date('D, M j Y', strtotime($t['dateTimeEnd'])) ?>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <!-- Tutorschedule -->
+                        <label for="tutorschedrequestedID" class="control-label">Select a new Timeblock</label>
+                        <div class="form-group">
+                          <select name="tutorschedrequestedID" class="form-control" id="timeblock">
+                            <option value="">Choose subject first!</option>
+                            <?php 
+                              foreach ($all_timeblocks as $timeblock)
+                                  {
+                                  $selected = ($timeblock['timeblockID'] == $this->input->post('timeblockID')) ? ' selected="selected"' : "";
 
-                                </div>
-                                </div>
+                                  echo '<option value="' . $timeblock['timeblockID'] . '" ' . $selected . '>' . $timeblock['timeStart'] . ' to ' . $timeblock['timeEnd'] . '</option>';
+                              }
+                              ?>
+                          </select>
+                        </div>
+                        <br>
+                        <br>
+                        <label class="control-label">Select a new date </label>
+                        <div class="form-group">
+                          <!-- Date -->
+                          <div class="input-group date">
+                            <div class="input-group-addon">
+                              <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="date" class="form-control pull-right datepicker" id="datepicker" name="tutorialdate" placeholder="Choose your preferred date">
+                          </div>
+                        </div>
+                        <br>
+                        <!-- Remarks -->
+                        <label for="remarks" class="control-label">Justification</label>
+                        <div class="form-group">
+                          <textarea name="remarks" class="form-control" id="remarks">
+                            <?php echo $this->input->post('remarks'); ?>
+                          </textarea>
+                          <span class="text-danger">
+                            <?php echo form_error('remarks'); ?>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button name="chreq" value="chreq" class="btn btn-success pull-right" type="submit">
+                          <i class="fa fa-check"></i> Submit Change Request
+                        </button>
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
 
-                                <!-- /Modal -->    
-                        </td>
-                    </tr>
-                    <?php } ?>
-                </table>
-                <div class="pull-right">
-                    <?php echo $this->pagination->create_links(); ?>                    
-                </div>                
-            </div>
+                  </div>
+                </div>
+                <!-- /Modal -->
+            </td>
+            <td class="col-lg-2">
+              <?php if($t['status'] == "Approved" && $t['dateTimeStart'] == NULL):?>
+              <button type="button" class="btn btn-info btn-xs findtb" data-toggle="modal" data-target="#chreq<?= $t['tutorialNo'] ?>"
+                value="<?= $t['subjectID']; ?>">
+                <span class="fa fa-pencil"></span>
+                Change Request
+              </button>
+              <button name="cancelrequest" value="cancelrequest" id="cancelrequest" type="submit" class="btn btn-danger" title="Cancel Request"
+                onclick="confirm('Request to cancel this session?');">
+                <span class="fa fa-trash"></span>
+              </button>
+              <?php endif; ?>
+              <?php if($t['dateTimeEnd'] != NULL): ?>
+              <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#fbmodal<?=$t['tutorialNo']?>">
+                <span class="fa fa-pencil"></span>
+                Add Feedback
+              </button>
+              <?php endif; ?>
+
+              <!-- Modal for feedback-->
+              <div id="fbmodal<?=$t['tutorialNo']?>" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                      </button>
+                      <h4 class="modal-title">Review this Tutorial Session</h4>
+                    </div>
+                    <div class="modal-body">
+                      <?php echo form_open('tutorialsession/tutee'); ?>
+                      <table class="table table-striped">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <b>#</b>
+                            </td>
+                            <td>
+                              <?= $t['tutorialNo']; ?>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <b>Your Tutor
+                                <b/>
+                            </td>
+                            <td>
+                              <?= $t['uaLN'].', '. $t['uaFN']; ?>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <b>Subject
+                                <b/>
+                            </td>
+                            <td>
+                              <?= $t['subjectCode']; ?>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <b>Date of Session
+                                <b/>
+                            </td>
+                            <td>
+                              <?= date('D, M j Y', strtotime($t['dateTimeEnd']))?>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <label for="rating" class="control-label">Rating</label>
+                      <div class="form-group">
+                        <select name="rating" id="rating">
+                          <option value="1"></option>
+                          <option value="2"></option>
+                          <option value="3"></option>
+                          <option value="4"></option>
+                          <option value="5"></option>
+                        </select>
+                      </div>
+                      <label for="feedback" class="control-label">Feedback</label>
+                      <div class="form-group">
+                        <textarea name="feedback" class="form-control" id="feedback" placeholder="Input your feedback here" maxlength="1000" minlength="50">
+                          <?php echo $this->input->post('feedback'); ?>
+                        </textarea>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" name="addfeedback" value="addfeedback" class="btn btn-success pull-right">
+                        <i class="fa fa-check"></i> Submit
+                      </button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <!-- /Modal -->
+            </td>
+          </tr>
+          <?php } ?>
+          <?php echo form_close(); ?>
+        </table>
+        <div class="pull-right">
+          <?php echo $this->pagination->create_links(); ?>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <script src="<?= site_url('resources\jquery-bar-rating\dist\jquery.barrating.min.js'); ?>"></script>
 <script type="text/javascript">
-   $(function() {
-      $('#rating').barrating({
-        theme: 'fontawesome-stars'
+  $(document).ready(function () {
+    $('#rating').barrating({
+      theme: 'fontawesome-stars'
+    });
+
+    $('#cancelrequest').submit();
+
+    var subject;
+
+    $('table').on('click', '.findtb', function (e) {
+      e.preventDefault();
+      subject = $(this).val();
+      $.get('<?php echo site_url(); ?>tutorialsession/findtimeblocks/' + $(this).val(), function (
+        data) {
+        $("#timeblock").html(data);
+        $('#loader').slideUp(200, function () {
+          $(this).remove();
+        });
       });
-   });
+    });
+  });
 </script>
