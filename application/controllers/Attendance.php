@@ -49,62 +49,81 @@ class Attendance extends CI_Controller{
                 {
                     $tutorID = $tutorData['tutorID'];
                     $term = $this->Term_model->get_current_term();
-                    $timeNow = date('h:i:s');
+                    $timeNow = date('H:i:s');
                     $schedData = $this->Tutorschedule_model->get_tutorsched($tutorID,$term['term'],$term['sy']);
+                    $dayNow = date('l');
                     if(isset($schedData['tutorScheduleID'])) //check if tutor has a schedule for the term
                     {
+                        $this->load->model('Timeblock_model');
                         $timeblock=$this->Timeblock_model->get_timeblock($schedData['timeblockID']);
-                        if($schedData['dayofweek']==(date('l')) and ($timeblock['timeStart']>=$timeNow) and ($timeblock['timeEnd']<$timeNow)) //validate attendance if within enrolled schedule
+                        $days = $schedData['dayofweek'];
+                        $starts = $timeblock['timeStart'];
+                        $ends = $timeblock['timeEnd']; 
+                        if(($days == $dayNow) and (($starts<=$timeNow) and ($ends>$timeNow))) //validate attendance if within enrolled schedule
                             {
-                                $attendanceData = $this->Attendance_model->getAttendance($schedData['tutorScheduleID'],date('m-d-Y'));
+                                $attendanceData = $this->Attendance_model->getAttendance($schedData['tutorID'],date('Y-m-d'));
                                 if(!isset($attendanceData['logID'])){
-                                    if(!$timeNow.equals($timeblock['timeStart']))
+                                    $remarks=null;
+                                    if($timeNow !== ($timeblock['timeStart']))
                                     {
-                                        $remarks ='Late';
+                                        $remarks = 'Late'; 
                                     }
                                     else
                                     {
-                                        $remarks= 'On Time';
+                                        $remarks = 'On Time';
                                     }
                                     $params = array(
                                         'tutorID'=>$tutorID,
                                         'term' => $term['term'],
                                         'schoolYr' => $term['sy'],
-                                        'timeIn' => date('m-d-Y h:i:s'),
+                                        'timeIn' => date('Y-m-d H:i:s'),
                                         'timeOut' =>null,
                                         'remarks' =>$remarks);
                                     $this->Attendance_model->add_attendance($params);
-                                    //return message '[name], you have successfully logged your attendance'
                                     echo '<script>alert("you have timed in");</script>';
+                                    $data['_view'] = 'attendance/add';
+                                    $this->load->view('attendance/add',$data);
                                 }
-                                elseif($attendanceData['timeOut'].equals(null))
+                                elseif($attendanceData['timeOut'] == null)
                                 {
-                                    $params=array('timeOut'=>date('m-d-Y h:i:s'));
+                                    $params=array('timeOut'=>date('Y-m-d H:i:s'));
                                     $this->Attendance_model->update_attendance($attendanceData['logID'],$params);
-                                    //return message '[name], you have successfully ended your shift'
+                                    echo '<script>alert("you have timed out");</script>';
+                                    $data['_view'] = 'attendance/add';
+                                    $this->load->view('attendance/add',$data);
                                 }
                                 else
                                 {
-                                    show_error('You have already finished your shift for the day');
+                                     echo '<script>alert("You have already finished your shift for the day");</script>';
+                                     $data['_view'] = 'attendance/add';
+                                    $this->load->view('attendance/add',$data);
                                 }
                             }
                         else
                         {
-                            show_error('It is not your scheduled shift');
+                            echo '<script>alert("It is not your scheduled shift");</script>';
+                            $data['_view'] = 'attendance/add';
+                            $this->load->view('attendance/add',$data);
                         }
                     }
                     else
                     {
-                        show_error('You do not have a schedule for the term');
+                        echo '<script>alert("You do not have a schedule for the term");</script>';
+                        $data['_view'] = 'attendance/add';
+                        $this->load->view('attendance/add',$data);
                     }
                 }
                 else
                 {
-                    show_error('You do not have a record as a tutor');
+                    echo '<script>alert("You do not have a record as a tutor");</script>';
+                    $data['_view'] = 'attendance/add';
+                    $this->load->view('attendance/add',$data);
                 }
             }
             else {
-                show_error('You have entered wrong username/password.');                      
+                echo '<script>alert("You have entered wrong username/password.");</script>'; 
+                $data['_view'] = 'attendance/add';
+                $this->load->view('attendance/add',$data);                  
             }
         }
         else
@@ -116,4 +135,9 @@ class Attendance extends CI_Controller{
             $this->load->view('attendance/add',$data);
         }
     }  
+
+    function view()
+    {
+
+    }
 }

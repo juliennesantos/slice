@@ -74,12 +74,12 @@
                           </form>
                     </div>
 
-                  <div class="col-lg-6">
-                    <!-- <?php echo form_open('/attendance/add/'.$user['username']); ?> -->
+                 <!--  <div class="col-lg-6">
+                     <?php echo form_open('/attendance/add/'.$user['username']); ?> 
                           <button type="submit" value="Time-out" class="btn btn-danger btn-circle btn-lg center-block" data-toggle="tooltip" title="Time-Out">
                           <i class="fa fa-sign-out"></i></button>
                         </form>
-                  </div>
+                  </div> -->
                   
                 </div>
               </div>
