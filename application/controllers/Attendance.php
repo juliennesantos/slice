@@ -10,6 +10,7 @@ class Attendance extends CI_Controller{
         $this->load->model('Term_model');
         $this->load->model('Timeblock_model');
         $this->load->model('Attendance_model');
+        $this->load->model('User_model');
         // $this->load->library('loginvalidation');
         // $this->loginvalidation->isValid();
     } 
@@ -19,6 +20,7 @@ class Attendance extends CI_Controller{
      */
     function index()
     { 
+        $term = $this->Term_model->get_current_term();
         if($_SESSION['typeID'] != 5)
         {
             ?>
@@ -28,15 +30,34 @@ class Attendance extends CI_Controller{
             </script>
             <?php
         }
-        $data['_view'] = 'attendance/add';
-        $this->load->view('attendance/add',$data);
+        $data['honorscholars'] = $this->Tutor_model->get_honor_scholars();
+        
+        // $tutattendance =  array('tutorID' => $data['honorscholars']['tutorID'],'' );
+        // foreach($data['honorscholars'] as $tutor){
+        //     $tutor['attendance'] = $this->Attendance_model->get_tutor_attendance_count($tutor['tutorID'],$term['term'],$term['sy']);
+        // }
+        // echo $tutor['attendance'];
+
+        // echo $data['honorscholars']['Attendance'];
+
+        $params['limit'] = RECORDS_PER_PAGE; 
+        $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
+        
+        $config = $this->config->item('pagination');
+        $config['base_url'] = site_url('attendance/index?');
+        $config['total_rows'] = $this->Attendance_model->get_all_attendance_count();
+        $this->pagination->initialize($config);
+        $data['attendanceList'] = $this->Attendance_model->get_list($term['term'],$term['sy'],$params);
+        $data['_view'] = 'attendance/index';
+        $this->load->view('layouts/main',$data);
     }
 
     /*
      * Add attendance
      */
     function add()
-    {   
+    {   $data['_view'] = 'attendance/add';
+        $this->load->view('attendance/add',$data);
         $this->load->library('form_validation');
 
 		$this->form_validation->set_rules('password','Password','required|max_length[255]');
@@ -89,17 +110,27 @@ class Attendance extends CI_Controller{
                                         'timeOut' =>null,
                                         'remarks' =>$remarks);
                                     $this->Attendance_model->add_attendance($params);
-                                    echo '<script>alert("you have timed in");</script>';
+                                    echo '<script>alert("you have timed in at'.date('H:i:s').'");</script>';
                                     $data['_view'] = 'attendance/add';
                                     $this->load->view('attendance/add',$data);
                                 }
                                 elseif($attendanceData['timeOut'] == null)
                                 {
-                                    $params=array('timeOut'=>date('Y-m-d H:i:s'));
-                                    $this->Attendance_model->update_attendance($attendanceData['logID'],$params);
-                                    echo '<script>alert("you have timed out");</script>';
-                                    $data['_view'] = 'attendance/add';
-                                    $this->load->view('attendance/add',$data);
+                                    $timecheck = date('H:i:s') - $ends;
+                                    if($timecheck<0)
+                                    {
+                                        echo '<script>alert("Your shift has not yet ended");</script>';
+                                        $data['_view'] = 'attendance/add';
+                                        $this->load->view('attendance/add',$data);
+                                    }
+                                    else
+                                    {
+                                        $params=array('timeOut'=>date('Y-m-d H:i:s'));
+                                        $this->Attendance_model->update_attendance($attendanceData['logID'],$params);
+                                        echo '<script>alert("you have timed out at '.date('H:i:s').'");</script>';
+                                        $data['_view'] = 'attendance/add';
+                                        $this->load->view('attendance/add',$data);
+                                    }
                                 }
                                 else
                                 {
