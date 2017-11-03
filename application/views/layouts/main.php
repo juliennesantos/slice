@@ -206,6 +206,7 @@
               <span>Dashboard</span>
             </a>
           </li>
+          <li>
             <a href="<?php echo site_url('attendance/index');?>">
               <i class="fa fa-pencil-square-o"></i>
               <span>Attendance</span>

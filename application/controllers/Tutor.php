@@ -245,11 +245,19 @@ class Tutor extends CI_Controller{
 */
   function tutorpdf()
   {
+    $this->load->model('Tutorexpertise_model');
     $data['_view'] = '' ;
-    $data['p'] = $this->Purchaseorder_model->get_purchaseorder($poID);
-    $data['biditems'] = $this->Biditem_model->biditems_by_bidID($data['p']['bidID']);
+    $data['tutors'] = $this->Tutor_model->tutors_by_term();
+    $data['term'] = $this->Term_model->get_current_term();
 
-    
-    $this->load->view('purchaseorder/POdom', $data);
+    $c = count($data['tutors']);
+
+    for($i=0; $i<$c;$i++)
+    {
+      $tutor = $data['tutors'][$i]['tutorID'];
+      $data['subjects'][$tutor] = $this->Tutorexpertise_model->tutorexpertise_by_tutorID($tutor);
+    }
+    // var_dump($data['subjects']);
+    $this->load->view('tutor/tutorpdf', $data);
   }
 }
