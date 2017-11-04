@@ -21,6 +21,7 @@ class Tutorexpertise_model extends CI_Model
     {
         $this->db->select('s.subjectCode');
         $this->db->join('subjects s', 's.subjectID = te.subjectID');
+        $this->db->order_by('subjectCode', 'asc');
         return $this->db->get_where('tutorexpertise te',array('tutorID'=>$tutorID))->result_array();
     }
     
