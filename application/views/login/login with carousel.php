@@ -36,12 +36,8 @@
   
 </head>
 <body id="loginbody">
-<div id="container">
-  <div id="one">
-    <div class="col-lg-10 col-lg-offset-1">
-      <div class="container">
-        <div class="centerer">
-
+  <div id="container">
+    <div id="one">
       <!-- Carousel -->
       <script type="text/javascript" src="../../../resources/js/jquery-1.9.1.min.js"></script>
       <script type="text/javascript" src="../../../resources/js/jssor.slider.min.js"></script>
@@ -70,8 +66,7 @@
 
               var jssor_slider1 = new $JssorSlider$('slider1_container', options);
           });
-      </script>
-      <br><br><br><br><br><br><br> <!-- Temporary; Apply div absolute center -->
+      </script> <!-- Temporary; Apply div absolute center -->
       <div id="slider1_container" style="position:relative;width:600px;height:300px;">
           <!-- Loading Screen -->
           <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">

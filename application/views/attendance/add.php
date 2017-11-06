@@ -27,6 +27,7 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
 </head>
 
 <body class="hold-transition attendance-page">
@@ -44,14 +45,11 @@
 
   <div class="container">
     <div class="attendance-box">
+    <div class="login-logo">
+      <img src="<?=site_url();?>resources/img/announcements/logo.png" width="140px" height="80px"/>
+      </div>
       <div class="attendance-box-body col-lg-12">
-          <!--div class="col-lg-4">
-            <i class="fa fa-id-badge fa-3x text-center" style="font-size:150px;"></i>
-          </div>
-          <div class="col-lg-1">
-          </div>
-          <div class="col-lg-7 border-left"-->
-            <h4 class="login-box-msg"><strong>Login for your attendance to be recorded</strong></h4>
+            <h4 class="login-box-msg" id="attendancehead"><strong>Login for your attendance to be recorded</strong></h4>
             <br/>
             <?php echo form_open('attendance/add'); ?>
               <div class="form-group has-feedback">
@@ -65,21 +63,22 @@
               </div>
               <br/>
               <div class="row">
-                <div class="col-lg-12">
-                  
-                    <div class="col-lg-6">
-                    <!-- <?php echo form_open('/attendance/add/'.$user['username']); ?> -->
-                          <button type="submit" value="Time-in" class="btn btn-primary btn-circle btn-lg center-block"data-toggle="tooltip" title="Time-In">
-                          <i class="fa fa-sign-in"></i></button
+                <div class="col-lg-12 col-xs-12 center-block">
+                    <!-- <#?php echo form_open('/attendance/add/'.$user['username']); ?> -->
+                          <button type="submit" value="Time-in" class="btn btn-attendance btn-circle btn-xl center-block"
+                          data-toggle="tooltip" title="Time-In & Time-Out">
+                          <i class="fa fa-clock-o"></i></button
                           </form>
                     </div>
 
-                  <div class="col-lg-6">
-                    <!-- <?php echo form_open('/attendance/add/'.$user['username']); ?> -->
+
+                 <!--  <div class="col-lg-6">
+                     <?php echo form_open('/attendance/add/'.$user['username']); ?> 
                           <button type="submit" value="Time-out" class="btn btn-danger btn-circle btn-lg center-block" data-toggle="tooltip" title="Time-Out">
                           <i class="fa fa-sign-out"></i></button>
                         </form>
-                  </div>
+                  </div> -->
+
                   
                 </div>
               </div>

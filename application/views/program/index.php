@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="box-body">
-                <table class="table table-striped">
+                <table class="table table-striped datatable">
                     <tr>
 						<th>ProgramID</th>
 						<th>SchoolID</th>

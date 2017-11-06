@@ -54,12 +54,28 @@ class Tutorschedule_model extends CI_Model
      */
     function get_all_tutorschedules($params = array())
     {
-        $this->db->order_by('tutorScheduleID', 'desc');
+        $this->db->order_by('tutorScheduleID', 'asc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);
         }
         return $this->db->get('tutorschedules')->result_array();
+    }
+
+    /*
+     * Get term tutorschedules
+     */
+    function get_term_tutorschedules($params = array())
+    {
+        $this->db->join('tutors t', 't.tutorID = ts.tutorID', 'left');
+        $this->db->join('users u', 'u.userID = t.userID', 'left');       
+
+        $this->db->order_by('tutorScheduleID', 'asc');
+        if(isset($params) && !empty($params))
+        {
+            $this->db->limit($params['limit'], $params['offset']);
+        }
+        return $this->db->get('tutorschedules ts')->result_array();
     }
         
     /*
@@ -79,12 +95,5 @@ class Tutorschedule_model extends CI_Model
         $this->db->where('tutorScheduleID',$tutorScheduleID);
         return $this->db->update('tutorschedules',$params);
     }
-    
-    /*
-     * function to delete tutorschedule
-     */
-    function delete_tutorschedule($tutorScheduleID)
-    {
-        return $this->db->delete('tutorschedules',array('tutorScheduleID'=>$tutorScheduleID));
-    }
+
 }

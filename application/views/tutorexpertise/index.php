@@ -4,7 +4,7 @@
         <!-- Default panel contents -->
         <div class="panel-heading"><h3>Tutor Expertise</h3></div>
         <div class="panel-body">
-            <table class="table table-striped table-responsive">
+            <table class="table table-striped table-responsive datatable">
                 <thead class="panel-heading">
                     <tr>
                         <th></th>

@@ -12,7 +12,7 @@ class Login_model extends CI_Model
      */
     function get_user($params = array())
     {
-        return $this->db->get_where('users',array('username'=>$params['username'], 'password'=>$params['password']))->row_array();
+        return $this->db->get_where('users',array('username'=>$params['username']))->row_array();
     }
 
 }

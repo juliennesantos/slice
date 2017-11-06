@@ -14,6 +14,15 @@ class Tutorschedule extends CI_Controller{
      */
     function index()
     {
+        if($_SESSION['typeID'] < 4)
+        {
+            ?>
+            <script type="text/javascript">
+            alert("You are not permitted to access this page.");
+            window.location.href = "<?php echo site_url(); ?>";
+            </script>
+            <?php
+        }
         $params['limit'] = RECORDS_PER_PAGE; 
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
         
@@ -22,7 +31,7 @@ class Tutorschedule extends CI_Controller{
         $config['total_rows'] = $this->Tutorschedule_model->get_all_tutorschedules_count();
         $this->pagination->initialize($config);
 
-        $data['tutorschedules'] = $this->Tutorschedule_model->get_all_tutorschedules($params);
+        $data['tutorschedules'] = $this->Tutorschedule_model->get_term_tutorschedules($params);
         
         $data['_view'] = 'tutorschedule/index';
         $this->load->view('layouts/main',$data);

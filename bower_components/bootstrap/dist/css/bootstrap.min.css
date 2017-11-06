@@ -1379,8 +1379,12 @@ img {
 
 .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
     display: block;
-    max-width: 100%;
-    height: auto
+    width:100%;
+    width:-webkit-fill-available;
+    width: -moz-available;  
+    height:690px;
+    height: -webkit-fill-available;
+    height: -moz-available;
 }
 
 .img-rounded {
@@ -3582,133 +3586,45 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 .btn-login1 {
     color: #fff;
-    background-color: #C6F26E;
-    border-color: #C6F26E;
+    background-color: #50EFA6;
+    border-color: #50EFA6;
 }
 
 .btn-login1.focus, .btn-login1:focus {
     color: #fff;
-    background-color: #aed660;
-    border-color: #aed660;
+    background-color: rgb(24, 253, 146);
+    border-color: rgb(53, 153, 106);;
 }
 
 .btn-login1:hover {
     color: #fff;
-    background-color: #aed660;
-    border-color: #aed660;
+    background-color: rgb(53, 153, 106);;
+    border-color: rgb(53, 153, 106);;
 }
 
 .btn-login1.active, .btn-login1:active, .open>.dropdown-toggle.btn-login1 {
     color: #fff;
-    background-color: #aed660;
-    border-color: #aed660;
+    background-color: #50EFA6;
+    border-color: #50EFA6;
 }
 
 .btn-login1.active.focus, .btn-login1.active:focus, .btn-login1.active:hover, .btn-login1:active.focus, .btn-login1:active:focus, .btn-login1:active:hover, .open>.dropdown-toggle.btn-login1.focus, .open>.dropdown-toggle.btn-login1:focus, .open>.dropdown-toggle.btn-login1:hover {
     color: #fff;
-    background-color: #aed660;
-    border-color: #aed660;
+    background-color: #50EFA6;
+    border-color: #50EFA6;
 }
 
 .btn-login1.active, .btn-login1:active, .open>.dropdown-toggle.btn-login1 {
-    background-image: none;
-}
-
-.btn-login1.disabled.focus, .btn-login1.disabled:focus, .btn-login1.disabled:hover, .btn-login1[disabled].focus, .btn-login1[disabled]:focus, .btn-login1[disabled]:hover, fieldset[disabled] .btn-login1.focus, fieldset[disabled] .btn-login1:focus, fieldset[disabled] .btn-login1:hover {
-    background-color: #C6F26E;
-    border-color: #C6F26E;
-}
-
-.btn-login1 .badge {
-    color: #C6F26E;
-    background-color: #fff;
-}
-
-.btn-login2 {
-    color: #fff;
-    background-color: #B5E94C;
-    border-color: #B5E94C;
-}
-
-.btn-login2.focus, .btn-login2:focus {
-    color: #fff;
-    background-color: #a2d142;
-    border-color: #a2d142;
-}
-
-.btn-login2:hover {
-    color: #fff;
-    background-color: #a2d142;
-    border-color: #a2d142;
-}
-
-.btn-login2.active, .btn-login2:active, .open>.dropdown-toggle.btn-login2 {
-    color: #fff;
-    background-color: #a2d142;
-    border-color: #a2d142;
-}
-
-.btn-login2.active.focus, .btn-login2.active:focus, .btn-login2.active:hover, .btn-login2:active.focus, .btn-login2:active:focus, .btn-login2:active:hover, .open>.dropdown-toggle.btn-login2.focus, .open>.dropdown-toggle.btn-login2:focus, .open>.dropdown-toggle.btn-login2:hover {
-    color: #fff;
-    background-color: #a2d142;
-    border-color: #a2d142;
-}
-
-.btn-login2.active, .btn-login2:active, .open>.dropdown-toggle.btn-login2 {
-    background-image: none;
-}
-
-.btn-login2.disabled.focus, .btn-login2.disabled:focus, .btn-login2.disabled:hover, .btn-login2[disabled].focus, .btn-login2[disabled]:focus, .btn-login2[disabled]:hover, fieldset[disabled] .btn-login2.focus, fieldset[disabled] .btn-login2:focus, fieldset[disabled] .btn-login2:hover {
-    background-color: #B5E94C;
-    border-color: #B5E94C;
-}
-
-.btn-login2 .badge {
-    color: #B5E94C;
-    background-color: #fff;
-}
-
-.btn-login3 {
-    color: #fff;
-    background-color: #9AD327;
-    border-color: #9AD327;
-}
-
-.btn-login3.focus, .btn-login3:focus {
-    color: #fff;
-    background-color: #87ba21;
-    border-color: #87ba21;
-}
-
-.btn-login3:hover {
-    color: #fff;
-    background-color: #87ba21;
-    border-color: #87ba21;
-}
-
-.btn-login3.active, .btn-login3:active, .open>.dropdown-toggle.btn-login3 {
-    color: #fff;
-    background-color: #87ba21;
-    border-color: #87ba21;
-}
-
-.btn-login3.active.focus, .btn-login3.active:focus, .btn-login3.active:hover, .btn-login3:active.focus, .btn-login3:active:focus, .btn-login3:active:hover, .open>.dropdown-toggle.btn-login3.focus, .open>.dropdown-toggle.btn-login3:focus, .open>.dropdown-toggle.btn-login3:hover {
-    color: #fff;
-    background-color: #87ba21;
-    border-color: #87ba21;
-}
-
-.btn-login3.active, .btn-login3:active, .open>.dropdown-toggle.btn-login3 {
     background-image: none
 }
 
-.btn-login3.disabled.focus, .btn-login3.disabled:focus, .btn-login3.disabled:hover, .btn-login3[disabled].focus, .btn-login3[disabled]:focus, .btn-login3[disabled]:hover, fieldset[disabled] .btn-login3.focus, fieldset[disabled] .btn-login3:focus, fieldset[disabled] .btn-login3:hover {
-    background-color: #B5E94C;
-    border-color: #B5E94C;
+.btn-login1.disabled.focus, .btn-login1.disabled:focus, .btn-login1.disabled:hover, .btn-login1[disabled].focus, .btn-login1[disabled]:focus, .btn-login1[disabled]:hover, fieldset[disabled] .btn-login1.focus, fieldset[disabled] .btn-login1:focus, fieldset[disabled] .btn-login1:hover {
+    background-color: #50EFA6;
+    border-color: #50EFA6;
 }
 
-.btn-login3 .badge {
-    color: #B5E94C;
+.btn-login1 .badge {
+    color: #50EFA6;
     background-color: #fff;
 }
 
@@ -5821,7 +5737,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:focus, a.list-g
 }
 
 .panel-body {
-    padding: 15px
+    padding: 15px;
 }
 
 .panel-heading {
@@ -6813,10 +6729,10 @@ button.close {
     margin: 1px;
     text-indent: -999px;
     cursor: pointer;
-    background-color: #000\9;
+    background-color: #0009;
     background-color: rgba(0, 0, 0, 0);
     border: 1px solid #fff;
-    border-radius: 10px
+    border-radius: 10px;
 }
 
 .carousel-indicators .active {
@@ -6829,14 +6745,16 @@ button.close {
 .carousel-caption {
     position: absolute;
     right: 15%;
-    bottom: 20px;
+    bottom: 20%;
     left: 15%;
     z-index: 10;
     padding-top: 20px;
     padding-bottom: 20px;
     color: #fff;
-    text-align: center;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, .6)
+    text-align: justify;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+    font-family: 'Julius Sans One', sans-serif;
+    
 }
 
 .carousel-caption .btn {
@@ -6858,7 +6776,7 @@ button.close {
     }
     .carousel-caption {
         right: 20%;
-        left: 20%;
+        left: 5%;
         padding-bottom: 30px
     }
     .carousel-indicators {

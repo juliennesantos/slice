@@ -29,7 +29,7 @@ $(document).ready(function() {
 </script>
 <div class="row">
 	<div class="col-md-12">
-		<div class="box box-info">
+		<div class="box">
 			<div class="box-header with-border">
 				<h3 class="box-title">Request Tutorial Session</h3>
 			</div>
@@ -106,8 +106,8 @@ $(document).ready(function() {
 				</div>
 			</div>
 			<div class="box-footer">
-				<button type="submit" class="btn btn-success">
-            		<i class="fa fa-check"></i> Save
+				<button type="submit" class="btn btn-success center-block">
+            		<i class="fa fa-check"></i>&emsp; Request Now
             	</button>
 			</div>
 			<?php echo form_close(); ?>
