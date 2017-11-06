@@ -34,6 +34,17 @@ class Tutor_model extends CI_Model
     $this->db->from('tutors');
     return $this->db->count_all_results();
   }
+  /*
+  * Get all active tutors count
+  */
+  function count_active_tutors($term)
+  {
+    $this->db->from('tutors t');
+    $this->db->join('tutorschedules ts', 'tutorID');
+    $this->db->where('ts.term', $term['term']);
+    $this->db->where('ts.schoolYr', $term['sy']);
+    return $this->db->count_all_results();
+  }
   
   /*
   * Get all tutors

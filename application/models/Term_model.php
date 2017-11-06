@@ -24,4 +24,26 @@ class Term_model extends CI_Model
     	}
     	return array('term'=>$term,'sy'=>$sy);
     }
+
+    function term_dissected($term)
+    {
+		$month = date('m');
+		$curr_yr = date('y');
+		
+    	if($term = 1)
+    	{
+			$start = date('Y-m-d H:i:s', strtotime($curr_yr.'-9-01 00:00:00'));
+			$end = date('Y-m-d H:i:s', strtotime($curr_yr.'-12-31 00:00:00'));
+    	}
+    	elseif ($term = 2) {
+			$start = date('Y-m-d H:i:s', strtotime($curr_yr . '-1-01 00:00:00'));
+			$end = date('Y-m-d H:i:s', strtotime($curr_yr . '-4-28 00:00:00'));
+    	}
+    	elseif ($term = 3) {
+			$start = date('Y-m-d H:i:s', strtotime($curr_yr . '-5-01 00:00:00'));
+			$end = date('Y-m-d H:i:s', strtotime($curr_yr . '-8-31 00:00:00'));
+		}
+		
+    	return array('start'=>$start, 'end'=>$end);
+    }
 }

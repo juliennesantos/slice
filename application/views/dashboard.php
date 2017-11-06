@@ -173,18 +173,20 @@
 
 
     <!--admin tutsess box-->
-<?php if($_SESSION['typeID'] == 3 || $_SESSION['typeID'] == 5): ?>
+<?php if($_SESSION['typeID'] == 3 || $_SESSION['typeID'] == 5 || $_SESSION['typeID'] == 4): ?>
     <div class="row">
         <div class="col-lg-4 col-xs-12 col-sm-6">
+        <a href="<?=site_url('tutors/index')?>">
             <div class="info-box">
                 <span class="info-box-icon bg-boxblend"><i class="fa fa-users"></i></span>
 
                 <div class="info-box-content">
-                <span class="info-box-text">Number of Tutors</span>
-                <span class="info-box-number">100000</span>
+                <span class="info-box-text">Number of Active Tutors</span>
+                <span class="info-box-number"><?=$no_of_tutors?></span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
+        </a>
         </div>
 
         <div class="col-lg-4 col-xs-12 col-sm-6">
@@ -193,7 +195,7 @@
 
                 <div class="info-box-content">
                 <span class="info-box-text">Number of Tutees</span>
-                <span class="info-box-number">10000</span>
+                <span class="info-box-number"><?= $no_of_tutees ?></span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -205,7 +207,7 @@
 
                 <div class="info-box-content">
                 <span class="info-box-text">Subjects Taught</span>
-                <span class="info-box-number">1,410</span>
+                <span class="info-box-number"><?=$subjs_taught?></span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -220,7 +222,7 @@
                 <div class="info-box-content">
                 <span class="info-box-text">Subjects Requested to</span>
                 <span class="info-box-text"> be Tutored</span>
-                <span class="info-box-number">100000</span>
+                <span class="info-box-number"><?= $subjs_req ?></span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -232,7 +234,7 @@
 
                 <div class="info-box-content">
                 <span class="info-box-text">Sessions for Today</span>
-                <span class="info-box-number">10000</span>
+                <span class="info-box-number"><?= $sess_today ?></span>
                 </div>
                 <!-- /.info-box-content -->
             </div>

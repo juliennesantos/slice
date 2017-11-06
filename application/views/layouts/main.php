@@ -315,6 +315,14 @@
             </ul>
           </li>
           <?php endif;?>
+          <?php if($_SESSION['typeID'] == 4):?>
+          <li>
+            <a href="<?=site_url('tutorschedule/index')?>">
+              <i class="fa fa-calendar"></i>
+              <span>Tutors</span>
+            </a>
+          </li>
+          <?php endif;?>
           <?php if($_SESSION['typeID'] == 0):?>
           <li class="header">UNNECESSARY OR AUTOMATED</li>
           <li>
