@@ -14,7 +14,7 @@ class Tutorschedule extends CI_Controller{
      */
     function index()
     {
-        if($_SESSION['typeID'] != 5)
+        if($_SESSION['typeID'] < 4)
         {
             ?>
             <script type="text/javascript">
@@ -31,7 +31,7 @@ class Tutorschedule extends CI_Controller{
         $config['total_rows'] = $this->Tutorschedule_model->get_all_tutorschedules_count();
         $this->pagination->initialize($config);
 
-        $data['tutorschedules'] = $this->Tutorschedule_model->get_all_tutorschedules($params);
+        $data['tutorschedules'] = $this->Tutorschedule_model->get_term_tutorschedules($params);
         
         $data['_view'] = 'tutorschedule/index';
         $this->load->view('layouts/main',$data);

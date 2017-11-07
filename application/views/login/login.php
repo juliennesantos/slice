@@ -115,7 +115,7 @@ $(document).ready(function() {
       <img src="<?=site_url();?>resources/img/announcements/logo.png" width="140px" height="80px"/>
       </div>
       <div class="login-box-body">
-        <?php echo form_open('login/validate'); ?>
+        <?php echo form_open('login/index'); ?>
           <h5 class="text-danger"><?=$errormsg?></h5>
           <br/>
 

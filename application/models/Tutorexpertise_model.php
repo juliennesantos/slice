@@ -14,6 +14,16 @@ class Tutorexpertise_model extends CI_Model
     {
         return $this->db->get_where('tutorexpertise',array('expertiseID'=>$expertiseID))->row_array();
     }
+    /*
+     * Get tutorexpertise by tutorID
+     */
+    function tutorexpertise_by_tutorID($tutorID)
+    {
+        $this->db->select('s.subjectCode');
+        $this->db->join('subjects s', 's.subjectID = te.subjectID');
+        $this->db->order_by('subjectCode', 'asc');
+        return $this->db->get_where('tutorexpertise te',array('tutorID'=>$tutorID))->result_array();
+    }
     
     /*
      * Get all tutorexpertise count

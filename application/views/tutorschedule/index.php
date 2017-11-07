@@ -9,22 +9,27 @@
             </div>
             <div class="box-body">
                 <table class="table table-striped datatable">
+                    <thead>
                     <tr>
-						<th>TutorScheduleID</th>
-						<th>TutorID</th>
+						<th>#</th>
+						<th>Last Name</th>
+						<th>First Name</th>
 						<th>TimeblockID</th>
 						<th>Term</th>
 						<th>SchoolYear</th>
 						<th>DateAdded</th>
 						<th>Actions</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <?php foreach($tutorschedules as $t){ ?>
                     <tr>
 						<td><?php echo $t['tutorScheduleID']; ?></td>
-						<td><?php echo $t['tutorID']; ?></td>
+						<td><?php echo $t['lastName']; ?></td>
+						<td><?php echo $t['firstName']; ?></td>
 						<td><?php echo $t['timeblockID']; ?></td>
 						<td><?php echo $t['term']; ?></td>
-						<td><?php echo $t['schoolYear']; ?></td>
+						<td><?php echo $t['schoolYr']; ?></td>
 						<td><?php echo $t['dateAdded']; ?></td>
 						<td>
                             <a href="<?php echo site_url('tutorschedule/edit/'.$t['tutorScheduleID']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
@@ -32,6 +37,7 @@
                         </td>
                     </tr>
                     <?php } ?>
+                    </tbody>
                 </table>
                 <div class="pull-right">
                     <?php echo $this->pagination->create_links(); ?>                    

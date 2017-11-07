@@ -206,6 +206,7 @@
               <span>Dashboard</span>
             </a>
           </li>
+          <li>
             <a href="<?php echo site_url('attendance/index');?>">
               <i class="fa fa-pencil-square-o"></i>
               <span>Attendance</span>
@@ -312,6 +313,14 @@
                   <i class="fa fa-list-ul"></i> Listing</a>
               </li>
             </ul>
+          </li>
+          <?php endif;?>
+          <?php if($_SESSION['typeID'] == 4):?>
+          <li>
+            <a href="<?=site_url('tutorschedule/index')?>">
+              <i class="fa fa-calendar"></i>
+              <span>Tutors</span>
+            </a>
           </li>
           <?php endif;?>
           <?php if($_SESSION['typeID'] == 0):?>

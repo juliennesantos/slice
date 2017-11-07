@@ -102,6 +102,39 @@ class Tutorialsession_model extends CI_Model
         $this->db->from('tutorialsessions');
         return $this->db->count_all_results();
     }
+    
+    /*
+     * Get all tutorialsessions count
+     */
+    function count_term_sessions($start, $end)
+    {
+        $this->db->from('tutorialsessions ts');
+        $this->db->where('ts.dateTimeEnd >=', $start);
+        $this->db->where('ts.dateTimeEnd <=', $end);
+        return $this->db->count_all_results();
+    }
+    
+    /*
+     * Get all requested sessions count
+     */
+    function count_req_sessions($start, $end)
+    {
+        $this->db->from('tutorialsessions ts');
+        $this->db->where('ts.dateTimeRequested >=', $start);
+        $this->db->where('ts.dateTimeRequested <=', $end);
+        return $this->db->count_all_results();
+    }
+    
+    /*
+     * count sessions today
+     */
+    function count_sessions_today($start, $end)
+    {
+        $this->db->from('tutorialsessions ts');
+        $this->db->where('ts.dateTimeRequested >=', $start);
+        $this->db->where('ts.dateTimeRequested <=', $end);
+        return $this->db->count_all_results();
+    }
         
     /*
      * Get all tutorialsessions

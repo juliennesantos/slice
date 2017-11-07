@@ -23,6 +23,18 @@ class Tutee_model extends CI_Model
         $this->db->from('tutees');
         return $this->db->count_all_results();
     }
+    
+    /*
+     * Get all tutees for term
+     */
+    function count_active_tutees($start, $end)
+    {
+        $this->db->from('tutees t');
+        $this->db->join('tutorialsessions ts', 'tuteeID');
+        $this->db->where('ts.dateTimeEnd >=', $start);
+        $this->db->where('ts.dateTimeEnd <=', $end);
+        return $this->db->count_all_results();
+    }
         
     /*
      * Get all tutees
