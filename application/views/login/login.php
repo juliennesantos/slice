@@ -159,14 +159,72 @@ $(document).ready(function() {
           <div class="row">
             <table class="borderspace">
               <tr>
-                <td>SLICE 2017</td> 
-                <td>Privacy Policy</td>
-                <td>Terms of Use</td>
+                <td>SLICE 2017</td>
+                <td><a href="#" data-toggle="modal" data-target="#ppModal">Privacy Policy</a></td>
+                <td><a href="#" data-toggle="modal" data-target="#tcModal">Terms of Use</a></td>
                 <td>About Team</td>
               </tr>
             </table>
           </div>
+          <br>
+          <br>
+          <div class="row">
+            <table class="borderspace">
+              <tr>
+                <td><small>*By using this website, you agree to the terms and conditions above.</small></td>
+              </tr>
+            </table>
+          </div>
         </div>
+
+        <!-- Privacy Policy Modal -->
+        <div id="ppModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Privacy Policy</h4>
+              </div>
+              <div class="modal-body">
+                <p>
+                  <?php
+                    include 'privacypolicy.php';
+                   ?>
+                </p>
+              </div>
+              <div class="modal-footer" style="text-align: center;">
+                <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Terms & Conditions Modal -->
+        <div id="tcModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Terms and Conditions</h4>
+              </div>
+              <div class="modal-body">
+                <p>
+                  <?php
+                    include 'termsandconditions.php';
+                   ?>
+                </p>
+              </div>
+              <div class="modal-footer" style="text-align: center;">
+                <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </footer>
   </div>
 </div>
