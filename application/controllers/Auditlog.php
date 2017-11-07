@@ -23,10 +23,8 @@ class Auditlog extends CI_Controller{
             </script>
             <?php
         }
+        $this->load->library('encryption');
         $data['auditlogs'] = $this->Auditlog_model->get_joinedaudit();
-        foreach ($data['auditlogs'] as $audit) {
-            $date['auditdecrypt'] = $this->audit->view($audit['username'],$audit['lastName'],$audit['firstName'],$audit['logtype'],$audit['description'],$audit['timeStamp']);
-        }
         
         $data['_view'] = 'auditlog/index';
         $this->load->view('layouts/main',$data);

@@ -7,7 +7,8 @@ class Login extends CI_Controller
     $this->load->model('Login_model');
     $this->load->library('form_validation');
     $this->load->library('encryption');
-
+    $this->load->library('audit');
+    $this->load->model('Auditlog_model');
 
   }
 
@@ -43,6 +44,9 @@ class Login extends CI_Controller
 
       $data = $this->Login_model->get_user($params);
       if (password_verify($params['password'], $data['password']) == FALSE) {
+        //add audit to system
+        $audit_param = $this->audit->add($data['userID'],'Login','User has tried to login.');
+        $this->Auditlog_model->add_auditlog($audit_param);
         redirect('login/index/1');
       } else {
         if (isset($data['userID']) and isset($data['typeID']) && password_verify($params['password'], $data['password']) == TRUE)
@@ -51,6 +55,8 @@ class Login extends CI_Controller
           $_SESSION['typeID'] = $data['typeID'];
           $_SESSION['ln'] = $data['lastName'];
           $_SESSION['fn'] = $data['firstName'];
+          $audit_param = $this->audit->add($_SESSION['userID'],'Login','User has successfully logged in.');
+          $this->Auditlog_model->add_auditlog($audit_param);
           //if remember me is checked
           if ($this->input->post('remember_me'))
             {
@@ -165,6 +171,8 @@ class Login extends CI_Controller
 
   function logout()
   {
+    $audit_param = $this->audit->add($_SESSION['userID'],'Logout','User has successfully logged out.');
+    $this->Auditlog_model->add_auditlog($audit_param);
     session_destroy();
 
     redirect(site_url() . 'login/index');

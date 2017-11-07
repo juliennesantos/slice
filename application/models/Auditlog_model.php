@@ -12,6 +12,7 @@ class Auditlog_model extends CI_Model
     {
         $this->db->from('auditlogs a');
         $this->db->join('users u', 'u.userID = a.userID');
+        $this->db->order_by('timeStamp','desc');
         return $this->db->get()->result_array();
     }
     /*

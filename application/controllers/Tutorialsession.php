@@ -8,6 +8,8 @@ class Tutorialsession extends CI_Controller{
     $this->load->model('Tutorialchecklist_model');
     $this->load->library('loginvalidation');
     $this->loginvalidation->isValid();
+    $this->load->library('audit');
+    $this->load->model('Auditlog_model');
   } 
   
   /*
@@ -146,7 +148,9 @@ class Tutorialsession extends CI_Controller{
       $params = array(
         'status' => 'Cancel Request',
       );
-      
+      //audit cancellation of request
+      $audit_param = $this->audit->add($_SESSION['userID'],'Tutorial Request','User has cancelled tutorial session.');
+      $this->Auditlog_model->add_auditlog($audit_param);
       $tutorialsession_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo, $params) ? redirect('tutorialsession/tutee/1') : redirect('tutorialsession/tutee/2');
     }
     
@@ -237,7 +241,11 @@ class Tutorialsession extends CI_Controller{
       );
       
       $tutorialsession_id = $this->Tutorialsession_model->add_tutorialsession($params);
-      
+      //audit tutorial request
+      $audit_param = $this->audit->add($_SESSION['userID'],
+        'Tutorial Request','User has requested a tutorial session.');
+      $this->Auditlog_model->add_auditlog($audit_param);
+
       $this->load->model('User_model');            
       $user = $this->User_model->get_user($_SESSION['userID']);
       
@@ -262,6 +270,9 @@ class Tutorialsession extends CI_Controller{
         $this->email->message('<b>Greetings!</b>' . '<br/><br/>' . 'You have successfully requested for a new tutorial schedule!' . '<br/><br/>'. 'Your request will be processed by the SLU Coordinator and you will me notified of your new tutor, or any concerns, in 1-2 business days.<br/>' .'<br/><br/><br/>All the best, <br/><br/> <b>The SLICe Team</b><br/>Student Learning Center<br/> <i>De La Salle - College of Saint Benilde<br/> 2544 Taft Avenue, Malate, Manila</i>');
         $email = $this->email->send() ? redirect('tutorialsession/tutee/1') : redirect('tutorialsession/approvalview/3');
         //var_dump($user['emailAddress'], $email);
+      $audit_param = $this->audit->add($_SESSION['userID'],
+        'Tutorial Request Email','Automated email has been sent for the tutorial session requested.');
+      $this->Auditlog_model->add_auditlog($audit_param);
       }
       else {
         redirect('tutorialsession/index/2');
@@ -726,7 +737,8 @@ class Tutorialsession extends CI_Controller{
           );
           // var_dump($params);
           $tutchecklist_id = $this->Tutorialchecklist_model->update_tutorialchecklist($id, $params);
-          
+          $audit_param = $this->audit->add($_SESSION['userID'],' Update Milestones','User has successfully updated a milestone.');
+          $this->Auditlog_model->add_auditlog($audit_param);
         }
       }
       
@@ -762,6 +774,8 @@ class Tutorialsession extends CI_Controller{
             );
             // var_dump($params);
             $tutchecklist_id = $this->Tutorialchecklist_model->add_tutorialchecklist($params);
+            $audit_param = $this->audit->add($_SESSION['userID'],'Added a Milestones','User has successfully added a milestone.');
+          $this->Auditlog_model->add_auditlog($audit_param);
           }
         }
       }

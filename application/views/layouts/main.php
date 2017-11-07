@@ -128,7 +128,7 @@
 							</ul>
                         </li> -->
           <?php endif; ?>
-          <?php if($_SESSION['typeID'] ==  2):?>
+          <?php if($_SESSION['typeID'] == 2):?>
           <li class="header">TUTOR NAVIGATION</li>
           <li>
             <a href="<?php echo site_url();?>">
@@ -140,6 +140,9 @@
             <a href="#">
               <i class="fa fa-pencil-square-o"></i>
               <span>Attendance</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-down pull-right"></i>
+                </span>
             </a>
             <ul class="treeview-menu">
               <li class="active">
@@ -156,6 +159,9 @@
             <a href="#">
               <i class="fa fa-paper-plane"></i>
               <span>Feedback(View)</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-down pull-right"></i>
+                </span>
             </a>
             <ul class="treeview-menu">
               <li class="active">
@@ -183,6 +189,9 @@
             <a href="#">
               <i class="fa fa-lightbulb-o"></i>
               <span>Tutor Expertise(Edit)</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-down pull-right"></i>
+                </span>
             </a>
             <ul class="treeview-menu">
               <li class="active">
@@ -198,10 +207,11 @@
           <?php endif; ?>
           <?php if($_SESSION['typeID'] == 5):?>
           <li class="header">COORDINATOR NAVIGATION</li>
-          <li>
+          <li class="treeview">
             <a href="<?php echo site_url();?>">
               <i class="fa fa-desktop"></i>
               <span>Dashboard</span>
+              
             </a>
           </li>
           <li>
@@ -216,10 +226,13 @@
               <span>Tutorial Sessions (Approval)</span>
             </a>
           </li>
-          <li>
+          <li class="treeview">
             <a href="#">
               <i class="fa fa-clipboard"></i>
               <span>Auditlog</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-down pull-right"></i>
+                </span>
             </a>
             <ul class="treeview-menu">
               <li class="active">
@@ -236,6 +249,9 @@
             <a href="#">
               <i class="fa fa-user-circle"></i>
               <span>Tutor(approval)</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-down pull-right"></i>
+                </span>
             </a>
             <ul class="treeview-menu">
               <li class="active">
@@ -252,6 +268,9 @@
             <a href="#">
               <i class="fa fa-info"></i>
               <span>Tutor Status</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-down pull-right"></i>
+                </span>
             </a>
             <ul class="treeview-menu">
               <li class="active">
@@ -268,6 +287,9 @@
             <a href="#">
               <i class="fa fa-id-card-o"></i>
               <span>Usertype</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-down pull-right"></i>
+                </span>
             </a>
             <ul class="treeview-menu">
               <li class="active">
@@ -284,6 +306,9 @@
             <a href="#">
               <i class="fa fa-clock-o"></i>
               <span>Timeblock(CRUD)</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-down pull-right"></i>
+                </span>
             </a>
             <ul class="treeview-menu">
               <li class="active">
@@ -300,6 +325,9 @@
             <a href="#">
               <i class="fa fa-book"></i>
               <span>Subject(CRUD)</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-down pull-right"></i>
+                </span>
             </a>
             <ul class="treeview-menu">
               <li class="active">
@@ -314,6 +342,13 @@
           </li>
           <?php endif;?>
           <?php if($_SESSION['typeID'] == 4):?>
+          <li class="treeview">
+            <a href="<?php echo site_url();?>">
+              <i class="fa fa-desktop"></i>
+              <span>Dashboard</span>
+              
+            </a>
+          </li>
           <li>
             <a href="<?=site_url('tutorschedule/index')?>">
               <i class="fa fa-calendar"></i>
@@ -571,14 +606,14 @@
 
     $('.datatable').DataTable();
 
-    $('.treeview').hover(function () {
+    $('.treeview')(function () {
       var _this = $(this);
       if (!(_this.hasClass('active'))) {
         _this.addClass('active');
-        _this.children().find('treeview-menu').addClass('menu-open');
+        _this.children().find('treeview').addClass('menu-open');
       } else {
         _this.removeClass('active');
-        _this.children().find('treeview-menu').removeClass('menu-open');
+        _this.children().find('treeview').removeClass('menu-open');
       }
     });
   </script>
