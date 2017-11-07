@@ -80,7 +80,7 @@
 
                 <div class="info-box-content">
                 <span class="info-box-text">Hours Rendered</span>
-                <span class="info-box-number"><!-- <?php echo $hours_rendered;?>hrs --></span>
+                <span class="info-box-number"> <?php echo $hours_rendered;?>hrs</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -92,7 +92,7 @@
 
                 <div class="info-box-content">
                 <span class="info-box-text">Hours Left</span>
-                <span class="info-box-number">00:00:00</span>
+                <span class="info-box-number"><?php echo 9-$hours_rendered;?> hrs</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>

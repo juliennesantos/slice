@@ -5,7 +5,8 @@ class Login extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('Login_model');
-        
+        $this->load->library('audit');
+        $this->load->model('Auditlog_model');
     }
     
     function index($msg = NULL)
@@ -44,7 +45,7 @@ class Login extends CI_Controller{
         $this->form_validation->set_rules('password','Password','required|max_length[255]');
         $this->form_validation->set_rules('username','Username','required|max_length[50]');
         
-
+        
         try{
             if($this->form_validation->run())     
             {   
@@ -60,6 +61,9 @@ class Login extends CI_Controller{
                     $_SESSION['typeID'] = $data['typeID'];
                     $_SESSION['ln'] = $data['lastName'];
                     $_SESSION['fn'] = $data['firstName'];
+
+                    $audit_param = $this->audit->add($_SESSION['userID'],'login','successful login');
+                    $this->Auditlog_model->add_auditlog($audit_param);
                     //if remember me is checked
                     if($this->input->post('remember_me'))
                     {
@@ -92,6 +96,10 @@ class Login extends CI_Controller{
                     redirect('dashboard/index');
                 }
                 else {
+                    $idparam = $this->input->post('username');
+                    $log_data = $this->Login_model->get_userID($idparam);
+                    $audit_param = $this->audit->add($log_data['userID'],'login','failed login');
+                    $this->Auditlog_model->add_auditlog($audit_param);
                     redirect('login/index/1');
                 }
             }
@@ -109,6 +117,8 @@ class Login extends CI_Controller{
 
     function logout()
     {
+        $audit_param = $this->audit->add($_SESSION['userID'],'logout','user has logout');
+                    $this->Auditlog_model->add_auditlog($audit_param);
         session_destroy();
 
         redirect(site_url().'login/index');
