@@ -35,6 +35,7 @@ class Dashboard extends CI_Controller{
         $data['admin_pend'] = $this->Tutorialsession_model->count_adminpending();
         $data['admin_feedback'] = $this->Tutorialsession_model->count_adminfeedback();
 
+
         //current term
         $data['term'] = $this->Term_model->get_current_term();
         $data['term_dissected'] = $this->Term_model->term_dissected($data['term']['term']);
@@ -49,15 +50,16 @@ class Dashboard extends CI_Controller{
         // # sessions today
         $data['sess_today'] = $this->Tutorialsession_model->count_sessions_today(date('Y-m-d 00:00:00'), date('Y-m-d 23:59:00'));
         
-        $hours_rendered=0;
+      
+
         //get rendered hours of tutors
         if($_SESSION['typeID']==2)
         {
             $term = $this->Term_model->get_current_term();
             $tutor = $this->Tutor_model->get_tutorID($_SESSION['userID']);
-            $hours_rendered = $this->Attendance_model->get_tutor_attendance_count($tutor['tutorID'],$term['term'],$term['sy']);
+            $data['hours_rendered'] = $this->Attendance_model->get_tutor_attendance_count($tutor['tutorID'],$term['term'],$term['sy']);
         }
-        // echo $hours_rendered;
+
         $data['_view'] = 'dashboard';
         $this->load->view('layouts/main',$data);
     }

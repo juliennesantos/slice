@@ -5,8 +5,15 @@ class Auditlog_model extends CI_Model
     function __construct()
     {
         parent::__construct();
+
     }
-    
+    //get auditlogs and users
+    function get_joinedaudit()
+    {
+        $this->db->from('auditlogs a');
+        $this->db->join('users u', 'u.userID = a.userID');
+        return $this->db->get()->result_array();
+    }
     /*
      * Get auditlog by auditID
      */

@@ -7,76 +7,47 @@
             <?php echo form_open('user/add'); ?>
           	<div class="box-body">
           		<div class="row clearfix">
-					<div class="col-md-6">
-						<label for="typeID" class="control-label">Usertype</label>
+					
+					<div class="col-md-offset-2 col-md-8">
+						<label for="username" class="control-label"><span class="text-danger">*</span>ID Number</label>
 						<div class="form-group">
-							<select name="typeID" class="form-control">
-								<option value="">select usertype</option>
-								<?php 
-								foreach($all_usertypes as $usertype)
-								{
-									$selected = ($usertype['typeID'] == $this->input->post('typeID')) ? ' selected="selected"' : "";
-
-									echo '<option value="'.$usertype['typeID'].'" '.$selected.'>'.$usertype['typeID'].'</option>';
-								} 
-								?>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="password" class="control-label"><span class="text-danger">*</span>Password</label>
-						<div class="form-group">
-							<input type="password" name="password" value="<?php echo $this->input->post('password'); ?>" class="form-control" id="password" />
-							<span class="text-danger"><?php echo form_error('password');?></span>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="username" class="control-label"><span class="text-danger">*</span>Username</label>
-						<div class="form-group">
-							<input type="text" name="username" value="<?php echo $this->input->post('username'); ?>" class="form-control" id="username" />
+							<input type="text" name="username" value="<?php echo $this->input->post('username'); ?>" class="form-control" id="username" data-inputmask='"mask": "11999999"' data-mask required />
 							<span class="text-danger"><?php echo form_error('username');?></span>
 						</div>
 					</div>
-					<div class="col-md-6">
-						<label for="firstName" class="control-label"><span class="text-danger">*</span>FirstName</label>
+					<div class="col-md-offset-2 col-md-8">
+						<label for="firstName" class="control-label"><span class="text-danger">*</span>First Name</label>
 						<div class="form-group">
-							<input type="text" name="firstName" value="<?php echo $this->input->post('firstName'); ?>" class="form-control" id="firstName" />
+							<input type="text" name="firstName" value="<?php echo $this->input->post('firstName'); ?>" class="form-control" id="firstName" required />
 							<span class="text-danger"><?php echo form_error('firstName');?></span>
 						</div>
 					</div>
-					<div class="col-md-6">
-						<label for="lastName" class="control-label"><span class="text-danger">*</span>LastName</label>
+					<div class="col-md-offset-2 col-md-8">
+						<label for="lastName" class="control-label"><span class="text-danger">*</span>Last Name</label>
 						<div class="form-group">
-							<input type="text" name="lastName" value="<?php echo $this->input->post('lastName'); ?>" class="form-control" id="lastName" />
+							<input type="text" name="lastName" value="<?php echo $this->input->post('lastName'); ?>" class="form-control" id="lastName" required />
 							<span class="text-danger"><?php echo form_error('lastName');?></span>
 						</div>
 					</div>
-					<div class="col-md-6">
-						<label for="middleName" class="control-label"><span class="text-danger">*</span>MiddleName</label>
+					<div class="col-md-offset-2 col-md-8">
+						<label for="middleName" class="control-label"><span class="text-danger">*</span>Middle Name</label>
 						<div class="form-group">
-							<input type="text" name="middleName" value="<?php echo $this->input->post('middleName'); ?>" class="form-control" id="middleName" />
+							<input type="text" name="middleName" value="<?php echo $this->input->post('middleName'); ?>" class="form-control" id="middleName" required />
 							<span class="text-danger"><?php echo form_error('middleName');?></span>
 						</div>
 					</div>
-					<div class="col-md-6">
-						<label for="emailAddress" class="control-label"><span class="text-danger">*</span>EmailAddress</label>
+					<div class="col-md-offset-2 col-md-8">
+						<label for="emailAddress" class="control-label"><span class="text-danger">*</span>Email Address</label>
 						<div class="form-group">
-							<input type="text" name="emailAddress" value="<?php echo $this->input->post('emailAddress'); ?>" class="form-control" id="emailAddress" max="100" pattern=".+@benilde.edu.ph" title="Please provide only a Benilde email address"/>
+							<input type="text" name="emailAddress" value="<?php echo $this->input->post('emailAddress'); ?>" class="form-control" id="emailAddress" max="100" pattern=".+@benilde.edu.ph" title="Please provide only a Benilde email address" required/>
 							<span class="text-danger"><?php echo form_error('emailAddress');?></span>
 						</div>
 					</div>
-					<div class="col-md-6">
-						<label for="contactNo" class="control-label"><span class="text-danger">*</span>ContactNo</label>
+					<div class="col-md-offset-2 col-md-8">
+						<label for="contactNo" class="control-label"><span class="text-danger">*</span>Contact No</label>
 						<div class="form-group">
-							<input type="text" name="contactNo" value="<?php echo $this->input->post('contactNo'); ?>" class="form-control" id="contactNo" />
+							<input type="text" name="contactNo" value="<?php echo $this->input->post('contactNo'); ?>" class="form-control" id="contactNo" data-inputmask='"mask": "(0999)999-9999"' data-mask required />
 							<span class="text-danger"><?php echo form_error('contactNo');?></span>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="status" class="control-label"><span class="text-danger">*</span>Status</label>
-						<div class="form-group">
-							<input type="text" name="status" value="<?php echo $this->input->post('status'); ?>" class="form-control" id="status" />
-							<span class="text-danger"><?php echo form_error('status');?></span>
 						</div>
 					</div>
 				</div>

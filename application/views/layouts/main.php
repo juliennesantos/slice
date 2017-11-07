@@ -9,6 +9,8 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="<?php echo site_url('resources/css/bootstrap.min.css');?>">
+  <!--Select2-->
+  <link rel="stylesheet" href="<?php echo site_url(); ?>bower_components\select2\dist\css\select2.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?php echo site_url('resources/css/font-awesome.min.css');?>">
   <!-- Ionicons -->
@@ -24,10 +26,6 @@
   <link rel="stylesheet" href="<?php echo site_url('resources/css/_all-skins.min.css');?>">
   <!-- bootstrap datepicker -->
   <link rel="stylesheet" href="<?php echo site_url('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');?>">
-  <!-- jQuery 2.2.3 -->
-  <script src="<?php echo site_url('resources/js/jquery-2.2.3.min.js');?>"></script>
-  <!-- Bootstrap 3.3.6 -->
-  <script src="<?php echo site_url('resources/js/bootstrap.min.js');?>"></script>
   <!--favicon-->
   <link rel="icon" href="<?php echo base_url(); ?>resources/img/announcements/icon.png" type="image/ico">
 
@@ -533,12 +531,18 @@
   </div>
   <!-- ./wrapper -->
 
+    <!-- jQuery 2.2.3 -->
+  <script src="<?php echo site_url('resources/js/jquery-2.2.3.min.js'); ?>"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="<?php echo site_url('resources/js/bootstrap.min.js'); ?>"></script>
   <!-- FastClick -->
   <script src="<?php echo site_url('resources/js/fastclick.js');?>"></script>
   <!-- AdminLTE App -->
   <script src="<?php echo site_url('resources/js/app.min.js');?>"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="<?php echo site_url('resources/js/demo.js');?>"></script>
+  <!-- Select2 -->
+  <script src="<?php echo site_url('bower_components\select2\dist\js\select2.full.min.js');?>"></script>
   <!-- Bootbox -->
   <script type="text/javascript" src="<?php echo site_url();?>resources\js\bootbox.min.js"></script>
 
@@ -551,9 +555,15 @@
   <!-- DataTables -->
   <script src="<?php echo site_url('bower_components/datatables.net/js/jquery.dataTables.min.js');?>"></script>
   <script src="<?php echo site_url('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js');?>"></script>
+  <!-- InputMask -->
+  <script src="<?=site_url();?>plugins/input-mask/jquery.inputmask.js"></script>
+  <script src="<?=site_url();?>plugins/input-mask/jquery.inputmask.extensions.js"></script>
 
 
   <script>
+    $('[data-mask]').inputmask();
+    //multiple dropbox
+    $('.select2').select2()
     //Date picker
     $('#datepicker').datepicker({
       autoclose: true

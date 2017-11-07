@@ -68,7 +68,10 @@ class Tutorschedule_model extends CI_Model
     function get_term_tutorschedules($params = array())
     {
         $this->db->join('tutors t', 't.tutorID = ts.tutorID', 'left');
-        $this->db->join('users u', 'u.userID = t.userID', 'left');       
+        $this->db->join('users u', 'u.userID = t.userID');
+        $this->db->join('faculty fac', 'u.userID = fac.userID', 'left');
+        $this->db->join('students stu', 'u.userID = stu.userID', 'left');
+        $this->db->join('timeblocks tb', 'tb.timeblockID = ts.timeblockID');
 
         $this->db->order_by('tutorScheduleID', 'asc');
         if(isset($params) && !empty($params))
