@@ -64,6 +64,10 @@ class Tutorschedule extends CI_Controller{
         $config['total_rows'] = $this->Tutorschedule_model->get_all_tutorschedules_count();
         $this->pagination->initialize($config);
 
+        $this->load->model('User_model');
+        $data['all_users'] = $this->User_model->get_all_users();
+
+
         $data['tutorschedules'] = $this->Tutorschedule_model->get_term_tutorschedules($params);
         
         $data['_view'] = 'tutorschedule/index';

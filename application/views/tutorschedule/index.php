@@ -24,7 +24,7 @@
               }
               ?>
           </select>
-          <button type="submit" class="btn btn-success" name="add" title="Add Tutor">
+          <button type="submit" class="form-control btn btn-success" name="add" title="Add Tutor">
             <i class="fa fa-plus"></i>
           </button>
         </div>
