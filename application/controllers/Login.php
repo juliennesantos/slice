@@ -55,7 +55,7 @@ class Login extends CI_Controller
           $_SESSION['typeID'] = $data['typeID'];
           $_SESSION['ln'] = $data['lastName'];
           $_SESSION['fn'] = $data['firstName'];
-          $audit_param = $this->audit->add($data['userID'],'Login','User has successfully logged in.');
+          $audit_param = $this->audit->add($_SESSION['userID'],'Login','User has successfully logged in.');
           $this->Auditlog_model->add_auditlog($audit_param);
           //if remember me is checked
           if ($this->input->post('remember_me'))
@@ -63,7 +63,7 @@ class Login extends CI_Controller
             $this->load->helper('cookie');
             $cookie = $this->input->cookie('ci_session'); // we get the cookie
             $this->input->set_cookie('ci_session', $cookie, '31557600'); // and add one year to it's expiration
-            
+
           }
           // /remember me
           $this->load->model('Tutor_model');
@@ -171,6 +171,8 @@ class Login extends CI_Controller
 
   function logout()
   {
+    $audit_param = $this->audit->add($_SESSION['userID'],'Logout','User has successfully logged out.');
+    $this->Auditlog_model->add_auditlog($audit_param);
     session_destroy();
 
     redirect(site_url() . 'login/index');
