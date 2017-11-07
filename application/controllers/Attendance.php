@@ -50,7 +50,7 @@ class Attendance extends CI_Controller{
         $config['total_rows'] = $this->Attendance_model->get_all_attendance_count();
         $this->pagination->initialize($config);
         $data['attendanceList'] = $this->Attendance_model->get_list($term['term'],$term['sy'],$params);
-        $audit_param = $this->audit->add($_SESSION['userID'],'Viewed Attendance','User has opened attendance sheet');
+        $audit_param = $this->audit->add($_SESSION['userID'],'Attendance','User has viewed attendance sheet');
         $this->Auditlog_model->add_auditlog($audit_param);
         $data['_view'] = 'attendance/index';
         $this->load->view('layouts/main',$data);
