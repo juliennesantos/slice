@@ -12,18 +12,19 @@
                     <tr>
 						
 						<th>UserID</th>
+                        <th>Name</th>
 						<th>LogType</th>
 						<th>TimeStamp</th>
 						<th>Description</th>
 						
                     </tr>
-                    <?php foreach($auditlogs as $a){ ?>
+                    <?php foreach($auditdecrypt as $a){ ?>
                     <tr>
-						
+						<td><?php echo $a['username']; ?></td>
 						<td><?php echo $a['lastName'].', '.$a['firstName']; ?></td>
-						<td><?php echo $this->encryption->decrypt($a['logType']); ?></td>
-						<td><?php echo $this->encryption->decrypt($a['timeStamp']); ?></td>
-						<td><?php echo $this->encryption->decrypt($a['description']); ?></td>
+						<td><?php echo $a['logType']; ?></td>
+						<td><?php echo $a['timeStamp']; ?></td>
+						<td><?php echo $a['description']; ?></td>
 						
                     </tr>
                     <?php } ?>

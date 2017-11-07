@@ -6,7 +6,7 @@ class Auditlog extends CI_Controller{
         $this->load->model('Auditlog_model');
         $this->load->library('loginvalidation');
         $this->loginvalidation->isValid();
-        
+        $this->load->library('audit');
     } 
 
     /*
@@ -24,7 +24,10 @@ class Auditlog extends CI_Controller{
             <?php
         }
         $data['auditlogs'] = $this->Auditlog_model->get_joinedaudit();
-        $this->load->library('encryption');
+        foreach ($data['auditlogs'] as $audit) {
+            $date['auditdecrypt'] = $this->audit->view($audit['username'],$audit['lastName'],$audit['firstName'],$audit['logtype'],$audit['description'],$audit['timeStamp']);
+        }
+        
         $data['_view'] = 'auditlog/index';
         $this->load->view('layouts/main',$data);
     } 
