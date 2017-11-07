@@ -2,22 +2,24 @@
     <div class="col-md-12">
       	<div class="box box-info">
             <div class="box-header with-border">
-              	<h3 class="box-title">Tutor Add</h3>
+              	<h3 class="box-title">Add Tutors</h3>
             </div>
             <?php echo form_open('tutor/add'); ?>
           	<div class="box-body">
           		<div class="row clearfix">
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<label for="userID" class="control-label">User</label>
 						<div class="form-group">
-							<select name="userID" class="form-control">
-								<option value="">select user</option>
+							<select name="userID" class="form-control select2" multiple="multiple" data-placeholder="Select a Student" style="width: 100%;">
 								<?php 
 								foreach($all_users as $user)
 								{
 									$selected = ($user['userID'] == $this->input->post('userID')) ? ' selected="selected"' : "";
-
-									echo '<option value="'.$user['userID'].'" '.$selected.'>'.$user['userID'].'</option>';
+									?>
+									<option value="<?=$user['userID'];?>" <?=$selected; ?>>									
+													<?=$user['studentNo'];?>&emsp;|&emsp;<?=$user['lastName'];?>, <?=$user['firstName'];?>&emsp;
+									</option>
+									<?php
 								} 
 								?>
 							</select>
@@ -26,37 +28,14 @@
 					<div class="col-md-6">
 						<label for="statusID" class="control-label">Tutorstatus</label>
 						<div class="form-group">
-							<select name="statusID" class="form-control">
-								<option value="">select tutorstatus</option>
-								<?php 
-								foreach($all_tutorstatus as $tutorstatus)
-								{
-									$selected = ($tutorstatus['statusID'] == $this->input->post('statusID')) ? ' selected="selected"' : "";
-
-									echo '<option value="'.$tutorstatus['statusID'].'" '.$selected.'>'.$tutorstatus['statusID'].'</option>';
-								} 
-								?>
-							</select>
+							<input name="statusID" class="form-control" value="Active" readonly></input>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<label for="tutorType" class="control-label"><span class="text-danger">*</span>TutorType</label>
 						<div class="form-group">
-							<input type="text" name="tutorType" value="<?php echo $this->input->post('tutorType'); ?>" class="form-control" id="tutorType" />
+							<input type="text" name="tutorType" value="Honor Scholar" class="form-control" id="tutorType" readonly />
 							<span class="text-danger"><?php echo form_error('tutorType');?></span>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="dateAdded" class="control-label"><span class="text-danger">*</span>DateAdded</label>
-						<div class="form-group">
-							<input type="text" name="dateAdded" value="<?php echo $this->input->post('dateAdded'); ?>" class="has-datetimepicker form-control" id="dateAdded" />
-							<span class="text-danger"><?php echo form_error('dateAdded');?></span>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<label for="dateModified" class="control-label">DateModified</label>
-						<div class="form-group">
-							<input type="text" name="dateModified" value="<?php echo $this->input->post('dateModified'); ?>" class="has-datetimepicker form-control" id="dateModified" />
 						</div>
 					</div>
 				</div>

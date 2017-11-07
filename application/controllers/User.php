@@ -53,7 +53,7 @@ class User extends CI_Controller{
 		$this->form_validation->set_rules('contactNo','ContactNo','required|max_length[15]');
 		
 		if($this->form_validation->run())     
-        {   
+        {   //users
             $params = array(
 				'typeID' => $this->input->post('typeID'),
                 'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
@@ -69,7 +69,40 @@ class User extends CI_Controller{
             );
             
             $user_id = $this->User_model->add_user($params);
-            redirect('user/index');
+            //students
+            $params1 = array(
+                'typeID' => $this->input->post('typeID'),
+                'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
+                'username' => $this->input->post('username'),
+                'firstName' => $this->input->post('firstName'),
+                'lastName' => $this->input->post('lastName'),
+                'middleName' => $this->input->post('middleName'),
+                'emailAddress' => $this->input->post('emailAddress'),
+                'contactNo' => $this->input->post('contactNo'),
+                'dateAdded' => date('Y-m-d H:i:s'),
+                'dateModified' => date('Y-m-d H:i:s'),
+                'status' => 'Pending',
+            );
+
+            $user_id = $this->User_model->add_user($params);
+            //tutors
+            $params1 = array(
+                'typeID' => $this->input->post('typeID'),
+                'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
+                'username' => $this->input->post('username'),
+                'firstName' => $this->input->post('firstName'),
+                'lastName' => $this->input->post('lastName'),
+                'middleName' => $this->input->post('middleName'),
+                'emailAddress' => $this->input->post('emailAddress'),
+                'contactNo' => $this->input->post('contactNo'),
+                'dateAdded' => date('Y-m-d H:i:s'),
+                'dateModified' => date('Y-m-d H:i:s'),
+                'status' => 'Pending',
+            );
+
+            $user_id = $this->User_model->add_user($params);
+
+            redirect('tutorschedule/index');
         }
         else
         {

@@ -35,12 +35,15 @@ class User_model extends CI_Model
      */
     function get_all_users($params = array())
     {
-        $this->db->order_by('userID', 'desc');
+        $this->db->select('u.*, stu.studentNo, pr.programCode');
+        $this->db->join('students stu', 'stu.userID = u.userID');
+        $this->db->join('programs pr', 'pr.programID = stu.programID');
+        $this->db->order_by('userID', 'asc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);
         }
-        return $this->db->get('users')->result_array();
+        return $this->db->get('users u')->result_array();
     }
         
     /*

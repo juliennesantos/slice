@@ -23,6 +23,39 @@ class Tutorschedule extends CI_Controller{
             </script>
             <?php
         }
+
+        //adding new tutors
+        if($this->input->post('add'))
+        {
+            //add to tutor table
+            $this->load->model('Tutor_model');
+            $params = array(
+                'userID' => $this->input->post('userID'),
+                'statusID' => 'Active',
+                'tutorType' => 'Honor Scholar',
+                'dateAdded' => date('Y-m-d H:i:s'),
+                'dateModified' => date('Y-m-d H:i:s'),
+            );
+            $tutor_id = $this->Tutor_model->add_tutor($params);
+
+            //add to tutorschedules table
+            $params1 = array(
+                'tutorID' => $tutor_id,
+                'dateAdded' => date('Y-m-d H:i:s'),
+            );
+            $tutorschedule_id = $this->Tutorschedule_model->add_tutorschedule($params1);
+
+            if($tutorschedule_id)
+            {
+                ?>
+                <script type="text/javascript">
+                alert("You have succesfully added this student as a tutor!");
+                window.location.href = "<?php echo site_url(); ?>";
+                </script>
+                <?php
+            }
+
+        }
         $params['limit'] = RECORDS_PER_PAGE; 
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
         

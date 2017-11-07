@@ -6,8 +6,6 @@ $(document).ready(function () {
   var wrapper = $(".input_fields_wrap" + tutorialNo); //Fields wrapper
   var add_button = $(".add_field_button"); //Add button ID
 
-  console.log($(".tutorialNo").data("tutno"));
-
   var x = 0; //initial text box count
   $.get(site_url + 'tutorialsession/count_checklist/' +
     tutorialNo,
