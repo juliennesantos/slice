@@ -34,6 +34,7 @@ class Dashboard extends CI_Controller{
         $data['admin_sess'] = $this->Tutorialsession_model->count_adminall();
         $data['admin_pend'] = $this->Tutorialsession_model->count_adminpending();
         $data['admin_feedback'] = $this->Tutorialsession_model->count_adminfeedback();
+<<<<<<< HEAD
 
 
         //current term
@@ -52,14 +53,21 @@ class Dashboard extends CI_Controller{
         
       
 
+=======
+        $hours_rendered=0;
+>>>>>>> parent of 1c32b12... auditlog
         //get rendered hours of tutors
         if($_SESSION['typeID']==2)
         {
             $term = $this->Term_model->get_current_term();
             $tutor = $this->Tutor_model->get_tutorID($_SESSION['userID']);
-            $data['hours_rendered'] = $this->Attendance_model->get_tutor_attendance_count($tutor['tutorID'],$term['term'],$term['sy']);
+            $hours_rendered = $this->Attendance_model->get_tutor_attendance_count($tutor['tutorID'],$term['term'],$term['sy']);
         }
+<<<<<<< HEAD
 
+=======
+        echo $hours_rendered;
+>>>>>>> parent of 1c32b12... auditlog
         $data['_view'] = 'dashboard';
         $this->load->view('layouts/main',$data);
     }

@@ -10,22 +10,34 @@
             <div class="box-body">
                 <table class="table table-striped datatable">
                     <tr>
-						
+						<th>AuditID</th>
 						<th>UserID</th>
                         <th>Name</th>
 						<th>LogType</th>
 						<th>TimeStamp</th>
 						<th>Description</th>
-						
+						<th>Actions</th>
                     </tr>
                     <?php foreach($auditdecrypt as $a){ ?>
                     <tr>
+<<<<<<< HEAD
 						<td><?php echo $a['username']; ?></td>
 						<td><?php echo $a['lastName'].', '.$a['firstName']; ?></td>
 						<td><?php echo $a['logType']; ?></td>
 						<td><?php echo $a['timeStamp']; ?></td>
 						<td><?php echo $a['description']; ?></td>
 						
+=======
+						<td><?php echo $a['auditID']; ?></td>
+						<td><?php echo $a['userID']; ?></td>
+						<td><?php echo $a['logType']; ?></td>
+						<td><?php echo $a['timeStamp']; ?></td>
+						<td><?php echo $a['description']; ?></td>
+						<td>
+                            <a href="<?php echo site_url('auditlog/edit/'.$a['auditID']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
+                            <a href="<?php echo site_url('auditlog/remove/'.$a['auditID']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Delete</a>
+                        </td>
+>>>>>>> parent of 1c32b12... auditlog
                     </tr>
                     <?php } ?>
                 </table>

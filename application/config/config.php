@@ -315,7 +315,6 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-// $key = bin2hex();
 $config['encryption_key'] = 'blowfish';
 
 /*
