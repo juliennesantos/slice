@@ -78,13 +78,13 @@
                 <?php echo $t['status']; ?>
               </td>
               <td class="col-lg-1">
-                <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal-default" data-sid="<?php echo $t['subjectID']?>"
+                <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal-<?php echo $t['tutorialNo']; ?>" data-sid="<?php echo $t['subjectID']?>"
                   id="modal<?php echo $t['tutorialNo']; ?>">
                   <span class="fa fa-pencil"></span> Approve</button>
 
 
                 <!-- MODAL -->
-                <div class="modal fade" id="modal-default">
+                <div class="modal fade" id="modal-<?php echo $t['tutorialNo']; ?>">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -120,10 +120,10 @@
                             <td>Previous Tutor:</td>
                             <td>
                               <?php if (empty($t['urLN']))
-    echo 'No previous tutor';
-    else
-    echo $t['urLN'] . ', ' . $t['urFN'];
-    ?>
+                                echo 'No previous tutor';
+                                else
+                                echo $t['urLN'] . ', ' . $t['urFN'];
+                              ?>
                             </td>
                           </tr>
                           <tr>
@@ -163,8 +163,24 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                          <button type="submit" name="approveUpdate" value="Approve" class="btn btn-primary">Approve</button>
-                          <button type="submit" name="disapproveUpdate" value="Disapprove" class="btn btn-danger" onclick="confirm('Disapprove this request?');">Disapprove</button>
+                          <button type="submit" name="
+                          <?php if($t['status'] == "Cancel Pending")
+                            echo 'approveCancel';
+                            else if(stristr($t['status'], 'Change Pending'))
+                            echo 'approveChange';
+                            else
+                            echo 'approveUpdate';
+                          ?>
+                          " value="<?php echo $t['tutorialNo']; ?>" class="btn btn-primary">Approve</button>
+                          <button type="submit" name="
+                          <?php if ($t['status'] == "Cancel Pending")
+                            echo 'disapproveCancel';
+                            else if (stristr($t['status'], 'Change Pending'))
+                              echo 'approveChange';
+                            else
+                              echo 'disapproveUpdate';
+                          ?>
+                          " value="<?php echo $t['tutorialNo']; ?>" class="btn btn-danger" onclick="confirm('Disapprove this request?');">Disapprove</button>
                         </div>
                         <?php echo form_close(); ?>
                       </div>

@@ -291,7 +291,7 @@ class Tutorialsession_model extends CI_Model
         $this->db->join('timeblocks tbr', 'tbr.timeblockID = tsr.timeblockID', 'left');
         $this->db->or_where('t.status', 'Pending');
         $this->db->or_where('t.status', 'Cancel Pending');
-        $this->db->or_where('t.status LIKE', 'Change Pending');
+        $this->db->or_where('t.status LIKE', 'Change Pending%');
         $this->db->order_by('tutorialNo', 'asc');
         if(isset($params) && !empty($params))
         {
