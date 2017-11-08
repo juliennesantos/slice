@@ -116,7 +116,7 @@
                     <div class="icon">
                     <i class="fa fa-hourglass"></i>
                     </div>
-                    <a href="<?php echo site_url()?>tutorialsession/tutor_index"" class="small-box-footer">
+                    <a href="<?php echo site_url()?>tutorialsession/tutor_index" class="small-box-footer">
                     More info <i class="fa fa-arrow-circle-right"></i>
                     </a>
             </div>
@@ -176,7 +176,7 @@
 <?php if($_SESSION['typeID'] == 3 || $_SESSION['typeID'] == 5 || $_SESSION['typeID'] == 4): ?>
     <div class="row">
         <div class="col-lg-4 col-xs-12 col-sm-6">
-        <a href="<?=site_url('tutors/index')?>">
+        <a href="<?=site_url('tutors/index')?>" style="color:#333333;">
             <div class="info-box">
                 <span class="info-box-icon bg-boxblend"><i class="fa fa-users"></i></span>
 
@@ -248,7 +248,7 @@
                 <div class="inner">
                     <h3>
                         <?php
-                            if($_SESSION['typeID'] == 5){
+                            if(($_SESSION['typeID'] == 5)||($_SESSION['typeID'] == 4)||($_SESSION['typeID'] == 3)){
                                 echo $admin_sess;
                             }
                         ?>
@@ -259,9 +259,9 @@
                     <div class="icon">
                     <i class="fa fa-hourglass"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <!-- <a href="#" class="small-box-footer">
                     More info <i class="fa fa-arrow-circle-right"></i>
-                    </a>
+                    </a> -->
             </div>
         </div>
 
@@ -269,7 +269,7 @@
             <div class="small-box bg-teal">
                 <div class="inner">
                     <h3><?php
-                        if($_SESSION['typeID'] == 5){
+                        if(($_SESSION['typeID'] == 5)||($_SESSION['typeID'] == 4)||($_SESSION['typeID'] == 3)){
                             echo $admin_pend;
                         }
                         ?>
@@ -280,9 +280,9 @@
                     <div class="icon">
                     <i class="fa fa-hourglass-1"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <!-- <a href="#" class="small-box-footer">
                     More info <i class="fa fa-arrow-circle-right"></i>
-                    </a>
+                    </a> -->
             </div>
         </div>
 
@@ -290,7 +290,7 @@
             <div class="small-box bg-teal">
                 <div class="inner">
                     <h3><?php
-                        if($_SESSION['typeID'] == 5){
+                        if(($_SESSION['typeID'] == 5)||($_SESSION['typeID'] == 4)||($_SESSION['typeID'] == 3)){
                             echo $admin_feedback;
                         }
                         ?>
@@ -301,9 +301,9 @@
                     <div class="icon">
                     <i class="fa fa-paper-plane-o"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <!-- <a href="#" class="small-box-footer">
                     More info <i class="fa fa-arrow-circle-right"></i>
-                    </a>
+                    </a> -->
             </div>
         </div>
     </div>

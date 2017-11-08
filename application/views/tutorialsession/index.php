@@ -72,7 +72,7 @@
                         <h4 class="modal-title">Change Request for Tutorial Session</h4>
                       </div>
                       <div class="modal-body">
-                        <table class="table table-striped datatable">
+                        <table class="table table-striped datatable text-center">
                           <tbody>
                             <tr>
                               <td>
@@ -112,10 +112,12 @@
                             </tr>
                           </tbody>
                         </table>
+                        <hr/>
                         <!-- Tutorschedule -->
-                        <label for="tutorschedrequestedID" class="control-label">Select a new Timeblock</label>
-                        <div class="form-group">
-                          <select name="tutorschedrequestedID" class="form-control timeblock<?=$t['tutorialNo']?>">
+                        <div class="row">
+                        <label for="tutorschedrequestedID" class="col-lg-4 control-label">Select a new Timeblock</label>
+                        <div class="form-group col-lg-12 col-sm-12">
+                          <select name="tutorschedrequestedID" id="fullwidth" class="form-control timeblock<?=$t['tutorialNo']?>">
                             <option value="">Choose subject first!</option>
                             <?php 
                               foreach ($all_timeblocks as $timeblock)
@@ -126,36 +128,35 @@
                               }
                               ?>
                           </select>
-                        </div>
+                        </div></div>
                         <br>
-                        <br>
-                        <label class="control-label">Select a new date </label>
-                        <div class="form-group">
+                        <div class="row">
+                        <label class="control-label col-lg-4 col-sm-4">Select a new date </label>
+                        <div class="form-group col-lg-12 col-sm-12">
                           <!-- Date -->
-                          <div class="input-group date">
+                          <div class="input-group date" id="fullwidth">
                             <div class="input-group-addon">
                               <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="date" class="form-control pull-right datepicker" id="datepicker" name="tutorialdate" placeholder="Choose your preferred date">
+                            <input type="date" class="form-control datepicker" id="datepicker" name="tutorialdate" placeholder="Choose your preferred date">
                           </div>
+                        </div>
                         </div>
                         <br>
                         <!-- Remarks -->
-                        <label for="remarks" class="control-label">Justification</label>
-                        <div class="form-group">
-                          <textarea name="remarks" class="form-control" id="remarks">
-                            <?php echo $this->input->post('remarks'); ?>
-                          </textarea>
+                        <div class="row">
+                        <div class="form-group col-lg-4 col-sm-4">
+                          <textarea name="remarks" class="form-control" id="remarks" placeholder="Justification..." rows="4" cols="75"><?php echo $this->input->post('remarks'); ?></textarea>
                           <span class="text-danger">
                             <?php echo form_error('remarks'); ?>
                           </span>
                         </div>
-                      </div>
+                        </div>
+                      </div><!--MODAL CONTENT-->
                       <div class="modal-footer">
-                        <button type="submit" name="chreq" value="chreq" class="btn btn-success pull-right">
+                        <button type="submit" name="chreq" value="chreq" class="btn btn-success btn-block pull-right">
                           <i class="fa fa-check"></i> Submit Change Request
                         </button>
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                       </div>
                     </div>
 
@@ -167,7 +168,7 @@
               <?php if($t['status'] == "Approved" && $t['dateTimeStart'] == NULL):?>
               <button type="button" 
                       name="changerequest"
-                      class="btn btn-info findtb" 
+                      class="btn btn-warning findtb" 
                       data-toggle="modal" 
                       data-target="#chreq<?= $t['tutorialNo'] ?>"
                       title="Change Request"

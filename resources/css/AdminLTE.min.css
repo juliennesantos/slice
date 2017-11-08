@@ -2520,6 +2520,16 @@ input.fc::-ms-expand {
         50%{background-position:100% 86%}
         100%{background-position:0% 15%}
     }
+@font-face{
+    font-family:'Open Sans';
+    src: url(../../resources/fonts/OpenSans-ExtraBold.ttf) format('truetype');
+    font-weight:800;
+}
+@font-face{
+    font-family:'Julius Sans One';
+    src: url(../../resources/fonts/JuliusSansOne-Regular.ttf) format('truetype');
+    font-weight:400;
+}
 .errorhead {
         font-family: 'Open Sans', sans-serif;
         font-weight:800;
@@ -2537,6 +2547,9 @@ input.fc::-ms-expand {
     .errorg {
         visibility: hidden;
     }
+}
+#fullwidth{
+    width:100% !important;
 }
 .btn-login1 {
     background-color: #50EFA6;

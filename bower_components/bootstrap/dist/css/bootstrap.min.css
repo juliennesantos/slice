@@ -6741,7 +6741,11 @@ button.close {
     margin: 0;
     background-color: #fff
 }
-
+@font-face{
+    font-family:'Julius Sans One';
+    src: url(../../resources/fonts/JuliusSansOne-Regular.ttf) format('truetype');
+    font-weight: 400;
+}
 .carousel-caption {
     position: absolute;
     right: 15%;
