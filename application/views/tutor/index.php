@@ -1,13 +1,12 @@
 <div class="row">
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">Tutors Listing</h3>
-            	<div class="box-tools">
-                    <a href="<?php echo site_url('tutor/add'); ?>" class="btn btn-success btn-sm">Add</a> 
-                </div>
+    <div class="col-lg-12">
+        <div class="panel panel-black">
+            <div class="panel-heading">
+                <h3>Tutors Listing</h3>
             </div>
-            <div class="box-body">
+            <div class="panel-body">
+            <a href="<?php echo site_url('tutor/add'); ?>" class="btn btn-block btn-success"><i class="fa fa-plus"></i>&emsp; Add</a> 
+
                 <table class="table table-striped datatable">
                     <tr>
 						<th>ID number</th>
@@ -27,8 +26,8 @@
 						<td><?php echo $t['dateAdded']; ?></td>
 						<td><?php echo $t['dateModified']; ?></td>
 						<td>
-                            <a href="<?php echo site_url('tutor/edit/'.$t['tutorID']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
-                            <a href="<?php echo site_url('tutor/remove/'.$t['tutorID']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Delete</a>
+                            <a href="<?php echo site_url('tutor/edit/'.$t['tutorID']); ?>" class="btn btn-info" title="Edit"><span class="fa fa-pencil"></span></a> 
+                            <a href="<?php echo site_url('tutor/remove/'.$t['tutorID']); ?>" class="btn btn-danger" title="Delete"><span class="fa fa-trash"></span></a>
                         </td>
                     </tr>
                     <?php } ?>

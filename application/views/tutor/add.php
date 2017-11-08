@@ -1,13 +1,13 @@
 <div class="row">
-    <div class="col-md-12">
-      	<div class="box box-info">
-            <div class="box-header with-border">
-              	<h3 class="box-title">Add Tutors</h3>
+    <div class="col-lg-12">
+      	<div class="panel panel-black">
+            <div class="panel-heading">
+              	<h3>Add Tutors</h3>
             </div>
             <?php echo form_open('tutor/add'); ?>
-          	<div class="box-body">
+          	<div class="panel-body">
           		<div class="row clearfix">
-					<div class="col-md-12">
+					<div class="col-lg-12">
 						<label for="userID" class="control-label">User</label>
 						<div class="form-group">
 							<select name="userID" class="form-control select2" multiple="multiple" data-placeholder="Select a Student" style="width: 100%;">

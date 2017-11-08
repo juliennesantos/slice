@@ -1,13 +1,13 @@
 <div class="row">
-  <div class="col-md-12">
-    <div class="box">
-      <div class="box-header">
-        <h3 class="box-title">Pending Tutorial Sessions</h3>
-        <div class="box-tools">
-          <a href="<?php echo site_url('tutorialsession/add'); ?>" class="btn btn-success btn-sm">Request New Tutorial</a>
-        </div>
+  <div class="col-lg-12">
+    <div class="panel panel-black">
+      <div class="panel-heading">
+        <h3>Pending Tutorial Sessions</h3>
       </div>
-      <div class="box-body">
+      <div class="panel-body">
+        <div class="form-group col-lg-offset-10 col-xs-offset-10 col-sm-offset-10 col-md-offset-10">
+          <a href="<?php echo site_url('tutorialsession/add'); ?>" class="btn btn-success btn-block">Request New Tutorial</a>
+        </div>
         <table class="table table-striped datatable">
           <thead>
             <tr>

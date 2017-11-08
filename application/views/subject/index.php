@@ -1,13 +1,11 @@
 <div class="row">
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">Subjects Listing</h3>
-            	<div class="box-tools">
-                    <a href="<?php echo site_url('subject/add'); ?>" class="btn btn-success btn-sm">Add</a> 
-                </div>
+    <div class="col-lg-12">
+        <div class="panel panel-black">
+            <div class="panel-heading">
+                <h3>Subjects Listing</h3>
             </div>
-            <div class="box-body">
+            <div class="panel-body">
+                <a href="<?php echo site_url('subject/add'); ?>" class="btn btn-block btn-success"><i class="fa fa-plus"></i>&emsp; Add</a> 
                 <table class="table table-striped datatable">
                     <tr>
 						<th>SubjectID</th>

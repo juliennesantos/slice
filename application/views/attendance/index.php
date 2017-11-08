@@ -1,13 +1,13 @@
 <div class="row">
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">Attendance Listing</h3>
+    <div class="col-lg-12">
+        <div class="panel panel-black">
+            <div class="panel-heading">
+                <h3>Attendance Listing</h3>
             	<!-- <div class="box-tools">
                     <a href="<?php echo site_url('attendance/add'); ?>" class="btn btn-success btn-sm">Add</a> 
                 </div> -->
             </div>
-            <div class="box-body">
+            <div class="panel-body">
                 <table class="table table-striped datatable">
                     <tr>
 						<th>Tutor Name</th>

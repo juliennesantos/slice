@@ -1,11 +1,11 @@
 <div class="row">
-    <div class="col-md-12">
-      	<div class="box box-info">
-            <div class="box-header with-border">
-              	<h3 class="box-title">Timeblock Add</h3>
+    <div class="col-lg-12">
+      	<div class="panel panel-black">
+            <div class="panel-heading">
+              	<h3>Timeblock Add</h3>
             </div>
             <?php echo form_open('timeblock/add'); ?>
-          	<div class="box-body">
+          	<div class="panel-body">
           		<div class="row clearfix">
 					<div class="col-md-6">
 						<label for="dayofweek" class="control-label"><span class="text-danger">*</span>Dayofweek</label>
