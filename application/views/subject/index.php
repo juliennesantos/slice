@@ -21,8 +21,8 @@
 						<td><?php echo $s['name']; ?></td>
 						<td><?php echo $s['dateModified']; ?></td>
 						<td>
-                            <a href="<?php echo site_url('subject/edit/'.$s['subjectID']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
-                            <a href="<?php echo site_url('subject/remove/'.$s['subjectID']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Delete</a>
+                            <a href="<?php echo site_url('subject/edit/'.$s['subjectID']); ?>" class="btn btn-warning" title="Edit"><span class="fa fa-pencil"></span></a> 
+                            <a href="<?php echo site_url('subject/remove/'.$s['subjectID']); ?>" class="btn btn-danger" title="Delete"><span class="fa fa-trash"></span></a>
                         </td>
                     </tr>
                     <?php } ?>

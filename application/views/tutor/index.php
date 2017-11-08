@@ -26,7 +26,7 @@
 						<td><?php echo $t['dateAdded']; ?></td>
 						<td><?php echo $t['dateModified']; ?></td>
 						<td>
-                            <a href="<?php echo site_url('tutor/edit/'.$t['tutorID']); ?>" class="btn btn-info" title="Edit"><span class="fa fa-pencil"></span></a> 
+                            <a href="<?php echo site_url('tutor/edit/'.$t['tutorID']); ?>" class="btn btn-warning" title="Edit"><span class="fa fa-pencil"></span></a> 
                             <a href="<?php echo site_url('tutor/remove/'.$t['tutorID']); ?>" class="btn btn-danger" title="Delete"><span class="fa fa-trash"></span></a>
                         </td>
                     </tr>

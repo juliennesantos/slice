@@ -27,8 +27,8 @@
 						<td><?php echo $t['status']; ?></td>
 						<td><?php echo $t['dateModified']; ?></td>
 						<td>
-                            <a href="<?php echo site_url('timeblock/edit/'.$t['timeblockID']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
-                            <a href="<?php echo site_url('timeblock/remove/'.$t['timeblockID']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Delete</a>
+                            <a href="<?php echo site_url('timeblock/edit/'.$t['timeblockID']); ?>" class="btn btn-warning" title="Edit"><span class="fa fa-pencil"></span></a> 
+                            <a href="<?php echo site_url('timeblock/remove/'.$t['timeblockID']); ?>" class="btn btn-danger" title="Delete"><span class="fa fa-trash"></span></a>
                         </td>
                     </tr>
                     <?php } ?>
