@@ -22,7 +22,8 @@ body {
     font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 400;
     overflow-x: hidden;
-    overflow-y: auto
+    overflow-y: auto;
+    padding-right:0px !important;
 }
 
 .wrapper {
@@ -2529,6 +2530,9 @@ input.fc::-ms-expand {
     font-family:'Julius Sans One';
     src: url(../../resources/fonts/JuliusSansOne-Regular.ttf) format('truetype');
     font-weight:400;
+}
+.modal-open {
+    padding-right: 0px !important;
 }
 .errorhead {
         font-family: 'Open Sans', sans-serif;
