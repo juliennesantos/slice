@@ -35,6 +35,18 @@ class Student_model extends CI_Model
             $this->db->limit($params['limit'], $params['offset']);
         }
         return $this->db->get('students')->result_array();
+    }     
+    /*
+     * Get all students
+     */
+    function get_students()
+    {
+        $this->db->select('s.*, pr.programCode, u.lastName, u.firstName');
+        $this->db->from('students s');
+        $this->db->join('users u', 'u.userID = s.userID');
+        $this->db->join('programs pr', 's.programID = pr.programID', 'left');
+        $this->db->order_by('s.studentNo', 'asc');
+        return $this->db->get()->result_array();
     }
         
     /*

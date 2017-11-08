@@ -1,4 +1,5 @@
     <!--tutee tutsess box-->
+    <a type="button" href="student/studentpdf" class="btn btn-success"></a>
 <?php if($_SESSION['typeID'] == 1): ?>
     <div class="row">
         <div class="col-lg-6 col-xs-6">

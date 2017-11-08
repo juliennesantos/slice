@@ -230,24 +230,11 @@
               <span>Tutorial Sessions (Approval)</span>
             </a>
           </li>
-          <li class="treeview">
-            <a href="#">
+          <li>
+            <a href="<?php echo site_url('auditlog/index');?>">
               <i class="fa fa-clipboard"></i>
               <span>Auditlog</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-down pull-right"></i>
-                </span>
             </a>
-            <ul class="treeview-menu">
-              <li class="active">
-                <a href="<?php echo site_url('auditlog/add');?>">
-                  <i class="fa fa-plus"></i> Add</a>
-              </li>
-              <li>
-                <a href="<?php echo site_url('auditlog/index');?>">
-                  <i class="fa fa-list-ul"></i> Listing</a>
-              </li>
-            </ul>
           </li>
           <li>
             <a href="#">
@@ -264,44 +251,6 @@
               </li>
               <li>
                 <a href="<?php echo site_url('tutor/index');?>">
-                  <i class="fa fa-list-ul"></i> Listing</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">
-              <i class="fa fa-info"></i>
-              <span>Tutor Status</span>
-              <span class="pull-right-container">
-                  <i class="fa fa-angle-down pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-              <li class="active">
-                <a href="<?php echo site_url('tutorstatus/add');?>">
-                  <i class="fa fa-plus"></i> Add</a>
-              </li>
-              <li>
-                <a href="<?php echo site_url('tutorstatus/index');?>">
-                  <i class="fa fa-list-ul"></i> Listing</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">
-              <i class="fa fa-id-card-o"></i>
-              <span>Usertype</span>
-              <span class="pull-right-container">
-                  <i class="fa fa-angle-down pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-              <li class="active">
-                <a href="<?php echo site_url('usertype/add');?>">
-                  <i class="fa fa-plus"></i> Add</a>
-              </li>
-              <li>
-                <a href="<?php echo site_url('usertype/index');?>">
                   <i class="fa fa-list-ul"></i> Listing</a>
               </li>
             </ul>
@@ -597,16 +546,21 @@
   <script src="<?=site_url();?>plugins/input-mask/jquery.inputmask.js"></script>
   <script src="<?=site_url();?>plugins/input-mask/jquery.inputmask.extensions.js"></script>
   <!-- Custom JS -->
-  <!-- <script src="<?=site_url();?>resources\custom.js"></script> -->
+  
+<script>
 
-  <!-- <script src="<?= site_url('resources/jquery-bar-rating/dist/jquery.barrating.min.js'); ?>"></script> -->
-  <script src="<?= site_url('resources/js/tutee/tuteeindex.js'); ?>"></script> 
-  <script>// $ = jQuery.noConflict();
-
-$(document).ready(function(){
+  $('.findtb').click(function (e) {
+    var tutorialNo = $('.tutorialNo').data('tutno');
+    var subject = $(this).val();
+    var site_url = $(".url").val();
+    $.get(site_url + 'tutorialsession/findtimeblocks/' + $(this).val(), function (
+      data) {
+      $(".timeblock"+tutorialNo).html(data);
+    });
+  });
 
   $('.datatable').DataTable();
-  
+
   $('[data-mask]').inputmask();
   //multiple dropbox
   $('.select2').select2()
@@ -617,7 +571,7 @@ $(document).ready(function(){
   $('.datepicker').datepicker({
     autoclose: true
   });
-  
+
   $('.treeview')(function () {
     var _this = $(this);
     if (!(_this.hasClass('active'))) {
@@ -629,7 +583,10 @@ $(document).ready(function(){
     }
   });
 
-});</script>
+
+
+</script>
+
 
 </body>
 

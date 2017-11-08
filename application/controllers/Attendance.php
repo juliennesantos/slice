@@ -32,7 +32,7 @@ class Attendance extends CI_Controller{
             </script>
             <?php
         }
-        $data['honorscholars'] = $this->Tutor_model->get_honor_scholars();
+        // $data['honorscholars'] = $this->Tutor_model->get_honor_scholars();
         
         // $tutattendance =  array('tutorID' => $data['honorscholars']['tutorID'],'' );
         // foreach($data['honorscholars'] as $tutor){
@@ -114,66 +114,74 @@ class Attendance extends CI_Controller{
                                         'timeOut' =>null,
                                         'remarks' =>$remarks);
                                     $this->Attendance_model->add_attendance($params);
+                                    $audit_param = $this->audit->add($data['userID'],'Attendance','User has successfully timed in.');
+                                    $this->Auditlog_model->add_auditlog($audit_param);
                                     echo '<script>alert("you have timed in at '.date('H:i:s').'");</script>';
                                     $data['_view'] = 'attendance/add';
                                     $this->load->view('attendance/add',$data);
-                                    $audit_param = $this->audit->add($data['userID'],'Attendance','User has successfully timed in.');
-                                    $this->Auditlog_model->add_auditlog($audit_param);
+                                    
                                 }
                                 elseif($attendanceData['timeOut'] == null)
                                 {
                                     $timecheck = date('H:i:s') - $ends;
                                     if($timecheck<0)
                                     {
+                                        $audit_param = $this->audit->add($data['userID'],'Attendance','User has tried to time out before respected schedule.');
+                                        $this->Auditlog_model->add_auditlog($audit_param);
                                         echo '<script>alert("Your shift has not yet ended");</script>';
                                         $data['_view'] = 'attendance/add';
                                         $this->load->view('attendance/add',$data);
-                                        $audit_param = $this->audit->add($data['userID'],'Attendance','User has tried to time out before respected schedule.');
-                                        $this->Auditlog_model->add_auditlog($audit_param);
+                                        
                                     }
                                     else
                                     {
                                         $params=array('timeOut'=>date('Y-m-d H:i:s'));
                                         $this->Attendance_model->update_attendance($attendanceData['logID'],$params);
+                                        $audit_param = $this->audit->add($data['userID'],'Attendance','User has successfully timed out.');
+                                        $this->Auditlog_model->add_auditlog($audit_param);
                                         echo '<script>alert("you have timed out at '.date('H:i:s').'");</script>';
                                         $data['_view'] = 'attendance/add';
                                         $this->load->view('attendance/add',$data);
-                                        $audit_param = $this->audit->add($data['userID'],'Attendance','User has successfully timed out.');
-                                        $this->Auditlog_model->add_auditlog($audit_param);
+                                        
                                     }
                                 }
                                 else
                                 {
-                                     echo '<script>alert("You have already finished your shift for the day");</script>';
-                                     $audit_param = $this->audit->add($data['userID'],'Attendance','User has tried to start a shift again.');
+                                    $audit_param = $this->audit->add($data['userID'],'Attendance','User has tried to start a shift again.');
                                     $this->Auditlog_model->add_auditlog($audit_param);
                                      $data['_view'] = 'attendance/add';
+                                     echo '<script>alert("You have already finished your shift for the day");</script>';
+                                     
                                     $this->load->view('attendance/add',$data);
                                 }
                             }
                         else
                         {
-                            echo '<script>alert("It is not your scheduled shift");</script>';
                             $audit_param = $this->audit->add($data['userID'],'Attendance','User has entered an attendance on a wrong shift.');
                             $this->Auditlog_model->add_auditlog($audit_param);
+                            echo '<script>alert("It is not your scheduled shift");</script>';
+                            
                             $data['_view'] = 'attendance/add';
                             $this->load->view('attendance/add',$data);
                         }
                     }
                     else
                     {
-                        echo '<script>alert("You do not have a schedule for the term");</script>';
                         $audit_param = $this->audit->add($data['userID'],'Attendance','User has tried to check attendance without a set schedule.');
                         $this->Auditlog_model->add_auditlog($audit_param);
+
+                        echo '<script>alert("You do not have a schedule for the term");</script>';
+                        
                         $data['_view'] = 'attendance/add';
                         $this->load->view('attendance/add',$data);
                     }
                 }
                 else
                 {
-                    echo '<script>alert("You do not have a record as a tutor");</script>';
                     $audit_param = $this->audit->add($data['userID'],'Attendance','User is not a valid tutor.');
                     $this->Auditlog_model->add_auditlog($audit_param);
+                    echo '<script>alert("You do not have a record as a tutor");</script>';
+                    
                     $data['_view'] = 'attendance/add';
                     $this->load->view('attendance/add',$data);
                 }
@@ -194,7 +202,7 @@ class Attendance extends CI_Controller{
         }
     }  
 
-    function view()
+    function view($userID)
     {
 
     }

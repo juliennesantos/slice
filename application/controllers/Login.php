@@ -44,9 +44,17 @@ class Login extends CI_Controller
 
       $data = $this->Login_model->get_user($params);
       if (password_verify($params['password'], $data['password']) == FALSE) {
+        $user = $this->Login_model->getuser($params['username']);
         //add audit to system
-        $audit_param = $this->audit->add($data['userID'],'Login','User has tried to login.');
-        $this->Auditlog_model->add_auditlog($audit_param);
+        if(isset($user['userID'])){
+          $audit_param = $this->audit->add($data['userID'],'Login','A user has tried to login.');
+          $this->Auditlog_model->add_auditlog($audit_param);
+        }
+        else{
+          $audit_param = $this->audit->add(0,'Login','User has tried to login.');
+          $this->Auditlog_model->add_auditlog($audit_param);         
+        }
+
         redirect('login/index/1');
       } else {
         if (isset($data['userID']) and isset($data['typeID']) && password_verify($params['password'], $data['password']) == TRUE)

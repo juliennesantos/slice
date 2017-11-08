@@ -39,6 +39,15 @@ class Attendance_model extends CI_Model
         }
         return $this->db->get()->result_array();
     }
+
+    //specific tutor attendance list
+    function get_tutor_attendance_list($tutorID,$term,$sy){
+        $this->db->from('attendance');
+        $this->db->where('tutorID', $tutorID);
+        $this->db->where('term',$term);
+        $this->db->where('schoolYr', $sy);
+        return $this->db->get()->result_array();
+    }
     /*
      * Get all attendance count
      */
@@ -91,11 +100,5 @@ class Attendance_model extends CI_Model
         return $this->db->update('attendance',$params);
     }
     
-    /*
-     * function to delete attendance
-     */
-    function delete_attendance($logID)
-    {
-        return $this->db->delete('attendance',array('logID'=>$logID));
-    }
+    
 }
