@@ -285,11 +285,13 @@ class Tutorialsession_model extends CI_Model
         $this->db->join('subjects s', 't.subjectID = s.subjectID');                        
         $this->db->join('tutors tr', 'tr.tutorID = t.previousTutorID', 'left');                
         $this->db->join('tutors ta', 'ta.tutorID = t.tutorID', 'left');
-        $this->db->join('users ur', 'ur.userID = tr.tutorID', 'left');
-        $this->db->join('users ua', 'ua.userID = ta.tutorID', 'left');       
-        $this->db->join('tutorschedules tsr', 'tsr.tutorScheduleID = t.tutorScheduleID');
-        $this->db->join('timeblocks tbr', 'tbr.timeblockID = tsr.timeblockID');
-        $this->db->where('t.status', 'Pending');
+        $this->db->join('users ur', 'ur.userID = tr.userID', 'left');
+        $this->db->join('users ua', 'ua.userID = ta.userID', 'left');       
+        $this->db->join('tutorschedules tsr', 'tsr.tutorScheduleID = t.tutorScheduleID', 'left');
+        $this->db->join('timeblocks tbr', 'tbr.timeblockID = tsr.timeblockID', 'left');
+        $this->db->or_where('t.status', 'Pending');
+        $this->db->or_where('t.status', 'Cancel Pending');
+        $this->db->or_where('t.status LIKE', 'Change Pending');
         $this->db->order_by('tutorialNo', 'asc');
         if(isset($params) && !empty($params))
         {

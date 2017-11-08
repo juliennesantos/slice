@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?=site_url('resources\jquery-bar-rating\dist\themes\fontawesome-stars.css')?>;">
+<!-- <link rel="stylesheet" href="<?=site_url('resources\jquery-bar-rating\dist\themes\fontawesome-stars.css')?>;"> -->
 
 <div class="row">
   <div class="col-lg-12">
@@ -30,16 +30,15 @@
           <?php foreach($tutorialsessions as $t){ ?>
           <tr>
             <td>
-              <input type="hidden" name="tutorialNo" value="<?= $t['tutorialNo']; ?>">
               <?= $t['tutorialNo']; ?>
             </td>
             <td>
               <input type="hidden" name="tutorID" value="<?= $t['tutorID']; ?>">
               <?php   if(empty($t['uaLN']))
-                                        echo 'No tutor yet!';
-                                    else 
-                                        echo $t['uaLN'].', '. $t['uaFN'];
-                        ?>
+                          echo 'No tutor yet!';
+                      else 
+                          echo $t['uaLN'].', '. $t['uaFN'];
+              ?>
             </td>
             <td>
               <input type="hidden" name="previousTutorID" value="<?= $t['previousTutorID']; ?>">
@@ -79,7 +78,8 @@
                                 <b>#</b>
                               </td>
                               <td>
-                                input[]<?= $t['tutorialNo']; ?>
+                                <input type="hidden" name="tutorialNo" value="<?= $t['tutorialNo']; ?>">
+                                <?= $t['tutorialNo']; ?>
                               </td>
                             </tr>
                             <tr>
@@ -175,7 +175,7 @@
               
                 <span class="fa fa-pencil"></span>
               </button>
-              <button name="cancelrequest" value="cancelrequest" id="cancelrequest" type="submit" class="btn btn-danger" title="Cancel Request"
+              <button name="cancelrequest" value="<?= $t['tutorialNo']; ?>" id="cancelrequest" type="submit" class="btn btn-danger" title="Cancel Request"
                 onclick="confirm('Request to cancel this session?');">
                 <span class="fa fa-trash"></span>
               </button>
