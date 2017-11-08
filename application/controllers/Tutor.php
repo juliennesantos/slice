@@ -10,6 +10,7 @@ class Tutor extends CI_Controller{
     $this->load->model('Tutorexpertise_model');
     $this->load->model('Subject_model');
     $this->load->model('Term_model');
+    $this->load->library('audit');
     $this->load->model('Auditlog_model');
     $this->load->library('loginvalidation');
     $this->loginvalidation->isValid();
@@ -182,7 +183,10 @@ class Tutor extends CI_Controller{
               'subjectID' => $subject,
               'dateModified' => date('Y-m-d H:i:s')
             );
-            $expertiseID = $this->Tutorexpertise_model->add_tutorexpertise($expertiseParam);                    
+            $expertiseID = $this->Tutorexpertise_model->add_tutorexpertise($expertiseParam);
+            //audit cancellation of request
+            $audit_param = $this->audit->add($_SESSION['userID'],'Add Tutor Expertise','User has added a tutor expertise.');
+            $this->Auditlog_model->add_auditlog($audit_param);                    
           }
           $schedParam = array(
             'tutorID' => $tutorID,
@@ -193,6 +197,9 @@ class Tutor extends CI_Controller{
             'dateAdded' => date('Y-m-d H:i:s')
           );
           $scheduleID = $this->Tutorschedule_model->add_tutorschedule($schedParam);
+          //audit cancellation of request
+          $audit_param = $this->audit->add($_SESSION['userID'],'Add Tutor Schedule','User has added tutor schedule.');
+          $this->Auditlog_model->add_auditlog($audit_param);
           ?>
           <script type="text/javascript">
           alert("You have an unfinished or invalid entry!");
@@ -259,5 +266,8 @@ class Tutor extends CI_Controller{
     }
     // var_dump($data['subjects']);
     $this->load->view('tutor/tutorpdf', $data);
+    //audit cancellation of request
+      $audit_param = $this->audit->add($_SESSION['userID'],'View Tutor List','User has viewed pdf file of tutor list.');
+      $this->Auditlog_model->add_auditlog($audit_param);
   }
 }

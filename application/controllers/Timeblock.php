@@ -51,6 +51,9 @@ class Timeblock extends CI_Controller{
             );
             
             $timeblock_id = $this->Timeblock_model->add_timeblock($params);
+            //audit timeblock
+            $audit_param = $this->audit->add($_SESSION['userID'],'Add Timeblock','User has added a timeblock.');
+            $this->Auditlog_model->add_auditlog($audit_param);
             redirect('timeblock/index');
         }
         else
@@ -87,7 +90,10 @@ class Timeblock extends CI_Controller{
 					'dateModified' => $this->input->post('dateModified'),
                 );
 
-                $this->Timeblock_model->update_timeblock($timeblockID,$params);            
+                $this->Timeblock_model->update_timeblock($timeblockID,$params);
+                //audit timeblock
+                $audit_param = $this->audit->add($_SESSION['userID'],'Update Timeblock','User has updated a timeblock.');
+                $this->Auditlog_model->add_auditlog($audit_param);            
                 redirect('timeblock/index');
             }
             else
