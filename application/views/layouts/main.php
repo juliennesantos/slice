@@ -35,7 +35,7 @@
   <script src="<?php echo site_url('resources/js/bootstrap.min.js'); ?>"></script>
 </head>
 
-<body class="hold-transition skin-black sidebar-mini modal-open">
+<body class="hold-transition skin-black sidebar-mini ">
   <div class="wrapper">
     <header class="main-header">
       <!-- Logo -->
@@ -222,6 +222,12 @@
             <a href="<?php echo site_url('attendance/index');?>">
               <i class="fa fa-pencil-square-o"></i>
               <span>Attendance</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo site_url('feedback/index');?>">
+              <i class="fa fa-paper-plane"></i>
+              <span>Feedback(View)</span>
             </a>
           </li>
           <li>

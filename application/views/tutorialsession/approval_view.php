@@ -145,16 +145,16 @@
                         <div class="form-group col-lg-12 col-sm-12">
                           <!-- Set Tutor -->
 
-                          <label for="tutorID" class="control-label">&emsp;Set Tutor</label>
-                            <select name="tutorID" class="form-control col-lg-offset-5 col-sm-offset-5" id='tutors<?= $t['tutorialNo']; ?>'>
+                          <!-- <label for="tutorID" class="control-label">&emsp;Set Tutor</label> -->&emsp;
+                            <select name="tutorID" class="form-control" id='tutors<?= $t['tutorialNo']; ?>'>
 
                             </select>
                           </div></div><br/>
                           <div class="row">
                         <div class="form-group col-lg-12 col-sm-12">
-                          <!-- Remarks -->
-                            <textarea name="remarks" class="form-control col-lg-offset-1 col-sm-offset-1" id="remarks"
-                            placeholder="Write your remarks here..." cols="55" rows="4"></textarea>
+                          <!-- Remarks -->&emsp;
+                            <textarea name="remarks" class="form-control" id="remarks"
+                            placeholder="Write your remarks here..." cols="60" rows="4"></textarea>
                             <span class="text-danger">
                               <?php echo form_error('coordRemarks'); ?>
                             </span>
