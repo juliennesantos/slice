@@ -79,7 +79,7 @@
                                 <b>#</b>
                               </td>
                               <td>
-                                <?= $t['tutorialNo']; ?>
+                                input[]<?= $t['tutorialNo']; ?>
                               </td>
                             </tr>
                             <tr>
@@ -115,7 +115,7 @@
                         <!-- Tutorschedule -->
                         <label for="tutorschedrequestedID" class="control-label">Select a new Timeblock</label>
                         <div class="form-group">
-                          <select name="tutorschedrequestedID" class="form-control timeblock<?=$t['subjectID']?>">
+                          <select name="tutorschedrequestedID" class="form-control timeblock<?=$t['tutorialNo']?>">
                             <option value="">Choose subject first!</option>
                             <?php 
                               foreach ($all_timeblocks as $timeblock)
@@ -207,7 +207,7 @@
                               <b>#</b>
                             </td>
                             <td>
-                              <?= $t['tutorialNo']; ?>
+                              <p class="tutorialNo" data-tutno="<?= $t['tutorialNo']; ?>"><?= $t['tutorialNo']; ?></p>
                             </td>
                           </tr>
                           <tr>
@@ -251,7 +251,7 @@
                       </div>
                       <label for="feedback" class="control-label">Feedback</label>
                       <div class="form-group">
-                        <textarea name="feedback" class="form-control" id="feedback" placeholder="Input your feedback here" maxlength="1000" minlength="50">
+                        <textarea name="feedback" class="form-control" id="feedback" placeholder="Input your feedback here" maxlength="1000">
                           <?php echo $this->input->post('feedback'); ?>
                         </textarea>
                       </div>
@@ -279,5 +279,3 @@
     </div>
   </div>
 </div>
-
-

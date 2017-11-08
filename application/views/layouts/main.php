@@ -583,8 +583,6 @@
   <script src="<?php echo site_url('resources/js/demo.js');?>"></script>
   <!-- Select2 -->
   <script src="<?php echo site_url('bower_components\select2\dist\js\select2.full.min.js');?>"></script>
-  <!-- Bootbox -->
-  <script type="text/javascript" src="<?php echo site_url();?>resources\js\bootbox.min.js"></script>
 
   <!-- DatePicker -->
   <script src="<?php echo site_url('resources/js/moment.js');?>"></script>
@@ -599,10 +597,39 @@
   <script src="<?=site_url();?>plugins/input-mask/jquery.inputmask.js"></script>
   <script src="<?=site_url();?>plugins/input-mask/jquery.inputmask.extensions.js"></script>
   <!-- Custom JS -->
-  <script src="<?=site_url();?>resources\custom.js"></script>
+  <!-- <script src="<?=site_url();?>resources\custom.js"></script> -->
 
-  <script src="<?= site_url('resources/jquery-bar-rating/dist/jquery.barrating.min.js'); ?>"></script>
-  <script src="<?= site_url('resources/js/tutee/tuteeindex.js'); ?>"></script>
+  <!-- <script src="<?= site_url('resources/jquery-bar-rating/dist/jquery.barrating.min.js'); ?>"></script> -->
+  <script src="<?= site_url('resources/js/tutee/tuteeindex.js'); ?>"></script> 
+  <script>// $ = jQuery.noConflict();
+
+$(document).ready(function(){
+
+  $('.datatable').DataTable();
+  
+  $('[data-mask]').inputmask();
+  //multiple dropbox
+  $('.select2').select2()
+  //Date picker
+  // $('#datepicker').datepicker({
+  //   autoclose: true
+  // });
+  $('.datepicker').datepicker({
+    autoclose: true
+  });
+  
+  $('.treeview')(function () {
+    var _this = $(this);
+    if (!(_this.hasClass('active'))) {
+      _this.addClass('active');
+      _this.children().find('treeview').addClass('menu-open');
+    } else {
+      _this.removeClass('active');
+      _this.children().find('treeview').removeClass('menu-open');
+    }
+  });
+
+});</script>
 
 </body>
 

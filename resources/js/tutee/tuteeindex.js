@@ -1,10 +1,14 @@
-$a = jQuery.noConflict();
+$(document).ready(function(){
 
-$a('.findtb').click(function (e) {
-  var subject = $a(this).val();
-  var site_url = $a(".url").val();
-  $a.get(site_url + 'tutorialsession/findtimeblocks/' + $a(this).val(), function (
-    data) {
-    $a(".timeblock"+subject).html(data);
+  $('.findtb').click(function (e) {
+    var tutorialNo = ('.tutorialNo').data('tutno');
+    var subject = $(this).val();
+    var site_url = $(".url").val();
+    $.get(site_url + 'tutorialsession/findtimeblocks/' + $(this).val(), function (
+      data) {
+      $(".timeblock"+tutorialNo).html(data);
+    });
   });
+
+
 });

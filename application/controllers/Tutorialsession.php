@@ -507,7 +507,7 @@ class Tutorialsession extends CI_Controller{
             
             $this->email->set_newline("\r\n");
             $this->email->from('linkgigph@gmail.com', 'Admin');
-            $this->email->to($usermail);
+            $this->email->to($usermail); // tutor!!!
             $this->email->subject('SLICe: You have a new tutorial schedule!');
             $this->email->message(
               '<b>Greetings!</b>' . 
@@ -579,7 +579,7 @@ class Tutorialsession extends CI_Controller{
             $this->email->from('linkgigph@gmail.com', 'Admin');
             $this->email->to($usermail);
             $this->email->subject('SLICe: Your Tutorial Request has been disapproved.');
-            $this->email->message('<b>Greetings!</b>' . '<br/><br/>' . 'We are sorry to inform you that your requested tutorial session schedule has been disapproved, and the SLU coordinator has provided the following remarks: ' . '<br/><br/>'. '<i>"'.$this->input->post('coordRemarks').'"</i><br/><br>Please try to select another tutorial schedule or proceed to the Student Learning Center for any concerns. Thank you!' .'<br/><br/><br/>All the best, <br/><br/> <b>The SLICe Team</b><br/>Student Learning Center<br/> <i>De La Salle - College of Saint Benilde<br/> 2544 Taft Avenue, Malate, Manila</i>');
+            $this->email->message('<b>Greetings!</b>' . '<br/><br/>' . 'We are sorry to inform you that your requested tutorial session schedule has been disapproved, and the SLU coordinator has provided the following remarks: ' . '<br/><br/>'. '<i>"'.$this->input->post('remarks').'"</i><br/><br>Please try to select another tutorial schedule or proceed to the Student Learning Center for any concerns. Thank you!' .'<br/><br/><br/>All the best, <br/><br/> <b>The SLICe Team</b><br/>Student Learning Center<br/> <i>De La Salle - College of Saint Benilde<br/> 2544 Taft Avenue, Malate, Manila</i>');
             $email = $this->email->send() ? redirect('tutorialsession/approvalview/2') : redirect('tutorialsession/approvalview/3');
             //var_dump($user['emailAddress'], $email);
           }

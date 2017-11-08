@@ -1,25 +1,29 @@
-$j = jQuery.noConflict();
+// $ = jQuery.noConflict();
 
-$j('.datatable').DataTable();
+$(document).ready(function(){
 
-$j('[data-mask]').inputmask();
-//multiple dropbox
-$j('.select2').select2()
-//Date picker
-// $j('#datepicker').datepicker({
-//   autoclose: true
-// });
-$j('.datepicker').datepicker({
-  autoclose: true
-});
+  $('.datatable').DataTable();
+  
+  $('[data-mask]').inputmask();
+  //multiple dropbox
+  $('.select2').select2()
+  //Date picker
+  // $('#datepicker').datepicker({
+  //   autoclose: true
+  // });
+  $('.datepicker').datepicker({
+    autoclose: true
+  });
+  
+  $('.treeview')(function () {
+    var _this = $(this);
+    if (!(_this.hasClass('active'))) {
+      _this.addClass('active');
+      _this.children().find('treeview').addClass('menu-open');
+    } else {
+      _this.removeClass('active');
+      _this.children().find('treeview').removeClass('menu-open');
+    }
+  });
 
-$j('.treeview')(function () {
-  var _this = $j(this);
-  if (!(_this.hasClass('active'))) {
-    _this.addClass('active');
-    _this.children().find('treeview').addClass('menu-open');
-  } else {
-    _this.removeClass('active');
-    _this.children().find('treeview').removeClass('menu-open');
-  }
 });
