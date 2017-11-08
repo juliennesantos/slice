@@ -425,7 +425,7 @@ class Tutorialsession extends CI_Controller{
     {
       ?>
       <script type="text/javascript">
-      alert("\nYour transaction was sucessfully submitted.\n\nHowever, the email notification failed to send because of network timeout.");
+      alert("\nYour transaction was sucessfully submitted.\n\nHowever, the email notification failed to send because of network timeout or antivirus block.");
       window.location.href = "<?php echo site_url(); ?>tutorialsession/approvalview";
       </script>
       <?php    
@@ -598,7 +598,7 @@ class Tutorialsession extends CI_Controller{
     }
 
     //APPROVES CHANGE REQUEST
-    if ($this->input->post('approveUpdate'))
+    if ($this->input->post('approveChange'))
       {
       if (isset($data['tutorialNo']))
         {
@@ -617,13 +617,14 @@ class Tutorialsession extends CI_Controller{
           );
           $approval_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo, $params);
 
+          $old_sess = $this->input->post('approveChange');
           $params1 = array(
             'tutorID' => $tutorID,
             'coordRemarks' => $this->input->post('remarks'),
             'status' => 'Changed to Session #'. $tutorialNo,
             'dateModified' => date('Y-m-d H:i:s'),
           );
-          $approval_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo, $params1);
+          $approval_id = $this->Tutorialsession_model->update_tutorialsession($old_sess, $params1);
 
           $this->load->model('User_model');
           $usermail = $this->input->post('emailAddress');
@@ -649,7 +650,7 @@ class Tutorialsession extends CI_Controller{
             $this->email->message(
               '<b>Greetings!</b>' .
                 '<br/><br/>' .
-                'Your requested tutorial session has been approved by the SLU Coordinator!' .
+                'Your requested tutorial session change request has been approved by the SLU Coordinator!' .
                 '<br/><br/>' .
                 'Please refer to your requested tutorial schedule in the SLICe website for details. All tutorials may only be held at the Student Learning Center. <br><br>
               <b>Tips on making the most out of your tutorial session:</b><br>
@@ -701,60 +702,7 @@ class Tutorialsession extends CI_Controller{
     }
 
     //DISAPPROVES CHANGE REQUEST
-    if ($this->input->post('disapproveUpdate'))
-      {
-      if (isset($data['tutorialNo']))
-        {
-        $this->load->library('form_validation');
-
-        $this->form_validation->set_rules('coordRemarks', 'CoordRemarks', 'max_length[200]');
-
-        if ($this->form_validation->run())
-          {
-          $tutorID = $this->input->post('tutorID');
-          $params = array(
-            'tutorID' => $tutorID,
-            'dateModified' => date('Y-m-d H:i:s'),
-            'status' => 'Disapproved',
-            'coordRemarks' => $this->input->post('coordRemarks'),
-          );
-          $approval_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo, $params);
-
-          $this->load->model('User_model');
-          $usermail = $this->input->post('emailAddress');
-
-          if ($approval_id)
-            {
-            $config['protocol'] = 'smtp';
-            $config['smtp_host'] = 'smtp.gmail.com';
-            $config['smtp_port'] = 587;
-            $config['_smtp_auth'] = TRUE;
-            $config['smtp_crypto'] = 'tls';
-            $config['smtp_user'] = 'linkgigph@gmail.com';
-            $config['smtp_pass'] = 'linkgigadmin';
-            $config['mailtype'] = "html";
-            $config['smtp_timeout'] = 30;
-
-            $this->load->library('email', $config);
-
-            $this->email->set_newline("\r\n");
-            $this->email->from('linkgigph@gmail.com', 'Admin');
-            $this->email->to($usermail);
-            $this->email->subject('SLICe: Your Tutorial Request has been disapproved.');
-            $this->email->message('<b>Greetings!</b>' . '<br/><br/>' . 'We are sorry to inform you that your requested tutorial session schedule has been disapproved, and the SLU coordinator has provided the following remarks: ' . '<br/><br/>' . '<i>"' . $this->input->post('remarks') . '"</i><br/><br>Please try to select another tutorial schedule or proceed to the Student Learning Center for any concerns. Thank you!' . '<br/><br/><br/>All the best, <br/><br/> <b>The SLICe Team</b><br/>Student Learning Center<br/> <i>De La Salle - College of Saint Benilde<br/> 2544 Taft Avenue, Malate, Manila</i>');
-            $email = $this->email->send() ? redirect('tutorialsession/approvalview/2') : redirect('tutorialsession/approvalview/3');
-            //var_dump($user['emailAddress'], $email);
-          } else {
-            redirect('tutorialsession/approvalview/4');
-          }
-        }
-      } else {
-        echo 'errordisapproval';
-      }
-    }
-
-    //APPROVES CANCEL REQUEST
-    if ($this->input->post('approveUpdate'))
+    if ($this->input->post('disapproveChange'))
       {
       if (isset($data['tutorialNo']))
         {
@@ -768,7 +716,7 @@ class Tutorialsession extends CI_Controller{
           $params = array(
             'tutorID' => $tutorID,
             'coordRemarks' => $this->input->post('remarks'),
-            'status' => 'Approved',
+            'status' => 'Change Disapproved',
             'dateModified' => date('Y-m-d H:i:s'),
           );
           $approval_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo, $params);
@@ -793,11 +741,64 @@ class Tutorialsession extends CI_Controller{
             $this->email->set_newline("\r\n");
             $this->email->from('linkgigph@gmail.com', 'Admin');
             $this->email->to($usermail);
-            $this->email->subject('SLICe: Your Tutorial Request has been approved!');
+            $this->email->subject('SLICe: Your Tutorial Change Request has been disapproved.');
+            $this->email->message('<b>Greetings!</b>' . '<br/><br/>' . 'We are sorry to inform you that your requested tutorial session change schedule has been disapproved, and the SLU coordinator has provided the following remarks: ' . '<br/><br/>' . '<i>"' . $this->input->post('remarks') . '"</i><br/><br>Please try to select another tutorial schedule or proceed to the Student Learning Center for any concerns. Thank you!' . '<br/><br/><br/>All the best, <br/><br/> <b>The SLICe Team</b><br/>Student Learning Center<br/> <i>De La Salle - College of Saint Benilde<br/> 2544 Taft Avenue, Malate, Manila</i>');
+            $email = $this->email->send() ? redirect('tutorialsession/approvalview/2') : redirect('tutorialsession/approvalview/3');
+            //var_dump($user['emailAddress'], $email);
+          } else {
+            redirect('tutorialsession/approvalview/4');
+          }
+        }
+      } else {
+        echo 'errordisapproval';
+      }
+    }
+
+    //APPROVES CANCEL REQUEST
+    if ($this->input->post('approveCancel'))
+      {
+      if (isset($data['tutorialNo']))
+        {
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('coordRemarks', 'CoordRemarks', 'max_length[200]');
+
+        if ($this->form_validation->run())
+          {
+          $tutorID = $this->input->post('tutorID');
+          $params = array(
+            'tutorID' => $tutorID,
+            'coordRemarks' => $this->input->post('remarks'),
+            'status' => 'Cancel Approved',
+            'dateModified' => date('Y-m-d H:i:s'),
+          );
+          $approval_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo, $params);
+
+          $this->load->model('User_model');
+          $usermail = $this->input->post('emailAddress');
+
+          if ($approval_id)
+            {
+            $config['protocol'] = 'smtp';
+            $config['smtp_host'] = 'smtp.gmail.com';
+            $config['smtp_port'] = 587;
+            $config['_smtp_auth'] = TRUE;
+            $config['smtp_crypto'] = 'tls';
+            $config['smtp_user'] = 'linkgigph@gmail.com';
+            $config['smtp_pass'] = 'linkgigadmin';
+            $config['mailtype'] = "html";
+            $config['smtp_timeout'] = 30;
+
+            $this->load->library('email', $config);
+
+            $this->email->set_newline("\r\n");
+            $this->email->from('linkgigph@gmail.com', 'Admin');
+            $this->email->to($usermail);
+            $this->email->subject('SLICe: Your Tutorial Request Cancellation has been approved!');
             $this->email->message(
               '<b>Greetings!</b>' .
                 '<br/><br/>' .
-                'Your requested tutorial session has been approved by the SLU Coordinator!' .
+                'Your requested tutorial session cancellation has been approved by the SLU Coordinator!' .
                 '<br/><br/>' .
                 'Please refer to your requested tutorial schedule in the SLICe website for details. All tutorials may only be held at the Student Learning Center. <br><br>
               <b>Tips on making the most out of your tutorial session:</b><br>
@@ -807,27 +808,6 @@ class Tutorialsession extends CI_Controller{
               <li>Review your topics after the tutorial session for maximum retention</li>
               <ul>' .
                 '<br/><br/><br/>
-              All the best, <br/><br/> 
-              <b>The SLICe Team</b><br/>
-              Student Learning Center<br/> 
-              <i>De La Salle - College of Saint Benilde<br/> 
-              2544 Taft Avenue, Malate, Manila</i>'
-            );
-            $email = $this->email->send() ? redirect('tutorialsession/approvalview/1') : redirect('tutorialsession/approvalview/3');
-            //var_dump($user['emailAddress'], $email);
-
-
-            $this->email->set_newline("\r\n");
-            $this->email->from('linkgigph@gmail.com', 'Admin');
-            $this->email->to($usermail); // tutor!!!
-            $this->email->subject('SLICe: You have a new tutorial schedule!');
-            $this->email->message(
-              '<b>Greetings!</b>' .
-                '<br/><br/>' .
-                'You have been scheduled a tutorial session by the SLU Coordinator!' .
-                '<br/><br/>' .
-                'Please refer to your tutorial schedules page in the SLICe website for details. All tutorials may only be held at the Student Learning Center. <br><br>'
-                . '<br/><br/><br/>
               All the best, <br/><br/> 
               <b>The SLICe Team</b><br/>
               Student Learning Center<br/> 
@@ -849,7 +829,7 @@ class Tutorialsession extends CI_Controller{
     }
 
     //DISAPPROVES CANCEL REQUEST
-    if ($this->input->post('disapproveUpdate'))
+    if ($this->input->post('disapproveCancel'))
       {
       if (isset($data['tutorialNo']))
         {
@@ -863,7 +843,7 @@ class Tutorialsession extends CI_Controller{
           $params = array(
             'tutorID' => $tutorID,
             'dateModified' => date('Y-m-d H:i:s'),
-            'status' => 'Disapproved',
+            'status' => 'Cancel Disapproved',
             'coordRemarks' => $this->input->post('coordRemarks'),
           );
           $approval_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo, $params);
@@ -888,7 +868,7 @@ class Tutorialsession extends CI_Controller{
             $this->email->set_newline("\r\n");
             $this->email->from('linkgigph@gmail.com', 'Admin');
             $this->email->to($usermail);
-            $this->email->subject('SLICe: Your Tutorial Request has been disapproved.');
+            $this->email->subject('SLICe: Your Tutorial Request Cancellation has been disapproved.');
             $this->email->message('<b>Greetings!</b>' . '<br/><br/>' . 'We are sorry to inform you that your requested tutorial session schedule has been disapproved, and the SLU coordinator has provided the following remarks: ' . '<br/><br/>' . '<i>"' . $this->input->post('remarks') . '"</i><br/><br>Please try to select another tutorial schedule or proceed to the Student Learning Center for any concerns. Thank you!' . '<br/><br/><br/>All the best, <br/><br/> <b>The SLICe Team</b><br/>Student Learning Center<br/> <i>De La Salle - College of Saint Benilde<br/> 2544 Taft Avenue, Malate, Manila</i>');
             $email = $this->email->send() ? redirect('tutorialsession/approvalview/2') : redirect('tutorialsession/approvalview/3');
             //var_dump($user['emailAddress'], $email);

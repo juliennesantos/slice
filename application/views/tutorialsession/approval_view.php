@@ -37,7 +37,7 @@
                   // $(this).after('<div id="loader"><img src="img/loading.gif" alt="loading subcategory" /></div>');
                   $.get('<?php echo site_url();?>tutorialsession/findtutors/' + $(this).data(
                     'sid'), function (data) {
-                    $("#tutors").html(data);
+                    $("#tutors<?= $t['tutorialNo']; ?>").html(data);
                     $('#loader').slideUp(200, function () {
                       $(this).remove();
                     });
@@ -146,7 +146,7 @@
                           <!-- Set Tutor -->
                           <label for="tutorID" class="control-label">Set Tutor</label>
                           <div class="form-group">
-                            <select name="tutorID" class="form-control" id='tutors'>
+                            <select name="tutorID" class="form-control" id='tutors<?= $t['tutorialNo']; ?>'>
                             </select>
                           </div>
                           <!-- Remarks -->
@@ -163,24 +163,42 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                          <button type="submit" name="
-                          <?php if($t['status'] == "Cancel Pending")
-                            echo 'approveCancel';
-                            else if(stristr($t['status'], 'Change Pending'))
-                            echo 'approveChange';
-                            else
-                            echo 'approveUpdate';
-                          ?>
-                          " value="<?php echo $t['tutorialNo']; ?>" class="btn btn-primary">Approve</button>
-                          <button type="submit" name="
-                          <?php if ($t['status'] == "Cancel Pending")
-                            echo 'disapproveCancel';
-                            else if (stristr($t['status'], 'Change Pending'))
+                          
+                          <button type="submit" name="<?php
+                           if($t['status'] == "Cancel Pending")
+                              echo 'approveCancel';
+                              else if(stristr($t['status'], 'Change Pending'))
                               echo 'approveChange';
-                            else
-                              echo 'disapproveUpdate';
-                          ?>
-                          " value="<?php echo $t['tutorialNo']; ?>" class="btn btn-danger" onclick="confirm('Disapprove this request?');">Disapprove</button>
+                              else
+                              echo 'approveUpdate';
+                            ?>" value="<?php
+                            if (stristr($t['status'], 'Change Pending')) {
+                              $int = intval(preg_replace('/[^0-9]+/', '', $t['status']));
+                              echo $int;
+                            } else
+                              echo $t['tutorialNo'];
+                            ?>" class="btn btn-primary">
+                            Approve
+                          </button>
+
+
+                          <button type="submit" name="<?php
+                           if ($t['status'] == "Cancel Pending")
+                              echo 'disapproveCancel';
+                              else if (stristr($t['status'], 'Change Pending'))
+                                echo 'disapproveChange';
+                              else
+                                echo 'disapproveUpdate';
+                            ?>" value="<?php
+                            if (stristr($t['status'], 'Change Pending')){
+                                $int = intval(preg_replace('/[^0-9]+/', '', $t['status']));
+                                echo $int;
+                              }
+                              else
+                              echo $t['tutorialNo']; 
+                            ?>" class="btn btn-danger" onclick="confirm('Disapprove this request?');">
+                            Disapprove
+                          </button>
                         </div>
                         <?php echo form_close(); ?>
                       </div>
