@@ -114,7 +114,7 @@ class Attendance extends CI_Controller{
                                         'timeOut' =>null,
                                         'remarks' =>$remarks);
                                     $this->Attendance_model->add_attendance($params);
-                                    echo '<script>alert("you have timed in at'.date('H:i:s').'");</script>';
+                                    echo '<script>alert("you have timed in at '.date('H:i:s').'");</script>';
                                     $data['_view'] = 'attendance/add';
                                     $this->load->view('attendance/add',$data);
                                     $audit_param = $this->audit->add($data['userID'],'Attendance','User has successfully timed in.');
