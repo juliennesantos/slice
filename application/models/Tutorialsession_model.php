@@ -231,6 +231,21 @@ class Tutorialsession_model extends CI_Model
         return $this->db->get()->result_array();
     }
 
+    function get_tutors($subjectID)
+    {
+        $where = "tutsess.dateTimeRequested != (SELECT DATE_FORMAT(dateTimeRequested,'%d-%m-%Y') as dateTimeRequested FROM tutorialsessions WHERE status ='Approved')";
+        $this->db->from('tutorschedules ts');
+        $this->db->join('tutorexpertise te', 'ts.tutorID = te.tutorID');
+        $this->db->join('tutors tu', 'ts.tutorID = tu.tutorID');
+        $this->db->join('users u', 'tu.userID = u.userID');
+        $this->db->join('tutorialsessions tutsess', 'tutsess.tutorID = tu.tutorID');
+        $this->db->join('subjects s', 's.subjectID = te.subjectID');
+        $this->db->where('s.subjectID', $subjectID);
+        $this->db->where($where);
+        return $this->db->get()->result_array();
+        
+    }
+
     /*
      * Get all days and timeblocks by subject
      */
