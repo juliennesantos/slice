@@ -6,6 +6,8 @@ class Feedback extends CI_Controller{
     $this->load->model('Feedback_model');
     $this->load->library('loginvalidation');
     $this->loginvalidation->isValid();
+    $this->load->library('audit');
+    $this->load->model('Auditlog_model');
   } 
   
   /*
@@ -86,6 +88,9 @@ class Feedback extends CI_Controller{
       );
       
       $feedback_id = $this->Feedback_model->add_feedback($params);
+      //audit cancellation of request
+      $audit_param = $this->audit->add($_SESSION['userID'],'Add Tutorial Feedback','User has added a tutorial feedback.');
+      $this->Auditlog_model->add_auditlog($audit_param);
       redirect('feedback/tuteeview');
     }
     else
@@ -116,7 +121,10 @@ class Feedback extends CI_Controller{
           'feedback' => $this->input->post('feedback'),
         );
         
-        $this->Feedback_model->update_feedback($feedbackID,$params);            
+        $this->Feedback_model->update_feedback($feedbackID,$params);
+        //audit cancellation of request
+      $audit_param = $this->audit->add($_SESSION['userID'],'Update Tutorial Feedback','User has updated a tutorial feedback.');
+      $this->Auditlog_model->add_auditlog($audit_param);            
         redirect('feedback/index');
       }
       else
