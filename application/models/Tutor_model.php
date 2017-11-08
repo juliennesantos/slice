@@ -53,6 +53,7 @@ class Tutor_model extends CI_Model
   {
     $this->db->from('tutors t');
     $this->db->join('users u', 'u.userID = t.userID');
+    $this->db->join('tutorstatus s', 's.statusID = t.statusID');
     $this->db->order_by('t.tutorID', 'asc');
     if(isset($params) && !empty($params))
     {

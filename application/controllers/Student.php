@@ -131,4 +131,27 @@ class Student extends CI_Controller{
         else
             redirect('student/index');
     }
+
+/*
+* view tutors in pdf
+*/
+  function studentpdf()
+  {
+    $this->load->model('Tutorexpertise_model');
+    $data['_view'] = '' ;
+    $data['students'] = $this->Student_model->get_students();
+
+    // $c = count($data['tutors']);
+
+    // for($i=0; $i<$c;$i++)
+    // {
+    //   $tutor = $data['tutors'][$i]['tutorID'];
+    //   $data['subjects'][$tutor] = $this->Tutorexpertise_model->tutorexpertise_by_tutorID($tutor);
+    // }
+    // var_dump($data['subjects']);
+    $this->load->view('student/studentpdf', $data);
+    //audit cancellation of request
+      $audit_param = $this->audit->add($_SESSION['userID'],'View Tutor List','User has viewed pdf file of tutor list.');
+      $this->Auditlog_model->add_auditlog($audit_param);
+  }
 }

@@ -10,9 +10,9 @@
             <div class="box-body">
                 <table class="table table-striped datatable">
                     <tr>
-						<th>TutorID</th>
-						<th>UserID</th>
-						<th>StatusID</th>
+						<th>ID number</th>
+						<th>Name</th>
+						<th>Status</th>
 						<th>TutorType</th>
 						<th>DateAdded</th>
 						<th>DateModified</th>
@@ -20,9 +20,9 @@
                     </tr>
                     <?php foreach($tutors as $t){ ?>
                     <tr>
-						<td><?php echo $t['tutorID']; ?></td>
-						<td><?php echo $t['userID']; ?></td>
-						<td><?php echo $t['statusID']; ?></td>
+						<td><?php echo $t['username']; ?></td>
+						<td><?php echo $t['lastName'].', '.$t['firstName']; ?></td>
+						<td><?php echo $t['status']; ?></td>
 						<td><?php echo $t['tutorType']; ?></td>
 						<td><?php echo $t['dateAdded']; ?></td>
 						<td><?php echo $t['dateModified']; ?></td>
