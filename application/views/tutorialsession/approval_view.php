@@ -78,9 +78,8 @@
                 <?php echo $t['status']; ?>
               </td>
               <td class="col-lg-1">
-                <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal-<?php echo $t['tutorialNo']; ?>" data-sid="<?php echo $t['subjectID']?>"
-                  id="modal<?php echo $t['tutorialNo']; ?>">
-                  <span class="fa fa-pencil"></span> Approve</button>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-<?php echo $t['tutorialNo']; ?>" data-sid="<?php echo $t['subjectID']?>"
+                  id="modal<?php echo $t['tutorialNo']; ?>">View Request</button>
 
 
                 <!-- MODAL -->
@@ -142,44 +141,46 @@
                         <!-- /details -->
 
                         <input type="hidden" name="tutorialNo" value="<?php echo $t['tutorialNo']; ?>">
-                        <div class="form-group">
+                        <div class="row">
+                        <div class="form-group col-lg-12">
                           <!-- Set Tutor -->
-                          <label for="tutorID" class="control-label">Set Tutor</label>
-                          <div class="form-group">
-                            <select name="tutorID" class="form-control" id='tutors<?= $t['tutorialNo']; ?>'>
+
+                          <label for="tutorID" class="control-label">&emsp;Set Tutor</label>
+                            <select name="tutorID" class="form-control col-lg-offset-5 col-sm-offset-5" id='tutors<?= $t['tutorialNo']; ?>'>
+
                             </select>
-                          </div>
+                          </div></div><br/>
+                          <div class="row">
+                        <div class="form-group col-lg-12">
                           <!-- Remarks -->
-                          <label for="remarks" class="control-label">Remarks</label>
-                          <div class="form-group">
-                            <textarea name="remarks" class="form-control" id="remarks">
-                            </textarea>
+                            <textarea name="remarks" class="form-control" id="remarks"
+                            placeholder="Write your remarks here..." cols="85" rows="4"></textarea>
                             <span class="text-danger">
                               <?php echo form_error('coordRemarks'); ?>
                             </span>
-                          </div>
+                          </div></div>
                           <!-- /.input group -->
                           <!-- /.form group -->
-                        </div>
+                          <br/>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                          
-                          <button type="submit" name="<?php
-                           if($t['status'] == "Cancel Pending")
+                          <div class="row">
+                            <div class="col-lg-6">
+                            <button type="submit" name="<?php
+                            if($t['status'] == "Cancel Pending")
                               echo 'approveCancel';
-                              else if(stristr($t['status'], 'Change Pending'))
+                            else if(stristr($t['status'], 'Change Pending'))
                               echo 'approveChange';
-                              else
-                              echo 'approveUpdate';
+                            else
+                            echo 'approveUpdate';
                             ?>" value="<?php
                             if (stristr($t['status'], 'Change Pending')) {
                               $int = intval(preg_replace('/[^0-9]+/', '', $t['status']));
                               echo $int;
                             } else
                               echo $t['tutorialNo'];
-                            ?>" class="btn btn-primary">
-                            Approve
-                          </button>
+                            ?>" class="btn btn-primary btn-block" data-toggle="tooltip" title="Approve">
+                            <i class="fa fa-2x fa-check-circle"></i></button></div>
+                            <div class="col-lg-6">
 
 
                           <button type="submit" name="<?php
@@ -196,9 +197,9 @@
                               }
                               else
                               echo $t['tutorialNo']; 
-                            ?>" class="btn btn-danger" onclick="confirm('Disapprove this request?');">
-                            Disapprove
-                          </button>
+                            ?>" class="btn btn-danger btn-block" data-toggle="tooltip" title="Disapprove" onclick="confirm('Disapprove this request?');">
+                            <i class="fa fa-2x fa-times-circle"></i></button></div>
+                          </div>
                         </div>
                         <?php echo form_close(); ?>
                       </div>
