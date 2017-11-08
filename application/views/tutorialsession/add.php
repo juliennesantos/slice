@@ -12,18 +12,6 @@ $(document).ready(function() {
 			});
 		});
 	});
-
-	// $("#timeblock").change(function() {
-	// 	$.get('<?php echo site_url();?>tutorialsession/unavailabledates/' + subject + '/' + $(this).val(), function(data) {
-	// 		var array = ['2017-10-16'];
-	// 		$("input#datepicker").datepicker({
-	// 			daysOfWeekDisabled:: function(date){
-	// 			var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-	// 			return [ array.indexOf(string) == -1 ];
-	// 		}
-	// 		});
-	// 	});
-	// });
  
 });
 </script>

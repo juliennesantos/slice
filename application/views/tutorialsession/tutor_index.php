@@ -205,4 +205,4 @@
   </div>
 </div>
 
-<script src="<?php echo site_url('resources\js\tutor\tutor-index.js'); ?>">
+<script src="<?php echo site_url('resources/js/tutor/tutor-index.js'); ?>"></script>

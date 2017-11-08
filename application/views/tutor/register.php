@@ -64,4 +64,4 @@
 	</div>
 </div>
 
-<script src="<?=site_url();?>resources\js\tutor\tutorregister.js"></script>
+<script src="<?= site_url(); ?>resources\js\tutor\tutorregister.js"></script>

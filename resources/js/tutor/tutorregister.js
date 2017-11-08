@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  var subjects = $(".subjID").data("subjID").data('subj');
+  var subjects = $(".subjID").data("subjID");
   // var subjects = $(".subj").data("subj");
   var site_url = $(".siteurl").data("siteurl");
 
