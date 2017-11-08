@@ -29,7 +29,7 @@ $(document).ready(function() {
 						<!-- subject -->
 						<label for="subjectID" class="control-label">Subject</label>
 							<div class="form-group">
-								<select name="subjectID" class="form-control" id="subject">
+								<select name="subjectID" class="form-control" id="subject" required>
 									<option value="">Select subject...</option>
 									<?php 
 									foreach($all_subjects as $subject)
@@ -44,7 +44,7 @@ $(document).ready(function() {
 							<!-- Tutorschedule -->
 							<label for="tutorschedrequestedID" class="control-label">Timeblock</label>
 							<div class="form-group">
-								<select name="tutorschedrequestedID" class="form-control" id="timeblock">
+								<select name="tutorschedrequestedID" class="form-control" id="timeblock" required>
 									<option value="">Choose subject first!</option>
 									<?php 
 									foreach($all_timeblocks as $timeblock)
@@ -62,7 +62,7 @@ $(document).ready(function() {
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="date" class="form-control pull-right datepicker" id="datepicker" name="tutorialdate" placeholder="Choose your preferred date">
+								<input type="date" class="form-control pull-right datepicker" id="datepicker" name="tutorialdate" placeholder="Choose your preferred date" required>
 							</div>
 							<br>
 							

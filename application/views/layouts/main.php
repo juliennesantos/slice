@@ -29,6 +29,10 @@
   <!--favicon-->
   <link rel="icon" href="<?php echo base_url(); ?>resources/img/announcements/icon.png" type="image/ico">
 
+  <!-- jQuery 2.2.3 -->
+  <script src="<?php echo site_url('resources/js/jquery-2.2.3.min.js'); ?>"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="<?php echo site_url('resources/js/bootstrap.min.js'); ?>"></script>
 </head>
 
 <body class="hold-transition skin-black sidebar-mini">
@@ -566,10 +570,11 @@
   </div>
   <!-- ./wrapper -->
 
-    <!-- jQuery 2.2.3 -->
+  <!-- jQuery 2.2.3 -->
   <script src="<?php echo site_url('resources/js/jquery-2.2.3.min.js'); ?>"></script>
   <!-- Bootstrap 3.3.6 -->
   <script src="<?php echo site_url('resources/js/bootstrap.min.js'); ?>"></script>
+
   <!-- FastClick -->
   <script src="<?php echo site_url('resources/js/fastclick.js');?>"></script>
   <!-- AdminLTE App -->
@@ -593,30 +598,12 @@
   <!-- InputMask -->
   <script src="<?=site_url();?>plugins/input-mask/jquery.inputmask.js"></script>
   <script src="<?=site_url();?>plugins/input-mask/jquery.inputmask.extensions.js"></script>
+  <!-- Custom JS -->
+  <script src="<?=site_url();?>resources\custom.js"></script>
 
+  <script src="<?= site_url('resources/jquery-bar-rating/dist/jquery.barrating.min.js'); ?>"></script>
+  <script src="<?= site_url('resources/js/tutee/tuteeindex.js'); ?>"></script>
 
-  <script>
-    $('[data-mask]').inputmask();
-    //multiple dropbox
-    $('.select2').select2()
-    //Date picker
-    $('#datepicker').datepicker({
-      autoclose: true
-    });
-
-    $('.datatable').DataTable();
-
-    $('.treeview')(function () {
-      var _this = $(this);
-      if (!(_this.hasClass('active'))) {
-        _this.addClass('active');
-        _this.children().find('treeview').addClass('menu-open');
-      } else {
-        _this.removeClass('active');
-        _this.children().find('treeview').removeClass('menu-open');
-      }
-    });
-  </script>
 </body>
 
 </html>

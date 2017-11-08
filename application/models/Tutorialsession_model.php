@@ -168,10 +168,10 @@ class Tutorialsession_model extends CI_Model
     {
         $this->db->select('t.*, utee.lastName uteeLN, utee.firstName uteeFN, utee.username uteeUN, ur.lastName urLN, ur.firstName urFN, ua.lastName uaLN, ua.firstName uaFN, s.subjectCode, tsr.dayofweek tsrdow, tbr.timeStart tbrTS, tbr.timeEnd tbrTE');
         $this->db->from('tutorialsessions t');
-        $this->db->join('subjects s', 't.subjectID = s.subjectID');
+        $this->db->join('subjects s', 't.subjectID = s.subjectID', 'left');
         //  tutees
-        $this->db->join('tutees tee', 't.tuteeID = tee.tuteeID');
-        $this->db->join('users utee', 'tee.userID = utee.userID');
+        $this->db->join('tutees tee', 't.tuteeID = tee.tuteeID', 'left');
+        $this->db->join('users utee', 'tee.userID = utee.userID', 'left');
         //  /tutees
         //  previous tutor
         $this->db->join('tutors tr', 'tr.tutorID = t.previousTutorID', 'left');
@@ -181,8 +181,8 @@ class Tutorialsession_model extends CI_Model
         $this->db->join('tutors ta', 'ta.tutorID = t.tutorID', 'left');
         $this->db->join('users ua', 'ua.userID = ta.userID', 'left');       
         //  /assigned tutor
-        $this->db->join('tutorschedules tsr', 'tsr.tutorScheduleID = t.tutorScheduleID');
-        $this->db->join('timeblocks tbr', 'tbr.timeblockID = tsr.timeblockID');
+        $this->db->join('tutorschedules tsr', 'tsr.tutorScheduleID = t.tutorScheduleID', 'left');
+        $this->db->join('timeblocks tbr', 'tbr.timeblockID = tsr.timeblockID', 'left');
         $this->db->where('utee.userID', $_SESSION['userID']);
               
         $this->db->order_by('tutorialNo', 'asc');

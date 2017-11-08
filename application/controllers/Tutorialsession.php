@@ -84,7 +84,6 @@ class Tutorialsession extends CI_Controller{
       <?php
     }
     if($msg == 1)
-    
     {
       ?>
       <script type="text/javascript">
@@ -135,7 +134,7 @@ class Tutorialsession extends CI_Controller{
         'tuteeRemarks' => html_escape($this->input->post('remarks')),
         'dateAdded' => date('Y-m-d H:i:s'),
         'dateModified' => date('Y-m-d H:i:s'),
-        'status' => 'Change Request Pending from #'. $this->input->post('tutorialNo'),
+        'status' => 'Change Pending from #'. $this->input->post('tutorialNo'),
       );
       
       $tutorialsession_id = $this->Tutorialsession_model->add_tutorialsession($params) ? redirect('tutorialsession/tutee/1') : redirect('tutorialsession/tutee/2');
@@ -146,7 +145,7 @@ class Tutorialsession extends CI_Controller{
     {
       $tutorialNo = $this->input->post('tutorialNo');
       $params = array(
-        'status' => 'Cancel Request',
+        'status' => 'Cancel Pending',
       );
       //audit cancellation of request
       $audit_param = $this->audit->add($_SESSION['userID'],'Tutorial Request','User has cancelled tutorial session.');

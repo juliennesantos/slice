@@ -141,7 +141,7 @@
                           <td>
                             <b>Remarks:</b>
                           </td>
-                          <td>&emsp;
+                          <td style="word-break:break-all">&emsp;
                             <?php echo $t['tuteeRemarks']; ?>
                           </td>
                         </tr>

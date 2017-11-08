@@ -12,14 +12,15 @@
             <i class="fa fa-plus"></i>&emsp;Request New Tutorial</a>
         </div>
         <br/>
+        <input type="hidden" class="url" value="<?=site_url();?>">
         <br/>
         <table class="table table-striped datatable">
           <?php echo form_open('tutorialsession/tutee'); ?>
           <thead>
             <tr>
               <th>#</th>
-              <th>Previous Tutor</th>
               <th>Your Tutor</th>
+              <th>Previous Tutor</th>
               <th>Subject</th>
               <th>Requested Date</th>
               <th>Status</th>
@@ -33,14 +34,6 @@
               <?= $t['tutorialNo']; ?>
             </td>
             <td>
-              <input type="hidden" name="previousTutorID" value="<?= $t['previousTutorID']; ?>">
-              <?php   if(empty($t['urLN']))
-                                    echo 'No tutor yet!';
-                                else 
-                                    echo $t['urLN'].', '. $t['urFN'];
-              ?>
-            </td>
-            <td>
               <input type="hidden" name="tutorID" value="<?= $t['tutorID']; ?>">
               <?php   if(empty($t['uaLN']))
                                         echo 'No tutor yet!';
@@ -49,7 +42,15 @@
                         ?>
             </td>
             <td>
-              <input type="hidden" name="subjectID" value="<?= $t['subjectID']; ?>">
+              <input type="hidden" name="previousTutorID" value="<?= $t['previousTutorID']; ?>">
+              <?php if (empty($t['urLN']))
+                echo 'No tutor yet!';
+              else
+                echo $t['urLN'] . ', ' . $t['urFN'];
+              ?>
+            </td>
+            <td>
+              <input type="hidden" name="subjectID" value="<?= $t['subjectID']; ?>" data-subjid="<?= $t['subjectID']; ?>">
               <?= $t['subjectCode']; ?>
             </td>
             <td>
@@ -58,7 +59,7 @@
             <td>
               <?= $t['status']; ?>
 
-                <!-- Modal for feedback-->
+                <!-- Modal for change request-->
                 <div id="chreq<?= $t['tutorialNo'] ?>" class="modal fade" role="dialog">
                   <div class="modal-dialog">
 
@@ -71,7 +72,7 @@
                         <h4 class="modal-title">Change Request for Tutorial Session</h4>
                       </div>
                       <div class="modal-body">
-                        <table class="table table-striped">
+                        <table class="table table-striped datatable">
                           <tbody>
                             <tr>
                               <td>
@@ -114,7 +115,7 @@
                         <!-- Tutorschedule -->
                         <label for="tutorschedrequestedID" class="control-label">Select a new Timeblock</label>
                         <div class="form-group">
-                          <select name="tutorschedrequestedID" class="form-control" id="timeblock">
+                          <select name="tutorschedrequestedID" class="form-control timeblock<?=$t['subjectID']?>">
                             <option value="">Choose subject first!</option>
                             <?php 
                               foreach ($all_timeblocks as $timeblock)
@@ -151,7 +152,7 @@
                         </div>
                       </div>
                       <div class="modal-footer">
-                        <button name="chreq" value="chreq" class="btn btn-success pull-right" type="submit">
+                        <button type="submit" name="chreq" value="chreq" class="btn btn-success pull-right">
                           <i class="fa fa-check"></i> Submit Change Request
                         </button>
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
@@ -164,10 +165,15 @@
             </td>
             <td class="col-lg-2">
               <?php if($t['status'] == "Approved" && $t['dateTimeStart'] == NULL):?>
-              <button type="button" class="btn btn-info btn-xs findtb" data-toggle="modal" data-target="#chreq<?= $t['tutorialNo'] ?>"
-                value="<?= $t['subjectID']; ?>">
+              <button type="button" 
+                      name="changerequest"
+                      class="btn btn-info findtb" 
+                      data-toggle="modal" 
+                      data-target="#chreq<?= $t['tutorialNo'] ?>"
+                      title="Change Request"
+                      value="<?= $t['subjectID']; ?>" >
+              
                 <span class="fa fa-pencil"></span>
-                Change Request
               </button>
               <button name="cancelrequest" value="cancelrequest" id="cancelrequest" type="submit" class="btn btn-danger" title="Cancel Request"
                 onclick="confirm('Request to cancel this session?');">
@@ -175,9 +181,8 @@
               </button>
               <?php endif; ?>
               <?php if($t['dateTimeEnd'] != NULL): ?>
-              <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#fbmodal<?=$t['tutorialNo']?>">
-                <span class="fa fa-pencil"></span>
-                Add Feedback
+              <button type="button" class="btn btn-info" title="Comment on this session" data-toggle="modal" data-target="#fbmodal<?=$t['tutorialNo']?>">
+                <span class="fa fa-comment"></span>
               </button>
               <?php endif; ?>
 
@@ -274,27 +279,5 @@
     </div>
   </div>
 </div>
-<script src="<?= site_url('resources\jquery-bar-rating\dist\jquery.barrating.min.js'); ?>"></script>
-<script type="text/javascript">
-  $(document).ready(function () {
-    $('#rating').barrating({
-      theme: 'fontawesome-stars'
-    });
 
-    $('#cancelrequest').submit();
 
-    var subject;
-
-    $('table').on('click', '.findtb', function (e) {
-      e.preventDefault();
-      subject = $(this).val();
-      $.get('<?php echo site_url(); ?>tutorialsession/findtimeblocks/' + $(this).val(), function (
-        data) {
-        $("#timeblock").html(data);
-        $('#loader').slideUp(200, function () {
-          $(this).remove();
-        });
-      });
-    });
-  });
-</script>

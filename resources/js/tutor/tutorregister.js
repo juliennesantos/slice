@@ -21,9 +21,9 @@ $(document).ready(function () {
         '<select name="subject['+ x +']" class="form-control" id="expertise" required>' +                                 
         '<option value="">Select a subject</option>'
 
-        // $.each(subjID, function(){
-          // $(this).append('<option value="'['subjectID'].'">'.$subject['subjectCode'].'</option>');
-        // })
+        $.each(subjID, function(){
+          $(this).append('<option value="'['subjectID'].'">'.$subject['subjectCode'].'</option>');
+        })
 
         +
         '</select>' +
