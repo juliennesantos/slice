@@ -9,16 +9,16 @@ Email marketing (if applicable): With your permission, we may send you emails ab
 
 <h3>CONSENT</h3>
 
-<p>How do you get my consent?
+<h5>How do you get my consent?</h5>
 
-When you provide us with personal information to sign up, update, or request for tutorial services, we imply that you consent to our collecting it and using it for that specific reason only.
+<p>When you provide us with personal information to sign up, update, or request for tutorial services, we imply that you consent to our collecting it and using it for that specific reason only.
 
-If we ask for your personal information for a secondary reason, like surveying, we will either ask you directly for your expressed consent, or provide you with an opportunity to say no.
+If we ask for your personal information for a secondary reason, like surveying, we will either ask you directly for your expressed consent, or provide you with an opportunity to say no.</p>
 
 
-How do I withdraw my consent?
+<h5>How do I withdraw my consent?</h5>
 
-If after you opt-in, you change your mind, you may withdraw your consent for us to contact you, for the continued collection, use or disclosure of your information, at anytime, by contacting us, or mailing us at: Student Learning Information Center 2544 Taft Ave, Malate, Manila, Metro Manila, 1004, Philippines</p>
+<p>If after you opt-in, you change your mind, you may withdraw your consent for us to contact you, for the continued collection, use or disclosure of your information, at anytime, by contacting us, or mailing us at: Student Learning Information Center 2544 Taft Ave, Malate, Manila, Metro Manila, 1004, Philippines</p>
 
 
 <h3>DISCLOSURE</h3>
@@ -54,9 +54,7 @@ When you click on links on our site, they may direct you away from our site. We 
 
 <h3>SECURITY</h3>
 
-<p>To protect your personal information, we take reasonable precautions and follow industry best practices to make sure it is not inappropriately lost, misused, accessed, disclosed, altered or destroyed.
-
-If you provide us with your credit card information, the information is encrypted using secure socket layer technology (SSL) and stored with a AES-256 encryption.  Although no method of transmission over the Internet or electronic storage is 100% secure, we follow all PCI-DSS requirements and implement additional generally accepted industry standards.</p>
+<p>To protect your personal information, we take reasonable precautions and follow industry best practices to make sure it is not inappropriately lost, misused, accessed, disclosed, altered or destroyed.</p>
 
 
 <h3>AGE OF CONSENT</h3>
