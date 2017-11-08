@@ -27,6 +27,7 @@ class Tutorschedule extends CI_Controller{
         //adding new tutors
         if($this->input->post('add'))
         {
+            
             //add to tutor table
             $this->load->model('Tutor_model');
             $params = array(
