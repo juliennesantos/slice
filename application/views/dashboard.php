@@ -139,9 +139,9 @@
                     <div class="icon">
                     <i class="fa fa-hourglass-1"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <!-- <a href="#" class="small-box-footer">
                     More info <i class="fa fa-arrow-circle-right"></i>
-                    </a>
+                    </a> -->
             </div>
         </div>
     </div>
@@ -163,9 +163,9 @@
                     <div class="icon">
                     <i class="fa fa-hourglass-3"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <!-- <a href="#" class="small-box-footer">
                     More info <i class="fa fa-arrow-circle-right"></i>
-                    </a>
+                    </a> -->
             </div>
         </div>
     </div>

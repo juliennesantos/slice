@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-lg-12">
     <div class="box">
       <div class="box-header">
         <h3 class="box-title">Tutors Listing</h3>
@@ -24,9 +24,12 @@
               }
               ?>
           </select>
-          <button type="submit" class="form-control btn btn-success" name="add" title="Add Tutor">
+          <br/>
+          <br/>
+          <div class=" col-lg-offset-10">
+          <button type="submit" class="btn btn-sm btn-block btn-success" name="add" title="Add Tutor">
             <i class="fa fa-plus"></i>
-          </button>
+          </button></div>
         </div>
         <?php form_close();?>
         <table class="table table-striped datatable">
@@ -82,10 +85,12 @@
                 <?php echo $t['dateAdded']; ?>
               </td>
               <td>
-                <a href="<?php echo site_url('tutorschedule/edit/'.$t['tutorScheduleID']); ?>" class="btn btn-info btn-xs">
-                  <span class="fa fa-pencil"></span> Edit</a>
-                <a href="<?php echo site_url('tutorschedule/remove/'.$t['tutorScheduleID']); ?>" class="btn btn-danger btn-xs">
-                  <span class="fa fa-trash"></span> Delete</a>
+                <a href="<?php echo site_url('tutorschedule/edit/'.$t['tutorScheduleID']); ?>" class="btn btn-warning"
+                data-toggle="tooltip" title="Edit">
+                  <span class="fa fa-pencil"></span></a>
+                <a href="<?php echo site_url('tutorschedule/remove/'.$t['tutorScheduleID']); ?>" class="btn btn-danger"
+                data-toggle="tooltip" title="Delete">
+                  <span class="fa fa-trash"></span></a>
               </td>
             </tr>
             <?php } ?>
