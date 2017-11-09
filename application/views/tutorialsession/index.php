@@ -78,7 +78,7 @@
                                 <b>#</b>
                               </td>
                               <td>
-                                <input type="hidden" name="tutorialNo" value="<?= $t['tutorialNo']; ?>">
+                                <input type="hidden" name="tutorialNo" class="tutno" data-no="<?= $t['tutorialNo']; ?>" value="<?= $t['tutorialNo']; ?>">
                                 <?= $t['tutorialNo']; ?>
                               </td>
                             </tr>

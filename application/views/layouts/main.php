@@ -29,10 +29,6 @@
   <!--favicon-->
   <link rel="icon" href="<?php echo base_url(); ?>resources/img/announcements/icon.png" type="image/ico">
 
-  <!-- jQuery 2.2.3 -->
-  <script src="<?php echo site_url('resources/js/jquery-2.2.3.min.js'); ?>"></script>
-  <!-- Bootstrap 3.3.6 -->
-  <script src="<?php echo site_url('resources/js/bootstrap.min.js'); ?>"></script>
 </head>
 
 <body class="hold-transition skin-black sidebar-mini ">
@@ -523,6 +519,7 @@
             immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
   </div>
+  <input type="hidden" class="siteurl" data-siteurl="<?=site_url();?>">
   <!-- ./wrapper -->
 
   <!-- jQuery 2.2.3 -->
@@ -538,7 +535,7 @@
   <script src="<?php echo site_url('resources/js/demo.js');?>"></script>
   <!-- Select2 -->
   <script src="<?php echo site_url('bower_components\select2\dist\js\select2.full.min.js');?>"></script>
-
+  
   <!-- DatePicker -->
   <script src="<?php echo site_url('resources/js/moment.js');?>"></script>
   <script src="<?php echo site_url('resources/js/bootstrap-datetimepicker.min.js');?>"></script>
@@ -552,48 +549,8 @@
   <script src="<?=site_url();?>plugins/input-mask/jquery.inputmask.js"></script>
   <script src="<?=site_url();?>plugins/input-mask/jquery.inputmask.extensions.js"></script>
   <!-- Custom JS -->
+  <script src="<?=site_url();?>resources\custom.js"></script>
   
-<script>
-
-  $('.findtb').click(function (e) {
-    var tutorialNo = $('.tutorialNo').data('tutno');
-    var subject = $(this).val();
-    var site_url = $(".url").val();
-    $.get(site_url + 'tutorialsession/findtimeblocks/' + $(this).val(), function (
-      data) {
-      $(".timeblock"+tutorialNo).html(data);
-    });
-  });
-
-  $('.datatable').DataTable();
-
-  $('[data-mask]').inputmask();
-  //multiple dropbox
-  $('.select2').select2()
-  //Date picker
-  // $('#datepicker').datepicker({
-  //   autoclose: true
-  // });
-  $('.datepicker').datepicker({
-    autoclose: true
-  });
-
-  $('.treeview')(function () {
-    var _this = $(this);
-    if (!(_this.hasClass('active'))) {
-      _this.addClass('active');
-      _this.children().find('treeview').addClass('menu-open');
-    } else {
-      _this.removeClass('active');
-      _this.children().find('treeview').removeClass('menu-open');
-    }
-  });
-
-
-
-</script>
-
-
 </body>
 
 </html>
