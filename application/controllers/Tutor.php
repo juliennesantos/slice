@@ -31,7 +31,8 @@ class Tutor extends CI_Controller{
     $this->pagination->initialize($config);
     
     $data['tutors'] = $this->Tutor_model->get_all_tutors($params);
-    
+    $audit_param = $this->audit->add($_SESSION['userID'],'View Tutor List','User has viewed the list of tutors.');
+    $this->Auditlog_model->add_auditlog($audit_param); 
     $data['_view'] = 'tutor/index';
     $this->load->view('layouts/main',$data);
   }
