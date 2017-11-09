@@ -137,23 +137,10 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="<?php echo site_url('attendance/tutor');?>">
               <i class="fa fa-pencil-square-o"></i>
               <span>Attendance</span>
-              <span class="pull-right-container">
-                  <i class="fa fa-angle-down pull-right"></i>
-                </span>
             </a>
-            <ul class="treeview-menu">
-              <li class="active">
-                <a href="<?php echo site_url('attendance/add');?>">
-                  <i class="fa fa-plus"></i> Add</a>
-              </li>
-              <li>
-                <a href="<?php echo site_url('attendance/index');?>">
-                  <i class="fa fa-list-ul"></i> Listing</a>
-              </li>
-            </ul>
           </li>
           <li>
             <a href="#">
@@ -164,10 +151,6 @@
                 </span>
             </a>
             <ul class="treeview-menu">
-              <li class="active">
-                <a href="<?php echo site_url('feedback/add');?>">
-                  <i class="fa fa-plus"></i> Add</a>
-              </li>
               <li>
                 <a href="<?php echo site_url('feedback/index');?>">
                   <i class="fa fa-list-ul"></i> Listing</a>
@@ -186,14 +169,14 @@
 							</ul> -->
           </li>
           <li>
-            <a href="#">
+            <a href="<?php echo site_url('tutorexpertise/index');?>">
               <i class="fa fa-lightbulb-o"></i>
-              <span>Tutor Expertise(Edit)</span>
-              <span class="pull-right-container">
+              <span>Tutor Expertise</span>
+              <!-- <span class="pull-right-container">
                   <i class="fa fa-angle-down pull-right"></i>
-                </span>
+                </span> -->
             </a>
-            <ul class="treeview-menu">
+            <!-- <ul class="treeview-menu">
               <li class="active">
                 <a href="<?php echo site_url('tutorexpertise/add');?>">
                   <i class="fa fa-plus"></i> Add</a>
@@ -202,9 +185,10 @@
                 <a href="<?php echo site_url('tutorexpertise/index');?>">
                   <i class="fa fa-list-ul"></i> Listing</a>
               </li>
-            </ul>
+            </ul> -->
           </li>
           <?php endif; ?>
+        
           <?php if($_SESSION['typeID'] == 5):?>
           <li class="header">COORDINATOR NAVIGATION</li>
           <li class="treeview">

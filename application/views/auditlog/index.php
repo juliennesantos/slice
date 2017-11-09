@@ -25,7 +25,9 @@
                     </tr>
                     <?php } ?>
                 </table>
-                                
+                <div class="pull-right">
+                    <?php echo $this->pagination->create_links(); ?>
+                </div>                
             </div>
         </div>
     </div>

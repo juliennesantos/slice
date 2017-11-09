@@ -11,6 +11,7 @@
                     <tr>
 						<th>ID number</th>
 						<th>Name</th>
+                        <th>Course</th>
 						<th>Status</th>
 						<th>TutorType</th>
 						<th>DateAdded</th>
@@ -21,6 +22,7 @@
                     <tr>
 						<td><?php echo $t['username']; ?></td>
 						<td><?php echo $t['lastName'].', '.$t['firstName']; ?></td>
+                        <td><?php echo $t['programCode'];?></td>
 						<td><?php echo $t['status']; ?></td>
 						<td><?php echo $t['tutorType']; ?></td>
 						<td><?php echo $t['dateAdded']; ?></td>

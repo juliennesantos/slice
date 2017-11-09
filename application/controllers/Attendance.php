@@ -13,6 +13,7 @@ class Attendance extends CI_Controller{
         $this->load->model('User_model');
         $this->load->library('audit');
         $this->load->model('Auditlog_model');
+
         // $this->load->library('loginvalidation');
         // $this->loginvalidation->isValid();
     } 
@@ -202,8 +203,12 @@ class Attendance extends CI_Controller{
         }
     }  
 
-    function view($userID)
+    function tutor()
     {
-
+        $term = $this->Term_model->get_current_term();
+        $tutorData = $this->Tutor_model->get_tutorID($_SESSION['userID']);
+        $data['attendanceList'] = $this->Attendance_model->get_tutor_attendance_list($tutorData['tutorID'],$term['term'],$term['sy']);
+        $data['_view'] = 'attendance/tutor';
+        $this->load->view('layouts/main',$data);
     }
 }
