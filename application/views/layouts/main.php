@@ -175,10 +175,10 @@
           <li>
             <a href="<?php echo site_url('tutorexpertise/index');?>">
               <i class="fa fa-lightbulb-o"></i>
-              <span>Tutor Expertise(Edit)</span>
-              <span class="pull-right-container">
+              <span>Tutor Expertise</span>
+              <!-- <span class="pull-right-container">
                   <i class="fa fa-angle-down pull-right"></i>
-                </span>
+                </span> -->
             </a>
             <!-- <ul class="treeview-menu">
               <li class="active">
@@ -192,6 +192,7 @@
             </ul> -->
           </li>
           <?php endif; ?>
+        
           <?php if($_SESSION['typeID'] == 5):?>
           <li class="header">COORDINATOR NAVIGATION</li>
           <li class="treeview">
