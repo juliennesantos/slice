@@ -73,11 +73,5 @@ class Timeblock_model extends CI_Model
         return $this->db->update('timeblocks',$params);
     }
     
-    /*
-     * function to delete timeblock
-     */
-    function delete_timeblock($timeblockID)
-    {
-        return $this->db->delete('timeblocks',array('timeblockID'=>$timeblockID));
-    }
+    
 }
