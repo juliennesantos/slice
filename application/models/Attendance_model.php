@@ -15,7 +15,7 @@ class Attendance_model extends CI_Model
         return $this->db->get_where('attendance',array('logID'=>$logID))->row_array();
     }
     
-    //get specific attendance log to time in/out
+    //get specific attendance log to time in.
     function getAttendance($tutorID,$dateNow)
     {
         $where = "tutorID = '".$tutorID."' AND timeIn LIKE '".$dateNow."%'";
@@ -41,13 +41,14 @@ class Attendance_model extends CI_Model
     }
 
     //specific tutor attendance list
-    function get_tutor_attendance_list($tutorID,$term,$sy){
+    function get_tutor_attendance_list($tutorID,$term,$sy ){
         $this->db->from('attendance');
         $this->db->where('tutorID', $tutorID);
         $this->db->where('term',$term);
         $this->db->where('schoolYr', $sy);
         return $this->db->get()->result_array();
     }
+
     /*
      * Get all attendance count
      */

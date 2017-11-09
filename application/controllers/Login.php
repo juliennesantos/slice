@@ -51,7 +51,7 @@ class Login extends CI_Controller
           $this->Auditlog_model->add_auditlog($audit_param);
         }
         else{
-          $audit_param = $this->audit->add(0,'Login','User has tried to login.');
+          $audit_param = $this->audit->add(0,'Login','A user has tried to login.');
           $this->Auditlog_model->add_auditlog($audit_param);         
         }
 
