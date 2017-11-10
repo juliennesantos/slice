@@ -23,22 +23,56 @@ $html .= '
 <table class="table table-striped table-bordered datatable">
 <thead>
 <tr>
-<th>ID No.</th>
-<th>Last Name</th>
-<th>First Name</th>
-<th>Degree Program</th>
+<th>#</th>
+<th>Student\'s Name</th>
+<th>Previous Tutor</th>
+<th>Subject</th>
+<th>Scheduled Date</th>
+<th>Time Started</th>
+<th>Time Ended</th>
 </tr>
 </thead>
 ';
 
-foreach($tutees as $t)
+foreach($tutorialsessions as $t)
 {
   $html .='
   <tr>
-  <td>'.$t['studentNo'].'</td>
-  <td>'.$t['lastName'].'</td>
-  <td>'.$t['firstName'].'</td>
-  <td>'.$t['programCode'].'</td>
+  <!-- tutorialNo -->
+  <td>
+  '.$t['tutorialNo'].'
+  </td>
+  <!-- tutee name -->
+  <td>
+  
+  '.$t['uteeLN'].', '. $t['uteeFN'].'
+  </td>
+  <!-- previous tutor -->
+  <td>';
+  
+  if(empty($t['uaLN']))
+  $html .= 'No previous tutor.';
+  else 
+  $html .= $t['uaLN'].', '. $t['uaFN'];
+  
+  $html .= '
+  </td>
+  <!-- subject -->
+  <td>
+  '.$t['subjectCode'].'
+  </td>
+  <!-- date of tutorial -->
+  <td>
+  '.date('D, M j Y', strtotime($t['dateTimeRequested'])).', '.date('g:ia', strtotime($t['tbrTS'])).' to '.date('g:ia', strtotime($t['tbrTE'])).'
+  </td>
+  <!-- time started -->
+  <td>
+  '.date('g:ia', strtotime($t['dateTimeStart'])).'
+  </td>
+  <!-- time ended -->
+  <td>
+  '.date('g:ia', strtotime($t['dateTimeEnd'])).'
+  </td>
   </tr>
   ';
 }
@@ -50,7 +84,7 @@ $html .= '
 $dompdf->loadHtml($html);
 
 // (Optional) Setup the paper size and orientation
-$dompdf->setPaper('A4', 'portrait');
+$dompdf->setPaper('A4', 'landscape');
 
 // Render the HTML as PDF
 $dompdf->render();

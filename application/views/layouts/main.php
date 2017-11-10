@@ -306,13 +306,13 @@
             </a>
           </li>
           <li>
-            <a href="<?=site_url('tutees/tuteespdf')?>">
+            <a href="<?=site_url('tutee/tuteepdf')?>">
               <i class="fa fa-calendar"></i>
               <span>Tutees List</span>
             </a>
           </li>
           <li>
-            <a href="<?=site_url('tutees/tuteespdf')?>">
+            <a href="<?=site_url('tutorialsession/sessionspdf')?>">
               <i class="fa fa-calendar"></i>
               <span>Tutorial Sessions</span>
             </a>
