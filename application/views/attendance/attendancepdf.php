@@ -16,7 +16,7 @@ $html = '
 <style>
 '.file_get_contents(site_url('bower_components/bootstrap/dist/css/bootstrap.min.css')).'
 </style>
-<h2>Tutee Listing for Term '.$term['term'].', SY '.$term['sy'].'<h2>
+<h2>Attendance Listing for Term '.$term['term'].', SY '.$term['sy'].'<h2>
 <br><br>';
 
 $html .= '
