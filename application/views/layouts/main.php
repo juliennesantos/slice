@@ -318,7 +318,7 @@
             </a>
           </li>
           <li>
-            <a href="<?=site_url('tutees/tuteespdf')?>">
+            <a href="<?=site_url('attendance/attendancepdf')?>">
               <i class="fa fa-calendar"></i>
               <span>Attendance List</span>
             </a>
