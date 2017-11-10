@@ -216,19 +216,18 @@ class Attendance extends CI_Controller{
     /*
     * view tutors in pdf
     */
-    function tuteepdf()
+    function attendancepdf()
     {
+      
       $this->load->model('Term_model');
       $data['_view'] = '' ;
-      $data['tutees'] = $this->Tutee_model->tutees_by_term();
       $data['term'] = $this->Term_model->get_current_term();
-      
-      $c = count($data['tutees']);
-      
-      // var_dump($data['subjects']);
-      $this->load->view('tutee/tuteepdf', $data);
+      $term = $this->Term_model->get_current_term();
+      $data['attendanceList'] = $this->Attendance_model->get_list($term['term'],$term['sy']);
+
+      $this->load->view('attendance/attendancepdf', $data);
       //audit viewing
-      $audit_param = $this->audit->add($_SESSION['userID'],'View Tutee List','User has viewed pdf file of tutee list.');
+      $audit_param = $this->audit->add($_SESSION['userID'],'View Attendance List','User has viewed pdf file of Attendance list.');
       $this->Auditlog_model->add_auditlog($audit_param);
     }
   }

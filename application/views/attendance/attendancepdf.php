@@ -31,7 +31,7 @@ $html .= '
 </thead>
 ';
 
-foreach($tutees as $t)
+foreach($attendanceList as $a)
 {
   $html .='
   <tr>
