@@ -26,24 +26,7 @@ class Tutee extends CI_Controller{
         
         $data['_view'] = 'tutee/index';
         $this->load->view('layouts/main',$data);
-    }
-
-    /*
-     * Get all tutors by term
-     */
-    function tutees_by_term($params = array())
-    {
-        $this->db->select('t.*, stu.studentNo, pr.programCode, u.lastName, u.firstName, s.status, ts.dayofweek, tb.timeStart, tb.timeEnd');
-        $this->db->from('tutors t');
-        $this->db->join('users u', 'u.userID = t.userID');
-        $this->db->join('students stu', 'u.userID = stu.userID', 'left');
-        $this->db->join('tutorstatus s', 't.statusID = s.statusID');
-        $this->db->join('tutorschedules ts', 'ts.tutorID = t.tutorID');
-        $this->db->join('timeblocks tb', 'tb.timeblockID = ts.timeblockID');
-        $this->db->join('programs pr', 'stu.programID = pr.programID', 'left');
-        $this->db->order_by('t.tutorID', 'asc');
-        return $this->db->get()->result_array();
-    }
+    } 
 
     /*
      * add tutee

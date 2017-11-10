@@ -8,55 +8,55 @@
 			<div class="box-body">
 				<div class="row clearfix">
 					<div class="col-md-6">
-						<label for="userID" class="control-label">User</label>
+						<label for="firstname" class="control-label"><span class="text-danger">*</span>First Name</label>
 						<div class="form-group">
-							<select name="userID" class="form-control">
-								<option value="">select user</option>
-								<?php 
-								foreach($all_users as $user)
-								{
-									$selected = ($user['userID'] == $tutor['userID']) ? ' selected="selected"' : "";
-
-									echo '<option value="'.$user['userID'].'" '.$selected.'>'.$user['userID'].'</option>';
-								} 
-								?>
-							</select>
+							<input type="text" name="firstName" value="<?php echo $this->input->post('firstname'); ?>" class="form-control" id="firstname" disabled/>
+							<span class="text-danger"><?php echo form_error('firstname');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="statusID" class="control-label">Tutorstatus</label>
+						<label for="lastname" class="control-label"><span class="text-danger">*</span>Last Name</label>
 						<div class="form-group">
-							<select name="statusID" class="form-control">
-								<option value="">select tutorstatus</option>
-								<?php 
-								foreach($all_tutorstatus as $tutorstatus)
-								{
-									$selected = ($tutorstatus['statusID'] == $tutor['statusID']) ? ' selected="selected"' : "";
-
-									echo '<option value="'.$tutorstatus['statusID'].'" '.$selected.'>'.$tutorstatus['statusID'].'</option>';
-								} 
-								?>
-							</select>
+							<input type="text" name="lastName" value="<?php echo $this->input->post('lastname'); ?>" class="form-control" id="lastname" disabled />
+							<span class="text-danger"><?php echo form_error('lastname');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="tutorType" class="control-label"><span class="text-danger">*</span>TutorType</label>
+						<label for="middlename" class="control-label"><span class="text-danger">*</span>Middle Name</label>
 						<div class="form-group">
-							<input type="text" name="tutorType" value="<?php echo ($this->input->post('tutorType') ? $this->input->post('tutorType') : $tutor['tutorType']); ?>" class="form-control" id="tutorType" />
-							<span class="text-danger"><?php echo form_error('tutorType');?></span>
+							<input type="text" name="middleName" value="<?php echo $this->input->post('middlename'); ?>" class="form-control" 
+							id="middlename" disabled/>
+							<span class="text-danger"><?php echo form_error('middlename');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="dateAdded" class="control-label"><span class="text-danger">*</span>DateAdded</label>
+						<label for="emailAddress" class="control-label"><span class="text-danger">*</span>EmailAddress</label>
 						<div class="form-group">
-							<input type="text" name="dateAdded" value="<?php echo ($this->input->post('dateAdded') ? $this->input->post('dateAdded') : $tutor['dateAdded']); ?>" class="has-datetimepicker form-control" id="dateAdded" />
-							<span class="text-danger"><?php echo form_error('dateAdded');?></span>
+							<input type="text" name="emailAddress" value="<?php echo $this->input->post('emailAddress'); ?>" class="form-control" 
+							id="emailAddress" max="100" pattern=".+@benilde.edu.ph" title="Please provide only a Benilde email address" disabled/>
+							<span class="text-danger"><?php echo form_error('emailAddress');?></span>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="dateModified" class="control-label">DateModified</label>
+						<label for="contactno" class="control-label"><span class="text-danger">*</span>Contact No.</label>
 						<div class="form-group">
-							<input type="text" name="dateModified" value="<?php echo ($this->input->post('dateModified') ? $this->input->post('dateModified') : $tutor['dateModified']); ?>" class="has-datetimepicker form-control" id="dateModified" />
+							<input type="text" name="contactNo" value="<?php echo $this->input->post('contactNo'); ?>" class="form-control" id="contactno" disabled/>
+							<span class="text-danger"><?php echo form_error('contactno');?></span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="username" class="control-label"><span class="text-danger">*</span>Username</label>
+						<div class="form-group">
+							<input type="text" name="username" value="<?php echo $this->input->post('username'); ?>" class="form-control" id="username" disabled/>
+							<span class="text-danger"><?php echo form_error('username');?></span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="tutorStatus" class="control-label"><span class="text-danger">*</span>Graduating/OJT?</label>
+						<div class="form-group">
+							<label class="radio-inline"><input type="radio" name="tutorStatus" value="3" class="radio" id="tutorType" >Graduating</label>
+							<label class="radio-inline"><input type="radio" name="tutorType" value="4" class="radio" id="tutorType" />OJT</label>
+							<span class="text-danger"><?php echo form_error('tutorStatus');?></span>
 						</div>
 					</div>
 				</div>
