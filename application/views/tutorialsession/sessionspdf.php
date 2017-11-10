@@ -16,7 +16,7 @@ $html = '
 <style>
 '.file_get_contents(site_url('bower_components/bootstrap/dist/css/bootstrap.min.css')).'
 </style>
-<h2>Tutee Listing for Term '.$term['term'].', SY '.$term['sy'].'<h2>
+<h2>Tutorial Sessions Log for Term '.$term['term'].', SY '.$term['sy'].'<h2>
 <br><br>';
 
 $html .= '
@@ -25,7 +25,7 @@ $html .= '
 <tr>
 <th>#</th>
 <th>Student\'s Name</th>
-<th>Previous Tutor</th>
+<th>Tutor</th>
 <th>Subject</th>
 <th>Scheduled Date</th>
 <th>Time Started</th>
@@ -47,11 +47,11 @@ foreach($tutorialsessions as $t)
   
   '.$t['uteeLN'].', '. $t['uteeFN'].'
   </td>
-  <!-- previous tutor -->
+  <!-- tutor -->
   <td>';
   
   if(empty($t['uaLN']))
-  $html .= 'No previous tutor.';
+  $html .= 'No tutor assigned.';
   else 
   $html .= $t['uaLN'].', '. $t['uaFN'];
   

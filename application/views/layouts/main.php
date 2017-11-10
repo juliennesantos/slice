@@ -300,25 +300,25 @@
           <?php if($_SESSION['typeID'] == 4 || $_SESSION['typeID'] == 5):?>
           <li class="header">REPORTS</li>
           <li class="treeview">
-            <a href="<?php echo site_url('tutor/tutorpdf');?>">
+            <a href="<?php echo site_url('tutor/tutorpdf');?>" target="_blank">
               <i class="fa fa-users"></i>
               <span>Tutors List</span>
             </a>
           </li>
           <li>
-            <a href="<?=site_url('tutee/tuteepdf')?>">
+            <a href="<?=site_url('tutee/tuteepdf')?>" target="_blank">
               <i class="fa fa-user"></i>
               <span>Tutees List</span>
             </a>
           </li>
           <li>
-            <a href="<?=site_url('tutorialsession/sessionspdf')?>">
+            <a href="<?=site_url('tutorialsession/sessionspdf')?>" target="_blank">
               <i class="fa fa-hourglass"></i>
               <span>Tutorial Sessions</span>
             </a>
           </li>
           <li>
-            <a href="<?=site_url('attendance/attendancepdf')?>">
+            <a href="<?=site_url('attendance/attendancepdf')?>" target="_blank">
               <i class="fa fa-calendar"></i>
               <span>Attendance List</span>
             </a>

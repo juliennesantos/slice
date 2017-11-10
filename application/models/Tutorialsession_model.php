@@ -146,10 +146,10 @@ class Tutorialsession_model extends CI_Model
         $this->db->join('subjects s', 't.subjectID = s.subjectID');                      
         $this->db->join('tutees tee', 't.tuteeID = tee.tuteeID');                            
         $this->db->join('users utee', 'tee.userID = utee.userID');                      
-        $this->db->join('tutors tr', 'tr.tutorID = t.previousTutorID');                
-        $this->db->join('tutors ta', 'ta.tutorID = t.tutorID', 'left');
-        $this->db->join('users ur', 'ur.userID = tr.tutorID');        
-        $this->db->join('users ua', 'ua.userID = ta.tutorID', 'left');       
+        $this->db->join('tutors tr', 'tr.tutorID = t.previousTutorID', 'left');                
+        $this->db->join('tutors ta', 'ta.tutorID = t.tutorID');
+        $this->db->join('users ur', 'ur.userID = tr.userID','left');        
+        $this->db->join('users ua', 'ua.userID = ta.userID', 'left');       
         $this->db->join('tutorschedules tsr', 'tsr.tutorScheduleID = t.tutorScheduleID');
         $this->db->join('timeblocks tbr', 'tbr.timeblockID = tsr.timeblockID');
         
