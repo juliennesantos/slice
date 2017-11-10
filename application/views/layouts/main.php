@@ -290,7 +290,7 @@
           </li>
           <li>
             <a href="<?=site_url('tutorschedule/index')?>">
-              <i class="fa fa-calendar"></i>
+              <i class="fa fa-users"></i>
               <span>Tutors</span>
             </a>
           </li>
