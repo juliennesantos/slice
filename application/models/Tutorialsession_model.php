@@ -238,7 +238,7 @@ class Tutorialsession_model extends CI_Model
         $this->db->join('tutorexpertise te', 'ts.tutorID = te.tutorID', 'left');
         $this->db->join('tutors tu', 'ts.tutorID = tu.tutorID', 'left');
         $this->db->join('users u', 'tu.userID = u.userID', 'left');
-        $this->db->join('tutorialsessions tutsess', 'tutsess.tutorID = tu.tutorID', 'left');
+        // $this->db->join('tutorialsessions tutsess', 'tutsess.tutorID = tu.tutorID', 'left');
         $this->db->join('subjects s', 's.subjectID = te.subjectID', 'left');
         $this->db->where('s.subjectID', $subjectID);
         // $this->db->where($where);
