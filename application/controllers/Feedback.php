@@ -24,6 +24,10 @@ class Feedback extends CI_Controller{
     $this->pagination->initialize($config);
     
     $data['feedbacks'] = $this->Feedback_model->get_all_feedbacks($params);
+    //audit 
+      $audit_param = $this->audit->add($_SESSION['userID'],'View Tutorial Feedback','User has viewed tutorial feedback list.');
+      $this->Auditlog_model->add_auditlog($audit_param);
+      redirect('feedback/tuteeview');
     $data['_view'] = 'feedback/index';
     $this->load->view('layouts/main',$data);
   }
@@ -58,6 +62,10 @@ class Feedback extends CI_Controller{
       );
       
       $feedback_id = $this->Feedback_model->add_feedback($params) ? redirect('feedback/tuteeview') : redirect('feedback/12345');
+      //audit 
+      $audit_param = $this->audit->add($_SESSION['userID'],'Add Tutorial Feedback','User has added a tutorial feedback.');
+      $this->Auditlog_model->add_auditlog($audit_param);
+      redirect('feedback/tuteeview');
     }
     
     $params['limit'] = RECORDS_PER_PAGE; 
@@ -70,6 +78,10 @@ class Feedback extends CI_Controller{
     
     
     $data['feedbacks'] = $this->Feedback_model->pending_feedbacks($params);
+    //audit 
+      $audit_param = $this->audit->add($_SESSION['userID'],'View Tutorial Feedback','User has viewed pending tutorial feedbacks.');
+      $this->Auditlog_model->add_auditlog($audit_param);
+      redirect('feedback/tuteeview');
     $data['_view'] = 'feedback/index';
     $this->load->view('layouts/main',$data);
   }
@@ -88,7 +100,7 @@ class Feedback extends CI_Controller{
       );
       
       $feedback_id = $this->Feedback_model->add_feedback($params);
-      //audit cancellation of request
+      //audit 
       $audit_param = $this->audit->add($_SESSION['userID'],'Add Tutorial Feedback','User has added a tutorial feedback.');
       $this->Auditlog_model->add_auditlog($audit_param);
       redirect('feedback/tuteeview');

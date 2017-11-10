@@ -8,7 +8,8 @@
                 <thead class="panel-heading">
                     <tr>
                         <th>#</th>
-                        <th>Tutorial No</th>
+                        <th>Name of Tutor</th>
+                        <th>Rating</th>
                         <th>Date of Tutorial</th>
                         <th>Feedback</th>
                         <th>Actions</th>
@@ -19,8 +20,9 @@
                     <?php foreach($feedbacks as $f){ ?>
                         <tr>
                             <td><?php echo $f['feedbackID']; ?></td>
-                            <td><?php echo $f['tutorialNo']; ?></td>
-                            <td><?php echo $f['dateTimeEnd']; ?></td>
+                            <td><?php echo $f['lastName'].', '.$f['firstName']; ?></td>
+                            <td><?php echo $f['rating']; ?></td>
+                            <td><?php echo $f['dateAdded']; ?></td>
                             <td><?php echo $f['feedback'] == NULL ? "No feedback yet!" : $f['feedback']; ?></td>
                             <td>
                             <?php if($f['feedback'] == NULL):?>

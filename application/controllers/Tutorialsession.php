@@ -126,19 +126,19 @@ class Tutorialsession extends CI_Controller{
     if ($this->input->post('chreq'))
     {
       var_dump($this->input->post('tutorialNo'));
-      $params = array(
-        'tuteeID' => $_SESSION['userID'],
-        'subjectID' => $this->input->post('subjectID'),
-        'tutorScheduleID' => $this->input->post('tutorschedrequestedID'),
-        'dateTimeRequested' => date('Y-m-d H:i:s', strtotime($this->input->post('tutorialdate'))),
-        'previousTutorID' => $this->input->post('previoustutorID'),
-        'tuteeRemarks' => html_escape($this->input->post('remarks')),
-        'dateAdded' => date('Y-m-d H:i:s'),
-        'dateModified' => date('Y-m-d H:i:s'),
-        'status' => 'Change Pending from #'. $this->input->post('tutorialNo'),
-      );
+      // $params = array(
+      //   'tuteeID' => $_SESSION['userID'],
+      //   'subjectID' => $this->input->post('subjectID'),
+      //   'tutorScheduleID' => $this->input->post('tutorschedrequestedID'),
+      //   'dateTimeRequested' => date('Y-m-d H:i:s', strtotime($this->input->post('tutorialdate'))),
+      //   'previousTutorID' => $this->input->post('previoustutorID'),
+      //   'tuteeRemarks' => html_escape($this->input->post('remarks')),
+      //   'dateAdded' => date('Y-m-d H:i:s'),
+      //   'dateModified' => date('Y-m-d H:i:s'),
+      //   'status' => 'Change Pending from #'. $this->input->post('tutorialNo'),
+      // );
       
-      $tutorialsession_id = $this->Tutorialsession_model->add_tutorialsession($params) ? redirect('tutorialsession/tutee/1') : redirect('tutorialsession/tutee/2');
+      // $tutorialsession_id = $this->Tutorialsession_model->add_tutorialsession($params) ? redirect('tutorialsession/tutee/1') : redirect('tutorialsession/tutee/2');
     }
     
     //cancel request for already approved sessions
@@ -166,15 +166,6 @@ class Tutorialsession extends CI_Controller{
     //var_dump($data['tutorialsessions']);
     $data['_view'] = 'tutorialsession/index';
     $this->load->view('layouts/main',$data);
-  }
-  
-  function sessionspdf()
-  {
-    $this->load->model('Term_model');
-    $data['term'] = $this->Term_model->get_current_term();
-    $data['tutorialsessions'] = $this->Tutorialsession_model->get_all_tutorialsessions();
-    $data['_view'] = '';
-    $this->load->view('tutorialsession/sessionspdf',$data);
   }
   
   function findSubject($date)
@@ -236,25 +227,41 @@ class Tutorialsession extends CI_Controller{
 		$this->form_validation->set_rules('remarks','Remarks','max_length[200]');
 		
 		if($this->form_validation->run())     
-    {   
-      $params = array(
-				'tuteeID' => $_SESSION['userID'],
+    { 
+      if($_SESSION['typeID'] == 1){
+        $params = array(
+        'tuteeID' => $_SESSION['userID'],
         'subjectID' => $this->input->post('subjectID'),
         'tutorScheduleID' => $this->input->post('tutorschedrequestedID'),
         'dateTimeRequested' => date('Y-m-d H:i:s', strtotime($this->input->post('tutorialdate'))),
         'previousTutorID' => $this->input->post('previoustutorID'),
         'tuteeRemarks' => html_escape($this->input->post('remarks')),
-				'dateAdded' => date('Y-m-d H:i:s'),
-				'dateModified' => date('Y-m-d H:i:s'),
-				'status' => 'Pending',
-      );
+        'dateAdded' => date('Y-m-d H:i:s'),
+        'dateModified' => date('Y-m-d H:i:s'),
+        'status' => 'Pending',
+        );
+      }
+      else{
+        $params = array(
+        'tuteeID' => $this->input->post('tuteeID'),
+        'tutorID' => $this->input->post('tutorID'),
+        'subjectID' => $this->input->post('subjectID'),
+        'tutorScheduleID' => $this->input->post('tutorschedrequestedID'),
+        'dateTimeRequested' => date('Y-m-d H:i:s', strtotime($this->input->post('tutorialdate'))),
+        'previousTutorID' => $this->input->post('previoustutorID'),
+        'tuteeRemarks' => html_escape($this->input->post('remarks')),
+        'dateAdded' => date('Y-m-d H:i:s'),
+        'dateModified' => date('Y-m-d H:i:s'),
+        'status' => 'Approved',
+        );
+      }
       
       $tutorialsession_id = $this->Tutorialsession_model->add_tutorialsession($params);
       //audit tutorial request
       $audit_param = $this->audit->add($_SESSION['userID'],
-      'Tutorial Request','User has requested a tutorial session.');
+        'Tutorial Request','User has requested a tutorial session.');
       $this->Auditlog_model->add_auditlog($audit_param);
-      
+
       $this->load->model('User_model');            
       $user = $this->User_model->get_user($_SESSION['userID']);
       
@@ -279,9 +286,9 @@ class Tutorialsession extends CI_Controller{
         $this->email->message('<b>Greetings!</b>' . '<br/><br/>' . 'You have successfully requested for a new tutorial schedule!' . '<br/><br/>'. 'Your request will be processed by the SLU Coordinator and you will me notified of your new tutor, or any concerns, in 1-2 business days.<br/>' .'<br/><br/><br/>All the best, <br/><br/> <b>The SLICe Team</b><br/>Student Learning Center<br/> <i>De La Salle - College of Saint Benilde<br/> 2544 Taft Avenue, Malate, Manila</i>');
         $email = $this->email->send() ? redirect('tutorialsession/tutee/1') : redirect('tutorialsession/tutee/3');
         //var_dump($user['emailAddress'], $email);
-        $audit_param = $this->audit->add($_SESSION['userID'],
+      $audit_param = $this->audit->add($_SESSION['userID'],
         'Tutorial Request Email','Automated email has been sent for the tutorial session requested.');
-        $this->Auditlog_model->add_auditlog($audit_param);
+      $this->Auditlog_model->add_auditlog($audit_param);
       }
       else {
         redirect('tutorialsession/index/2');
@@ -452,7 +459,7 @@ class Tutorialsession extends CI_Controller{
     
     $data['tutorialNo'] = $this->input->post('tutorialNo');
     $tutorialNo = $data['tutorialNo'];
-    
+
     //APPROVES PENDING SESSION
     if($this->input->post('approveUpdate'))
     {
@@ -605,18 +612,18 @@ class Tutorialsession extends CI_Controller{
         echo 'errordisapproval';
       }
     }
-    
+
     //APPROVES CHANGE REQUEST
     if ($this->input->post('approveChange'))
-    {
-      if (isset($data['tutorialNo']))
       {
-        $this->load->library('form_validation');
-        
-        $this->form_validation->set_rules('coordRemarks', 'CoordRemarks', 'max_length[200]');
-        
-        if ($this->form_validation->run())
+      if (isset($data['tutorialNo']))
         {
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('coordRemarks', 'CoordRemarks', 'max_length[200]');
+
+        if ($this->form_validation->run())
+          {
           $tutorID = $this->input->post('tutorID');
           $params = array(
             'tutorID' => $tutorID,
@@ -625,7 +632,7 @@ class Tutorialsession extends CI_Controller{
             'dateModified' => date('Y-m-d H:i:s'),
           );
           $approval_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo, $params);
-          
+
           $old_sess = $this->input->post('approveChange');
           $params1 = array(
             'tutorID' => $tutorID,
@@ -634,12 +641,12 @@ class Tutorialsession extends CI_Controller{
             'dateModified' => date('Y-m-d H:i:s'),
           );
           $approval_id = $this->Tutorialsession_model->update_tutorialsession($old_sess, $params1);
-          
+
           $this->load->model('User_model');
           $usermail = $this->input->post('emailAddress');
-          
+
           if ($approval_id)
-          {
+            {
             $config['protocol'] = 'smtp';
             $config['smtp_host'] = 'smtp.gmail.com';
             $config['smtp_port'] = 587;
@@ -649,26 +656,26 @@ class Tutorialsession extends CI_Controller{
             $config['smtp_pass'] = 'linkgigadmin';
             $config['mailtype'] = "html";
             $config['smtp_timeout'] = 30;
-            
+
             $this->load->library('email', $config);
-            
+
             $this->email->set_newline("\r\n");
             $this->email->from('linkgigph@gmail.com', 'Admin');
             $this->email->to($usermail);
             $this->email->subject('SLICe: Your Tutorial Request has been approved!');
             $this->email->message(
               '<b>Greetings!</b>' .
-              '<br/><br/>' .
-              'Your requested tutorial session change request has been approved by the SLU Coordinator!' .
-              '<br/><br/>' .
-              'Please refer to your requested tutorial schedule in the SLICe website for details. All tutorials may only be held at the Student Learning Center. <br><br>
+                '<br/><br/>' .
+                'Your requested tutorial session change request has been approved by the SLU Coordinator!' .
+                '<br/><br/>' .
+                'Please refer to your requested tutorial schedule in the SLICe website for details. All tutorials may only be held at the Student Learning Center. <br><br>
               <b>Tips on making the most out of your tutorial session:</b><br>
               <ul>
               <li>Don\'t forget to bring your notes and academic materials</li>
               <li>Prepare specific questions or topics you are having problems with so that your tutor may help you better</li>
               <li>Review your topics after the tutorial session for maximum retention</li>
               <ul>' .
-              '<br/><br/><br/>
+                '<br/><br/><br/>
               All the best, <br/><br/> 
               <b>The SLICe Team</b><br/>
               Student Learning Center<br/> 
@@ -677,19 +684,19 @@ class Tutorialsession extends CI_Controller{
             );
             $email = $this->email->send() ? redirect('tutorialsession/approvalview/1') : redirect('tutorialsession/approvalview/3');
             //var_dump($user['emailAddress'], $email);
-            
-            
+
+
             $this->email->set_newline("\r\n");
             $this->email->from('linkgigph@gmail.com', 'Admin');
             $this->email->to($usermail); // tutor!!!
             $this->email->subject('SLICe: You have a new tutorial schedule!');
             $this->email->message(
               '<b>Greetings!</b>' .
-              '<br/><br/>' .
-              'You have been scheduled a tutorial session by the SLU Coordinator!' .
-              '<br/><br/>' .
-              'Please refer to your tutorial schedules page in the SLICe website for details. All tutorials may only be held at the Student Learning Center. <br><br>'
-              . '<br/><br/><br/>
+                '<br/><br/>' .
+                'You have been scheduled a tutorial session by the SLU Coordinator!' .
+                '<br/><br/>' .
+                'Please refer to your tutorial schedules page in the SLICe website for details. All tutorials may only be held at the Student Learning Center. <br><br>'
+                . '<br/><br/><br/>
               All the best, <br/><br/> 
               <b>The SLICe Team</b><br/>
               Student Learning Center<br/> 
@@ -698,7 +705,7 @@ class Tutorialsession extends CI_Controller{
             );
             $email = $this->email->send() ? redirect('tutorialsession/approvalview/1') : redirect('tutorialsession/approvalview/3');
             //var_dump($user['emailAddress'], $email);
-            
+
           } else {
             redirect('tutorialsession/approvalview/4');
           }
@@ -709,18 +716,18 @@ class Tutorialsession extends CI_Controller{
         echo 'errorapproval';
       }
     }
-    
+
     //DISAPPROVES CHANGE REQUEST
     if ($this->input->post('disapproveChange'))
-    {
-      if (isset($data['tutorialNo']))
       {
-        $this->load->library('form_validation');
-        
-        $this->form_validation->set_rules('coordRemarks', 'CoordRemarks', 'max_length[200]');
-        
-        if ($this->form_validation->run())
+      if (isset($data['tutorialNo']))
         {
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('coordRemarks', 'CoordRemarks', 'max_length[200]');
+
+        if ($this->form_validation->run())
+          {
           $tutorID = $this->input->post('tutorID');
           $params = array(
             'tutorID' => $tutorID,
@@ -729,12 +736,12 @@ class Tutorialsession extends CI_Controller{
             'dateModified' => date('Y-m-d H:i:s'),
           );
           $approval_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo, $params);
-          
+
           $this->load->model('User_model');
           $usermail = $this->input->post('emailAddress');
-          
+
           if ($approval_id)
-          {
+            {
             $config['protocol'] = 'smtp';
             $config['smtp_host'] = 'smtp.gmail.com';
             $config['smtp_port'] = 587;
@@ -744,9 +751,9 @@ class Tutorialsession extends CI_Controller{
             $config['smtp_pass'] = 'linkgigadmin';
             $config['mailtype'] = "html";
             $config['smtp_timeout'] = 30;
-            
+
             $this->load->library('email', $config);
-            
+
             $this->email->set_newline("\r\n");
             $this->email->from('linkgigph@gmail.com', 'Admin');
             $this->email->to($usermail);
@@ -762,18 +769,18 @@ class Tutorialsession extends CI_Controller{
         echo 'errordisapproval';
       }
     }
-    
+
     //APPROVES CANCEL REQUEST
     if ($this->input->post('approveCancel'))
-    {
-      if (isset($data['tutorialNo']))
       {
-        $this->load->library('form_validation');
-        
-        $this->form_validation->set_rules('coordRemarks', 'CoordRemarks', 'max_length[200]');
-        
-        if ($this->form_validation->run())
+      if (isset($data['tutorialNo']))
         {
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('coordRemarks', 'CoordRemarks', 'max_length[200]');
+
+        if ($this->form_validation->run())
+          {
           $tutorID = $this->input->post('tutorID');
           $params = array(
             'tutorID' => $tutorID,
@@ -782,12 +789,12 @@ class Tutorialsession extends CI_Controller{
             'dateModified' => date('Y-m-d H:i:s'),
           );
           $approval_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo, $params);
-          
+
           $this->load->model('User_model');
           $usermail = $this->input->post('emailAddress');
-          
+
           if ($approval_id)
-          {
+            {
             $config['protocol'] = 'smtp';
             $config['smtp_host'] = 'smtp.gmail.com';
             $config['smtp_port'] = 587;
@@ -797,18 +804,18 @@ class Tutorialsession extends CI_Controller{
             $config['smtp_pass'] = 'linkgigadmin';
             $config['mailtype'] = "html";
             $config['smtp_timeout'] = 30;
-            
+
             $this->load->library('email', $config);
-            
+
             $this->email->set_newline("\r\n");
             $this->email->from('linkgigph@gmail.com', 'Admin');
             $this->email->to($usermail);
             $this->email->subject('SLICe: Your Tutorial Request Cancellation has been approved!');
             $this->email->message(
               '<b>Greetings!</b>' .
-              '<br/><br/>' .
-              'Your requested tutorial session cancellation has been approved by the SLU Coordinator!' .
-              '<br/><br/><br/>
+                '<br/><br/>' .
+                'Your requested tutorial session cancellation has been approved by the SLU Coordinator!' .
+                '<br/><br/><br/>
               All the best, <br/><br/> 
               <b>The SLICe Team</b><br/>
               Student Learning Center<br/> 
@@ -817,7 +824,7 @@ class Tutorialsession extends CI_Controller{
             );
             $email = $this->email->send() ? redirect('tutorialsession/approvalview/1') : redirect('tutorialsession/approvalview/3');
             //var_dump($user['emailAddress'], $email);
-            
+
           } else {
             redirect('tutorialsession/approvalview/4');
           }
@@ -828,18 +835,18 @@ class Tutorialsession extends CI_Controller{
         echo 'errorapproval';
       }
     }
-    
+
     //DISAPPROVES CANCEL REQUEST
     if ($this->input->post('disapproveCancel'))
-    {
-      if (isset($data['tutorialNo']))
       {
-        $this->load->library('form_validation');
-        
-        $this->form_validation->set_rules('coordRemarks', 'CoordRemarks', 'max_length[200]');
-        
-        if ($this->form_validation->run())
+      if (isset($data['tutorialNo']))
         {
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('coordRemarks', 'CoordRemarks', 'max_length[200]');
+
+        if ($this->form_validation->run())
+          {
           $tutorID = $this->input->post('tutorID');
           $params = array(
             'tutorID' => $tutorID,
@@ -848,12 +855,12 @@ class Tutorialsession extends CI_Controller{
             'coordRemarks' => $this->input->post('coordRemarks'),
           );
           $approval_id = $this->Tutorialsession_model->update_tutorialsession($tutorialNo, $params);
-          
+
           $this->load->model('User_model');
           $usermail = $this->input->post('emailAddress');
-          
+
           if ($approval_id)
-          {
+            {
             $config['protocol'] = 'smtp';
             $config['smtp_host'] = 'smtp.gmail.com';
             $config['smtp_port'] = 587;
@@ -863,9 +870,9 @@ class Tutorialsession extends CI_Controller{
             $config['smtp_pass'] = 'linkgigadmin';
             $config['mailtype'] = "html";
             $config['smtp_timeout'] = 30;
-            
+
             $this->load->library('email', $config);
-            
+
             $this->email->set_newline("\r\n");
             $this->email->from('linkgigph@gmail.com', 'Admin');
             $this->email->to($usermail);
@@ -1042,7 +1049,7 @@ class Tutorialsession extends CI_Controller{
           if($comment[$i] != NULL)
           {
             if (array_key_exists($i, $comment))
-            {
+              {
               $params = array(
                 $status =  $status[$i],
               );
@@ -1052,7 +1059,7 @@ class Tutorialsession extends CI_Controller{
                 $status = "Not Done",
               );
             }
-            
+
             $params = array(
               'tutorialNo' => $tutorialNo,
               'comment' => $comment[$i],
@@ -1063,7 +1070,7 @@ class Tutorialsession extends CI_Controller{
             // var_dump($params);
             $tutchecklist_id = $this->Tutorialchecklist_model->add_tutorialchecklist($params);
             $audit_param = $this->audit->add($_SESSION['userID'],'Added a Milestones','User has successfully added a milestone.');
-            $this->Auditlog_model->add_auditlog($audit_param);
+          $this->Auditlog_model->add_auditlog($audit_param);
           }
         }
       }
@@ -1110,7 +1117,7 @@ class Tutorialsession extends CI_Controller{
         '</td>
         <td colspan="2">
         <input type="text" name="editcomment['.$tut['checklistID'].']" class="form-control key_addfield" id="editcomment['.$tut['checklistID'].']" value="'.$tut['comment'].'" ';
-        
+
         if($tut['status'] == 'Done'){
           echo ' readonly />';
         }

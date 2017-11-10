@@ -37,29 +37,4 @@ class Subject_model extends CI_Model
         return $this->db->get('subjects')->result_array();
     }
         
-    /*
-     * function to add new subject
-     */
-    function add_subject($params)
-    {
-        $this->db->insert('subjects',$params);
-        return $this->db->insert_id();
-    }
-    
-    /*
-     * function to update subject
-     */
-    function update_subject($subjectID,$params)
-    {
-        $this->db->where('subjectID',$subjectID);
-        return $this->db->update('subjects',$params);
-    }
-    
-    /*
-     * function to delete subject
-     */
-    function delete_subject($subjectID)
-    {
-        return $this->db->delete('subjects',array('subjectID'=>$subjectID));
-    }
 }
