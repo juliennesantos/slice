@@ -19,7 +19,7 @@ class Feedback_model extends CI_Model
      */
     function get_all_feedbacks_count()
     {
-        $this->db->from('feedbacks');
+        $this->db->from('feedbacks f');
         return $this->db->count_all_results();
     }
     
@@ -29,12 +29,17 @@ class Feedback_model extends CI_Model
      */
     function get_all_feedbacks($params = array())
     {
-        $this->db->order_by('feedbackID', 'desc');
+        $this->db->from('feedbacks f');
+         $this->db->join('tutorialsessions s', 's.tutorialNo = f.tutorialNo');
+        $this->db->join('tutors t', 't.tutorID = s.tutorID');
+        $this->db->join('users u', 'u.userID = t.userID');
+        
+        $this->db->order_by('feedbackID', 'asc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);
         }
-        return $this->db->get('feedbacks')->result_array();
+        return $this->db->get()->result_array();
     }
     /*
      * Get pending feedbacks count
