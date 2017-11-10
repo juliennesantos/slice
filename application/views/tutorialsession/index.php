@@ -144,7 +144,7 @@
                         <!-- Remarks -->
                         <div class="row">
                         <div class="form-group col-lg-4 col-sm-4">
-                          <textarea name="remarks" class="form-control" id="remarks" placeholder="Justification..." rows="4" cols="75"><?php echo $this->input->post('remarks'); ?></textarea>
+                          <textarea name="remarks" class="form-control" id="remarks" placeholder="Justification..." rows="4" cols="68"><?php echo $this->input->post('remarks'); ?></textarea>
                           <span class="text-danger">
                             <?php echo form_error('remarks'); ?>
                           </span>

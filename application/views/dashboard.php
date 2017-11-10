@@ -17,9 +17,9 @@
                     <div class="icon">
                     <i class="fa fa-comment-o"></i>
                     </div>
-                    <a href="<?php echo site_url()?>tutorialsession/tutor_index" class="small-box-footer">
+                    <a href="<?php echo site_url()?>tutorialsession/tutee" class="small-box-footer">
                     More info <i class="fa fa-arrow-circle-right"></i>
-                    </a>
+                    </a> 
             </div>
         </div>
         <div class="col-lg-6 col-xs-6">
@@ -38,9 +38,9 @@
                     <div class="icon">
                     <i class="fa fa-commenting"></i>
                     </div>
-                    <a href="<?php echo site_url()?>tutorialsession/tutor_index" class="small-box-footer">
+                    <a href="<?php echo site_url()?>tutorialsession/tutee" class="small-box-footer">
                     More info <i class="fa fa-arrow-circle-right"></i>
-                    </a>
+                    </a> 
             </div>
         </div>
     </div>
@@ -61,9 +61,9 @@
                     <div class="icon">
                     <i class="fa fa-check-circle"></i>
                     </div>
-                    <a href="<?php echo site_url()?>tutorialsession/tutor_index" class="small-box-footer">
+                    <a href="<?php echo site_url()?>tutorialsession/tutee" class="small-box-footer">
                     More info <i class="fa fa-arrow-circle-right"></i>
-                    </a>
+                    </a> 
             </div>
         </div>
     </div>

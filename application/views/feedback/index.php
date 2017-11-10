@@ -8,7 +8,7 @@
                 <thead class="panel-heading">
                     <tr>
                         <th>#</th>
-                        <th>TutorialNo</th>
+                        <th>Tutorial No</th>
                         <th>Date of Tutorial</th>
                         <th>Feedback</th>
                         <th>Actions</th>
