@@ -5,6 +5,7 @@ class Tutor extends CI_Controller{
   {
     parent::__construct();
     $this->load->model('Tutor_model');
+    $this->load->model('User_model');
     $this->load->model('Tutorschedule_model');
     $this->load->model('Timeblock_model');
     $this->load->model('Tutorexpertise_model');
@@ -31,7 +32,8 @@ class Tutor extends CI_Controller{
     $this->pagination->initialize($config);
     
     $data['tutors'] = $this->Tutor_model->get_all_tutors($params);
-    
+    $audit_param = $this->audit->add($_SESSION['userID'],'View Tutor List','User has viewed the list of tutors.');
+    $this->Auditlog_model->add_auditlog($audit_param); 
     $data['_view'] = 'tutor/index';
     $this->load->view('layouts/main',$data);
   }
@@ -83,38 +85,34 @@ class Tutor extends CI_Controller{
   /*
   * edit tutor
   */
-  function edit($tutorID)
+  function edit()
   {   
     // check if the tutor exists before trying to edit it
-    $data['tutor'] = $this->Tutor_model->get_tutor($tutorID);
+    $data['tutor'] = $this->Tutor_model->get_tutor_userID($_SESSION['userID']);
     
     if(isset($data['tutor']['tutorID']))
     {
       $this->load->library('form_validation');
-      
-			$this->form_validation->set_rules('tutorType','TutorType','required|max_length[80]');
-			$this->form_validation->set_rules('dateAdded','DateAdded','required');
+
       
 			if($this->form_validation->run())     
       {   
-        $params = array(
-					'userID' => $this->input->post('userID'),
+        $tutorparams = array(
 					'statusID' => $this->input->post('statusID'),
 					'tutorType' => $this->input->post('tutorType'),
-					'dateAdded' => $this->input->post('dateAdded'),
-					'dateModified' => $this->input->post('dateModified'),
+					'dateModified' => date('Y-m-d H:i:s'),
         );
         
-        $this->Tutor_model->update_tutor($tutorID,$params);            
+        $this->Tutor_model->update_tutor($data['tutor']['tutorID'],$params);            
         redirect('tutor/index');
       }
       else
       {
 				$this->load->model('User_model');
-				$data['all_users'] = $this->User_model->get_all_users();
+				$data['all_users'] = $this->User_model->get_user($_SESSION['userID']);
         
-				$this->load->model('Tutorstatus_model');
-				$data['all_tutorstatus'] = $this->Tutorstatus_model->get_all_tutorstatus();
+        
+				
         
         $data['_view'] = 'tutor/edit';
         $this->load->view('layouts/main',$data);

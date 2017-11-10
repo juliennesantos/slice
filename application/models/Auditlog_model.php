@@ -15,23 +15,7 @@ class Auditlog_model extends CI_Model
         $this->db->order_by('timeStamp','desc');
         return $this->db->get()->result_array();
     }
-    /*
-     * Get auditlog by auditID
-     */
-    function get_auditlog($auditID)
-    {
-        return $this->db->get_where('auditlogs',array('auditID'=>$auditID))->row_array();
-    }
-        
-    /*
-     * Get all auditlogs
-     */
-    function get_all_auditlogs()
-    {
-        $this->db->order_by('auditID', 'desc');
-        return $this->db->get('auditlogs')->result_array();
-    }
-        
+   
     /*
      * function to add new auditlog
      */
@@ -39,22 +23,5 @@ class Auditlog_model extends CI_Model
     {
         $this->db->insert('auditlogs',$params);
         return $this->db->insert_id();
-    }
-    
-    /*
-     * function to update auditlog
-     */
-    function update_auditlog($auditID,$params)
-    {
-        $this->db->where('auditID',$auditID);
-        return $this->db->update('auditlogs',$params);
-    }
-    
-    /*
-     * function to delete auditlog
-     */
-    function delete_auditlog($auditID)
-    {
-        return $this->db->delete('auditlogs',array('auditID'=>$auditID));
     }
 }
