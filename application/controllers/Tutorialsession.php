@@ -268,7 +268,7 @@ class Tutorialsession extends CI_Controller{
         $this->email->to($user['emailAddress']);
         $this->email->subject('SLICe: Tutorial Request Successful!');
         $this->email->message('<b>Greetings!</b>' . '<br/><br/>' . 'You have successfully requested for a new tutorial schedule!' . '<br/><br/>'. 'Your request will be processed by the SLU Coordinator and you will me notified of your new tutor, or any concerns, in 1-2 business days.<br/>' .'<br/><br/><br/>All the best, <br/><br/> <b>The SLICe Team</b><br/>Student Learning Center<br/> <i>De La Salle - College of Saint Benilde<br/> 2544 Taft Avenue, Malate, Manila</i>');
-        $email = $this->email->send() ? redirect('tutorialsession/tutee/1') : redirect('tutorialsession/approvalview/3');
+        $email = $this->email->send() ? redirect('tutorialsession/tutee/1') : redirect('tutorialsession/tutee/3');
         //var_dump($user['emailAddress'], $email);
       $audit_param = $this->audit->add($_SESSION['userID'],
         'Tutorial Request Email','Automated email has been sent for the tutorial session requested.');

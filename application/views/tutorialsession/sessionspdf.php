@@ -16,7 +16,7 @@ $html = '
 <style>
 '.file_get_contents(site_url('bower_components/bootstrap/dist/css/bootstrap.min.css')).'
 </style>
-<h2>Tutor Roster for Term '.$term['term'].', SY '.$term['sy'].'<h2>
+<h2>Tutee Listing for Term '.$term['term'].', SY '.$term['sy'].'<h2>
 <br><br>';
 
 $html .= '
@@ -27,14 +27,11 @@ $html .= '
 <th>Last Name</th>
 <th>First Name</th>
 <th>Degree Program</th>
-<th>Schedule</th>
-<th>Subjects Taught</th>
-<th>Tutor Type</th>
 </tr>
 </thead>
 ';
 
-foreach($tutors as $t)
+foreach($tutees as $t)
 {
   $html .='
   <tr>
@@ -42,21 +39,6 @@ foreach($tutors as $t)
   <td>'.$t['lastName'].'</td>
   <td>'.$t['firstName'].'</td>
   <td>'.$t['programCode'].'</td>
-  <td>'.$t['dayofweek'].'s, '.
-  date('g:ia', strtotime($t['timeStart']))
-  .' to '.
-  date('g:ia', strtotime($t['timeEnd'])) .'</td>
-  <td class="text-center">';
-  
-    $c = count($subjects[$t['tutorID']]);
-    
-    for ($i = 0; $i < $c; $i++)
-    {
-      $html .= $subjects[$t['tutorID']][$i]["subjectCode"] . '<br>';
-    }
-  
-  $html .='</td>
-  <td>'.$t['tutorType'].'</td>
   </tr>
   ';
 }

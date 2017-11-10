@@ -295,6 +295,36 @@
             </a>
           </li>
           <?php endif;?>
+
+          
+          <?php if($_SESSION['typeID'] == 4 || $_SESSION['typeID'] == 5):?>
+          <li class="header">REPORTS</li>
+          <li class="treeview">
+            <a href="<?php echo site_url('tutor/tutorpdf');?>">
+              <i class="fa fa-desktop"></i>
+              <span>Tutors List</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?=site_url('tutees/tuteespdf')?>">
+              <i class="fa fa-calendar"></i>
+              <span>Tutees List</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?=site_url('tutees/tuteespdf')?>">
+              <i class="fa fa-calendar"></i>
+              <span>Tutorial Sessions</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?=site_url('tutees/tuteespdf')?>">
+              <i class="fa fa-calendar"></i>
+              <span>Attendance List</span>
+            </a>
+          </li>
+          <?php endif;?>
+
           <?php if($_SESSION['typeID'] == 0):?>
           <li class="header">UNNECESSARY OR AUTOMATED</li>
           <li>

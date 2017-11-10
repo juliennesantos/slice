@@ -1,5 +1,3 @@
-<!-- <link rel="stylesheet" href="<?=site_url('resources\jquery-bar-rating\dist\themes\fontawesome-stars.css')?>;"> -->
-
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-black">
@@ -172,7 +170,8 @@
                       data-toggle="modal" 
                       data-target="#chreq<?= $t['tutorialNo'] ?>"
                       title="Change Request"
-                      value="<?= $t['subjectID']; ?>" >
+                      value="<?= $t['subjectID']; ?>"
+                      onclick="forchange(<?= $t['tutorialNo'] ?>, <?= $t['subjectID']; ?>, <?=site_url();?>);" >
               
                 <span class="fa fa-pencil"></span>
               </button>
