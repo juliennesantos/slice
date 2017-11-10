@@ -145,7 +145,7 @@
           <li>
             <a href="#">
               <i class="fa fa-paper-plane"></i>
-              <span>Feedback(View)</span>
+              <span>Feedback</span>
               <span class="pull-right-container">
                   <i class="fa fa-angle-down pull-right"></i>
                 </span>
@@ -207,13 +207,13 @@
           <li>
             <a href="<?php echo site_url('feedback/index');?>">
               <i class="fa fa-paper-plane"></i>
-              <span>Feedback(View)</span>
+              <span>Feedback</span>
             </a>
           </li>
           <li>
             <a href="<?php echo site_url('tutorialsession/approvalview');?>">
               <i class="fa fa-hourglass"></i>
-              <span>Tutorial Sessions (Approval)</span>
+              <span>Tutorial Sessions</span>
             </a>
           </li>
           <li>
@@ -225,7 +225,7 @@
           <li>
             <a href="#">
               <i class="fa fa-user-circle"></i>
-              <span>Tutor(approval)</span>
+              <span>Tutor</span>
               <span class="pull-right-container">
                   <i class="fa fa-angle-down pull-right"></i>
                 </span>
@@ -244,7 +244,7 @@
           <li>
             <a href="#">
               <i class="fa fa-clock-o"></i>
-              <span>Timeblock(CRUD)</span>
+              <span>Timeblock</span>
               <span class="pull-right-container">
                   <i class="fa fa-angle-down pull-right"></i>
                 </span>
@@ -263,7 +263,7 @@
           <li>
             <a href="#">
               <i class="fa fa-book"></i>
-              <span>Subject(CRUD)</span>
+              <span>Subject</span>
               <span class="pull-right-container">
                   <i class="fa fa-angle-down pull-right"></i>
                 </span>
@@ -301,19 +301,19 @@
           <li class="header">REPORTS</li>
           <li class="treeview">
             <a href="<?php echo site_url('tutor/tutorpdf');?>">
-              <i class="fa fa-desktop"></i>
+              <i class="fa fa-users"></i>
               <span>Tutors List</span>
             </a>
           </li>
           <li>
             <a href="<?=site_url('tutees/tuteespdf')?>">
-              <i class="fa fa-calendar"></i>
+              <i class="fa fa-user"></i>
               <span>Tutees List</span>
             </a>
           </li>
           <li>
             <a href="<?=site_url('tutees/tuteespdf')?>">
-              <i class="fa fa-calendar"></i>
+              <i class="fa fa-hourglass"></i>
               <span>Tutorial Sessions</span>
             </a>
           </li>
