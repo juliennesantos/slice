@@ -42,11 +42,11 @@ class Attendance extends CI_Controller{
         // echo $tutor['attendance'];
 
         // echo $data['honorscholars']['Attendance'];
-        $tutorData = $this->Tutor_model->get_all_tutors();
-        $data['attendancesummary'] = $this->Attendance_model->trialcount($tutorData['tutorID'],$term['term'],$term['sy']);
-        foreach($data['attendancesummary'] as $summary){
-            echo 'Tutor ID = '.$summary[tutorID].'number of attendance ='.$summary['c'];
-        }
+        // $tutorData = $this->Tutor_model->get_all_tutors();
+        // $data['attendancesummary'] = $this->Attendance_model->trialcount($tutorData['tutorID'],$term['term'],$term['sy']);
+        // foreach($data['attendancesummary'] as $summary){
+        //     echo 'Tutor ID = '.$summary[tutorID].'number of attendance ='.$summary['c'];
+        // }
 
         $params['limit'] = RECORDS_PER_PAGE; 
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
