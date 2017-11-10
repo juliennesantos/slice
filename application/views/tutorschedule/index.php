@@ -1,12 +1,10 @@
 <div class="row">
   <div class="col-lg-12">
-    <div class="box">
-      <div class="box-header">
-        <h3 class="box-title">Tutors Listing</h3>
-        <div class="box-tools">
-        </div>
+    <div class="panel panel-black">
+      <div class="panel-heading">
+        <h3>Tutors Listing</h3>
       </div>
-      <div class="box-body">
+      <div class="panel-body">
         <?php form_open('tutorschedule/index')?>
         <div class="form-group">
           <select name="userID" class="form-control select2" multiple="multiple" data-placeholder="Add a Student Tutor here..." style="width: 100%;">

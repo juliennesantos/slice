@@ -160,7 +160,7 @@
           <li>
             <a href="<?php echo site_url('tutorialsession/tutor_index');?>">
               <i class="fa fa-hourglass"></i>
-              <span>View Tutorial Sessions(history)</span>
+              <span>View Tutorial Sessions</span>
             </a>
             <!-- <ul class="treeview-menu">
 								<li>
