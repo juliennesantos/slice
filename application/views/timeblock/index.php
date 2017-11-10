@@ -10,12 +10,12 @@
                 </div>
                 <table class="table table-striped datatable">
                     <tr>
-						<th>TimeblockID</th>
-						<th>Dayofweek</th>
-						<th>TimeStart</th>
-						<th>TimeEnd</th>
+						<th>Timeblock ID</th>
+						<th>Day of week</th>
+						<th>Time Start</th>
+						<th>Time End</th>
 						<th>Status</th>
-						<th>DateModified</th>
+						<th>Date Modified</th>
 						<th>Actions</th>
                     </tr>
                     <?php foreach($timeblocks as $t){ ?>

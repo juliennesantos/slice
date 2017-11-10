@@ -77,7 +77,7 @@ class Tutorregister extends CI_Controller{
                 {
                     
                     $data['_view'] = 'tutorregister/new_tutor';
-                    $this->load->view('layouts/main',$data);
+                    $this->load->view('tutorregister/new_tutor',$data);
                 }
     }
 

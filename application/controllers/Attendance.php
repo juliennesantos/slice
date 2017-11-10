@@ -42,6 +42,11 @@ class Attendance extends CI_Controller{
         // echo $tutor['attendance'];
 
         // echo $data['honorscholars']['Attendance'];
+        $tutorData = $this->Tutor_model->get_all_tutors();
+        $data['attendancesummary'] = $this->Attendance_model->trialcount($tutorData['tutorID'],$term['term'],$term['sy']);
+        foreach($data['attendancesummary'] as $summary){
+            echo 'Tutor ID = '.$summary[tutorID].'number of attendance ='.$summary['c'];
+        }
 
         $params['limit'] = RECORDS_PER_PAGE; 
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
@@ -51,6 +56,7 @@ class Attendance extends CI_Controller{
         $config['total_rows'] = $this->Attendance_model->get_all_attendance_count();
         $this->pagination->initialize($config);
         $data['attendanceList'] = $this->Attendance_model->get_list($term['term'],$term['sy'],$params);
+
         $audit_param = $this->audit->add($_SESSION['userID'],'Attendance','User has viewed attendance sheet');
         $this->Auditlog_model->add_auditlog($audit_param);
         $data['_view'] = 'attendance/index';

@@ -1,20 +1,3 @@
-<script type="text/javascript">
-$(document).ready(function() {
-
-	var subject;
-
-	$("#subject").change(function() {
-		subject = $(this).val();
-		$.get('<?php echo site_url();?>tutorialsession/findtimeblocks/' + $(this).val(), function(data) {
-			$("#timeblock").html(data);
-			$('#loader').slideUp(200, function() {
-				$(this).remove();
-			});
-		});
-	});
- 
-});
-</script>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-black">
@@ -102,3 +85,10 @@ $(document).ready(function() {
 		</div>
 	</div>
 </div>
+
+<!-- <script type="text/javascript">
+$(document).ready(function($) {
+	
+ 
+});
+</script> -->

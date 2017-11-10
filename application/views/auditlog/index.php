@@ -1,11 +1,10 @@
 <div class="row">
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">Auditlogs Listing</h3>
-            	
+    <div class="col-lg-12">
+        <div class="panel panel-black">
+            <div class="panel-heading">
+                <h3 class="text-center">Auditlog</h3>
             </div>
-            <div class="box-body">
+            <div class="panel-body">
                 <table class="table table-striped datatable">
                     <tr>
 						

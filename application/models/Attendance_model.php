@@ -69,6 +69,18 @@ class Attendance_model extends CI_Model
         return $this->db->count_all_results();
     }
     
+    function trialcount($tutorID=array(),$term, $sy)
+    {
+        $this->db->from('attendance a');
+        $this->db->join('tutors t', 't.tutorID = a.tutorID');
+        $this->db->join('users u', 'u.userID = t.userID');
+        $this->db->join($this->get_tutor_attendance_count($tutorID,$term,$sy).' c','c.tutorID = t.tutorID','left');
+        $this->db->where('tutorType', 'Honor Scholar');
+        $this->db->where('term', $term);
+        $this->db->where('schoolYr', $sy);
+        $this->db->order_by('u.lastName', 'asc');
+        return $this->db->get()->result_array();
+    }
 
     /*
      * Get all attendance

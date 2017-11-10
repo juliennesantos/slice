@@ -9,7 +9,7 @@
   <div class="col-lg-12 col-md-12 col-xs-12">
     <div class="panel panel-black">
       <div class="panel-heading">
-        <h3>Tutorial Sessions Listing</h3>
+        <h3>Tutorial Sessions</h3>
       </div>
       <div class="panel-body">
         <table class="table table-striped table-hover datatable table-responsive">
@@ -88,7 +88,7 @@
               </button>
               <?php endif; ?>
               <button type="button" name="checklist" class="btn btn-info modal<?php echo $t['tutorialNo']; ?>" data-toggle="modal" data-target="#modal-default<?php echo $t['tutorialNo']; ?>"
-                title="Plan Session">
+                title="Plan Session" onclick="dothis(<?php echo $t['tutorialNo']; ?>);">
                 <span class="fa fa-pencil"></span>
               </button>
               <?php endif; ?>
@@ -169,7 +169,7 @@
                             </td>
                             <td></td>
                             <td class="pull-right">
-                              <button type="button" class="pull-right btn btn-info btn-sm add_field_button">Add Milestone</button>
+                              <button type="button" class="pull-right btn btn-info btn-sm add_field_button" onclick="addfield(<?php echo $t['tutorialNo'];?>)">Add Milestone</button>
                             </td>
                           </tr>
                         </tbody>
@@ -204,5 +204,3 @@
     </div>
   </div>
 </div>
-
-<script src="<?php echo site_url('resources/js/tutor/tutor-index.js'); ?>"></script>

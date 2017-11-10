@@ -1,10 +1,8 @@
-<!-- <link rel="stylesheet" href="<?=site_url('resources\jquery-bar-rating\dist\themes\fontawesome-stars.css')?>;"> -->
-
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-black">
       <div class="panel-heading">
-        <h3>Tutorial Sessions Listing</h3>
+        <h3>Tutorial Sessions</h3>
       </div>
       <div class="panel-body">
         <div class="col-lg-offset-10 pull-right">
@@ -78,7 +76,7 @@
                                 <b>#</b>
                               </td>
                               <td>
-                                <input type="hidden" name="tutorialNo" value="<?= $t['tutorialNo']; ?>">
+                                <input type="hidden" name="tutorialNo" class="tutno" data-no="<?= $t['tutorialNo']; ?>" value="<?= $t['tutorialNo']; ?>">
                                 <?= $t['tutorialNo']; ?>
                               </td>
                             </tr>
@@ -146,7 +144,7 @@
                         <!-- Remarks -->
                         <div class="row">
                         <div class="form-group col-lg-4 col-sm-4">
-                          <textarea name="remarks" class="form-control" id="remarks" placeholder="Justification..." rows="4" cols="75"><?php echo $this->input->post('remarks'); ?></textarea>
+                          <textarea name="remarks" class="form-control" id="remarks" placeholder="Justification..." rows="4" cols="68"><?php echo $this->input->post('remarks'); ?></textarea>
                           <span class="text-danger">
                             <?php echo form_error('remarks'); ?>
                           </span>
@@ -172,7 +170,8 @@
                       data-toggle="modal" 
                       data-target="#chreq<?= $t['tutorialNo'] ?>"
                       title="Change Request"
-                      value="<?= $t['subjectID']; ?>" >
+                      value="<?= $t['subjectID']; ?>"
+                      onclick="forchange(<?= $t['tutorialNo'] ?>, <?= $t['subjectID']; ?>, <?=site_url();?>);" >
               
                 <span class="fa fa-pencil"></span>
               </button>
