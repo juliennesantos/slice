@@ -103,8 +103,8 @@ function removefield(){
 
 
 
-function viewrequest(tutorialNo) {
-  $.get(site_url+'tutorialsession/findtutors/' + $(this).data('sid'), function (data) {
+function viewrequest(tutorialNo, subjectID) {
+  $.get(site_url+'tutorialsession/findtutors/' + subjectID, function (data) {
     $("#tutors" + tutorialNo).html(data);
     });
 }

@@ -62,7 +62,7 @@
               </td>
               <td class="col-lg-1">
                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-<?php echo $t['tutorialNo']; ?>" data-sid="<?php echo $t['subjectID']?>"
-                  id="modal<?php echo $t['tutorialNo']; ?>" onclick="viewrequest('<?= $t['tutorialNo']; ?>')">View Request</button>
+                  id="modal<?php echo $t['tutorialNo']; ?>" onclick="viewrequest(<?php echo $t['tutorialNo']; ?>, <?php echo $t['subjectID']?>)">View Request</button>
 
 
                 <!-- MODAL -->
