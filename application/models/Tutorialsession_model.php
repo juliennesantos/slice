@@ -22,7 +22,7 @@ class Tutorialsession_model extends CI_Model
         $this->db->join('tutees tees', 't.tuteeID = tees.tuteeID');    
         $this->db->join('users ut', 'ut.userID = tees.userID');    
         $this->db->where('ut.userID', $_SESSION['userID']);    
-        $this->db->where('t.status', "Pending");    
+        $this->db->where('t.status', "Pending");
         return $this->db->count_all_results();
     }
 

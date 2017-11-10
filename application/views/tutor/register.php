@@ -67,7 +67,7 @@
 </div>
 
 <!-- <script src="<?= site_url(); ?>resources\js\tutor\tutorregister.js"></script> -->
-<script>
+<!-- <script>
 $(document).ready(function () {
 
   var subjects = $(".subjID").data("subjid");
@@ -127,4 +127,4 @@ $(document).ready(function () {
   });
   
 });
-</script>
+</script> -->
