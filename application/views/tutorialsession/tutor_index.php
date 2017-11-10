@@ -9,7 +9,7 @@
   <div class="col-lg-12 col-md-12 col-xs-12">
     <div class="panel panel-black">
       <div class="panel-heading">
-        <h3>Tutorial Sessions Listing</h3>
+        <h3>Tutorial Sessions</h3>
       </div>
       <div class="panel-body">
         <table class="table table-striped table-hover datatable table-responsive">
