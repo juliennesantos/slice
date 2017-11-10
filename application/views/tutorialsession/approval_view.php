@@ -30,23 +30,6 @@
             </tr>
             <?php endif;?>
             <?php foreach($tutorialsessions as $t){ ?>
-            <script type="text/javascript">
-              $(document).ready(function () {
-
-                $("#modal<?php echo $t['tutorialNo']; ?>").click(function () {
-                  // $(this).after('<div id="loader"><img src="img/loading.gif" alt="loading subcategory" /></div>');
-                  $.get('<?php echo site_url();?>tutorialsession/findtutors/' + $(this).data(
-                    'sid'), function (data) {
-                    $("#tutors<?= $t['tutorialNo']; ?>").html(data);
-                    $('#loader').slideUp(200, function () {
-                      $(this).remove();
-                    });
-                  });
-                });
-
-              });
-            </script>
-
             <tr>
               <td>
                 <?php echo $t['tutorialNo']; ?>
@@ -79,7 +62,7 @@
               </td>
               <td class="col-lg-1">
                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-<?php echo $t['tutorialNo']; ?>" data-sid="<?php echo $t['subjectID']?>"
-                  id="modal<?php echo $t['tutorialNo']; ?>">View Request</button>
+                  id="modal<?php echo $t['tutorialNo']; ?>" onclick="viewrequest('<?= $t['tutorialNo']; ?>')">View Request</button>
 
 
                 <!-- MODAL -->

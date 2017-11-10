@@ -1,15 +1,15 @@
 var site_url = $(".siteurl").data("siteurl");
 var x = 0;
 
-(function ($) {
+(function($){
   
   var subject;
   
-  $("#subject").change(function () {
+  $('#subject').change(function(){
     subject = $(this).val();
-    $.get(site_url + 'tutorialsession/findtimeblocks/' + $(this).val(), function (data) {
-      $("#timeblock").html(data);
-      $('#loader').slideUp(200, function () {
+    $.get(site_url + 'tutorialsession/findtimeblocks/' + $(this).val(), function(data) {
+      $('#timeblock').html(data);
+      $('#loader').slideUp(200, function(){
         $(this).remove();
       });
     });
@@ -20,7 +20,7 @@ var x = 0;
   
   $('[data-mask]').inputmask();
   //multiple dropbox
-  $('.select2').select2()
+  $('.select2').select2();
   //Date picker
   $('#datepicker').datepicker({
     autoclose: true
@@ -33,29 +33,21 @@ var wrapper;
 //Fields wrapper
 var add_button = $(".add_field_button"); //Add button ID
 
-//initial text box count
-// $.get(site_url + 'tutorialsession/count_checklist/' +
-//   tutorialNo,
-//   function (data) {
-//     x = parseInt(data);
-//   }, "number");
-
 // EDIT CHECKLIST
-function dothis(tutorialNo) {
-  wrapper = $(".input_fields_wrap" + tutorialNo);
+function dothis(tutorialNo){
+  wrapper = $('.input_fields_wrap' + tutorialNo);
   console.log(tutorialNo);
-  // $(".modal" + tutorialNo).on('click.modal"' + tutorialNo, function () {
   console.log(wrapper);
   $.ajax({
     type: 'GET',
     url: site_url + 'tutorialsession/get_checklist/' + tutorialNo,
-    success: function (data) {
-      $(".items" + tutorialNo).html(data);
+    success: function(data){
+      $('.items' + tutorialNo).html(data);
     },
-  })
+  });
   
   //checks if wrapper is empty
-  if($(wrapper).html().trim() == false) {
+  if($(wrapper).html().trim() == false){
     $(wrapper).append(
       '<tr>' +
       '<td class="text-center">' +
@@ -103,15 +95,16 @@ function addfield(tutorialNo){
 
 function removefield(){
   var tutorialNo = $('.tutorialNo').data('tutno');
-  wrapper = $(".input_fields_wrap" + tutorialNo);
-  $(".remove_field"+x).parent().parent('tr').remove();
+  wrapper = $('.input_fields_wrap' + tutorialNo);
+  $('.remove_field'+x).parent().parent('tr').remove();
   x--;
 }
 
-function forchange(tutorialNo, subject, site_url)
-{
-  console.log(tutorialNo, subject, site_url);
-  $.get(site_url + 'tutorialsession/findtimeblocks/' + subject, function(data){
-      $(".timeblock" + tutorialNo).html(data);
+
+
+
+function viewrequest(tutorialNo) {
+  $.get(site_url+'tutorialsession/findtutors/' + $(this).data('sid'), function (data) {
+    $("#tutors" + tutorialNo).html(data);
     });
 }

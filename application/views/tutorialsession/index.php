@@ -86,7 +86,12 @@
                                   <b/>
                               </td>
                               <td>
-                                <?= $t['uaLN'] . ', ' . $t['uaFN']; ?>
+                                <?php if($t['uaLN'] == NULL){
+                                  echo 'No tutor';
+                                }
+                                else{
+                                  echo $t['uaLN'] . ', ' . $t['uaFN'];
+                                } ?>
                               </td>
                             </tr>
                             <tr>
@@ -171,7 +176,7 @@
                       data-target="#chreq<?= $t['tutorialNo'] ?>"
                       title="Change Request"
                       value="<?= $t['subjectID']; ?>"
-                      onclick="forchange(<?= $t['tutorialNo'] ?>, <?= $t['subjectID']; ?>, <?=site_url();?>);" >
+                      onclick="forchange('<?= $t['tutorialNo'] ?>', '<?= $t['subjectID']; ?>', '<?=site_url();?>')" >
               
                 <span class="fa fa-pencil"></span>
               </button>
