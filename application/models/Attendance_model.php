@@ -42,6 +42,7 @@ class Attendance_model extends CI_Model
 
     //specific tutor attendance list
     function get_tutor_attendance_list($tutorID,$term,$sy ){
+
         $this->db->from('attendance');
         $this->db->where('tutorID', $tutorID);
         $this->db->where('term',$term);
@@ -61,24 +62,24 @@ class Attendance_model extends CI_Model
 
     // count all attendance of a tutor
     function get_tutor_attendance_count($tutorID,$term,$sy)
-    {
-        $this->db->from('attendance');
-        $this->db->where('tutorID', $tutorID);
-        $this->db->where('term',$term);
-        $this->db->where('schoolYr', $sy);
+    {   
+        $this->db->from('attendance b');
+        $this->db->where('b.tutorID', $tutorID);
+        $this->db->where('b.term',$term);
+        $this->db->where('b.schoolYr', $sy);
         return $this->db->count_all_results();
     }
     
     function trialcount($tutorID=array(),$term, $sy)
     {
         $this->db->from('attendance a');
-        $this->db->join('tutors t', 't.tutorID = a.tutorID');
-        $this->db->join('users u', 'u.userID = t.userID');
-        $this->db->join($this->get_tutor_attendance_count($tutorID,$term,$sy).' c','c.tutorID = t.tutorID','left');
-        $this->db->where('tutorType', 'Honor Scholar');
-        $this->db->where('term', $term);
-        $this->db->where('schoolYr', $sy);
-        $this->db->order_by('u.lastName', 'asc');
+        $this->db->join('tutors tu', 'tu.tutorID = a.tutorID');
+        $this->db->join('users ui', 'ui.userID = tu.userID');
+        $this->db->join($this->get_tutor_attendance_count($tutorID,$term,$sy),'','left');
+        $this->db->where('tu.tutorType', 'Honor Scholar');
+        $this->db->where('a.term', $term);
+        $this->db->where('a.schoolYr', $sy);
+        $this->db->order_by('ui.lastName', 'asc');
         return $this->db->get()->result_array();
     }
 
