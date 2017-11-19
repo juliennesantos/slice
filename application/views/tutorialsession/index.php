@@ -59,7 +59,7 @@
                 <!-- Modal for change request-->
                 <div id="chreq<?= $t['tutorialNo'] ?>" class="modal fade" role="dialog">
                   <div class="modal-dialog">
-
+                    <?php form_open('tutorialsession/changerequest')?>
                     <!-- Modal content-->
                     <div class="modal-content">
                       <div class="modal-header">
@@ -141,7 +141,9 @@
                             <div class="input-group-addon">
                               <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="date" class="form-control datepicker" id="datepicker" name="tutorialdate" placeholder="Choose your preferred date">
+                            <input type="date" class="form-control datepicker" id="datepicker2" name="tutorialdate" placeholder="Choose your preferred date">
+                            <!-- <input type="date" class="form-control pull-right datepicker" id="datepicker" name="tutorialdate" placeholder="Choose your preferred date" required> -->
+
                           </div>
                         </div>
                         </div>
@@ -157,12 +159,12 @@
                         </div>
                       </div><!--MODAL CONTENT-->
                       <div class="modal-footer">
-                        <button type="submit" name="chreq" value="chreq" class="btn btn-success btn-block pull-right">
+                        <button type="submit" name="chreq" id="chreqs<?= $t['tutorialNo'] ?>" value="chreq" class="btn btn-success btn-block pull-right" onclick="changerequest('<?=site_url();?>')">
                           <i class="fa fa-check"></i> Submit Change Request
                         </button>
                       </div>
                     </div>
-
+                        <?php form_close();?>
                   </div>
                 </div>
                 <!-- /Modal -->
@@ -176,10 +178,12 @@
                       data-target="#chreq<?= $t['tutorialNo'] ?>"
                       title="Change Request"
                       value="<?= $t['subjectID']; ?>"
+                      id="chreq<?= $t['subjectID']; ?>"
                       onclick="forchange('<?= $t['tutorialNo'] ?>', '<?= $t['subjectID']; ?>', '<?=site_url();?>')" >
               
                 <span class="fa fa-pencil"></span>
               </button>
+              <!-- <a href="<?=site_url('tutorialsession/changerequest/'.$t['tutorialNo'])?>" type="button" class="btn btn-warning"?></a> -->
               <button name="cancelrequest" value="<?= $t['tutorialNo']; ?>" id="cancelrequest" type="submit" class="btn btn-danger" title="Cancel Request"
                 onclick="confirm('Request to cancel this session?');">
                 <span class="fa fa-trash"></span>
@@ -244,7 +248,7 @@
                           </tr>
                         </tbody>
                       </table>
-                      <label for="rating" class="control-label">Rating</label>
+                      <!-- <label for="rating" class="control-label">Rating</label>
                       <div class="form-group">
                         <select name="rating" id="rating">
                           <option value="1"></option>
@@ -253,7 +257,7 @@
                           <option value="4"></option>
                           <option value="5"></option>
                         </select>
-                      </div>
+                      </div> -->
                       <label for="feedback" class="control-label">Feedback</label>
                       <div class="form-group">
                         <textarea name="feedback" class="form-control" id="feedback" placeholder="Input your feedback here" maxlength="1000">
@@ -262,7 +266,7 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="submit" name="addfeedback" value="addfeedback" class="btn btn-success pull-right">
+                      <button type="submit" name="addfeedback" value="addfeedback" class="btn btn-success pull-right unbind">
                         <i class="fa fa-check"></i> Submit
                       </button>
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -284,3 +288,5 @@
     </div>
   </div>
 </div>
+
+<script src="<?=site_url('resources\js\tutee\tuteeindex.js')?>"></script>

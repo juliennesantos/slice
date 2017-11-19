@@ -1,32 +1,7 @@
 var site_url = $(".siteurl").data("siteurl");
 var x = 0;
 
-(function($){
-  
-  var subject;
-  
-  $('#subject').change(function(){
-    subject = $(this).val();
-    $.get(site_url + 'tutorialsession/findtimeblocks/' + $(this).val(), function(data) {
-      $('#timeblock').html(data);
-      $('#loader').slideUp(200, function(){
-        $(this).remove();
-      });
-    });
-  });
-  
-  
-  $('.datatable').DataTable();
-  
-  $('[data-mask]').inputmask();
-  //multiple dropbox
-  $('.select2').select2();
-  //Date picker
-  $('#datepicker').datepicker({
-    autoclose: true
-  });
-  
-})(jQuery);
+
 
 var max_fields = 50; //maximum input boxes allowed
 var wrapper;
@@ -101,10 +76,62 @@ function removefield(){
 }
 
 
-
-
 function viewrequest(tutorialNo, subjectID) {
   $.get(site_url+'tutorialsession/findtutors/' + subjectID, function (data) {
     $("#tutors" + tutorialNo).html(data);
     });
 }
+
+function forchange(tutorialNo, subjectID, site_url)
+{
+  $.get(site_url + 'tutorialsession/findtimeblocks/' + subjectID, function(data) {
+    $(".timeblock" + tutorialNo).html(data);
+  });
+  $('#datepicker2').datepicker({
+    autoclose: true
+  });
+}
+
+function changerequest()
+{
+  $.post(site_url + 'tutorialsession/changerequest/', function (data) {
+    return true;
+  });
+}
+//listeners
+(function ($) {
+
+  var subject;
+
+  $('#subject').change(function () {
+    subject = $(this).val();
+    $.get(site_url + 'tutorialsession/findtimeblocks/' + $(this).val(), function (data) {
+      $('#timeblock').html(data);
+      $('#loader').slideUp(200, function () {
+        $(this).remove();
+      });
+    });
+  });
+
+  $('#timeblock').change(function () {
+    subject = $(this).val();
+    $.get(site_url + 'tutorialsession/findtutors/' + $(this).val(), function (data) {
+      $('#tutor').html(data);
+      $('#loader').slideUp(200, function () {
+        $(this).remove();
+      });
+    });
+  });
+
+
+  // $('.datatable').DataTable();
+
+  // $('[data-mask]').inputmask();
+  // //multiple dropbox
+  // $('.select2').select2();
+  //Date picker
+  $('#datepicker').datepicker({
+    autoclose: true
+  });
+
+})(jQuery);

@@ -25,9 +25,13 @@ class Feedback extends CI_Controller{
     
     $data['feedbacks'] = $this->Feedback_model->get_all_feedbacks($params);
     //audit 
-      $audit_param = $this->audit->add($_SESSION['userID'],'View Tutorial Feedback','User has viewed tutorial feedback list.');
-      $this->Auditlog_model->add_auditlog($audit_param);
+    $audit_param = $this->audit->add($_SESSION['userID'],'View Tutorial Feedback','User has viewed tutorial feedback list.');
+    $this->Auditlog_model->add_auditlog($audit_param);
+    if($_SESSION['typeID'] != 5)
       redirect('feedback/tuteeview');
+    else 
+      redirect('feedback/index');
+        
     $data['_view'] = 'feedback/index';
     $this->load->view('layouts/main',$data);
   }
@@ -36,15 +40,15 @@ class Feedback extends CI_Controller{
   */
   function tutor_index()
   {
-    // $params['limit'] = RECORDS_PER_PAGE; 
-    // $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
+    $params['limit'] = RECORDS_PER_PAGE; 
+    $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
     
-    // $config = $this->config->item('pagination');
-    // $config['base_url'] = site_url('feedback/index?');
-    // $config['total_rows'] = $this->Feedback_model->get_all_feedbacks_count();
-    // $this->pagination->initialize($config);
+    $config = $this->config->item('pagination');
+    $config['base_url'] = site_url('feedback/index?');
+    $config['total_rows'] = $this->Feedback_model->get_all_feedbacks_count();
+    $this->pagination->initialize($config);
     
-    // $data['feedbacks'] = $this->Feedback_model->get_all_feedbacks($params);
+    $data['feedbacks'] = $this->Feedback_model->get_all_feedbacks($params);
     $data['_view'] = 'feedback/tutor_index';
     $this->load->view('layouts/main',$data);
   }

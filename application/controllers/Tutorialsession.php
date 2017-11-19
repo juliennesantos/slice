@@ -125,20 +125,20 @@ class Tutorialsession extends CI_Controller{
     //change request for already approved sessions
     if ($this->input->post('chreq'))
     {
-      var_dump($this->input->post('tutorialNo'));
-      // $params = array(
-      //   'tuteeID' => $_SESSION['userID'],
-      //   'subjectID' => $this->input->post('subjectID'),
-      //   'tutorScheduleID' => $this->input->post('tutorschedrequestedID'),
-      //   'dateTimeRequested' => date('Y-m-d H:i:s', strtotime($this->input->post('tutorialdate'))),
-      //   'previousTutorID' => $this->input->post('previoustutorID'),
-      //   'tuteeRemarks' => html_escape($this->input->post('remarks')),
-      //   'dateAdded' => date('Y-m-d H:i:s'),
-      //   'dateModified' => date('Y-m-d H:i:s'),
-      //   'status' => 'Change Pending from #'. $this->input->post('tutorialNo'),
-      // );
+      // var_dump($this->input->post('tutorialNo'));
+      $params = array(
+        'tuteeID' => $_SESSION['userID'],
+        'subjectID' => $this->input->post('subjectID'),
+        'tutorScheduleID' => $this->input->post('tutorschedrequestedID'),
+        'dateTimeRequested' => date('Y-m-d H:i:s', strtotime($this->input->post('tutorialdate'))),
+        'previousTutorID' => $this->input->post('previoustutorID'),
+        'tuteeRemarks' => html_escape($this->input->post('remarks')),
+        'dateAdded' => date('Y-m-d H:i:s'),
+        'dateModified' => date('Y-m-d H:i:s'),
+        'status' => 'Change Pending from #'. $this->input->post('tutorialNo'),
+      );
       
-      // $tutorialsession_id = $this->Tutorialsession_model->add_tutorialsession($params) ? redirect('tutorialsession/tutee/1') : redirect('tutorialsession/tutee/2');
+      $tutorialsession_id = $this->Tutorialsession_model->add_tutorialsession($params) ? redirect('tutorialsession/tutee/1') : redirect('tutorialsession/tutee/2');
     }
     
     //cancel request for already approved sessions
@@ -166,6 +166,32 @@ class Tutorialsession extends CI_Controller{
     //var_dump($data['tutorialsessions']);
     $data['_view'] = 'tutorialsession/index';
     $this->load->view('layouts/main',$data);
+  }
+
+  function changerequest($tutorialNo)
+  {
+    //change request for already approved sessions
+    if ($this->input->post())
+    {
+      // var_dump($this->input->post('tutorialNo'));
+      $params = array(
+        'tuteeID' => $_SESSION['userID'],
+        'subjectID' => $this->input->post('subjectID'),
+        'tutorScheduleID' => $this->input->post('tutorschedrequestedID'),
+        'dateTimeRequested' => date('Y-m-d H:i:s', strtotime($this->input->post('tutorialdate'))),
+        'previousTutorID' => $this->input->post('previoustutorID'),
+        'tuteeRemarks' => html_escape($this->input->post('remarks')),
+        'dateAdded' => date('Y-m-d H:i:s'),
+        'dateModified' => date('Y-m-d H:i:s'),
+        'status' => 'Change Pending from #'. $tutorialNo,
+      );
+      
+      $tutorialsession_id = $this->Tutorialsession_model->add_tutorialsession($params) ? redirect('tutorialsession/tutee/1') : redirect('tutorialsession/tutee/2');
+    }
+    $data['t'] = $this->Tutorialsession_model->get_one_tutorialsession($tutorialNo);
+    // var_dump($data['t']);
+    $data['_view'] = "tutorialsession/changerequest";
+    $this->load->view('layouts/main', $data);
   }
   
   function findSubject($date)
