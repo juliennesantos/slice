@@ -43,7 +43,7 @@ class Subject extends CI_Controller{
             $params = array(
 				'subjectCode' => $this->input->post('subjectCode'),
 				'name' => $this->input->post('name'),
-				'dateModified' => $this->input->post('dateModified'),
+				'dateModified' => date("Y-m-d H:i:s"),
             );
             
             $subject_id = $this->Subject_model->add_subject($params);

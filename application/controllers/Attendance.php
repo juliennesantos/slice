@@ -99,7 +99,7 @@ class Attendance extends CI_Controller{
                         $timeblock=$this->Timeblock_model->get_timeblock($schedData['timeblockID']);
                         $days = $schedData['dayofweek'];
                         $starts = $timeblock['timeStart'];
-                        $ends = $timeblock['timeEnd']; 
+                        $ends = strtotime($timeblock['timeEnd']); 
                         if(($days == $dayNow) and (($starts<=$timeNow) and ($ends>$timeNow))) //validate attendance if within enrolled schedule
                             {
                                 $attendanceData = $this->Attendance_model->getAttendance($schedData['tutorID'],date('Y-m-d'));
@@ -130,7 +130,7 @@ class Attendance extends CI_Controller{
                                 }
                                 elseif($attendanceData['timeOut'] == null)
                                 {
-                                    $timecheck = date('H:i:s') - $ends;
+                                    $timecheck = strtotime(date('H:i:s')) - $ends;
                                     if($timecheck<0)
                                     {
                                         $audit_param = $this->audit->add($data['userID'],'Attendance','User has tried to time out before respected schedule.');

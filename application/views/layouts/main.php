@@ -563,6 +563,7 @@
   <script src="<?=site_url();?>plugins/input-mask/jquery.inputmask.js"></script>
   <script src="<?=site_url();?>plugins/input-mask/jquery.inputmask.extensions.js"></script>
   <!-- Custom JS -->
+  <script src="<?=site_url('resources\js\tutee\tuteeindex.js')?>"></script>
   <script src="<?=site_url();?>resources\custom.js"></script>
   
 </body>
