@@ -5,6 +5,8 @@ class Timeblock extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('Timeblock_model');
+        $this->load->library('audit');
+        $this->load->model('Auditlog_model');
         $this->load->library('loginvalidation');
         $this->loginvalidation->isValid();
         $this->loginvalidation->sessionexpire();
@@ -36,7 +38,6 @@ class Timeblock extends CI_Controller{
     {   
         $this->load->library('form_validation');
 
-		$this->form_validation->set_rules('dayofweek','Dayofweek','required|max_length[9]');
 		$this->form_validation->set_rules('timeStart','TimeStart','required');
 		$this->form_validation->set_rules('timeEnd','TimeEnd','required');
 		$this->form_validation->set_rules('status','Status','required|max_length[25]');
@@ -44,11 +45,10 @@ class Timeblock extends CI_Controller{
 		if($this->form_validation->run())     
         {   
             $params = array(
-				'dayofweek' => $this->input->post('dayofweek'),
 				'timeStart' => $this->input->post('timeStart'),
 				'timeEnd' => $this->input->post('timeEnd'),
 				'status' => $this->input->post('status'),
-				'dateModified' => $this->input->post('dateModified'),
+				'dateModified' => date('Y-m-d H:i:s'),
             );
             
             $timeblock_id = $this->Timeblock_model->add_timeblock($params);

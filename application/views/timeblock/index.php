@@ -11,7 +11,6 @@
                 <table class="table table-striped datatable">
                     <tr>
 						<th>Timeblock ID</th>
-						<th>Day of week</th>
 						<th>Time Start</th>
 						<th>Time End</th>
 						<th>Status</th>
@@ -21,7 +20,6 @@
                     <?php foreach($timeblocks as $t){ ?>
                     <tr>
 						<td><?php echo $t['timeblockID']; ?></td>
-						<td><?php echo $t['dayofweek']; ?></td>
 						<td><?php echo $t['timeStart']; ?></td>
 						<td><?php echo $t['timeEnd']; ?></td>
 						<td><?php echo $t['status']; ?></td>
