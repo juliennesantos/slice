@@ -9,136 +9,157 @@ class Login extends CI_Controller
     $this->load->library('encryption');
     $this->load->library('audit');
     $this->load->model('Auditlog_model');
-
+    
   }
-
+  
   function index($msg = NULL)
   {
-    if ($msg == NULL)
+    try 
+    {
+      if ($msg == NULL)
       {
-      $data['errormsg'] = '';
-    }
-    if ($msg == 1)
+        $data['errormsg'] = '';
+      }
+      if ($msg == 1)
       {
-      $data['errormsg'] = 'Invalid username or password.';
-    }
-    if ($msg == 2)
+        $data['errormsg'] = 'Invalid username or password.';
+      }
+      if ($msg == 2)
       {
-      $data['errormsg'] = 'One or more of your inputs may not be within the requirements of the system. Please try again.';
-    }
-    if ($msg == 3)
+        $data['errormsg'] = 'One or more of your inputs may not be within the requirements of the system. Please try again.';
+      }
+      if ($msg == 3)
       {
-      $data["errormsg"] = 'There seems to be an error. Please try again.';
-    }
-
-    $this->form_validation->set_rules('password', 'Password', 'required|max_length[255]');
-    $this->form_validation->set_rules('username', 'Username', 'required|max_length[50]');
-
-
-    if ($this->form_validation->run())
+        $data["errormsg"] = 'There seems to be an error. Please try again.';
+      }
+      if ($msg == 4)
       {
-      $params = array(
-        'password' => $this->input->post('password'),
-        'username' => $this->input->post('username'),
-      );
-
-      $data = $this->Login_model->get_user($params);
-      if (password_verify($params['password'], $data['password']) == FALSE) {
-        $user = $this->Login_model->getuser($params['username']);
-        //add audit to system
-        if(isset($user['userID'])){
-          $audit_param = $this->audit->add($data['userID'],'Login','A user has tried to login.');
-          $this->Auditlog_model->add_auditlog($audit_param);
-        }
-        else{
-          $audit_param = $this->audit->add(0,'Login','A user has tried to login.');
-          $this->Auditlog_model->add_auditlog($audit_param);         
-        }
-
-        redirect('login/index/1');
-      } else {
-        if (isset($data['userID']) and isset($data['typeID']) && password_verify($params['password'], $data['password']) == TRUE)
+        $data["errormsg"] = 'You have not verified the captcha.';
+      }
+      
+      $this->form_validation->set_rules('password', 'Password', 'required|max_length[255]');
+      $this->form_validation->set_rules('username', 'Username', 'required|max_length[50]');
+      
+      
+      if ($this->form_validation->run())
+      {
+        if($this->input->post('g-recaptcha-response'))
+        {
+          $params = array(
+            'password' => $this->input->post('password'),
+            'username' => $this->input->post('username'),
+          );
+          
+          $data = $this->Login_model->get_user($params);
+          if (password_verify($params['password'], $data['password']) == FALSE) {
+            $user = $this->Login_model->getuser($params['username']);
+            //add audit to system
+            if(isset($user['userID'])){
+              $audit_param = $this->audit->add($data['userID'],'Login','A user has tried to login.');
+              $this->Auditlog_model->add_auditlog($audit_param);
+            }
+            else{
+              $audit_param = $this->audit->add(0,'Login','A user has tried to login.');
+              $this->Auditlog_model->add_auditlog($audit_param);         
+            }
+            
+            redirect('login/index/1');
+          } 
+          else 
           {
-          $_SESSION['userID'] = $data['userID'];
-          $_SESSION['typeID'] = $data['typeID'];
-          $_SESSION['ln'] = $data['lastName'];
-          $_SESSION['fn'] = $data['firstName'];
-          $_SESSION['last_action'] = time();
-          $audit_param = $this->audit->add($_SESSION['userID'],'Login','User has successfully logged in.');
-          $this->Auditlog_model->add_auditlog($audit_param);
-          //if remember me is checked
-          if ($this->input->post('remember_me'))
+            if (isset($data['userID']) and isset($data['typeID']) && password_verify($params['password'], $data['password']) == TRUE)
             {
-            $this->load->helper('cookie');
-            $cookie = $this->input->cookie('ci_session'); // we get the cookie
-            $this->input->set_cookie('ci_session', $cookie, '31557600'); // and add one year to it's expiration
-
-          }
-          // /remember me
-          $this->load->model('Tutor_model');
-          $tutor = $this->Tutor_model->get_tutor_userID($_SESSION['userID']);
-          if ($tutor != NULL)
-            {
-            $this->load->model('Term_model');
-            $term_sy = $this->Term_model->get_current_term();
-            $params = array(
-              'tutorID' => $tutor['tutorID'],
-              'term' => $term_sy['term'],
-              'schoolYr' => $term_sy['sy'],
-            );
-            $this->load->model('Tutorschedule_model');
-            $tutsched = $this->Tutorschedule_model->get_tutorschedule_where($params);
-            if ($tutsched == NULL)
+              $_SESSION['userID'] = $data['userID'];
+              $_SESSION['typeID'] = $data['typeID'];
+              $_SESSION['ln'] = $data['lastName'];
+              $_SESSION['fn'] = $data['firstName'];
+              $_SESSION['last_action'] = time();
+              $audit_param = $this->audit->add($_SESSION['userID'],'Login','User has successfully logged in.');
+              $this->Auditlog_model->add_auditlog($audit_param);
+              //if remember me is checked
+              if ($this->input->post('remember_me'))
               {
-              redirect('tutor/register/' . $_SESSION['userID']);
-            } else {
+                $this->load->helper('cookie');
+                $cookie = $this->input->cookie('ci_session'); // we get the cookie
+                $this->input->set_cookie('ci_session', $cookie, '31557600'); // and add one year to it's expiration
+                
+              }
+              // /remember me
+              $this->load->model('Tutor_model');
+              $tutor = $this->Tutor_model->get_tutor_userID($_SESSION['userID']);
+              if ($tutor != NULL)
+              {
+                $this->load->model('Term_model');
+                $term_sy = $this->Term_model->get_current_term();
+                $params = array(
+                  'tutorID' => $tutor['tutorID'],
+                  'term' => $term_sy['term'],
+                  'schoolYr' => $term_sy['sy'],
+                );
+                $this->load->model('Tutorschedule_model');
+                $tutsched = $this->Tutorschedule_model->get_tutorschedule_where($params);
+                if ($tutsched == NULL)
+                {
+                  redirect('tutor/register/' . $_SESSION['userID']);
+                } else {
+                  redirect('dashboard/index');
+                }
+              }
               redirect('dashboard/index');
             }
           }
-          redirect('dashboard/index');
         }
-      }
-    } else
+        else
+        {
+          redirect('login/index/4');
+        }
+      } 
+      else
       {
-      $data['_view'] = 'login/index';
-      $this->load->view('login/login', $data);
+        $data['_view'] = 'login/index';
+        $this->load->view('login/login', $data);
+      }
+    } 
+    catch (Exception $e) 
+    {
+      redirect('login/index/3');
     }
   }
   
   /*
-   * validate user
-   */
+  * validate user
+  */
   function validate()
   {
     $this->load->model('Login_model');
     $this->load->library('form_validation');
     $this->load->library('encryption');
-
+    
     $this->form_validation->set_rules('password', 'Password', 'required|max_length[255]');
     $this->form_validation->set_rules('username', 'Username', 'required|max_length[50]');
-
-
+    
+    
     try {
       if ($this->form_validation->run())
-        {
+      {
+        
         $params = array(
           'password' => $this->input->post('password'),
           'username' => $this->input->post('username'),
         );
-
         $data = $this->Login_model->get_user($params);
         if (password_verify($params['password'], $login['password']) == FALSE) {
           $_SESSION['errormsg'] = 1;
         } else {
           if (isset($data['userID']) and isset($data['typeID']) && password_verify($params['password'], $data['password']) == TRUE)
-            {
+          {
             $_SESSION['userID'] = $data['userID'];
             $_SESSION['typeID'] = $data['typeID'];
             $_SESSION['ln'] = $data['lastName'];
             $_SESSION['fn'] = $data['firstName'];
             //if remember me is checked
             if ($this->input->post('remember_me'))
-              {
+            {
               $this->load->helper('cookie');
               $cookie = $this->input->cookie('ci_session'); // we get the cookie
               $this->input->set_cookie('ci_session', $cookie, '31557600'); // and add one year to it's expiration
@@ -147,7 +168,7 @@ class Login extends CI_Controller
             $this->load->model('Tutor_model');
             $tutor = $this->Tutor_model->get_tutor_userID($_SESSION['userID']);
             if ($tutor != NULL)
-              {
+            {
               $this->load->model('Term_model');
               $term_sy = $this->Term_model->get_current_term();
               $params = array(
@@ -158,7 +179,7 @@ class Login extends CI_Controller
               $this->load->model('Tutorschedule_model');
               $tutsched = $this->Tutorschedule_model->get_tutorschedule_where($params);
               if ($tutsched == NULL)
-                {
+              {
                 redirect('tutor/register/' . $_SESSION['userID']);
               } else {
                 redirect('dashboard/index');
@@ -166,9 +187,12 @@ class Login extends CI_Controller
             }
             redirect('dashboard/index');
           }
+          else{
+            $_SESSION['errormsg'] = 1;
+          }
         }
       } else
-        {
+      {
         redirect('login/index/2');
       }
     } catch (Exception $e) {
@@ -177,36 +201,14 @@ class Login extends CI_Controller
     $data['_view'] = 'login/index';
     $this->load->view('login/login', $data);
   }
-
-  public function recaptcha($str = '')
-  {
-    $google_url = "https://www.google.com/recaptcha/api/siteverify";
-    $secret = '6LfPgzoUAAAAAB53xYjyQ-0SWS3NF_ljBXbBudVX';
-    $ip = $_SERVER['REMOTE_ADDR'];
-    $url = $google_url . "?secret=" . $secret . "&response=" . $str . "&remoteip=" . $ip;
-    $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($curl, CURLOPT_TIMEOUT, 10);
-    curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16");
-    $res = curl_exec($curl);
-    curl_close($curl);
-    $res = json_decode($res, true);
-    //reCaptcha success check
-    if ($res['success']) {
-      return TRUE;
-    } else {
-      $this->form_validation->set_message('recaptcha', 'The reCAPTCHA field is telling me that you are a robot. Shall we give it another try?');
-      return FALSE;
-    }
-  }
-
+  
+  
   function logout()
   {
     $audit_param = $this->audit->add($_SESSION['userID'],'Logout','User has successfully logged out.');
     $this->Auditlog_model->add_auditlog($audit_param);
     session_destroy();
-
+    
     redirect(site_url() . 'login/index');
   }
 }

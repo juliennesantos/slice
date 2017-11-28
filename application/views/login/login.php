@@ -1,4 +1,3 @@
-<script src='https://www.google.com/recaptcha/api.js'></script>
 <script>
 $(document).ready(function() {
   $("form").attr('autocomplete', 'off');
@@ -40,6 +39,7 @@ $(document).ready(function() {
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
+  <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
 
 <body id="loginbody">
@@ -252,6 +252,7 @@ $(document).ready(function() {
       });
     });
   </script>
+
 </body>
 
 </html>
