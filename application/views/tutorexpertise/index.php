@@ -29,7 +29,7 @@
                             <td><?php echo $t['expertiseID']; ?></td>
                             <td><?php echo $t['tutorID']; ?></td>
                             <td><?php echo $t['subjectID']; ?></td>
-                            <td><?php echo $t['dateModified']; ?></td>
+                            <td><?php echo date("M j, Y g:i a",strtotime($t['dateModified'])); ?></td>
                             <td>
                                 <a href="<?php echo site_url('tutorexpertise/edit/'.$t['expertiseID']); ?>" class="btn btn-warning" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a> 
                                 <a href="<?php echo site_url('tutorexpertise/remove/'.$t['expertiseID']); ?>" class="btn btn-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>

@@ -24,8 +24,8 @@
                         <td><?php echo $t['programCode'];?></td>
 						<td><?php echo $t['status']; ?></td>
 						<td><?php echo $t['tutorType']; ?></td>
-						<td><?php echo $t['dateAdded']; ?></td>
-						<td><?php echo $t['dateModified']; ?></td>
+						<td><?php echo date("M j, Y g:i a",strtotime($t['dateAdded'])); ?></td>
+						<td><?php echo date("M j, Y g:i a",strtotime($t['dateModified'])); ?></td>
                     </tr>
                     <?php } ?>
                 </table>

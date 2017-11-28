@@ -79,8 +79,8 @@ class Attendance extends CI_Controller{
             </script>
             <?php
         }
-    	$data['_view'] = 'attendance/add';
-        $this->load->view('attendance/add',$data);
+    	// $data['_view'] = 'attendance/add';
+     //    $this->load->view('attendance/add',$data);
         $this->load->library('form_validation');
 
 		$this->form_validation->set_rules('password','Password','required|max_length[255]');

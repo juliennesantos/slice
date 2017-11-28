@@ -19,7 +19,7 @@
 						<td><?php echo $s['subjectID']; ?></td>
 						<td><?php echo $s['subjectCode']; ?></td>
 						<td><?php echo $s['name']; ?></td>
-						<td><?php echo $s['dateModified']; ?></td>
+						<td><?php echo date("M j, Y g:i a",strtotime($s['dateModified'])); ?></td>
 						<td>
                             <a href="<?php echo site_url('subject/edit/'.$s['subjectID']); ?>" class="btn btn-warning" title="Edit"><span class="fa fa-pencil"></span></a> 
                             <a href="<?php echo site_url('subject/remove/'.$s['subjectID']); ?>" class="btn btn-danger" title="Delete"><span class="fa fa-trash"></span></a>

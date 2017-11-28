@@ -21,12 +21,6 @@
 							<span class="text-danger"><?php echo form_error('name');?></span>
 						</div>
 					</div>
-					<div class="col-md-6">
-						<label for="dateModified" class="control-label">DateModified</label>
-						<div class="form-group">
-							<input type="text" name="dateModified" value="<?php echo ($this->input->post('dateModified') ? $this->input->post('dateModified') : $subject['dateModified']); ?>" class="has-datetimepicker form-control" id="dateModified" />
-						</div>
-					</div>
 				</div>
 			</div>
 			<div class="box-footer">

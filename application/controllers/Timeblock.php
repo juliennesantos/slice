@@ -115,10 +115,10 @@ class Timeblock extends CI_Controller{
             
             $params = array(
                 'status' => 'Archived',
-                'dateModified' => 'NOW()',
+                'dateModified' => date('Y-m-d H:i:s'),
             );
             
-            $this->timeblock_model->archive_timeblock($timeblockID,$params);            
+            $this->timeblock_model->update_timeblock($data['timeblock']['timeblockID'],$params);            
             redirect('timeblock/index');
         }
         else

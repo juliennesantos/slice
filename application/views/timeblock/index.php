@@ -20,13 +20,13 @@
                     <?php foreach($timeblocks as $t){ ?>
                     <tr>
 						<td><?php echo $t['timeblockID']; ?></td>
-						<td><?php echo $t['timeStart']; ?></td>
-						<td><?php echo $t['timeEnd']; ?></td>
+						<td><?php echo date("g:i a", strtotime($t['timeStart'])); ?></td>
+						<td><?php echo  date("g:i a", strtotime($t['timeEnd'])); ?></td>
 						<td><?php echo $t['status']; ?></td>
-						<td><?php echo $t['dateModified']; ?></td>
+						<td><?php echo date("M j, Y g:i a",strtotime($t['dateModified'])); ?></td>
 						<td>
                             <a href="<?php echo site_url('timeblock/edit/'.$t['timeblockID']); ?>" class="btn btn-warning" title="Edit"><span class="fa fa-pencil"></span></a> 
-                            <a href="<?php echo site_url('timeblock/remove/'.$t['timeblockID']); ?>" class="btn btn-danger" title="Delete"><span class="fa fa-trash"></span></a>
+                            <a href="<?php echo site_url('timeblock/archive/'.$t['timeblockID']); ?>" class="btn btn-danger" title="Delete"><span class="fa fa-trash"></span></a>
                         </td>
                     </tr>
                     <?php } ?>

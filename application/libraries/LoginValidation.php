@@ -12,9 +12,10 @@ class LoginValidation {
                 $expire_seconds = $expire_minutes * 60;
 
                 if($inactive_seconds >= $expire_seconds){
+                    
+                    echo '<script>alert("You have been idle for a while. The system has automatically logged you out..");</script>';
                     session_unset();
                     session_destroy();
-                    echo '<script>alert("You have been idle for a while. The system has automatically logged you out..");</script>';
                     redirect(site_url().'login');
                 }
             }
@@ -26,9 +27,9 @@ class LoginValidation {
                 $expire_seconds = $expire_minutes * 60;
 
                 if($inactive_seconds >= $expire_seconds){
+                    echo '<script>alert("You have been idle for a while. The system has automatically logged you out..");</script>';
                     session_unset();
                     session_destroy();
-                    echo '<script>alert("You have been idle for a while. The system has automatically logged you out..");</script>';
                     redirect(site_url().'login');
                 }
             }
@@ -40,9 +41,9 @@ class LoginValidation {
                 $expire_seconds = $expire_minutes * 60;
 
                 if($inactive_seconds >= $expire_seconds){
+                    echo '<script>alert("You have been idle for a while. The system has automatically logged you out..");</script>';
                     session_unset();
                     session_destroy();
-                    echo '<script>alert("You have been idle for a while. The system has automatically logged you out..");</script>';
                     redirect(site_url().'login');
                 }
             }
