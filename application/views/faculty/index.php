@@ -26,8 +26,8 @@
 						<td><?php echo $f['programID']; ?></td>
 						<td><?php echo $f['facultyNo']; ?></td>
 						<td><?php echo $f['status']; ?></td>
-						<td><?php echo $f['dateAdded']; ?></td>
-						<td><?php echo $f['dateModified']; ?></td>
+						<td><?php echo date("M j, Y g:i a",strtotime($f['dateAdded'])); ?></td>
+						<td><?php echo date("M j, Y g:i a",strtotime($f['dateModified'])); ?></td>
 						<td>
                             <a href="<?php echo site_url('faculty/edit/'.$f['facultyID']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
                             <a href="<?php echo site_url('faculty/remove/'.$f['facultyID']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Delete</a>

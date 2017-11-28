@@ -3,9 +3,9 @@
         <div class="panel panel-black">
             <div class="panel-heading">
                 <h3>Attendance Listing</h3>
-            	<!-- <div class="box-tools">
-                    <a href="<?php echo site_url('attendance/add'); ?>" class="btn btn-success btn-sm">Add</a> 
-                </div> -->
+            	<div class="box-tools">
+                    <a href="<?php echo site_url('attendance/add'); ?>" class="btn btn-success btn-sm">Open Attendance Log in Page</a> 
+                </div>
             </div>
             <div class="panel-body">
                 <table class="table table-striped datatable">
@@ -19,8 +19,8 @@
                     <?php foreach($attendanceList as $a){ ?>
                     <tr>
 						<td><?php echo $a['firstName'].' '. $a['lastName']; ?></td>
-                        <td><?php echo $a['timeIn']; ?></td>
-                        <td><?php echo $a['timeOut']; ?></td>
+                        <td><?php echo date("D, M j Y g:i a",strtotime($a['timeIn'])); ?></td>
+                        <td><?php echo date("D, M j Y g:i a",strtotime($a['timeOut'])); ?></td>
 						<td><?php echo $a['remarks']; ?></td>
 						<!-- <td>
                             <a href="<?php echo site_url('attendance/view/'.$a['tutorID']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> View</a> 

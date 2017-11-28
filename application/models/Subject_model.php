@@ -29,12 +29,23 @@ class Subject_model extends CI_Model
      */
     function get_all_subjects($params = array())
     {
-        $this->db->order_by('subjectID', 'asc');
+        $this->db->order_by('subjectCode', 'asc');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);
         }
         return $this->db->get('subjects')->result_array();
     }
+    function add_subject($params)
+     {
+         $this->db->insert('subjects',$params);
+         return $this->db->insert_id();
+     }
+
+    function update_subject($subjectID,$params)
+     {
+         $this->db->where('subjectID',$subjectID);
+         return $this->db->update('subjects',$params);
+     }
         
 }

@@ -1,4 +1,3 @@
-<script src='https://www.google.com/recaptcha/api.js'></script>
 <script>
 $(document).ready(function() {
   $("form").attr('autocomplete', 'off');
@@ -40,6 +39,7 @@ $(document).ready(function() {
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
+  <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
 
 <body id="loginbody">
@@ -136,22 +136,18 @@ $(document).ready(function() {
                 placeholder="Password" autocomplete="off" maxlength="30" required/>
             </div>
           </div>
-          <br/>
           <div class="form-group">
             <label class="checkbox-inline">
-              <input type="checkbox" name="remember_me" value="remember" />&emsp;Remember me           
+              <input type="checkbox" name="remember_me" value="remember" class="col-xs-offset-1" />&emsp;Remember me           
             </label>
           </div>
           <div class="form-group">
             <?= form_error('g-recaptcha-response', '<div style="color:red;">', '</div>'); ?>
-            <div class="g-recaptcha" data-sitekey="6LfPgzoUAAAAAB53xYjyQ-0SWS3NF_ljBXbBudVX"></div>
+            <div class="g-recaptcha gc-reset" data-sitekey="6LfPgzoUAAAAAB53xYjyQ-0SWS3NF_ljBXbBudVX"></div>
           </div>
-
-            <br/>
-
             <div class="form-group">
               <div class="row">
-                <button type="submit" class="btn btn-login1 col-xs-offset-1 col-xs-10 col-xs-offset-1 btn-lg" name='signin'>Log in</button>
+                <button type="submit" id="removetop" class="btn btn-login1 col-xs-offset-1 col-xs-10 col-xs-offset-1" name='signin'>Log in</button>
               </div>
               <div class="row">
                 <h6 style="color:gray;">&emsp;&emsp;&emsp;New Tutor? <a href="<?php echo site_url()?>tutorregister/new_tutor" ><strong style="color:white;">Register Here</strong></a></h6>
@@ -163,17 +159,15 @@ $(document).ready(function() {
           
       <footer class="footer" id="spaceleft">
           <div class="row">
-            <table class="borderspace">
+            <table class="borderspace" style="display:inline-block">
               <tr>
-                <td>SLICE 2017</td>
-                <td><a href="#" data-toggle="modal" data-target="#ppModal">Privacy Policy</a></td>
-                <td><a href="#" data-toggle="modal" data-target="#tcModal">Terms of Use</a></td>
-                <td>About Team</td>
+                <td><small>SLICE 2017</small></td>
+                <td><small><a href="#" data-toggle="modal" data-target="#ppModal">Privacy Policy</a></small></td>
+                <td><small><a href="#" data-toggle="modal" data-target="#tcModal">Terms of Use</a></small></td>
+                <td><small>About Team</small></td>
               </tr>
             </table>
-          </div>
-          <br>
-          <br>
+          </div><br/>
           <div class="row">
             <table class="borderspace">
               <tr>
@@ -252,6 +246,7 @@ $(document).ready(function() {
       });
     });
   </script>
+
 </body>
 
 </html>

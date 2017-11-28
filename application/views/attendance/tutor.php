@@ -23,8 +23,8 @@
           	<?php endif;?>
           	<?php foreach($attendanceList as $a){ ?>
           	  <tr>
-          		<td><?php echo $a['timeIn'];?></td>
-          		<td><?php echo $a['timeOut'];?></td>
+          		<td><?php echo date("D, M j Y g:i a",strtotime($a['timeIn']));?></td>
+          		<td><?php echo date("D, M j Y g:i a",strtotime($a['timeOut']));?></td>
           		<td><?php echo $a['remarks'];?></td>
           	  </tr>
           	<?php }?>

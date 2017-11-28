@@ -20,7 +20,7 @@
 						<td><?php echo $a['lastName'].', '.$a['firstName']; ?></td>
 						<td><?php echo $this->encryption->decrypt($a['logType']); ?></td>
                         <td><?php echo $this->encryption->decrypt($a['description']); ?></td>
-						<td><?php echo $a['timeStamp']; ?></td>	
+						<td><?php echo date("M j, Y g:i a",strtotime($a['timeStamp'])); ?></td>	
                     </tr>
                     <?php } ?>
                 </table>
