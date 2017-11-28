@@ -7,6 +7,7 @@ class Tutorschedule extends CI_Controller{
         $this->load->model('Tutorschedule_model');
         $this->load->library('loginvalidation');
         $this->loginvalidation->isValid();
+        $this->loginvalidation->sessionexpire();
     } 
 
     /*

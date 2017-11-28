@@ -62,11 +62,11 @@ class Attendance_model extends CI_Model
 
     // count all attendance of a tutor
     function get_tutor_attendance_count($tutorID,$term,$sy)
-     {  //$this->db->select('COUNT(b.logID) as numrows, b.tutorID');
-        $this->db->from('attendance b');
-        $this->db->where('b.tutorID', $tutorID);
-        $this->db->where('b.term',$term);
-        $this->db->where('b.schoolYr', $sy);
+     {  
+        $this->db->from('attendance ');
+        $this->db->where('tutorID', $tutorID);
+        $this->db->where('term',$term);
+        $this->db->where('schoolYr', $sy);
         return $this->db->count_all_results();
     }
     

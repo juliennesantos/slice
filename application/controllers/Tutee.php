@@ -7,6 +7,7 @@ class Tutee extends CI_Controller{
     $this->load->model('Tutee_model');
     $this->load->library('loginvalidation');
     $this->loginvalidation->isValid();
+    $this->loginvalidation->sessionexpire();
     $this->load->library('audit');
     $this->load->model('Auditlog_model');
   } 

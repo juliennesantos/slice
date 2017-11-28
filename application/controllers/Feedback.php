@@ -6,6 +6,7 @@ class Feedback extends CI_Controller{
     $this->load->model('Feedback_model');
     $this->load->library('loginvalidation');
     $this->loginvalidation->isValid();
+    $this->loginvalidation->sessionexpire();
     $this->load->library('audit');
     $this->load->model('Auditlog_model');
   } 

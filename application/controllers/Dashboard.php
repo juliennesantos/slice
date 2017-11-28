@@ -5,7 +5,7 @@ class Dashboard extends CI_Controller{
         parent::__construct();
         $this->load->library('loginvalidation');
         $this->loginvalidation->isValid();
-
+        $this->loginvalidation->sessionexpire();
         $this->load->model('Tutorialsession_model');
         $this->load->model('Feedback_model');
         $this->load->model('Tutor_model');

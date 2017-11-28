@@ -45,7 +45,7 @@
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="date" class="form-control pull-right datepicker" id="datepicker" name="tutorialdate" placeholder="Choose your preferred date" required>
+								<input type="date" class="form-control pull-right" id="datepicker" name="tutorialdate" placeholder="Choose your preferred date" required>
 							</div>
 							<br>
 							
