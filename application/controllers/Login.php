@@ -63,6 +63,7 @@ class Login extends CI_Controller
           $_SESSION['typeID'] = $data['typeID'];
           $_SESSION['ln'] = $data['lastName'];
           $_SESSION['fn'] = $data['firstName'];
+          $_SESSION['last_action'] = time();
           $audit_param = $this->audit->add($_SESSION['userID'],'Login','User has successfully logged in.');
           $this->Auditlog_model->add_auditlog($audit_param);
           //if remember me is checked

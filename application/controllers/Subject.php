@@ -7,6 +7,7 @@ class Subject extends CI_Controller{
         $this->load->model('Subject_model');
         $this->load->library('loginvalidation');
         $this->loginvalidation->isValid();
+        $this->loginvalidation->sessionexpire();
     } 
 
     /*

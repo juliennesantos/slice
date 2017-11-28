@@ -7,6 +7,7 @@ class Student extends CI_Controller{
         $this->load->model('Student_model');
         $this->load->library('loginvalidation');
         $this->loginvalidation->isValid();
+        $this->loginvalidation->sessionexpire();
     } 
 
     /*

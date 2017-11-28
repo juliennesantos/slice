@@ -7,6 +7,7 @@ class User extends CI_Controller{
 
         $this->load->library('loginvalidation');
         $this->loginvalidation->isValid();
+        $this->loginvalidation->sessionexpire();
     } 
 
     /*

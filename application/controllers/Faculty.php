@@ -6,6 +6,7 @@ class Faculty extends CI_Controller{
         $this->load->model('Faculty_model');
         $this->load->library('loginvalidation');
         $this->loginvalidation->isValid();
+        $this->loginvalidation->sessionexpire();
     } 
 
     /*

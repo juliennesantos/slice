@@ -168,15 +168,15 @@
                                 </li>
 							</ul> -->
           </li>
-          <li>
+          <!-- <<li>
             <a href="<?php echo site_url('tutorexpertise/index');?>">
               <i class="fa fa-lightbulb-o"></i>
               <span>Tutor Expertise</span>
-              <!-- <span class="pull-right-container">
+              <span class="pull-right-container">
                   <i class="fa fa-angle-down pull-right"></i>
-                </span> -->
+                </span> 
             </a>
-            <!-- <ul class="treeview-menu">
+            <ul class="treeview-menu">
               <li class="active">
                 <a href="<?php echo site_url('tutorexpertise/add');?>">
                   <i class="fa fa-plus"></i> Add</a>
@@ -185,8 +185,8 @@
                 <a href="<?php echo site_url('tutorexpertise/index');?>">
                   <i class="fa fa-list-ul"></i> Listing</a>
               </li>
-            </ul> -->
-          </li>
+            </ul>
+          </li> --> 
           <?php endif; ?>
         
           <?php if($_SESSION['typeID'] == 5):?>
