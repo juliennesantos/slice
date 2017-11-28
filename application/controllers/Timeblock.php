@@ -45,8 +45,8 @@ class Timeblock extends CI_Controller{
 		if($this->form_validation->run())     
         {   
             $params = array(
-				'timeStart' => $this->input->post('timeStart'),
-				'timeEnd' => $this->input->post('timeEnd'),
+				'timeStart' =>date("H:i:s", strtotime($this->input->post('timeStart'))),
+                'timeEnd' => date("H:i:s", strtotime($this->input->post('timeEnd'))),
 				'status' => $this->input->post('status'),
 				'dateModified' => date('Y-m-d H:i:s'),
             );
@@ -76,7 +76,6 @@ class Timeblock extends CI_Controller{
         {
             $this->load->library('form_validation');
 
-			$this->form_validation->set_rules('dayofweek','Dayofweek','required|max_length[9]');
 			$this->form_validation->set_rules('timeStart','TimeStart','required');
 			$this->form_validation->set_rules('timeEnd','TimeEnd','required');
 			$this->form_validation->set_rules('status','Status','required|max_length[25]');
@@ -84,11 +83,10 @@ class Timeblock extends CI_Controller{
 			if($this->form_validation->run())     
             {   
                 $params = array(
-					'dayofweek' => $this->input->post('dayofweek'),
-					'timeStart' => $this->input->post('timeStart'),
-					'timeEnd' => $this->input->post('timeEnd'),
+					'timeStart' =>date("H:i:s", strtotime($this->input->post('timeStart'))),
+					'timeEnd' => date("H:i:s", strtotime($this->input->post('timeEnd'))),
 					'status' => $this->input->post('status'),
-					'dateModified' => $this->input->post('dateModified'),
+					'dateModified' => date('Y-m-d H:i:s'),
                 );
 
                 $this->Timeblock_model->update_timeblock($timeblockID,$params);
