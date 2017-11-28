@@ -77,7 +77,7 @@ class Subject extends CI_Controller{
                 $params = array(
 					'subjectCode' => $this->input->post('subjectCode'),
 					'name' => $this->input->post('name'),
-					'dateModified' => $this->input->post('dateModified'),
+					'dateModified' => date('Y-m-d H:i:s'),
                 );
 
                 $this->Subject_model->update_subject($subjectID,$params);            
@@ -93,23 +93,23 @@ class Subject extends CI_Controller{
             show_error('The subject you are trying to edit does not exist.');
     }
 
-    function archive($subjectID)
-    {   
-        // check if the subject exists before trying to archive it
-        $data['subject'] = $this->Subject_model->get_subject($subjectID);
+    // function archive($subjectID)
+    // {   
+    //     // check if the subject exists before trying to archive it
+    //     $data['subject'] = $this->Subject_model->get_subject($subjectID);
         
-        if(isset($data['subject']['subjectID']))
-        {
+    //     if(isset($data['subject']['subjectID']))
+    //     {
             
-            $params = array(
-                'status' => 'Archived',
-                'dateModified' => 'NOW()',
-            );
+    //         $params = array(
+    //             'status' => 'Archived',
+    //             'dateModified' => 'NOW()',
+    //         );
             
-            $this->subject_model->archive_subject($subjectID,$params);            
-            redirect('subject/index');
-        }
-        else
-            redirect('subject/index');
-    }
+    //         $this->subject_model->update_subject($subjectID,$params);            
+    //         redirect('subject/index');
+    //     }
+    //     else
+    //         redirect('subject/index');
+    // }
 }
