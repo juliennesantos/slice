@@ -1,3 +1,4 @@
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <script>
 $(document).ready(function() {
   $("form").attr('autocomplete', 'off');
@@ -141,13 +142,18 @@ $(document).ready(function() {
               <input type="checkbox" name="remember_me" value="remember" />&emsp;Remember me           
             </label>
           </div>
+          <div class="form-group">
+            <?= form_error('g-recaptcha-response', '<div style="color:red;">', '</div>'); ?>
+            <div class="g-recaptcha" data-sitekey="6LfPgzoUAAAAAB53xYjyQ-0SWS3NF_ljBXbBudVX"></div>
+          </div>
 
             <br/>
 
             <div class="form-group">
               <div class="row">
                 <button type="submit" class="btn btn-login1 col-xs-offset-1 col-xs-10 col-xs-offset-1 btn-lg" name='signin'>Log in</button>
-  </div><div class="row">
+              </div>
+              <div class="row">
                 <h6 style="color:gray;">&emsp;&emsp;&emsp;New Tutor? <a href="<?php echo site_url()?>tutorregister/new_tutor" ><strong style="color:white;">Register Here</strong></a></h6>
               </div>
             </div>

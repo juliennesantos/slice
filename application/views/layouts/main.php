@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="<?php echo site_url('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');?>">
   <!--favicon-->
   <link rel="icon" href="<?php echo base_url(); ?>resources/img/announcements/icon.png" type="image/ico">
-
+  <!-- Google reCaptcha -->
 </head>
 
 <body class="hold-transition skin-black sidebar-mini ">
