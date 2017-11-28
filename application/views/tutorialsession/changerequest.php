@@ -53,7 +53,7 @@
                   <b/>
               </td>
               <td>
-                <?= date('D, M j Y', strtotime($t[0]['dateTimeEnd'])) ?>
+                <?= date('l, M DD YY', strtotime($t[0]['dateTimeEnd'])) ?>
               </td>
             </tr>
           </tbody>

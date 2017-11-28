@@ -110,7 +110,7 @@
                                   <b/>
                               </td>
                               <td>
-                                <?= date('D, M j Y', strtotime($t['dateTimeEnd'])) ?>
+                                <?= date('D, M j Y', strtotime($t['dateTimeRequested'])) ?>
                               </td>
                             </tr>
                           </tbody>
