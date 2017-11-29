@@ -1073,7 +1073,7 @@ class Tutorialsession extends CI_Controller{
       {
         for($i=0 ; $i < $z ; $i++)
         {
-          if($comment[$i] != NULL)
+          if(trim($comment[$i]) != NULL)
           {
             if (array_key_exists($i, $comment))
               {
@@ -1162,5 +1162,41 @@ class Tutorialsession extends CI_Controller{
   function count_checklist($tutorialNo)
   {
     return (int)$this->Tutorialchecklist_model->count_tutNo_list($tutorialNo);
+  }
+
+  function sessionspdf()
+  {
+    $this->load->model('Term_model');
+    $data['term'] = $this->Term_model->get_current_term();
+    $data['tutorialsessions'] = $this->Tutorialsession_model->get_all_forpdf();
+    $this->load->view('tutorialsession/sessionspdf', $data);
+  }
+
+  function recordsperstudent()
+  {
+    $this->load->model('Tutor_model');
+    if($this->input->post())
+    {
+      if ($this->input->post('sessions')) 
+      {
+        redirect('tutorialsession/perstudentpdf/'.$this->input->post('userID'));
+      }
+      if ($this->input->post('attendance')) 
+      {
+        redirect('attendance/perstudentpdf/'.$this->input->post('userID'));
+      }
+    }
+    $data['all_tutors'] = $this->Tutor_model->get_honor_scholars();
+    $data['_view'] = 'tutorialsession/recordsperstudent';    
+    $this->load->view('layouts/main', $data);
+  }
+
+  function perstudentpdf($uID)
+  {
+    $params['utee.username'] = $uID;
+    $this->load->model('Term_model');
+    $data['term'] = $this->Term_model->get_current_term();
+    $data['tutorialsessions'] = $this->Tutorialsession_model->get_all_forpdf($params);
+    $this->load->view('tutorialsession/sessionspdf', $data);    
   }
 }

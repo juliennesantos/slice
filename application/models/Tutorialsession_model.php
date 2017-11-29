@@ -156,8 +156,39 @@ class Tutorialsession_model extends CI_Model
         $this->db->order_by('tutorialNo', 'asc');
         if(isset($params) && !empty($params))
         {
-            $this->db->limit($params['limit'], $params['offset']);
+            $this->db->where($params);
+            // $this->db->limit($params['limit'], $params['offset']);
         }
+        return $this->db->get()->result_array();
+    }
+
+    /*
+     * Get all tutorialsessions
+     */
+    function get_all_forpdf($params = array())
+    {
+        $this->db->select('t.*, utee.username, utee.lastName uteeLN, utee.firstName uteeFN, utee.username uteeUN, ur.lastName urLN, ur.firstName urFN, ua.lastName uaLN, ua.firstName uaFN, s.subjectCode, tsr.dayofweek tsrdow, tbr.timeStart tbrTS, tbr.timeEnd tbrTE, pro.programCode');
+        $this->db->from('tutorialsessions t');
+        $this->db->join('subjects s', 't.subjectID = s.subjectID');
+        $this->db->join('tutees tee', 't.tuteeID = tee.tuteeID');
+        $this->db->join('users utee', 'tee.userID = utee.userID');
+        $this->db->join('students stu', 'utee.userID = stu.userID');
+        $this->db->join('programs pro', 'pro.programID = stu.programID');
+        $this->db->join('tutors tr', 'tr.tutorID = t.previousTutorID', 'left');
+        $this->db->join('tutors ta', 'ta.tutorID = t.tutorID');
+        $this->db->join('users ur', 'ur.userID = tr.userID', 'left');
+        $this->db->join('users ua', 'ua.userID = ta.userID', 'left');
+        $this->db->join('tutorschedules tsr', 'tsr.tutorScheduleID = t.tutorScheduleID');
+        $this->db->join('timeblocks tbr', 'tbr.timeblockID = tsr.timeblockID');
+        $this->db->where("dateTimeEnd IS NOT NULL", null, false);
+        $this->db->where("t.status = 'Approved'", null, false);
+
+        if($params)
+        {
+            $this->db->where($params);
+        }
+
+        $this->db->order_by('tutorialNo', 'asc');
         return $this->db->get()->result_array();
     }
 

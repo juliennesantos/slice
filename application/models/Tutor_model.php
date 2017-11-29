@@ -70,7 +70,7 @@ class Tutor_model extends CI_Model
     $this->db->from('tutors t');
     $this->db->join('users u', 'u.userID = t.userID');
     $this->db->where('tutorType', 'Honor Scholar');
-    $this->db->order_by('t.tutorID', 'asc');
+    $this->db->order_by('u.lastName', 'asc');
     return $this->db->get()->result_array();
   }
   
