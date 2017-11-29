@@ -35,8 +35,8 @@
 						<td><?php echo $u['middleName']; ?></td>
 						<td><?php echo $u['emailAddress']; ?></td>
 						<td><?php echo $u['contactNo']; ?></td>
-						<td><?php echo $u['dateAdded']; ?></td>
-						<td><?php echo $u['dateModified']; ?></td>
+						<td><?php echo date('M j, Y g:i a',strtotime($u['dateAdded'])); ?></td>
+						<td><?php echo date('M j, Y g:i a',strtotime($u['dateModified'])); ?></td>
 						<td><?php echo $u['status']; ?></td>
 						<td>
                             <a href="<?php echo site_url('user/edit/'.$u['userID']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
