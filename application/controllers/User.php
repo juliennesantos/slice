@@ -45,8 +45,8 @@ class User extends CI_Controller{
     {   
         $this->load->library('form_validation');
 
-		$this->form_validation->set_rules('password','Password','required|max_length[100]');
-		$this->form_validation->set_rules('username','Username','required|max_length[50]');
+		// $this->form_validation->set_rules('password','Password','required|max_length[100]');
+		// $this->form_validation->set_rules('username','Username','required|max_length[50]');
 		$this->form_validation->set_rules('firstName','FirstName','required|max_length[80]');
 		$this->form_validation->set_rules('lastName','LastName','required|max_length[50]');
 		$this->form_validation->set_rules('middleName','MiddleName','required|max_length[50]');
@@ -56,9 +56,9 @@ class User extends CI_Controller{
 		if($this->form_validation->run())     
         {   //users
             $params = array(
-				'typeID' => $this->input->post('typeID'),
-                'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
-				'username' => $this->input->post('username'),
+				'typeID' => "1",
+                // 'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
+				// 'username' => $this->input->post('username'),
 				'firstName' => $this->input->post('firstName'),
 				'lastName' => $this->input->post('lastName'),
 				'middleName' => $this->input->post('middleName'),
@@ -85,30 +85,30 @@ class User extends CI_Controller{
                 'status' => 'Pending',
             );
 
-            $user_id = $this->User_model->add_user($params);
+            $user_id = $this->User_model->add_user($params1);
             //tutors
-            $params1 = array(
-                'typeID' => $this->input->post('typeID'),
-                'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
-                'username' => $this->input->post('username'),
-                'firstName' => $this->input->post('firstName'),
-                'lastName' => $this->input->post('lastName'),
-                'middleName' => $this->input->post('middleName'),
-                'emailAddress' => $this->input->post('emailAddress'),
-                'contactNo' => $this->input->post('contactNo'),
-                'dateAdded' => date('Y-m-d H:i:s'),
-                'dateModified' => date('Y-m-d H:i:s'),
-                'status' => 'Pending',
-            );
+            // $params1 = array(
+            //     'typeID' => $this->input->post('typeID'),
+            //     'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
+            //     'username' => $this->input->post('username'),
+            //     'firstName' => $this->input->post('firstName'),
+            //     'lastName' => $this->input->post('lastName'),
+            //     'middleName' => $this->input->post('middleName'),
+            //     'emailAddress' => $this->input->post('emailAddress'),
+            //     'contactNo' => $this->input->post('contactNo'),
+            //     'dateAdded' => date('Y-m-d H:i:s'),
+            //     'dateModified' => date('Y-m-d H:i:s'),
+            //     'status' => 'Pending',
+            // );
 
-            $user_id = $this->User_model->add_user($params);
+            //$user_id = $this->User_model->add_user($params);
 
-            redirect('tutorschedule/index');
+            redirect('dashboard/index');
         }
         else
         {
-			$this->load->model('Usertype_model');
-			$data['all_usertypes'] = $this->Usertype_model->get_all_usertypes();
+			// $this->load->model('Usertype_model');
+			// $data['all_usertypes'] = $this->Usertype_model->get_all_usertypes();
             
             $data['_view'] = 'user/add';
             $this->load->view('layouts/main',$data);
