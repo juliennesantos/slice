@@ -300,6 +300,12 @@
           <?php if($_SESSION['typeID'] == 4 || $_SESSION['typeID'] == 5):?>
           <li class="header">REPORTS</li>
           <li class="treeview">
+            <a href="<?php echo site_url('tutorialsession/recordsperstudent');?>">
+              <i class="fa fa-address-card"></i>
+              <span>Records By Student</span>
+            </a>
+          </li>
+          <li class="treeview">
             <a href="<?php echo site_url('tutor/tutorpdf');?>" target="_blank">
               <i class="fa fa-users"></i>
               <span>Tutors List</span>

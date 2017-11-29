@@ -15,7 +15,7 @@
           </select>
         </div>
         <div class="form-group">
-          <a class="btn bg-maroon">Generate Sessions Report</button>
+          <a class="btn bg-maroon">Generate Sessions Report</a>
           <button type="submit" name="attendance" class="btn bg-olive">Generate Attendance Report</button>
         </div>
         <?php form_close();?>
