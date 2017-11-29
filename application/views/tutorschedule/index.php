@@ -66,7 +66,7 @@
                 <?php echo $t['dayofweek']; ?>
               </td>
               <td>
-                <?php echo $t['timeStart'].' to '.$t['timeEnd']; ?>
+                <?php echo date('g:i a', strtotime($t['timeStart'])).' to '.date('g:i a', strtotime($t['timeEnd'])); ?>
               </td>
               <td>
                 <?php echo $t['term']; ?>
@@ -80,7 +80,7 @@
               </td>
               <?php endif; ?>
               <td>
-                <?php echo $t['dateAdded']; ?>
+                <?php echo date("M j, Y g:i a",strtotime($t['dateAdded'])); ?>
               </td>
               <td>
                 <a href="<?php echo site_url('tutorschedule/edit/'.$t['tutorScheduleID']); ?>" class="btn btn-warning"
