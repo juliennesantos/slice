@@ -152,7 +152,7 @@
             </a>
             <ul class="treeview-menu">
               <li>
-                <a href="<?php echo site_url('feedback/index');?>">
+                <a href="<?php echo site_url('feedback/tutor_index');?>">
                   <i class="fa fa-list-ul"></i> Listing</a>
               </li>
             </ul>

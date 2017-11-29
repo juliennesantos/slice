@@ -9,6 +9,7 @@ class Feedback extends CI_Controller{
     $this->loginvalidation->sessionexpire();
     $this->load->library('audit');
     $this->load->model('Auditlog_model');
+    $this->load->model('Tutor_model');
   } 
   
   /*
@@ -43,15 +44,17 @@ class Feedback extends CI_Controller{
   {
     $params['limit'] = RECORDS_PER_PAGE; 
     $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
-    
+    $tutor = $this->Tutor_model->get_tutor_userID($_SESSION['userID']);
     $config = $this->config->item('pagination');
     $config['base_url'] = site_url('feedback/index?');
     $config['total_rows'] = $this->Feedback_model->get_all_feedbacks_count();
     $this->pagination->initialize($config);
-    
-    $data['feedbacks'] = $this->Feedback_model->get_all_feedbacks($params);
+    $data['avgrating'] = $this->Feedback_model->getavg($tutor['tutorID']);
+    $data['feedbacks'] = $this->Feedback_model->get_all_feedbackstutor($tutor['tutorID']);
     $data['_view'] = 'feedback/tutor_index';
     $this->load->view('layouts/main',$data);
+    $audit_param = $this->audit->add($_SESSION['userID'],'Feedback','User has viewed feedback list');
+    $this->Auditlog_model->add_auditlog($audit_param);
   }
   /*
   * view feedbacks for tutee
@@ -62,6 +65,7 @@ class Feedback extends CI_Controller{
     {   
       $params = array(
         'tutorialNo' => $this->input->post('tutorialNo'),
+        'rating' => $this->input-.post('rating'),
         'dateAdded' => date('Y-m-d H:i:s'),
         'feedback' => html_escape($this->input->post('feedback')),
       );
@@ -139,7 +143,7 @@ class Feedback extends CI_Controller{
         );
         
         $this->Feedback_model->update_feedback($feedbackID,$params);
-        //audit cancellation of request
+        
       $audit_param = $this->audit->add($_SESSION['userID'],'Update Tutorial Feedback','User has updated a tutorial feedback.');
       $this->Auditlog_model->add_auditlog($audit_param);            
         redirect('feedback/index');

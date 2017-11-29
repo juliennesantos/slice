@@ -117,10 +117,13 @@ class Tutorialsession extends CI_Controller{
       $params = array(
         'tutorialNo' => $this->input->post('tutorialNo'),
         'dateAdded' => date('Y-m-d H:i:s'),
+        'rating' => $this->input->post('rating'),
         'feedback' => html_escape($this->input->post('feedback')),
       );
       
       $feedback_id = $this->Feedback_model->add_feedback($params) ? redirect('tutorialsession/tutee/1') : redirect('tutorialsession/tutee/2');
+      $audit_param = $this->audit->add($_SESSION['userID'],'Add Tutorial Feedback','User has added a tutorial feedback.');
+      $this->Auditlog_model->add_auditlog($audit_param);
     }
     
     //change request for already approved sessions

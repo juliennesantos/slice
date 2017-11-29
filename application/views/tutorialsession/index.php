@@ -248,16 +248,14 @@
                           </tr>
                         </tbody>
                       </table>
-                      <!-- <label for="rating" class="control-label">Rating</label>
+                      <label for="rating" class="control-label">Rate your overall experience in SLC</label>
                       <div class="form-group">
-                        <select name="rating" id="rating">
-                          <option value="1"></option>
-                          <option value="2"></option>
-                          <option value="3"></option>
-                          <option value="4"></option>
-                          <option value="5"></option>
-                        </select>
-                      </div> -->
+                        <label class="radio-inline"><input type="radio" name="rating" value="1" class="radio" id="rating" >1</label>
+                        <label class="radio-inline"><input type="radio" name="rating" value="2" class="radio" id="status" />2</label>
+                        <label class="radio-inline"><input type="radio" name="rating" value="3" class="radio" id="status" />3</label>
+                        <label class="radio-inline"><input type="radio" name="rating" value="4" class="radio" id="status" />4</label>
+                        <label class="radio-inline"><input type="radio" name="rating" value="5" class="radio" id="status" />5</label>
+                      </div> 
                       <label for="feedback" class="control-label">Feedback</label>
                       <div class="form-group">
                         <textarea name="feedback" class="form-control" id="feedback" placeholder="Input your feedback here" maxlength="1000">

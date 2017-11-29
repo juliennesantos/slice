@@ -12,6 +12,8 @@ class Dashboard extends CI_Controller{
         $this->load->model('Tutee_model');
         $this->load->model('Term_model');
         $this->load->model('Attendance_model');
+        $this->load->library('audit');
+        $this->load->model('Auditlog_model');
         
     }
 
@@ -62,5 +64,7 @@ class Dashboard extends CI_Controller{
 
         $data['_view'] = 'dashboard';
         $this->load->view('layouts/main',$data);
+         $audit_param = $this->audit->add($_SESSION['userID'],'Dashboard','User has viewed the dashboard');
+        $this->Auditlog_model->add_auditlog($audit_param);
     }
 }

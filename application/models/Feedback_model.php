@@ -41,6 +41,31 @@ class Feedback_model extends CI_Model
         }
         return $this->db->get()->result_array();
     }
+
+    /*
+     * Get all feedbacks for tutors
+     */
+    function get_all_feedbackstutor($tutorID)
+    {
+        $this->db->from('feedbacks f');
+        $this->db->join('tutorialsessions s', 's.tutorialNo = f.tutorialNo');
+        $this->db->join('subjects su', 'su.subjectID = s.subjectID');
+        $this->db->join('tutors t', 't.tutorID = s.tutorID');
+        $this->db->join('users u', 'u.userID = t.userID');
+        $this->db->where('s.tutorID', $tutorID);
+        $this->db->order_by('feedbackID', 'asc');
+        
+        return $this->db->get()->result_array();
+    }
+
+    function getavg($tutorID)
+    {
+        $this->db->select_avg('f.rating');
+        $this->db->join('tutorialsessions s', 's.tutorialNo = f.tutorialNo');
+        $this->db->where('s.tutorID', $tutorID);
+        $query = $this->db->get('feedbacks f');
+        return $query->result_array();
+    }
     /*
      * Get pending feedbacks count
      */

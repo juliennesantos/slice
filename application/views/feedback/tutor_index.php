@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="panel panel-black">
         <!-- Default panel contents -->
-        <div class="panel-heading"><h3><i class="fa fa-star"></i>&emsp;Your Rating</h3></div>
+        <div class="panel-heading"><h3><i class="fa fa-star"></i>&emsp;Your Rating<?php echo $avgrating;?></h3></div>
         <div class="panel-body">
             <table class="table table-striped text-center">
                 <thead class="panel-heading">
@@ -12,10 +12,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach($feedbacks as $f){ ?>
                     <tr>
-                        <td>PHP HERE</td>
-                        <td>PHP HERE</td>
+                        <td><?php echo $f['subjectCode']?></td>
+                        <td><?php echo $f['feedback']?></td>
                     </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         <div class="pull-right">
