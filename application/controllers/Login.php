@@ -10,6 +10,7 @@ class Login extends CI_Controller
     $this->load->library('audit');
     $this->load->model('Auditlog_model');
     $this->load->model('User_model');
+    $this->load->library('adLDAP');
     
   }
   
@@ -164,40 +165,39 @@ class Login extends CI_Controller
           
           
           // ADLDAP AUTH
-          
+          $adldap = new adLDAP();
           
           $p = $this->input->post('password');
           $usr = $this->input->post('username');
           //include the class and create a connection
-          $this->load->library('adLDAP');
-          $adldap = new adLDAP();      
+               
           //authenticate the user   
           if ($adldap->authenticate($usr, $p)) {
             //get the user profile from active directory
-            $result = $adldap->user_info($usr);
-            $theUser = $result[0][displayname][0];
-            $theEmail = $result[0][mail][0];
-            $namebreaker = explode(",", $theUser);//break the user names
-            $first_name = $namebreaker[1];
-            $last_name = $namebreaker[0];
+            // $result = $adldap->user_info($usr);
+            // $theUser = $result[0][displayname][0];
+            // $theEmail = $result[0][mail][0];
+            // $namebreaker = explode(",", $theUser);//break the user names
+            // $first_name = $namebreaker[1];
+            // $last_name = $namebreaker[0];
+            // //ADD session variables
+            // $_SESSION['id'] = $usr;
+            // $_SESSION['username'] = $usr;
+            // $_SESSION['email'] = $theEmail;	
             
-            //ADD session variables
-            $_SESSION['id'] = $usr;
-            $_SESSION['username'] = $usr;
-            $_SESSION['email'] = $theEmail;	
-            
-            //add the user
-            $uid = $usr;
-            $username = $theUser;
-            $email = $theEmail;
-            $oauth_provider = 'CSB Infonet';
+            // //add the user
+            // $uid = $usr;
+            // $username = $theUser;
+            // $email = $theEmail;
+            // $oauth_provider = 'CSB Infonet';
             
             
             $params = array(
               'username' => $usr,
             );
-            $result = $this->User_model->get_userID($params);
-            if (!empty($result)) {
+            $data = $this->User_model->get_userID($usr);
+
+            if (!empty($data['userID'])) {
               # User is already present
               $_SESSION['userID'] = $data['userID'];
               $_SESSION['typeID'] = $data['typeID'];
@@ -237,54 +237,26 @@ class Login extends CI_Controller
                 #user not present. Insert a new Record
                 $params = array(
                   "username" => $usr,
-                  "emailAddress" => $_SESSION['email'],
+                  "typeID" => 1,
+                  // "emailAddress" => $_SESSION['email'],
                 );
                 $new_userID = $this->User_model->add_user($params);
                 $_SESSION['userID'] = $new_userID;
                 redirect("user/add"); 
               }
             }
-            header("Location: index.php");
+            redirect('login/infonet');
           } else {
-            $errors['pass'] = '<font color="red">Invalid INFONET account and password</font>';
+            redirect('login/index/1');
           }
           
           
           // !--ADLAP AUTH
           
-          
-          
-          
-          
-          $params = array(
-            'password' => $this->input->post('password'),
-            'username' => $this->input->post('username'),
-          );
-          
-          $data = $this->Login_model->get_user($params);
-          if (password_verify($params['password'], $data['password']) == FALSE) {
-            $user = $this->Login_model->getuser($params['username']);
-            
-            //add audit to system
-            if(isset($user['userID'])){
-              $audit_param = $this->audit->add($data['userID'],'Login','A user has tried to login.');
-              $this->Auditlog_model->add_auditlog($audit_param);
-            }
-            else{
-              $audit_param = $this->audit->add(0,'Login','A user has tried to login.');
-              $this->Auditlog_model->add_auditlog($audit_param);         
-            }
-            
-            redirect('login/index/1');
-          } 
-          else 
-          {
-            if (isset($data['userID']) and isset($data['typeID']) && password_verify($params['password'], $data['password']) == TRUE)
-            {
-              $_SESSION['userID'] = $data['userID'];
+          $_SESSION['userID'] = $data['userID'];
               $_SESSION['typeID'] = $data['typeID'];
-              $_SESSION['ln'] = $data['lastName'];
-              $_SESSION['fn'] = $data['firstName'];
+              // $_SESSION['ln'] = $data['lastName'];
+              // $_SESSION['fn'] = $data['firstName'];
               $_SESSION['last_action'] = time();
               $audit_param = $this->audit->add($_SESSION['userID'],'Login','User has successfully logged in.');
               $this->Auditlog_model->add_auditlog($audit_param);
@@ -318,8 +290,37 @@ class Login extends CI_Controller
                 }
               }
               redirect('dashboard/index');
-            }
-          }
+          
+          
+          
+          // $params = array(
+          //   'password' => $this->input->post('password'),
+          //   'username' => $this->input->post('username'),
+          // );
+          
+          // $data = $this->Login_model->get_user($params);
+          // if (password_verify($params['password'], $data['password']) == FALSE) {
+          //   $user = $this->Login_model->getuser($params['username']);
+            
+          //   //add audit to system
+          //   if(isset($user['userID'])){
+          //     $audit_param = $this->audit->add($data['userID'],'Login','A user has tried to login.');
+          //     $this->Auditlog_model->add_auditlog($audit_param);
+          //   }
+          //   else{
+          //     $audit_param = $this->audit->add(0,'Login','A user has tried to login.');
+          //     $this->Auditlog_model->add_auditlog($audit_param);         
+          //   }
+            
+          //   redirect('login/index/1');
+          // } 
+          // else 
+          // {
+          //   if (isset($data['userID']) and isset($data['typeID']) && password_verify($params['password'], $data['password']) == TRUE)
+          //   {
+              
+          //   }
+          // }
         }
         else
         {
